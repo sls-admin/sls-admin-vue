@@ -1,0 +1,6 @@
+node_modules/
+npm-debug.log
+.idea
+bower_components/
+.DS_Store
+.phpintel
