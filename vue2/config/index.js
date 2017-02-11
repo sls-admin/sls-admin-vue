@@ -23,7 +23,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/slsAdminApi': {
-                target: 'htt://slsadmin.api.sls.com',
+                target: 'http://slsadmin.api.sls.com',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/slsAdminApi': ''

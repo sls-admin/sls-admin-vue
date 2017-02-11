@@ -77,6 +77,7 @@ module.exports = {
                 });
             });
         },
+
         setDialogInfo(cmditem) {
             if (!cmditem) {
                 this.$message.error('菜单选项缺少command属性');
@@ -102,7 +103,7 @@ module.exports = {
                     break;
             }
         },
-        updUserinfo(userinfo) {
+        updUserPass(userinfo) {
             this.$refs[userinfo].validate((valid) => {
                 if (valid) {
                     UserApi.updPass.call(this, {
@@ -110,7 +111,7 @@ module.exports = {
                         password: this.dialog[userinfo].password,
                         password_confirm: this.dialog[userinfo].password_confirm
                     }, (data) => {
-                        this.dialog.show = false;
+                        this.dialog.show_pass = false;
                         // this.$nextTick(() => {
                         this.$message.success('修改成功！');
                         // });

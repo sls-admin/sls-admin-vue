@@ -67,11 +67,11 @@
                     <el-input v-model="dialog.user_info.username" disabled placeholder='用户名'></el-input>
                 </el-form-item>
                 <el-form-item class='edit-form' 
-                    label="旧密码" 
+                    label="当前密码" 
                     prop='old_password'>
                     <el-input 
                         type='password'
-                        placeholder='旧密码'
+                        placeholder='当前密码'
                         auto-complete='off'
                         v-model="dialog.user_info.old_password"></el-input>
                 </el-form-item>
@@ -95,8 +95,8 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="dialog.show = false">取 消</el-button>
-                <el-button type="primary" @click="updUserinfo('user_info')">确 定</el-button>
+                <el-button @click="dialog.show_pass = false">取 消</el-button>
+                <el-button type="primary" @click="updUserPass('user_info')">确 定</el-button>
             </span>
         </el-dialog>
 
