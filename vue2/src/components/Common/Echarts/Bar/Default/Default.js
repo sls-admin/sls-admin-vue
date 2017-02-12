@@ -81,6 +81,10 @@ module.exports = {
         subtext(v) {
             this.data.subtext = v;
             this.update();
+        },
+        hoverTitle(v) {
+            this.data.hover_title = v;
+            this.update();
         }
     }
 }

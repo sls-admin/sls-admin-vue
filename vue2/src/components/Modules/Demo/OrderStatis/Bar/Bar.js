@@ -30,6 +30,9 @@ module.exports = {
         onUpdateSubtext() {
             this.echarts_data.subtext = '动态描述信息';
         },
+        onUpdateHoverTitle() {
+            this.echarts_data.hover_title = '动态鼠标放上去的标题';
+        },
         onUpdateValueList() {
             this.getStatis();
         },

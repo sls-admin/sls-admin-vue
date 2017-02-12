@@ -10,6 +10,9 @@
                     @click='onUpdateSubtext'>更新标题下面的描述</el-button>
                 <el-button
                     type="primary"
+                    @click='onUpdateHoverTitle'>更新鼠标放上去的标题</el-button>
+                <el-button
+                    type="primary"
                     @click='onUpdateValueList'>更新数据值</el-button>
                 <el-button
                     type="primary"
