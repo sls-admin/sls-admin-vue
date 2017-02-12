@@ -2,7 +2,7 @@
     <section class="chart">
         <el-row>
             <el-col :span="24">
-                <div id="chartDom" style="width:100%; height:400px;"></div>
+                <div :id="data.id" style="width:100%; height:400px;"></div>
             </el-col>
         </el-row>
     </section>

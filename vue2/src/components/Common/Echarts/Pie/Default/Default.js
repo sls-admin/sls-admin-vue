@@ -5,15 +5,21 @@ module.exports = {
         return {
             chartDom: null,
             data: {
-                title: '垂直方向柱状标题',
-                subtext: '子标题描述信息',
+                id: this.id,
+                title: this.title,
+                subtext: this.subtext,
+                hover_title: this.hoverTitle,
+                data_list: this.dataList,
+                text_list: []
             },
         }
     },
     methods: {
         init() {
             //基于准备好的dom，初始化echarts实例
-            this.chartDom = echarts.init(document.getElementById('chartDom'));
+            if (this.data.id) {
+                this.chartDom = echarts.init(document.getElementById(this.data.id));
+            }
             return this;
         },
         update() {
@@ -33,29 +39,14 @@ module.exports = {
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                    data: this.data.text_list
                 },
                 series: [{
-                    name: '访问来源',
+                    name: this.data.hover_title,
                     type: 'pie',
                     radius: '55%',
-                    center: ['50%', '60%'],
-                    data: [{
-                        value: 335,
-                        name: '直接访问'
-                    }, {
-                        value: 310,
-                        name: '邮件营销'
-                    }, {
-                        value: 234,
-                        name: '联盟广告'
-                    }, {
-                        value: 135,
-                        name: '视频广告'
-                    }, {
-                        value: 1548,
-                        name: '搜索引擎'
-                    }],
+                    // center: ['50%', '60%'],
+                    data: this.data.data_list,
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
@@ -65,10 +56,51 @@ module.exports = {
                     }
                 }]
             });
+        },
+
+        updateTextList() {
+            var data = this.data.data_list;
+            this.data.text_list = [];
+            for (var i = 0; i < data.length; i++) {
+                this.data.text_list.push(data[i].name);
+            }
+            return this;
         }
     },
     mounted: function() {
-        this.init()
+        this.updateTextList()
+            .init()
             .update();
+    },
+    props: {
+        id: {
+            type: String,
+            required: true
+        },
+        title: [String, Number],
+        subtext: [String, Number],
+        hoverTitle: [String, Number],
+        dataList: {
+            type: Array,
+            required: true
+        }
+    },
+    watch: {
+        dataList(v) {
+            this.data.value_list = v;
+            this.updateTextList().update();
+        },
+        title(v) {
+            this.data.title = v;
+            this.update();
+        },
+        subtext(v) {
+            this.data.subtext = v;
+            this.update();
+        },
+        hoverTitle(v) {
+            this.data.hover_title = v;
+            this.update();
+        }
     }
 }
