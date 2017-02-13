@@ -56,11 +56,8 @@ module.exports = {
                         this.$store.dispatch('update_userinfo', {
                             userinfo: data.userinfo
                         }).then(() => {
-
                             this.$router.push('/demo/user/list');
-
                         });
-
 
                     });
                 }

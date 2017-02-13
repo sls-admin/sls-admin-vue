@@ -14,6 +14,34 @@ import {
 Vue.axios.defaults.baseURL = gbs.host;
 
 
+var ajax = function(type, url, data, fn, tokenFlag) {
+	if (!tokenFlag) {
+		data.token = this.$store.state.user.userinfo.token;
+	}
+	if (type === 'get') {
+		var datas = {
+			params: data
+		};
+	} else {
+		var datas = data;
+	}
+
+	Vue.axios[type](url, datas).then((res) => {
+		if (res.data.status === 200) {
+			fn(res.data.data);
+		} else {
+			//调用全局配置错误回调
+
+			cbs.statusError.call(this, res.data);
+		}
+	}).catch((err) => {
+		// console.log(err);
+		//调用全局配置错误回调
+
+		cbs.requestError.call(this, err);
+	});
+};
+
 
 /**
  * 导出所有模块需要用到接口
@@ -24,242 +52,67 @@ Vue.axios.defaults.baseURL = gbs.host;
 module.exports = {
 	user: {
 		login(data, fn) {
-			Vue.axios.post('/Login/login', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					//调用全局配置错误回调
-
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				// console.log(err);
-				//调用全局配置错误回调
-
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/Login/login', data, fn, true);
 		},
 		getList(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.get('/User/selectUser', {
-				params: data
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/User/selectUser', data, fn);
 		},
-
 		saveUser(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/User/saveUser', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/User/saveUser', data, fn);
 		},
 
 		deleteUser(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/User/deleteUser', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/User/deleteUser', data, fn);
 		},
 		editUser(id, fn) {
-			Vue.axios.get('/User/editUser', {
-				params: {
-					token: this.$store.state.user.userinfo.token,
-					id: id
-				}
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/User/deleteUser', {
+				id: id
+			}, fn);
 		},
 		selectUser(id, fn) {
-			Vue.axios.get('/User/getUserInfo', {
-				params: {
-					token: this.$store.state.user.userinfo.token,
-					id: id
-				}
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/User/getUserInfo', {
+				id: id
+			}, fn);
 		},
 		updPass(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/User/updatePass', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/User/updatePass', data, fn);
 		},
 		accessUser(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/User/accessUser', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/User/accessUser', data, fn);
 		}
 	},
 
 	article: {
 		selectArticle(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.get('/Article/selectArticle', {
-				params: data
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/Article/selectArticle', data, fn);
 		},
 		saveArticle(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/Article/saveArticle', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/Article/saveArticle', data, fn);
 		},
 		deleteArticle(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/Article/deleteArticle', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/Article/deleteArticle', data, fn);
 		},
 		findArticle(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.get('/Article/findArticle', {
-				params: data
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/Article/findArticle', data, fn);
 		},
 	},
 	order: {
 		statisOrder(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.get('/Order/statisOrder', {
-				params: data
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/Order/statisOrder', data, fn);
 		},
 		selectOrder(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.get('/Order/selectOrder', {
-				params: data
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/Order/selectOrder', data, fn);
 		},
 		saveOrder(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/Order/saveOrder', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/Order/saveOrder', data, fn);
 		},
 	},
 	system: {
 		getSetting(fn) {
-			var data = {};
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.get('/System/getSetting', {
-				params: data
-			}).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'get', '/System/getSetting', {}, fn);
 		},
 		updateSetting(data, fn) {
-			data.token = this.$store.state.user.userinfo.token;
-			Vue.axios.post('/System/updateSetting', data).then((res) => {
-				if (res.data.status === 200) {
-					fn(res.data.data);
-				} else {
-					cbs.statusError.call(this, res.data);
-				}
-			}).catch((err) => {
-				cbs.requestError.call(this, err);
-			});
+			ajax.call(this, 'post', '/System/updateSetting', data, fn);
 		}
 	}
 };
