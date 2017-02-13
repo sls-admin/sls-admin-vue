@@ -1,10 +1,12 @@
 # vue2-admin
 
-> vue2-admin
+> 这是一个功能强大的自动化后台框架基础模板
 
-## Build Setup
 
 ``` bash
+# get project
+git clone https://gitea.sailengsi.com/product/sls-admin.git
+
 # install dependencies
 npm install
 
@@ -14,5 +16,3 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
