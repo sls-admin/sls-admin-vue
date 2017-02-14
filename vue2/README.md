@@ -14,7 +14,7 @@ cd sls-admin/vue2
 
 #修改api代理
 - 把sls-admin/vue2/config中的index.js打开
-- 找到*target: 'http://slsadmin.api.sls.com',*
+- 找到 target: 'http://slsadmin.api.sls.com' 这一行
 - 修改target值为：'https://slsadmin.api.sailengsi.com'
 
 # 安装依赖
