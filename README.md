@@ -7,7 +7,7 @@
 
 ``` bash
 # get project
-git clone https://gitea.sailengsi.com/product/sls-admin.git
+git clone https://gitea.sailengsi.com/product/sls-admin.git  or  git clone https://github.com/sailengsi/sls-admin.git
 
 #进入项目目录
 cd sls-admin/vue2
