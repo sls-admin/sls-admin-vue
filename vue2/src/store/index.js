@@ -6,12 +6,14 @@ import cart from './cart/';
 import router from './router/';
 import leftmenu from './leftmenu/';
 import user from './userinfo/';
+import global from './global/';
 
 module.exports = new Vuex.Store({
-	modules: {
-		cart,
-		router,
-		leftmenu,
-		user
-	}
+    modules: {
+        global,
+        cart,
+        router,
+        leftmenu,
+        user
+    }
 });

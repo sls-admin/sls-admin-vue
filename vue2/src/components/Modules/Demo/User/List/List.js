@@ -15,7 +15,6 @@ module.exports = {
             search_data: {
                 username: '',
                 email: '',
-                address: ''
             },
 
             //详情弹框信息
@@ -24,121 +23,31 @@ module.exports = {
                 user_info: {}
             },
 
-            //列表字段信息定义
-            fields: {
-                sex: {
-                    info: {
-                        prop: 'sex',
-                        label: '性别',
-                        sortable: true
-                    },
-                    filter: {
-                        list: [{
-                            text: '男',
-                            value: 1
-                        }, {
-                            text: '女',
-                            value: 2
-                        }, {
-                            text: '保密',
-                            value: 3
-                        }],
-                        multiple: false
-                    },
-                    style: {
-                        width: '130',
-                        align: 'center'
-                    }
-                },
-                status: {
-                    info: {
-                        prop: 'status',
-                        label: '状态',
-                        sortable: true
-                    },
-                    filter: {
-                        list: [{
-                            text: '启用',
-                            value: 1
-                        }, {
-                            text: '禁用',
-                            value: 2
-                        }],
-                        multiple: false
-                    },
-                    style: {
-                        width: '130',
-                        align: 'center'
-                    }
-                },
-                address: {
-                    info: {
-                        prop: 'address',
-                        label: '地址'
-                    },
-                    filter: {
+            //列表过滤性别
+            sex_filters: {
+                list: [{
+                    text: '男',
+                    value: 1
+                }, {
+                    text: '女',
+                    value: 2
+                }, {
+                    text: '保密',
+                    value: 3
+                }],
+                multiple: false
+            },
 
-                    },
-                    style: {
-                        align: 'center'
-                    }
-                },
-                create_time: {
-                    info: {
-                        prop: 'create_time',
-                        label: '创建时间',
-                        sortable: true
-                    },
-                    filter: {
-
-                    },
-                    style: {
-                        width: '180',
-                        align: 'center'
-                    }
-                },
-                username: {
-                    info: {
-                        prop: 'username',
-                        label: '姓名',
-                        sortable: true
-                    },
-                    filter: {
-
-                    },
-                    style: {
-                        width: '150',
-                        align: 'center'
-                    }
-                },
-                email: {
-                    info: {
-                        prop: 'email',
-                        label: '邮箱',
-                        sortable: true
-                    },
-                    filter: {
-
-                    },
-                    style: {
-                        width: '200',
-                        align: 'center'
-                    }
-                },
-                birthday: {
-                    info: {
-                        prop: 'birthday',
-                        label: '生日',
-                        sortable: true
-                    },
-                    filter: {
-
-                    },
-                    style: {
-                        width: '150',
-                        align: 'center'
-                    }
-                }
+            //列表过滤状态
+            status_filters: {
+                list: [{
+                    text: '启用',
+                    value: 1
+                }, {
+                    text: '禁用',
+                    value: 2
+                }],
+                multiple: false
             }
         }
     },
@@ -352,7 +261,7 @@ module.exports = {
                 }
             }
 
-            UserApi.getList.call(this, data, (data) => {
+            UserApi.selectUser.call(this, data, (data) => {
                 this.user_list = data.list;
             });
         }
@@ -361,7 +270,7 @@ module.exports = {
     mounted() {
         this.getList();
 
-        //test
+        //test dialog
 
         /* setTimeout(() => {
              this.onSelectUser(this.user_list[0]);

@@ -29,10 +29,6 @@ module.exports = {
                 layout: "total, sizes, prev, pager, next, jumper"
             },
 
-            search_data: {
-                title: ''
-            },
-
             fields: {
                 status: {
                     info: {
@@ -96,43 +92,6 @@ module.exports = {
         },
         filterStatus(value, item) {
             return item.status == value;
-        },
-
-
-        /**
-         * 搜索事件
-         */
-        onSearch() {
-            // console.log(this.search_data);
-            var query = this.$route.query;
-            var sd = {};
-
-            var query = this.$route.query;
-            for (var p in query) {
-                sd[p] = query[p];
-            }
-
-            var where = {};
-
-            for (var s in this.search_data) {
-                if (this.search_data[s]) {
-                    where[s] = this.search_data[s];
-                } else {
-                    if (sd[s]) {
-                        delete sd[s];
-                    }
-                }
-            }
-
-
-
-            this.getList({
-                where,
-                fn: () => {
-                    this.setPath(Object.assign(sd, where));
-                }
-            });
-
         },
 
 

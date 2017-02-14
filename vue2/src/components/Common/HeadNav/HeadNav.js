@@ -66,6 +66,9 @@ module.exports = {
         // this.onGetSetting();
     },
     methods: {
+        /**
+         * 退出登录
+         */
         logout() {
             this.$confirm('你确定退出登录么?', '确认退出', {
                 confirmButtonText: '确定',
@@ -78,6 +81,10 @@ module.exports = {
             });
         },
 
+        /**
+         * 弹出框-修改密码或者系统设置   
+         * @param {string} cmditem 弹框类型
+         */
         setDialogInfo(cmditem) {
             if (!cmditem) {
                 this.$message.error('菜单选项缺少command属性');
@@ -103,6 +110,11 @@ module.exports = {
                     break;
             }
         },
+
+        /**
+         * 修改密码
+         * @param  {object} userinfo 当前修改密码的表单信息
+         */
         updUserPass(userinfo) {
             this.$refs[userinfo].validate((valid) => {
                 if (valid) {
@@ -119,6 +131,10 @@ module.exports = {
                 }
             });
         },
+
+        /**
+         * 获取系统设置信息
+         */
         onGetSetting() {
             //获取系统设置信息
             if (this.$store.state.user.userinfo.pid == 0) {
@@ -137,6 +153,10 @@ module.exports = {
                 this.$message.error('只有管理员才能操作！');
             }
         },
+
+        /**
+         * 修改系统设置信息
+         */
         onUpdateSetting() {
             // console.log(this.dialog.set_info.login_style);
             // console.log(this.dialog.set_info.disabled_update_pass);

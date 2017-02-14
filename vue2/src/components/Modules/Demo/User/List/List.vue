@@ -15,9 +15,6 @@
                     <el-input placeholder="邮箱" v-model='search_data.email'></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-input placeholder="地址" v-model='search_data.address'></el-input>
-                </el-form-item>
-                <el-form-item>
                     <el-button type="default" @click='onSearch'>查询</el-button>
                 </el-form-item>
             </el-form>
@@ -30,58 +27,53 @@
                 width="55">
             </el-table-column>
             <el-table-column
-                :prop="fields.username.info.prop"
-                :label="fields.username.info.label"
-                :align="fields.username.style.align"
-                :width="fields.username.style.width"
-                :sortable="fields.username.info.sortable">
+                prop="username"
+                label="姓名"
+                align="center"
+                width="150"
+                :sortable="true">
             </el-table-column>
             <el-table-column
-                :prop="fields.email.info.prop"
-                :label="fields.email.info.label"
-                :align="fields.email.style.align"
-                :sortable="fields.email.info.sortable">
+                prop="email"
+                label="邮箱"
+                align="center"
+                :sortable="true">
             </el-table-column>
             <el-table-column
-                :prop="fields.sex.info.prop"
-                :sortable="fields.sex.info.sortable"
-                :label="fields.sex.info.label"
-                :align="fields.sex.style.align"
-                :width="fields.sex.style.width"
+                prop="sex"
+                label="性别"
+                align="center"
+                width="130"
+                sortable="true"
                 :formatter="formatterSex"
-                :filters="fields.sex.filter.list"
+                :filters="sex_filters.list"
                 :filter-method="filterSex"
-                :filter-multiple="fields.sex.filter.multiple">
+                :filter-multiple="sex_filters.multiple">
             </el-table-column>
-            <!-- <el-table-column
-                :prop="fields.birthday.info.prop"
-                :label="fields.birthday.info.label"
-                :align="fields.birthday.style.align"
-                :width="fields.birthday.style.width"
-                :sortable="fields.birthday.info.sortable">
-            </el-table-column> -->
             <el-table-column
-                :prop="fields.create_time.info.prop"
-                :label="fields.create_time.info.label"
-                :align="fields.create_time.style.align"
-                :width="fields.create_time.style.width"
-                :sortable="fields.create_time.info.sortable">
+                prop="create_time"
+                label="创建时间"
+                align="center"
+                width="180"
+                :sortable="true">
             </el-table-column>
-            <!-- <el-table-column
-                :prop="fields.address.info.prop"
-                :label="fields.address.info.label"
-                :align="fields.address.style.align">
-            </el-table-column> -->
             <el-table-column
-                :prop="fields.status.info.prop"
-                :label="fields.status.info.label"
-                :align="fields.status.style.align"
-                :width="fields.status.style.width"
-                :sortable="fields.status.info.sortable"
+                prop="status"
+                label="状态"
+                align="center"
+                width="130"
+                :sortable="true"
                 :formatter="formatterStatus"
-                :filters="fields.status.filter.list"
+                :filters="status_filters.list"
                 :filter-method="filterStatus"
-                :filter-multiple="fields.status.filter.multiple">
+                :filter-multiple="status_filters.multiple">
+            </el-table-column>
+            <el-table-column
+                label='住址' 
+                type="expand">
+                <template scope="props">
+                    <p>住址: {{ props.row.address }}</p>
+                </template>
             </el-table-column>
             <el-table-column
                 label="操作"

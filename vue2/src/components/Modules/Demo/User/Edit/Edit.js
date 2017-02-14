@@ -67,7 +67,7 @@ module.exports = {
     },
     mounted() {
         if (this.$route.query.id) {
-            UserApi.editUser.call(this, this.$route.query.id, (data) => {
+            UserApi.findUser.call(this, this.$route.query.id, (data) => {
                 this.user_data = data.userinfo;
                 this.user_data.status = this.user_data.status == 1 ? true : false;
 

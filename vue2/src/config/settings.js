@@ -1,13 +1,20 @@
 var env = process.env;
 
 var settings = {
+
+	//全局设置
 	gbs: {
 		// host: '//slsadmin.api.' + (env.NODE_ENV === 'development' ? 'sls' : 'sailengsi') + '.com',
-		host: '/slsAdminApi',
-		db_prefix: 'sls_admin_',
+		host: '/slsAdminApi', //接口根地址。本地代理到slsadmin.api.sls.com,线上使用的是Nginx代理
+		db_prefix: 'sls_admin_', //本地存储的key
 	},
 
+	//回调
 	cbs: {
+		/**
+		 * ajax请求成功，返回的状态码不是200时调用
+		 * @param  {object} err 返回的对象，包含错误码和错误信息
+		 */
 		statusError(err) {
 			if (err.status !== 404) {
 				this.$message({
@@ -27,6 +34,9 @@ var settings = {
 			}
 		},
 
+		/**
+		 * ajax请求网络出错时调用
+		 */
 		requestError(err) {
 			this.$message({
 				showClose: true,

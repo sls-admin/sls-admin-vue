@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="home" v-loading.fullscreen.lock="$store.state.global.ajax_loading">
         <head-nav></head-nav>
         <div class="left-fixed-right-auto">
             <left-menu></left-menu>
@@ -16,21 +16,7 @@
     import Common from '../Common/';
     export default {
         name: 'home',
-        components:Common,
-        data () {
-            return {
-                
-            }
-        },
-        methods:{
-            
-        },
-        created(){
-           
-        },
-        mounted(){
-            
-        }
+        components:Common
     }
 </script>
 <style scoped lang='less'>

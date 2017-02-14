@@ -1,15 +1,5 @@
 <template>
     <div class="list">
-        <el-col :span="24" class='actions-top'>
-            <el-form :inline="true" :model='search_data' class="demo-form-inline">
-                <el-form-item>
-                    <el-input placeholder="标题" v-model='search_data.title'></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click='onSearch'>查询</el-button>
-                </el-form-item>
-            </el-form>
-        </el-col>
         <el-table border style="width: 100%" align='center'
             :data="article_list">
             <el-table-column
