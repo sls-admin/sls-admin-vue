@@ -2,7 +2,11 @@
 
 > 这是一个功能强大的自动化后台框架基础模板，基于vue2实现，用到的技术包含：vue2,vue-router,vuex2,axios,ElementUI。
 
-在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")
+### 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址"),或者通过本地启动的server，将会看到一个登陆界面，以下是测试账号
+
+1. sls-1/123456
+2. sls-2/123456
+3. sls-3/123456
 
 ### 项目第一级目录和bower.json可以直接忽略
 
@@ -32,11 +36,6 @@ npm run dev
 npm run build
 ```
 
-### 访问demo，或者通过本地启动的server，将会看到一个登陆界面，以下是测试账号
-
-1. sls-1/123456
-2. sls-2/123456
-3. sls-3/123456
 
 使用以上任意一个账号登录之后，即可体验。**由于是测试账号，所以这些账号没有修改密码权限，你懂得！**
 
