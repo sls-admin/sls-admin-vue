@@ -9,7 +9,6 @@ module.exports = {
             user_data: {
                 email: '',
                 username: '',
-                password: '123456',
                 address: '',
                 sex: '3',
                 status: true,
