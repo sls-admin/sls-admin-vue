@@ -170,14 +170,6 @@ module.exports = {
 
             if (where) {
                 data = Object.assign(data, where || {});
-            } else {
-                for (var s in query) {
-                    if (this.search_data[s] !== undefined) {
-                        this.search_data[s] = query[s];
-
-                        data[s] = query[s];
-                    }
-                }
             }
 
 
