@@ -4,21 +4,30 @@
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")
 
+
 ``` bash
 # get project
 git clone https://gitea.sailengsi.com/product/sls-admin.git
 
-# install dependencies
+#进入项目目录
+cd sls-admin/vue2
+
+#修改api代理
+- 把sls-admin/vue2/config中的index.js打开
+- 找到*target: 'http://slsadmin.api.sls.com',*
+- 修改target值为：'https://slsadmin.api.sailengsi.com'
+
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 启动server
 npm run dev
 
-# build for production with minification
+# 编译
 npm run build
 ```
 
-## 访问demo，或者通过本地启动的server，将会看到一个登陆界面，测试账号
+> 访问demo，或者通过本地启动的server，将会看到一个登陆界面，以下是测试账号
 
 1. sls-1/123456
 2. sls-2/123456
