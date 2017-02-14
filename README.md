@@ -4,6 +4,7 @@
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")
 
+### 项目第一级目录和bower.json可以直接忽略
 
 ``` bash
 # get project
