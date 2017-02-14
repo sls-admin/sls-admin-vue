@@ -6,6 +6,10 @@
 
 ### 项目第一级目录和bower.json可以直接忽略
 
+### 使用说明，此项目不是一个框架，没有很多的页面组件等，因为这不是我做这个的本意。
+### 此项目重点突出在架构上模式，这个架构模式，可以让我们在开发中，很方便的拓展与维护，并且可以保持结构清晰的状态
+### 相比那些有很多页面，但架构混乱的模式来说，一个真正的前端应该更在意项目的架构
+
 ``` bash
 # get project
 git clone https://gitea.sailengsi.com/product/sls-admin.git  or  git clone https://github.com/sailengsi/sls-admin.git
