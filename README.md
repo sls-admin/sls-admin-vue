@@ -1,6 +1,6 @@
 # vue2-admin
 
-> 这是一个功能强大的自动化后台框架基础模板，基于vue2实现，用到的技术包含：vue2,vuex2,axios,ElementUI
+> 这是一个功能强大的自动化后台框架基础模板，基于vue2实现，用到的技术包含：vue2,vue-router,vuex2,axios,ElementUI
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")
 
