@@ -1,9 +1,14 @@
-# vue2-admin
+# sls-admin
 
-> 这是一个功能强大的自动化后台框架基础模板，基于vue2实现，用到的技术包含：vue2,vuex2,axios,ElementUI
+> 这是一个功能强大的自动化后台框架基础模板，基于vue2实现，用到的技术包含：vue2,vue-router,vuex2,axios,ElementUI。
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")
 
+### 项目第一级目录和bower.json可以直接忽略
+
+### 使用说明，此项目不是一个框架，没有很多的页面组件等，因为这不是我做这个的本意。
+### 此项目重点突出在架构上模式，这个架构模式，可以让我们在开发中，很方便的拓展与维护，并且可以保持结构清晰的状态
+### 相比那些有很多页面，但架构混乱的模式来说，一个真正的前端应该更在意项目的架构
 
 ``` bash
 # get project
