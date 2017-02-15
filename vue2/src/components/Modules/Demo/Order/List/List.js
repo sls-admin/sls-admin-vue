@@ -38,11 +38,23 @@ module.exports = {
                     },
                     filter: {
                         list: [{
-                            text: '启用',
+                            text: '待支付',
                             value: 1
                         }, {
-                            text: '禁用',
+                            text: '待配送',
                             value: 2
+                        }, {
+                            text: '待收货',
+                            value: 3
+                        }, {
+                            text: '已完成',
+                            value: 4
+                        }, {
+                            text: '已取消',
+                            value: 5
+                        }, {
+                            text: '退单',
+                            value: 6
                         }],
                         multiple: false
                     },
@@ -91,7 +103,7 @@ module.exports = {
             return this.format_status_list[item.status];
         },
         filterStatus(value, item) {
-            return item.status == value;
+            return this.format_status_list[value] == this.format_status_list[item.status];
         },
 
 
