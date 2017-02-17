@@ -11,7 +11,7 @@
  5. 如果您有什么问题，可提issues，也可直接加本人QQ：823393100。
  6. 广告：个人官方博客：https://www.sailengsi.com 交流技术，交流心得。
 
-**关于第二项，如果有好的想法或者解决办法，欢迎留言指出。**
+
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")，以下是测试账号
 1. sls-1/123456
@@ -20,7 +20,9 @@
 
 **如果您觉得项目还不错，欢迎分享...**
 
-使用步骤**(由于第二个问题的存在，您可能无法在本地调试时调用我服务器的接口)**
+**由于第二个问题的存在，您可能无法在本地调试时调用我服务器的接口，如果有好的想法或者解决办法，欢迎留言指出。**
+
+使用步骤
 ``` bash
 # get project
 git clone https://gitea.sailengsi.com/product/sls-admin.git  or  git clone https://github.com/sailengsi/sls-admin.git
