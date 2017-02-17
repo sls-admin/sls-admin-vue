@@ -50,6 +50,13 @@ module.exports = {
 
                     // console.log(this[userdata].status);
 
+                    //测试：强制修改用户名或者状态时，接口返回不允许修改的错误信息
+                    /*if (this[userdata].id) {
+                        // this[userdata].username='testupdatename';
+
+                        // this[userdata].status=!this[userdata].status;
+                    }*/
+
                     UserApi.saveUser.call(this, this[userdata], data => {
                         this.$router.push('/demo/user/list');
                     });
