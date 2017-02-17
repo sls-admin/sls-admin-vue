@@ -13,7 +13,11 @@
             <el-form-item class='edit-form' 
                 label="用户名称" 
                 prop='username'>
-                <el-input v-model="user_data.username" placeholder='用户名'></el-input>
+
+                <el-input 
+                    :disabled='user_data.id ? true : false'
+                    v-model="user_data.username" 
+                    placeholder='用户名'></el-input>
             </el-form-item>
             <el-form-item label="性别">
                 <el-radio-group v-model="user_data.sex">
@@ -35,7 +39,9 @@
                     placeholder='住址'></el-input>
             </el-form-item>
             <el-form-item label="状态">
-                <el-switch on-text="启用" off-text="禁用" v-model="user_data.status"></el-switch>
+                <el-switch on-text="启用" off-text="禁用" 
+                    :disabled='user_data.id ? true : false'
+                    v-model="user_data.status"></el-switch>
             </el-form-item>
             <el-form-item label="密码" v-if='!user_data.id'>
                 创建成功的初始密码为<strong>1234556</strong>
