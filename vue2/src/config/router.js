@@ -66,6 +66,11 @@ module.exports = [{
             name: 'Vuex',
             icon: 'window-restore',
             component: Modules.Function.Open.Vuex
+        }, {
+            path: 'test404',
+            name: '测试404',
+            icon: 'window-restore',
+            component: Modules.Function.Open.Test404
         }]
     }]
 }, {

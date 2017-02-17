@@ -1,7 +1,7 @@
 <template>
     <div class="not-found">
         没有找到页面
-        <a href="#/login">回首页</a>
+        <a href="#/function/open/test404">回测试404页面</a>
     </div>
 </template>
 
