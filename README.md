@@ -11,6 +11,7 @@
  6. 广告：个人官方博客：https://www.sailengsi.com 交流技术，交流心得。
 
 **遗留问题：**
+
  ~~1. 服务端使用的https，所以本地开发时，从http代理到服务器会不成功，正在解决这个问题，有需要的可先克隆到本地看下代码。~~
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")，以下是测试账号
