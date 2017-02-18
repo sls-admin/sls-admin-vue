@@ -11,7 +11,7 @@
  6. 广告：个人官方博客：https://www.sailengsi.com 交流技术，交流心得。
 
 **遗留问题：**
- 1. 服务端使用的https，所以本地开发时，从http代理到服务器会不成功，正在解决这个问题，有需要的可先克隆到本地看下代码。
+ ~~1. 服务端使用的https，所以本地开发时，从http代理到服务器会不成功，正在解决这个问题，有需要的可先克隆到本地看下代码。~~
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")，以下是测试账号
 
@@ -21,7 +21,7 @@
 
 **如果您觉得项目还不错，欢迎分享...**
 
-**由于遗留的第一个问题存在，您可能无法在本地调试时调用我服务器的接口，如果有好的想法或者解决办法，欢迎留言指出。**
+**遗留第一个问题已解决，解决办法是服务器做了兼容http，在修改代理时，把https改成http即可，请问下面的步骤**
 
 使用步骤
 ``` bash
@@ -34,7 +34,7 @@ cd sls-admin/vue2
 #修改api代理（目前这个方法不可行，正在解决...）
 - 把sls-admin/vue2/config中的index.js打开
 - 找到 target: 'http://slsadmin.api.sls.com' 这一行
-- 修改target值为：'https://slsadmin.api.sailengsi.com'
+- 修改target值为：'http://slsadmin.api.sailengsi.com'
 
 # 安装依赖
 npm install
