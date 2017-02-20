@@ -11,13 +11,15 @@
                         <h3 class="title">系统登录</h3>
                         <el-form-item
                             prop='username'>
-                            <el-input type="text" auto-complete="off" placeholder="账号" v-model='data.username'></el-input>
+                            <el-input type="text" auto-complete="off" placeholder="账号" 
+                                v-model='data.username'
+                                @keyup.native.enter="login('data')"></el-input>
                         </el-form-item>
                         <el-form-item
                             prop='password'>
                             <el-input type="password" auto-complete="off" placeholder="密码" 
                                 v-model='data.password'
-                                @keyup.enter="login('data')"></el-input>
+                                @keyup.native.enter="login('data')"></el-input>
                         </el-form-item>
                         <el-checkbox checked style="margin:0px 0px 35px 0px;">记住密码</el-checkbox>
                         <el-form-item style="width:100%;">
