@@ -19,9 +19,12 @@
                             prop='password'>
                             <el-input type="password" auto-complete="off" placeholder="密码" 
                                 v-model='data.password'
-                                @keyup.native.enter="login('data')"></el-input>
+                                @keyup.native.enter="login('data')"
+                                :disabled='remumber.remumber_flag'></el-input>
                         </el-form-item>
-                        <el-checkbox checked style="margin:0px 0px 35px 0px;">记住密码</el-checkbox>
+                        <el-checkbox style="margin:0px 0px 35px 0px;"
+                            :checked='remumber.remumber_flag'
+                            v-model='remumber.remumber_flag'>记住密码</el-checkbox>
                         <el-form-item style="width:100%;">
                             <el-button type="primary" @click='login("data")'>登录</el-button>
                             <el-button @click='resetForm("data")'>重置</el-button>
