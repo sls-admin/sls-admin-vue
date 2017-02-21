@@ -19,6 +19,10 @@ module.exports = {
 
             remumber: this.$store.state.user.remumber,
 
+            login_actions: {
+                disabled: false
+            },
+
             data: {
                 username: '',
                 password: '',
@@ -51,6 +55,7 @@ module.exports = {
         login(ref) {
             this.$refs[ref].validate((valid) => {
                 if (valid) {
+                    this.login_actions.disabled = true;
                     //如果记住密码，提交的信息包括真实token，密码则是假的
                     //服务端登录验证优先级：用户名必须，其次先取token，不存在时再取密码
                     UserApi.login.call(this, this[ref], data => {
@@ -71,8 +76,11 @@ module.exports = {
                         this.$store.dispatch('update_userinfo', {
                             userinfo: data.userinfo
                         }).then(() => {
+                            this.login_actions.disabled = false;
                             this.$router.push('/demo/user/list');
                         });
+                    }, () => {
+                        this.login_actions.disabled = false;
                     });
                 }
             });

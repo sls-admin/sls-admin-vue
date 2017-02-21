@@ -22,11 +22,11 @@ Vue.axios.defaults.baseURL = gbs.host;
  * @param  {Function} fn        回调函数
  * @param  {boolean}   tokenFlag 是否需要携带token参数，为true，不需要；false，需要。一般除了登录，等需要
  */
-var ajax = function(type, url, data, fn, tokenFlag) {
+var ajax = function(type, url, data, fn, tokenFlag, errFn) {
 
 	this.$store.dispatch('show_loading');
 
-	if (!tokenFlag) {
+	if (tokenFlag !== true) {
 		data.token = this.$store.state.user.userinfo.token;
 	}
 	if (type === 'get') {
@@ -43,6 +43,10 @@ var ajax = function(type, url, data, fn, tokenFlag) {
 		} else {
 			//调用全局配置错误回调
 			cbs.statusError.call(this, res.data);
+
+			if (tokenFlag === true) {
+				errFn && errFn.call(this);
+			}
 		}
 		this.$store.dispatch('hide_loading');
 	}).catch((err) => {
@@ -71,8 +75,8 @@ module.exports = {
 		 * @param {string} data.password 登陆密码
 		 * @param {function} fn 成功回调
 		 */
-		login(data, fn) {
-			ajax.call(this, 'post', '/Login/login', data, fn, true);
+		login(data, fn, errFn) {
+			ajax.call(this, 'post', '/Login/login', data, fn, true, errFn);
 		},
 
 		/**

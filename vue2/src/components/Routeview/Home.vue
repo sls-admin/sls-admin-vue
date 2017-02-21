@@ -1,5 +1,5 @@
-<template>
-    <div class="home" v-loading.fullscreen.lock="$store.state.global.ajax_loading">
+<template v-loading.fullscreen.lock="$store.state.global.ajax_loading">
+    <div class="home">
         <head-nav></head-nav>
         <div class="left-fixed-right-auto">
             <left-menu></left-menu>

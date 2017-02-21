@@ -3,7 +3,9 @@
         <el-row>
             <el-col :span='24'>
                 <div class="content">
-                    <el-form label-position="left" label-width="0px" class="demo-ruleForm card-box loginform" 
+                    <el-form label-position="left" label-width="0px" class="demo-ruleForm card-box loginform"
+                        v-loading="login_actions.disabled"
+                        element-loading-text="正在登录..."
                         :style="formOffset"
                         :model='data'
                         :rules="rule_data"
@@ -19,8 +21,7 @@
                             prop='password'>
                             <el-input type="password" auto-complete="off" placeholder="密码" 
                                 v-model='data.password'
-                                @keyup.native.enter="login('data')"
-                                :disabled='remumber.remumber_flag'></el-input>
+                                @keyup.native.enter="login('data')"></el-input>
                         </el-form-item>
                         <el-checkbox style="margin:0px 0px 35px 0px;"
                             :checked='remumber.remumber_flag'
