@@ -24,7 +24,7 @@
                         <el-checkbox checked style="margin:0px 0px 35px 0px;">记住密码</el-checkbox>
                         <el-form-item style="width:100%;">
                             <el-button type="primary" @click='login("data")'>登录</el-button>
-                            <el-button>重置</el-button>
+                            <el-button @click='resetForm("data")'>重置</el-button>
                         </el-form-item>
                     </el-form>
                 </div>

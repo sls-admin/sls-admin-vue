@@ -62,6 +62,10 @@ module.exports = {
                     });
                 }
             });
+        },
+
+        resetForm(ref){
+            this.$refs[ref].resetFields();
         }
     },
     created() {
