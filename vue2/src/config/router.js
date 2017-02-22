@@ -173,4 +173,38 @@ module.exports = [{
             component: Modules.Demo.OrderStatis.Pie
         }]
     }]
+}, {
+    path: '/adv',
+    name: '再次封装',
+    icon: 'inbox',
+    component: Home,
+    children: [{
+        hidden: true,
+        path: '',
+        redirect: to => {
+            return 'user'
+        }
+    }, {
+        path: 'user',
+        name: '用户管理',
+        icon: 'inbox',
+        component: Content,
+        children: [{
+            hidden: true,
+            path: '',
+            redirect: to => {
+                return 'list'
+            }
+        }, {
+            path: 'list',
+            name: '用户列表',
+            icon: 'reorder',
+            component: Modules.Adv.User.List
+        }, {
+            path: 'edit',
+            name: '编辑用户',
+            icon: 'edit',
+            component: Modules.Adv.User.Edit
+        }]
+    }]
 }];
