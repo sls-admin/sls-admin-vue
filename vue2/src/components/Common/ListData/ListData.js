@@ -9,6 +9,7 @@ module.exports = {
             list: this.List || [], //列表数组
             fields: this.FieldList || [], //字段数组
             selection: this.Selection || false, //是否需要批量选择
+            btn_info: this.BtnInfo || {}
         }
     },
     methods: {
@@ -32,7 +33,11 @@ module.exports = {
             /**
              * 改变CheckBox事件，第一个参数是ID数组，第二个参数二维数组，每个数组是选中的对象
              */
-            this.$emit('onSelectionChange', this.batch_ids, this.batch_datas)
+            this.$emit('onSelectionChange', this.batch_ids, this.batch_datas);
+            this.$emit('onSelectionChangeObj', {
+                ids: this.batch_ids,
+                datas: this.batch_datas
+            });
         },
 
 
@@ -68,6 +73,20 @@ module.exports = {
             this.$emit('onDelete', opts);
         },
 
+        /**
+         * 获取行信息事件
+         * @param  {object} row   当前行对象
+         * @param  {number} index 当前行索引
+         * @param  {array} list  当前列表数组
+         */
+        onGetInfo(row, index, list, type) {
+            this.$emit('onGetInfo', {
+                row,
+                index,
+                list,
+                type
+            });
+        },
 
         /**
          * 内置删除事件执行成功后，更新列表方法
@@ -103,6 +122,9 @@ module.exports = {
             type: Array,
             required: true
         },
+        BtnInfo: {
+            type: Object
+        },
         Selection: {
             type: Boolean,
             default: false
@@ -127,6 +149,9 @@ module.exports = {
         },
         Selection(v) {
             this.selection = v;
-        }
+        },
+        BtnInfo(v) {
+            this.btn_info = v;
+        },
     }
 }

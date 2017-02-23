@@ -13,8 +13,11 @@
             :List='list'
             :FieldList='fields'
             :Selection='true'
+            :BtnInfo='btn_info'
             @onSelectionChange='onChangeCheckbox'
-            @onDelete='onDelete'></list-data>
+            @onSelectionChangeObj='onChangeBoxObj'
+            @onDelete='onDelete'
+            @onGetInfo='onGetInfo'></list-data>
     </div>
 </template>
 <script>

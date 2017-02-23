@@ -29,25 +29,37 @@
 
 
             <el-table-column
-                label="操作"
-                width="200" 
+                v-if='btn_info.show!==false'
+                :label="btn_info.label || '操作'"
+                :width="btn_info.width || 160" 
                 :context="_self">
                 <template scope='scope'>
-                    <el-button 
+                    <el-button
+                        v-if='btn_info.select!==false'
                         type="info" 
                         icon='view'
                         size="mini"
-                        @click='onSelectUser(scope.row)'></el-button>
-                    <el-button 
+                        @click='onGetInfo(scope.row,scope.$index,list,"select")'></el-button>
+                    <el-button
+                        v-if='btn_info.update!==false'
                         type="info" 
                         icon='edit' 
                         size="mini"
-                        @click='onEditUser(scope.row)'></el-button>
-                    <el-button 
+                        @click='onGetInfo(scope.row,scope.$index,list,"update")'></el-button>
+                    <el-button
+                        v-if='btn_info.delete!==false'
                         type="danger" 
                         icon='delete' 
                         size="mini"
                         @click='onDelete(scope.row,scope.$index,list)'></el-button>
+
+
+                    <el-button
+                        v-if='btn_info.list'
+                        v-for='btn in btn_info.list'
+                        :type="btn.type || 'info'"
+                        size="mini"
+                        @click='onGetInfo(scope.row,scope.$index,list,btn.fn_type || btn.text)'>{{btn.text}}</el-button>
                 </template>
             </el-table-column>
         </el-table>

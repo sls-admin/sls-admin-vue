@@ -14,11 +14,13 @@
 
  ~~1. 服务端使用的https，所以本地开发时，从http代理到服务器会不成功，正在解决这个问题，有需要的可先克隆到本地看下代码。~~
 
-**预计更新内容：**
- 1. 将页面组件再次抽象封装成组件，并提供接口供外部使用，预计抽象的组件包括如下
+**正在更新内容：**
+1. 将页面组件再次抽象封装成组件，并提供接口供外部使用，预计抽象的组件包括如下
+
     ~~- 图表组件，目前已存在~~
     - 列表组件，开发中...
     - 表单组件，未开始
+    - 对于新手或者后台人员的使用，有时间会出个文档，让他们少走点坑~
 
 在线demo：[https://vue2.slsadmin.sailengsi.com](https://vue2.slsadmin.sailengsi.com "演示地址")，以下是测试账号
 
@@ -38,7 +40,7 @@ git clone https://gitea.sailengsi.com/product/sls-admin.git  or  git clone https
 #进入项目目录
 cd sls-admin/vue2
 
-#修改api代理（目前这个方法不可行，正在解决...）
+#修改api代理
 - 把sls-admin/vue2/config中的index.js打开
 - 找到 target: 'http://slsadmin.api.sls.com' 这一行
 - 修改target值为：'http://slsadmin.api.sailengsi.com'

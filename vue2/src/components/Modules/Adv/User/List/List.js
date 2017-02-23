@@ -63,6 +63,21 @@ module.exports = {
                 },
                 filter_multiple: false,
             }],
+            btn_info: {
+                // show: false,
+                label: 'Actions',
+                width: 300,
+                // delete: false,
+                // select: false,
+                // update: false,
+                list: [{
+                    text: '设置权限',
+                    fn_type: 'access'
+                }, {
+                    text: '修改状态',
+                    fn_type: 'status'
+                }]
+            }
         }
     },
     methods: {
@@ -76,14 +91,34 @@ module.exports = {
             });
         },
 
+        /**
+         * 改变CheckBox事件
+         * 和下面一样，这个是参数分开版
+         */
         onChangeCheckbox(ids, datas) {
-            // console.log(ids);
-            // console.log(datas);
+
+        },
+        /**
+         * 改变CheckBox事件
+         * 和下面一样，这个是参数合并版
+         */
+        onChangeBoxObj(opts) {
+            console.log(opts);
         },
 
+        /**
+         * 点击按钮公用事件
+         */
+        onGetInfo(opts) {
+            console.log(opts);
+        },
+
+        /**
+         * 删除事件
+         */
         onDelete(opts) {
-            // this.$refs.list.onUpdateList(opts.batch_ids || opts.index);
-        }
+            console.log(opts);
+        },
     },
     mounted() {
         this.getList();
