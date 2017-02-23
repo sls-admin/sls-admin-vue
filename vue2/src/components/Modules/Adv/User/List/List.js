@@ -98,6 +98,7 @@ module.exports = {
         onChangeCheckbox(ids, datas) {
 
         },
+
         /**
          * 改变CheckBox事件
          * 和下面一样，这个是参数合并版
