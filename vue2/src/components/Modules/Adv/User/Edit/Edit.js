@@ -15,7 +15,6 @@ module.exports = {
         return {
             fields: [{
                 key: 'email',
-                type: 'input',
                 value: '',
                 desc: '请输入用户名',
                 label: '邮箱'
@@ -63,7 +62,7 @@ module.exports = {
                 key: 'cate',
                 type: 'select',
                 value: {
-                    default: 'sanwen',
+                    default: '',
                     list: [{
                         value: 'jishu',
                         text: '技术'

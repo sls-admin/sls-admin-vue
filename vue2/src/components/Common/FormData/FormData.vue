@@ -37,7 +37,7 @@
                     <el-option
                         v-for='item in field.value.list'
                         :value="item.value"
-                        :label="item.text || item.value">{{item.text || item.value}}</el-option>
+                        :label="item.text || item.value"></el-option>
                 </el-select>
                 
                 <!-- 
