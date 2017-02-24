@@ -36,7 +36,8 @@
                     :placeholder="field.desc">
                     <el-option
                         v-for='item in field.value.list'
-                        :value="item.value">{{item.text || item.value}}</el-option>
+                        :value="item.value"
+                        :label="item.text || item.value">{{item.text || item.value}}</el-option>
                 </el-select>
                 
                 <!-- 
