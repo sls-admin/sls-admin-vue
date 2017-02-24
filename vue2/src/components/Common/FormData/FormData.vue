@@ -13,8 +13,8 @@
                  -->
                 <el-input
                     v-if='!field.type || field.type==="input" || field.type==="textarea"'
-                    :type='field.type || "textarea"'
-                    :v-model="field.value" 
+                    :type='!field.type ? "input" : field.type'
+                    v-model="field.value" 
                     :placeholder='field.desc'></el-input>
                 
                 <!-- 

@@ -39,6 +39,7 @@ module.exports = {
     methods: {
         onSubmit() {
             var fields = this.fields;
+            console.log(fields);
             for (var i = 0; i < fields.length; i++) {
                 var item = fields[i];
                 if (typeof item.value !== 'object') {

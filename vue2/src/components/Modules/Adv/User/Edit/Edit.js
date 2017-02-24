@@ -62,7 +62,7 @@ module.exports = {
                 key: 'cate',
                 type: 'select',
                 value: {
-                    default: '',
+                    default: 'sanwen',
                     list: [{
                         value: 'jishu',
                         text: '技术'
