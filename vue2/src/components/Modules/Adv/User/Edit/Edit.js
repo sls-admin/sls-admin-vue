@@ -2,82 +2,112 @@ import {
     user as UserApi
 } from 'config/request.js';
 
+import {
+    FormData
+} from 'common/';
+
 module.exports = {
     name: 'user',
+    components: {
+        FormData
+    },
     data() {
         return {
-            user_data: {
-                email: '',
-                username: '',
-                address: '',
-                sex: '3',
-                status: true,
-                birthday: '1992-11-5'
-            },
-            user_rules: {
-                email: [{
-                    required: true,
-                    message: '邮箱不能为空！',
-                    trigger: 'blur'
-                }, {
-                    type: 'email',
-                    message: '邮箱格式不正确！',
-                    trigger: 'blur'
-                }],
-                username: [{
-                    required: true,
-                    message: '用户名不能为空！',
-                    trigger: 'blur'
-                }],
-                birthday: [{
-                    required: true,
-                    message: '生日不能为空！',
-                    trigger: 'change'
-                }],
-                address: [{
-                    required: true,
-                    message: '地址不能为空！',
-                    trigger: 'change'
-                }]
-            }
+            fields: [{
+                key: 'email',
+                type: 'input',
+                value: '',
+                desc: '请输入用户名',
+                label: '邮箱'
+            }, {
+                key: 'username',
+                type: 'input',
+                value: '',
+                desc: '请输入邮箱',
+                label: '用户名'
+            }, {
+                key: 'sex',
+                type: 'radio',
+                value: {
+                    default: 2,
+                    list: [{
+                        value: 1,
+                        text: '男'
+                    }, {
+                        value: 2,
+                        text: '女'
+                    }, {
+                        value: 3,
+                        text: '保密'
+                    }]
+                },
+                desc: '',
+                label: '性别'
+            }, {
+                key: 'address',
+                type: 'textarea',
+                value: '',
+                desc: '请输入地址',
+                label: '地址'
+            }, {
+                key: 'status',
+                type: 'switch',
+                value: {
+                    default: true,
+                    on: '启用',
+                    off: '禁用'
+                },
+                desc: '',
+                label: '状态'
+            }, {
+                key: 'cate',
+                type: 'select',
+                value: {
+                    default: 'sanwen',
+                    list: [{
+                        value: 'jishu',
+                        text: '技术'
+                    }, {
+                        value: 'sanwen',
+                        text: '散文'
+                    }, {
+                        value: 'qita',
+                        text: '其他'
+                    }]
+                },
+                desc: '请选择分类',
+                label: '分类'
+            }, {
+                key: 'tag',
+                type: 'select',
+                multiple: true,
+                value: {
+                    default: ['qianduan', 'houtai'],
+                    list: [{
+                        value: 'qianduan',
+                        text: '前端'
+                    }, {
+                        value: 'mysql',
+                        text: '数据库'
+                    }, {
+                        value: 'houtai',
+                        text: '后台'
+                    }, {
+                        value: 'fuwuqi',
+                        text: '服务器'
+                    }]
+                },
+                desc: '请选择标签',
+                label: '标签'
+            }]
         }
     },
     methods: {
-        save_user(userdata) {
-            this.$refs[userdata].validate((valid) => {
-                if (valid) {
-                    // console.log(this[userdata]);
-
-                    // console.log(this[userdata].status);
-
-                    //测试：强制修改用户名或者状态时，接口返回不允许修改的错误信息
-                    /*if (this[userdata].id) {
-                        // this[userdata].username='testupdatename';
-
-                        // this[userdata].status=!this[userdata].status;
-                    }*/
-
-                    UserApi.saveUser.call(this, this[userdata], data => {
-                        this.$router.push('/demo/user/list');
-                    });
-                }
-            });
-        },
-        reset_user(userdata) {
-            this.$refs[userdata].resetFields();
-        },
-
-        onChangeDate(val) {
-            this.user_data.birthday = val;
+        onGetData(opts) {
+            console.log(opts);
         }
     },
     mounted() {
-        if (this.$route.query.id) {
-            UserApi.findUser.call(this, this.$route.query.id, (data) => {
-                this.user_data = data.userinfo;
-                this.user_data.status = this.user_data.status == 1 ? true : false;
 
-            });
-        }
     }
 }
