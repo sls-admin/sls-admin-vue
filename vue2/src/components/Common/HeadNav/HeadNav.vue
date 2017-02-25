@@ -19,9 +19,13 @@
                     </el-submenu> -->
                     <!-- <el-menu-item index="2">商城中心</el-menu-item>
                     <el-menu-item index="3">系统设置</el-menu-item> -->
-
-                    <el-menu-item :index="item.path" v-for='(item,index) in $router.options.routes' v-if='!item.hidden'>
-                        {{item.name}}
+                    
+                    <!-- v-if='!item.hidden && $store.state.user.userinfo.access.indexOf(item.path)===-1' -->
+                    <el-menu-item 
+                        :index="item.path" 
+                        v-for='(item,index) in $router.options.routes' 
+                        v-if='!item.hidden'>
+                        {{item.name}}<!-- {{item.path}} -->
                     </el-menu-item>
                 </el-menu>
             </el-col>

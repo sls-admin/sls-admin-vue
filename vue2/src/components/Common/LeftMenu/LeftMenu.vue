@@ -11,6 +11,7 @@
                         :default-active="$route.path"
                         unique-opened 
                         router>
+                        <!-- v-if="!item.hidden && $store.state.user.userinfo.access.indexOf(route.path+'/'+item.path)===-1" -->
                         <template 
                             v-for="(item,index) in route.children" 
                             v-if="!item.hidden">
@@ -28,8 +29,10 @@
                                     </el-tooltip>
                                     <span 
                                         class='menu-name' 
-                                        v-if="$store.state.leftmenu.menu_flag">{{item.name}}</span>
+                                        v-if="$store.state.leftmenu.menu_flag">{{item.name}}<!-- {{route.path+'/'+item.path}} --></span>
                                 </template>
+
+                                <!-- v-if="!child.hidden && $store.state.user.userinfo.access.indexOf(route.path+'/'+item.path+'/'+child.path)===-1" -->
                                 <el-menu-item 
                                     v-for='(child,cindex) in item.children' 
                                     v-if="!child.hidden"
@@ -45,7 +48,7 @@
                                     </el-tooltip>
                                     <span 
                                         class='menu-name' 
-                                        v-if="$store.state.leftmenu.menu_flag">{{child.name}}</span>
+                                        v-if="$store.state.leftmenu.menu_flag">{{child.name}}<!-- {{route.path+'/'+item.path+'/'+child.path}} --></span>
                                 </el-menu-item>
                             </el-submenu>
                         </template>
@@ -109,6 +112,9 @@
             });
 
             this.updateCurMenu();
+        },
+        mounted(){
+            // console.log(this.$store.state.user.userinfo.access);
         },
         watch:{
             $route(to,from){

@@ -3,14 +3,15 @@ import {
 } from 'config/request.js';
 
 import {
-    ListData
+    ListData,
+    DialogInfo
 } from 'common/';
-
 
 module.exports = {
     name: 'list',
     components: {
-        ListData
+        ListData,
+        DialogInfo
     },
     data() {
         return {
@@ -77,6 +78,34 @@ module.exports = {
                     text: '修改状态',
                     fn_type: 'status'
                 }]
+            },
+
+            dialog: {
+                title: '查看用户信息',
+                show: false,
+                data: {},
+                fields: [{
+                    key: 'email',
+                    label: '邮箱'
+                }, {
+                    key: 'username',
+                    label: '用户名'
+                }, {
+                    key: 'sex_text',
+                    label: '性别'
+                }, {
+                    key: 'birthday',
+                    label: '生日'
+                }, {
+                    key: 'address',
+                    label: '地址'
+                }, {
+                    key: 'status_text',
+                    label: '状态'
+                }, {
+                    key: 'create_time',
+                    label: '创建时间'
+                }]
             }
         }
     },
@@ -105,6 +134,7 @@ module.exports = {
          */
         onChangeBoxObj(opts) {
             console.log(opts);
+            this.$message.success('选中行的IDS：' + opts.ids);
         },
 
         /**
@@ -112,13 +142,54 @@ module.exports = {
          */
         onGetInfo(opts) {
             console.log(opts);
+            switch (opts.type) {
+                case 'select':
+                    this.onDialogUserInfo(opts.row);
+                    break;
+                case 'update':
+                    this.onUpdate(opts.row);
+                    break;
+                case 'status':
+                    this.onStatus(opts.row);
+                    break;
+                case 'access':
+                    this.onAccess(opts.row);
+                    break;
+            }
         },
+
+        onDialogUserInfo(data) {
+            data.sex_text = data.sex === 1 ? '男' : (data.sex === 2 ? '女' : '保密');
+            data.status_text = data.status === 1 ? '启用' : (data.status === 2 ? '禁用' : '出错了');
+            this.dialog.data = data;
+            this.dialog.show = true;
+        },
+
+
+        onUpdate(data) {
+            this.$message.success('点击的是修改按钮，用户名：' + data.username);
+        },
+
+
+        onStatus(data) {
+            this.$message.success('点击的是自定义修改状态按钮，用户名：' + data.username);
+        },
+
+        onAccess(data) {
+            this.$message.success('点击的是自定义设置权限按钮，用户名：' + data.username);
+        },
+
 
         /**
          * 删除事件
          */
         onDelete(opts) {
             console.log(opts);
+            if (opts.index >= 0) {
+                this.$message.success('单个删除,行索引：' + opts.index);
+            } else {
+                this.$message.success('批量删除,行IDS：' + opts.batch_ids);
+            }
         },
     },
     mounted() {
