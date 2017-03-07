@@ -1,8 +1,4 @@
 import {
-    user as UserApi
-} from 'config/request.js';
-
-import {
     ListData,
     DialogInfo
 } from 'common/';
@@ -115,7 +111,7 @@ module.exports = {
          */
         getList() {
             var data = {};
-            UserApi.selectUser.call(this, data, (data) => {
+            this.$$selectUser.call(this, data, (data) => {
                 this.list = data.list;
             });
         },

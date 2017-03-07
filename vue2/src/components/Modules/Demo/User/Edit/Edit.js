@@ -1,7 +1,3 @@
-import {
-    user as UserApi
-} from 'config/request.js';
-
 module.exports = {
     name: 'user',
     data() {
@@ -57,7 +53,7 @@ module.exports = {
                         // this[userdata].status=!this[userdata].status;
                     }*/
 
-                    UserApi.saveUser.call(this, this[userdata], data => {
+                    this.$$saveUser.call(this, this[userdata], data => {
                         this.$router.push('/demo/user/list');
                     });
                 }
@@ -73,7 +69,7 @@ module.exports = {
     },
     mounted() {
         if (this.$route.query.id) {
-            UserApi.findUser.call(this, this.$route.query.id, (data) => {
+            this.$$findUser.call(this, this.$route.query.id, (data) => {
                 this.user_data = data.userinfo;
                 this.user_data.status = this.user_data.status == 1 ? true : false;
 

@@ -1,7 +1,3 @@
-import {
-    user as UserApi
-} from 'config/request.js';
-
 module.exports = {
     name: 'list',
     data() {
@@ -203,7 +199,7 @@ module.exports = {
                 var id = user.id;
             }
 
-            UserApi.deleteUser.call(this, {
+            this.$$deleteUser.call(this, {
                 id: id
             }, (data) => {
                 if (user === true) {
@@ -261,7 +257,7 @@ module.exports = {
                 }
             }
 
-            UserApi.selectUser.call(this, data, (data) => {
+            this.$$selectUser.call(this, data, (data) => {
                 this.user_list = data.list;
             });
         }

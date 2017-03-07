@@ -40,6 +40,8 @@ module.exports = {
             'store': path.resolve(__dirname, '../src/store'),
             'libs': path.resolve(__dirname, '../src/libs'),
             'util': path.resolve(__dirname, '../src/util'),
+            'register': path.resolve(__dirname, '../src/register'),
+            'plugins': path.resolve(__dirname, '../src/plugins'),
         }
     },
     resolveLoader: {

@@ -1,3 +1,4 @@
 module.exports = {
-    store: require('./store.js')
+	store: require('./store/'),
+	ajax: require('./ajax/')
 };

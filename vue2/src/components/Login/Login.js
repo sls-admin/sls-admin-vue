@@ -82,6 +82,8 @@ module.exports = {
                         });
                     }, () => {
                         this.login_actions.disabled = false;
+                    }, () => {
+                        this.login_actions.disabled = false;
                     });
                 }
             });
