@@ -10,7 +10,7 @@
                         :model='data'
                         :rules="rule_data"
                         ref='data'>
-                        <h3 class="title">系统登录aaaaaa</h3>
+                        <h3 class="title">系统登录</h3>
                         <el-form-item
                             prop='username'>
                             <el-input type="text" auto-complete="off" placeholder="账号" 
