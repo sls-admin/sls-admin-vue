@@ -31,17 +31,17 @@ module.exports = function(type, url, data, fn, tokenFlag, errFn) {
 	}
 
 	if (type === 'get') {
-		let datas = {
+		var datas = {
 			params: data
 		};
 	} else {
-		let datas = data;
+		var datas = data;
 	}
 
 	Vue.axios[type](url, datas).then((res) => {
 		if (res.data.status === 200) {
-			console.dir(res.data);
-			fn(res.data);
+			// console.dir(res.data);
+			fn(res.data.data);
 		} else {
 
 			// 调用全局配置错误回调
