@@ -4,7 +4,9 @@ import Vue from 'vue';
 /**
  * 导入需要注册的对象
  */
-import register from 'register/';
+import {
+	plugins
+} from 'register/';
 
 
 /**
@@ -28,6 +30,6 @@ Vue.use({
 			}
 		}
 
-		deepRegister(Vue, register);
+		deepRegister(Vue, plugins);
 	}
 });

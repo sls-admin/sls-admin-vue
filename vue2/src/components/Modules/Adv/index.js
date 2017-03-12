@@ -1,3 +1,5 @@
 module.exports = {
-	User: require('./User/')
+	User: require('./User/'),
+	Article: require('./Article/'),
+	Wangeditor: require('./Wangeditor/')
 };

@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'list',
+    name: 'list-data',
     data() {
         return {
             batch_flag: true, //符合批量删除为true,否则为false
@@ -9,7 +9,9 @@ module.exports = {
             list: this.List || [], //列表数组
             fields: this.FieldList || [], //字段数组
             selection: this.Selection || false, //是否需要批量选择
-            btn_info: this.BtnInfo || {}
+            btn_info: this.BtnInfo || {},
+
+            pagination: this.Pagination || {},
         }
     },
     methods: {
@@ -46,9 +48,8 @@ module.exports = {
          * 删除事件
          * @param  {object || boolean} user  当前信息对象或者为布尔值,为布尔值时，代表是批量删除
          * @param  {number} index 当前列表索引
-         * @param  {array} list  当前列表数组
          */
-        onDelete(data, index, list) {
+        onDelete(data, index) {
             var opts = {};
             if (data === true) {
                 opts.batch_ids = this.batch_ids;
@@ -56,7 +57,6 @@ module.exports = {
             } else {
                 opts.data = data;
                 opts.index = index;
-                opts.list = list;
             }
 
             /**
@@ -104,10 +104,19 @@ module.exports = {
                     return row.indexOf(item.id) === -1;
                 });
             }
+        },
+
+        onChangeCurrentPage(page) {
+            this.$emit('onChangeCurrentPage', page);
+        },
+        onChangePageSize(page_size) {
+            this.$emit('onChangePageSize', page_size);
         }
     },
 
-    mounted() {},
+    mounted() {
+        // console.log(this.list);
+    },
 
     /**
      * 接收参数
@@ -128,6 +137,9 @@ module.exports = {
         Selection: {
             type: Boolean,
             default: false
+        },
+        Pagination: {
+            type: Object
         }
     },
 
@@ -153,5 +165,8 @@ module.exports = {
         BtnInfo(v) {
             this.btn_info = v;
         },
+        Pagination(v) {
+            this.pagination = v;
+        }
     }
 }

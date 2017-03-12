@@ -19,8 +19,6 @@
             @onSelectionChangeObj='onChangeBoxObj'
             @onDelete='onDelete'
             @onGetInfo='onGetInfo'></list-data>
-
-
         <dialog-info
             :Dialog='dialog'>
         </dialog-info>

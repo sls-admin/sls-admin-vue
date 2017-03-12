@@ -1,5 +1,5 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+var path = require('path');
 
 module.exports = {
     build: {
@@ -23,7 +23,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/slsAdminApi': {
-                target: 'http://slsadmin.api.sailengsi.com',
+                target: 'http://slsadmin.api.sls.com',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/slsAdminApi': ''

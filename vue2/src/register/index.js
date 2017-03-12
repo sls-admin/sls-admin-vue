@@ -1,5 +1,5 @@
 import {
-	request
+	request as apis
 } from 'config/';
 
 import {
@@ -7,6 +7,8 @@ import {
 } from 'util/';
 
 module.exports = {
-	apis: request,
-	ajax: ajax
+	plugins: {
+		apis,
+		ajax
+	}
 };

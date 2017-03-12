@@ -6,6 +6,8 @@ import {
     Modules
 } from '../components/';
 
+console.log(Modules);
+
 module.exports = [{
     path: '/',
     redirect: to => {
@@ -205,6 +207,50 @@ module.exports = [{
             name: '编辑用户',
             icon: 'edit',
             component: Modules.Adv.User.Edit
+        }]
+    }, {
+        path: 'article',
+        name: '文章管理',
+        icon: 'inbox',
+        component: Content,
+        children: [{
+            hidden: true,
+            path: '',
+            redirect: to => {
+                return 'list'
+            }
+        }, {
+            path: 'list',
+            name: '文章列表',
+            icon: 'reorder',
+            component: Modules.Adv.Article.List
+        }, {
+            path: 'edit',
+            name: '编辑文章',
+            icon: 'edit',
+            component: Modules.Adv.Article.Edit
+        }]
+    }, {
+        path: 'wangeditor',
+        name: 'wangeditor富文本',
+        icon: 'inbox',
+        component: Content,
+        children: [{
+            hidden: true,
+            path: '',
+            redirect: to => {
+                return 'one'
+            }
+        }, {
+            path: 'one',
+            name: '单个',
+            icon: 'reorder',
+            component: Modules.Adv.Wangeditor.One
+        }, {
+            path: 'many',
+            name: '多个',
+            icon: 'edit',
+            component: Modules.Adv.Wangeditor.Many
         }]
     }]
 }];

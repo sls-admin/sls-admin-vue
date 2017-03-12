@@ -42,6 +42,7 @@ module.exports = {
             'util': path.resolve(__dirname, '../src/util'),
             'register': path.resolve(__dirname, '../src/register'),
             'plugins': path.resolve(__dirname, '../src/plugins'),
+            'mixin': path.resolve(__dirname, '../src/mixin'),
         }
     },
     resolveLoader: {
