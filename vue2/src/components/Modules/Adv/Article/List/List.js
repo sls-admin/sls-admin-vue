@@ -43,7 +43,14 @@ module.exports = {
                 width: 300,
                 // delete: false,
                 // select: false,
-                // update: false
+                // update: false,
+                // list: [{
+                //     text: '设置权限',
+                //     fn_type: 'access'
+                // }, {
+                //     text: '修改状态',
+                //     fn_type: 'status'
+                // }]
             },
 
             pagination: {
