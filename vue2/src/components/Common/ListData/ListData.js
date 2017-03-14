@@ -6,12 +6,12 @@ module.exports = {
             batch_datas: [],
             batch_ids: [],
 
-            list: this.List || [], //列表数组
-            fields: this.FieldList || [], //字段数组
-            selection: this.Selection || false, //是否需要批量选择
-            btn_info: this.BtnInfo || {},
+            list: this.List, //列表数组
+            fields: this.FieldList, //字段数组
+            selection: this.Selection, //是否需要批量选择
+            btn_info: this.BtnInfo,
 
-            pagination: this.Pagination || {},
+            pagination: this.Pagination,
         }
     },
     methods: {
@@ -132,14 +132,16 @@ module.exports = {
             required: true
         },
         BtnInfo: {
-            type: Object
+            type: Object,
+            default: {}
         },
         Selection: {
             type: Boolean,
             default: false
         },
         Pagination: {
-            type: Object
+            type: Object,
+            default: {}
         }
     },
 

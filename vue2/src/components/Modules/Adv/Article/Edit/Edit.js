@@ -130,7 +130,7 @@ module.exports = {
             var data = {
                 id: this.$route.query.id
             };
-            this.$$findArticle.call(this, data, (data) => {
+            this.$$findArticle(data, (data) => {
                 this.default_value = data.article_info;
                 this.default_value.status = data.article_info.status == 1 ? true : false;
                 this.default_value.tabs = data.article_info.tabs.split(',');
