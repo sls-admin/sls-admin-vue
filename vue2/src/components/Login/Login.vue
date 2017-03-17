@@ -13,7 +13,7 @@
                         <h3 class="title">系统登录</h3>
                         <el-form-item
                             prop='username'>
-                            <el-input type="text" auto-complete="off" placeholder="账号..." 
+                            <el-input type="text" auto-complete="off" placeholder="账号" 
                                 v-model='data.username'
                                 @keyup.native.enter="login('data')"></el-input>
                         </el-form-item>
