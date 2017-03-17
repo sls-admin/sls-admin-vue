@@ -43,7 +43,17 @@ module.exports = {
                 width: 300,
                 // delete: false,
                 // select: false,
-                // update: false,
+
+                //配置点击修改按钮时跳转的路径
+                //只有传了path才会自动跳转，否则将执行onGetInfo方法
+                //path=>路径
+                //query_keys=>跳转时需要携带的字段
+                update: {
+                    path: '/adv/article/edit',
+                    // param_keys: ['id', 'status'],
+                    query_keys: ['id', 'status']
+                },
+
                 // list: [{
                 //     text: '设置权限',
                 //     fn_type: 'access'

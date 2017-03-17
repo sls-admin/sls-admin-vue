@@ -88,6 +88,35 @@ module.exports = {
             });
         },
 
+
+        onUpdateBtn(data, index, list) {
+            if (this.btn_info.update && this.btn_info.update.path) {
+                var path = this.btn_info.update.path,
+                    param_keys = this.btn_info.update.param_keys || [],
+                    query_keys = this.btn_info.update.query_keys || [],
+                    query = {};
+
+                for (var i = 0; i < param_keys.length; i++) {
+                    path += '/' + data[param_keys[i]];
+                }
+                for (var i = 0; i < query_keys.length; i++) {
+                    query[query_keys[i]] = data[query_keys[i]];
+                }
+
+                // console.log(path);
+                // console.log(query);
+
+                this.$router.push({
+                    path: path,
+                    query: query
+                });
+            } else {
+                this.onGetInfo(data, index, list, 'update');
+            }
+
+        },
+
+
         /**
          * 内置删除事件执行成功后，更新列表方法
          * 分两种情况，一种是批量删除，一种是单个删除

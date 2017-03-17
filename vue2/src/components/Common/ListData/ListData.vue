@@ -45,7 +45,7 @@
                         type="info" 
                         icon='edit' 
                         size="mini"
-                        @click='onGetInfo(scope.row,scope.$index,list,"update")'></el-button>
+                        @click='onUpdateBtn(scope.row,scope.$index,list)'></el-button>
                     <el-button
                         v-if='btn_info.delete!==false'
                         type="danger" 
