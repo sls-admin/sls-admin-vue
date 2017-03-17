@@ -1,6 +1,6 @@
 # sls-admin
 
-> 这是一个功能强大的自动化后台框架基础模板，基于vue2实现，用到的技术包含：vue2,vue-router,vuex2,axios,ElementUI。
+> 这是一个功能强大的自动化后台框架基础模板，基于vue2实现，用到的技术包含：vue2,vue-router,vuex2,axios,ElementUI。.
 
 **以下有几项需注意：**
  1. 测试账号，所以这些账号没有修改密码权限，你懂得。
