@@ -1,8 +1,8 @@
 node_modules/
 npm-debug.log
-.idea
+*.idea
 bower_components/
-.DS_Store
+*.DS_Store
 .phpintel
 sls-admin.html
-.map
+*.map
