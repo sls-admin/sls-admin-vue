@@ -176,7 +176,7 @@ module.exports = {
 
 
         onAccessUser(user, index, list) {
-            UserApi.accessUser.call(this, {
+            this.$$accessUser({
                 id: user.id
             }, (data) => {
                 user.status = user.status == 1 ? 2 : 1;
@@ -199,7 +199,7 @@ module.exports = {
                 var id = user.id;
             }
 
-            this.$$deleteUser.call(this, {
+            this.$$deleteUser({
                 id: id
             }, (data) => {
                 if (user === true) {
@@ -257,7 +257,7 @@ module.exports = {
                 }
             }
 
-            this.$$selectUser.call(this, data, (data) => {
+            this.$$selectUser(data, (data) => {
                 this.user_list = data.list;
             });
         }

@@ -1,7 +1,3 @@
-import {
-    article as ArticleApi
-} from 'config/request.js';
-
 module.exports = {
     name: 'article-list',
     data() {
@@ -243,7 +239,7 @@ module.exports = {
                 var id = article.id;
             }
 
-            ArticleApi.deleteArticle.call(this, {
+            this.$$deleteArticle({
                 id: id
             }, (data) => {
                 if (article === true) {
@@ -327,7 +323,7 @@ module.exports = {
             }
 
 
-            ArticleApi.selectArticle.call(this, data, (article_data) => {
+            this.$$selectArticle(data, (article_data) => {
                 this.article_list = article_data.list.data;
                 this.paginations.total = article_data.list.total;
 

@@ -2,11 +2,6 @@ import {
     gbs
 } from 'config/settings.js';
 
-import {
-    article as ArticleApi
-} from 'config/request.js';
-
-
 module.exports = {
     name: 'edit-article',
     data() {
@@ -83,7 +78,7 @@ module.exports = {
 
                     // console.log(this.article_data);
 
-                    ArticleApi.saveArticle.call(this, this.article_data, data => {
+                    this.$$saveArticle(this.article_data, data => {
                         this.$router.push('/demo/article/list');
                     });
                 }
@@ -161,7 +156,7 @@ module.exports = {
             var data = {
                 id: this.$route.query.id
             };
-            ArticleApi.findArticle.call(this, data, (data) => {
+            this.$$findArticle(data, (data) => {
                 // console.log(data);
 
                 this.article_data = data.article_info;

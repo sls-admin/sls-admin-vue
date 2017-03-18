@@ -53,7 +53,7 @@ module.exports = {
                         // this[userdata].status=!this[userdata].status;
                     }*/
 
-                    this.$$saveUser.call(this, this[userdata], data => {
+                    this.$$saveUser(this[userdata], data => {
                         this.$router.push('/demo/user/list');
                     });
                 }
@@ -69,7 +69,7 @@ module.exports = {
     },
     mounted() {
         if (this.$route.query.id) {
-            this.$$findUser.call(this, this.$route.query.id, (data) => {
+            this.$$findUser(this.$route.query.id, (data) => {
                 this.user_data = data.userinfo;
                 this.user_data.status = this.user_data.status == 1 ? true : false;
 
