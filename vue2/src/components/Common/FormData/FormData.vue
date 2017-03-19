@@ -12,6 +12,29 @@
                 :prop='field.key'
                 :style="field.item_style">
                 
+                <!-- 单选CheckBox -->
+                <el-checkbox 
+                    v-if='field.type==="checkbox" && field.multiple!==true'
+                    v-model="submit_data[field.key]">{{field.label}}</el-checkbox>
+
+                
+                <!-- 复选CheckBox -->
+                <!-- 是否全选全不选 -->
+                <el-checkbox
+                    v-if='field.checkall && typeof field.checkall==="object" && submit_data[field.key+checkall_temp]'
+                    :indeterminate="submit_data[field.key+checkall_temp].indeterminate" 
+                    v-model="submit_data[field.key+checkall_temp].value"
+                    @change='onCheckallChange(field.key)'>{{submit_data[field.key+checkall_temp].text}}</el-checkbox>
+                <!-- CheckBox选项列表 -->
+                <el-checkbox-group 
+                    v-if='(field.type==="checkbox" && field.multiple===true && !field.checkall) || (field.type==="checkbox" && field.multiple===true && field.checkall && submit_data[field.key+checkall_temp])'
+                    v-model="submit_data[field.key+checkall_temp].checkbox_value"
+                    @change='onCheckboxChange(field.key)'>
+                        <el-checkbox
+                            v-for='item in submit_data[field.key+checkall_temp].checkbox_list'
+                            :label="item.value">{{item.text}}</el-checkbox>
+                </el-checkbox-group>
+
                 <!-- wangeditor -->
                 <div
                     v-if='field.type==="editor"'

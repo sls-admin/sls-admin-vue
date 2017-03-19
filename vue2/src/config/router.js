@@ -187,6 +187,28 @@ module.exports = [{
             return 'article'
         }
     }, {
+        path: 'components',
+        name: '高级示例',
+        icon: 'inbox',
+        component: Content,
+        children: [{
+            hidden: true,
+            path: '',
+            redirect: to => {
+                return 'list'
+            }
+        }, {
+            path: 'list',
+            name: '列表组件',
+            icon: 'reorder',
+            component: Modules.Adv.Components.List
+        }, {
+            path: 'edit',
+            name: '表单组件',
+            icon: 'edit',
+            component: Modules.Adv.Components.Edit
+        }]
+    }, {
         path: 'article',
         name: '文章管理',
         icon: 'inbox',

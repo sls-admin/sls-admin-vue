@@ -2,6 +2,8 @@ module.exports = {
     name: 'list',
     data() {
         return {
+            checkall_temp: '_checkall_temp',
+
             fields: this.FieldList || [],
             editor: this.Editor || {},
             submit_data: this.DefaultValue || {},
@@ -175,6 +177,52 @@ module.exports = {
 
 
         /**
+         * 从字段列表中提取出来表单字段       
+         * @return {object} [表单需要的字段]
+         */
+        deepObj() {
+            if (this.fields) {
+                var fields = this.fields,
+                    k = 0,
+                    update = this.submit_data.id ? true : false;
+                for (var i = 0; i < fields.length; i++) {
+                    var field = fields[i];
+
+                    if (field.value && field.value.constructor === Object) {
+                        if (field.checkall && typeof field.checkall === 'object') {
+                            var temp = {};
+                            temp.text = field.checkall.text;
+                            temp.value = field.checkall.value;
+                            temp.indeterminate = field.checkall.indeterminate;
+                            temp.checkbox_list = field.value.list;
+                            temp.checkbox_value = field.value.default;
+                            this.$set(this.submit_data, field.key + this.checkall_temp, temp);
+                        } else {
+                            this.$set(this.submit_data, field.key, field.value.default);
+                        }
+                    } else {
+                        this.$set(this.submit_data, field.key, field.value);
+                    }
+
+
+                    if (field.type && field.type === 'editor') {
+                        k++;
+                        this.initEditor(field.id, field.config || {});
+                        if (k == 2) {
+                            this.wangEditor.many = true;
+                        }
+                        if (k == 1) {
+                            this.wangEditor.has = true;
+                        }
+                    }
+                }
+
+                console.log(this.submit_data);
+            }
+        },
+
+
+        /**
          * 表单提交事件
          */
         onSubmit(ref) {
@@ -194,6 +242,34 @@ module.exports = {
             } else {
                 this.$emit('onSubmit', data);
             }
+        },
+
+
+        onCheckboxChange(key) {
+            var checkall_temp = this.submit_data[key + this.checkall_temp];
+
+            if (checkall_temp.checkbox_value.length > 0 && checkall_temp.checkbox_value.length < checkall_temp.checkbox_list.length) {
+                checkall_temp.indeterminate = true;
+            } else {
+                checkall_temp.indeterminate = false;
+            }
+
+            checkall_temp.value = checkall_temp.checkbox_value.length === checkall_temp.checkbox_list.length;
+        },
+
+
+        onCheckallChange(key) {
+            var checkall_temp = this.submit_data[key + this.checkall_temp];
+            checkall_temp.indeterminate = false;
+
+            var value = [];
+            if (checkall_temp.value == true) {
+                for (var i = 0; i < checkall_temp.checkbox_list.length; i++) {
+                    value.push(checkall_temp.checkbox_list[i].value);
+                }
+            }
+
+            checkall_temp.checkbox_value = value;
         }
     },
 
@@ -202,31 +278,7 @@ module.exports = {
      * ready
      */
     mounted() {
-        if (this.fields) {
-            var fields = this.fields,
-                k = 0,
-                update = this.submit_data.id ? true : false;
-            for (var i = 0; i < fields.length; i++) {
-                var field = fields[i];
-
-                if (update === false) {
-                    this.$set(this.submit_data, field.key, field.value && field.value.constructor === Object ? field.value.default : field.value);
-                }
-
-                if (field.type && field.type === 'editor') {
-                    k++;
-                    this.initEditor(field.id, field.config || {});
-                    if (k == 2) {
-                        this.wangEditor.many = true;
-                    }
-                    if (k == 1) {
-                        this.wangEditor.has = true;
-                    }
-                }
-            }
-
-            console.log(this.submit_data);
-        }
+        this.deepObj();
     },
 
 
