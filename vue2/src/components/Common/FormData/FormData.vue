@@ -17,6 +17,12 @@
                     v-if='field.type==="checkbox" && field.multiple!==true'
                     v-model="submit_data[field.key]">{{field.label}}</el-checkbox>
 
+                <el-cascader
+                    v-if='field.type==="cascader"'
+                    :options="field.value.list"
+                    :props="field.props || {}"
+                    @active-item-change='onCascaderItemChange'></el-cascader>
+
                 
                 <!-- 复选CheckBox -->
                 <!-- 是否全选全不选 -->

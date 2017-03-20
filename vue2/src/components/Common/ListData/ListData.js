@@ -135,9 +135,20 @@ module.exports = {
             }
         },
 
+
+        /**
+         * 改变当前页码事件
+         * @param  {number} page 当前页面
+         */
         onChangeCurrentPage(page) {
             this.$emit('onChangeCurrentPage', page);
         },
+
+
+        /**
+         * 改变每页显示的数量事件
+         * @param  {number} page_size 每页显示的数量
+         */
         onChangePageSize(page_size) {
             this.$emit('onChangePageSize', page_size);
         }
@@ -170,7 +181,9 @@ module.exports = {
         },
         Pagination: {
             type: Object,
-            default: {}
+            default () {
+                return {};
+            }
         }
     },
 

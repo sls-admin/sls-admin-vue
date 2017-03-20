@@ -68,7 +68,7 @@
      
              -->
             <el-pagination
-                v-if='pagination.total>0'
+                v-if='pagination  && pagination.total && pagination.total>0'
                 class='pagination'
                 :page-sizes="pagination.page_sizes"
                 :page-size="pagination.page_size"

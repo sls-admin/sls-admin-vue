@@ -217,7 +217,7 @@ module.exports = {
                     }
                 }
 
-                console.log(this.submit_data);
+                // console.log(this.submit_data);
             }
         },
 
@@ -245,6 +245,10 @@ module.exports = {
         },
 
 
+        /**
+         * checkbox改变时触发
+         * @param  {string} key 当前元素的key
+         */
         onCheckboxChange(key) {
             var checkall_temp = this.submit_data[key + this.checkall_temp];
 
@@ -258,6 +262,10 @@ module.exports = {
         },
 
 
+        /**
+         * checkallbox改变时触发
+         * @param  {string} key 当前元素的key
+         */
         onCheckallChange(key) {
             var checkall_temp = this.submit_data[key + this.checkall_temp];
             checkall_temp.indeterminate = false;
@@ -270,6 +278,11 @@ module.exports = {
             }
 
             checkall_temp.checkbox_value = value;
+        },
+
+
+        onCascaderItemChange(value) {
+            // console.log(value);
         }
     },
 

@@ -17,8 +17,8 @@
 </template>
 
 <script>
-    import ListJs from './List.js';
-    module.exports=ListJs;
+    import DefaultBtnJs from './DefaultBtn.js';
+    module.exports=DefaultBtnJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline{

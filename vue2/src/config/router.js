@@ -177,7 +177,7 @@ module.exports = [{
     }]
 }, {
     path: '/adv',
-    name: '再次封装',
+    name: '高级模块',
     icon: 'inbox',
     component: Home,
     children: [{
@@ -187,30 +187,92 @@ module.exports = [{
             return 'article'
         }
     }, {
-        path: 'components',
-        name: '高级示例',
+        path: 'form',
+        name: '表单组件',
+        icon: 'inbox',
+        component: Modules.Adv.Form.Form,
+        children: [{
+            hidden: true,
+            path: '',
+            redirect: to => {
+                return 'input'
+            }
+        }, {
+            path: 'input',
+            name: 'input框',
+            icon: 'reorder',
+            component: Modules.Adv.Form.Input
+        }, {
+            path: 'textarea',
+            name: '文本框',
+            icon: 'edit',
+            component: Modules.Adv.Form.Textarea
+        }, {
+            path: 'checkbox',
+            name: 'checkbox',
+            icon: 'edit',
+            component: Modules.Adv.Form.Checkbox
+        }, {
+            path: 'radio',
+            name: 'Radio单选',
+            icon: 'edit',
+            component: Modules.Adv.Form.Radio
+        }, {
+            path: 'select',
+            name: '下拉框',
+            icon: 'edit',
+            component: Modules.Adv.Form.Select
+        }, {
+            path: 'switch',
+            name: '开关',
+            icon: 'edit',
+            component: Modules.Adv.Form.Switch
+        }, {
+            path: 'cascader',
+            name: '级联选择器',
+            icon: 'edit',
+            component: Modules.Adv.Form.Cascader
+        }]
+    }, {
+        path: 'list',
+        name: '列表组件',
         icon: 'inbox',
         component: Content,
         children: [{
             hidden: true,
             path: '',
             redirect: to => {
-                return 'list'
+                return 'render'
             }
         }, {
-            path: 'list',
-            name: '列表组件',
+            path: 'render',
+            name: '渲染列表',
             icon: 'reorder',
-            component: Modules.Adv.Components.List
+            component: Modules.Adv.List.List
         }, {
-            path: 'edit',
-            name: '表单组件',
+            path: 'pagination',
+            name: '分页',
             icon: 'edit',
-            component: Modules.Adv.Components.Edit
+            component: Modules.Adv.List.Pagination
+        }, {
+            path: 'search',
+            name: '搜索',
+            icon: 'edit',
+            component: Modules.Adv.List.Search
+        }, {
+            path: 'default-btn',
+            name: '默认按钮',
+            icon: 'edit',
+            component: Modules.Adv.List.DefaultBtn
+        }, {
+            path: 'custom-btn',
+            name: '自定义按钮',
+            icon: 'edit',
+            component: Modules.Adv.List.CustomBtn
         }]
     }, {
         path: 'article',
-        name: '文章管理',
+        name: '综合实战',
         icon: 'inbox',
         component: Content,
         children: [{
