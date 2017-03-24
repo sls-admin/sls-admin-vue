@@ -12,7 +12,7 @@ module.exports = {
                 label: 'Input',
                 key: 'input',
                 value: 'sailengsi',
-                desc: '请输入标题',
+                desc: '请输入标题'
             }],
         }
     },
