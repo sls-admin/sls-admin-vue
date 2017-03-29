@@ -232,6 +232,21 @@ module.exports = [{
             name: '级联选择器',
             icon: 'edit',
             component: Modules.Adv.Form.Cascader
+        }, {
+            path: 'date',
+            name: '日期',
+            icon: 'edit',
+            component: Modules.Adv.Form.Date
+        }, {
+            path: 'time',
+            name: '时间',
+            icon: 'edit',
+            component: Modules.Adv.Form.Time
+        }, {
+            path: 'datetime',
+            name: '日期时间',
+            icon: 'edit',
+            component: Modules.Adv.Form.DateTime
         }]
     }, {
         path: 'list',

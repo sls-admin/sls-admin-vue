@@ -7,4 +7,7 @@ module.exports = {
 	Switch: require('./Switch/'),
 	Radio: require('./Radio/'),
 	Input: require('./Input/'),
+	Date: require('./Date/'),
+	Time: require('./Time/'),
+	DateTime: require('./DateTime/'),
 };
