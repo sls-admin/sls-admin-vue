@@ -177,6 +177,86 @@ module.exports = {
 
 
         /**
+         * 处理全选全部选
+         * @param  {object} field 字段对象
+         */
+        initCheckall(field) {
+            var temp = {};
+            temp.text = field.checkall.text;
+            temp.value = field.checkall.value;
+            temp.indeterminate = field.checkall.indeterminate;
+            temp.checkbox_list = field.value.list;
+            temp.checkbox_value = field.value.default;
+            this.$set(this.submit_data, field.key + this.checkall_temp, temp);
+        },
+
+
+        /**
+         * 处理日期
+         * @param  {array} fields 字段数组
+         * @param  {number} i      当前日期对象的索引
+         */
+        initDate(fields, i) {
+            var field = fields[i];
+
+            //如果没有传改变事件回调，需要补回调
+            if (!field.change || typeof field.change !== 'function') {
+                this.$set(fields[i], 'change', v => {
+                    this.submit_data[field.key] = v;
+                });
+            }
+
+            if (!field.options) {
+                var options = {},
+
+                    //默认快捷方式
+                    shortcuts = [{
+                        text: '今天',
+                        onClick(picker) {
+                            picker.$emit('pick', new Date());
+                        }
+                    }, {
+                        text: '昨天',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '一周前',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', date);
+                        }
+                    }],
+                    //默认禁止今天以前的日期
+                    disabledDate = function(time) {
+                        return time.getTime() < Date.now() - 8.64e7;
+                    };
+
+
+                if (field.shortcuts === true) {
+                    options.shortcuts = shortcuts;
+                }
+                if (field.disabledDate === true) {
+                    options.disabledDate = disabledDate;
+                }
+
+                if (field.disabledDate && field.disabledDate.constructor === Function) {
+                    options.disabledDate = field.disabledDate;
+                }
+                if (field.shortcuts && field.shortcuts.constructor === Array) {
+                    options.shortcuts = field.shortcuts;
+                }
+
+
+                this.$set(fields[i], 'options', options);
+            }
+        },
+
+
+        /**
          * 从字段列表中提取出来表单字段       
          * @return {object} [表单需要的字段]
          */
@@ -190,13 +270,14 @@ module.exports = {
 
                     if (field.value && field.value.constructor === Object) {
                         if (field.checkall && typeof field.checkall === 'object') {
-                            var temp = {};
+                            this.initCheckall(field);
+                            /*var temp = {};
                             temp.text = field.checkall.text;
                             temp.value = field.checkall.value;
                             temp.indeterminate = field.checkall.indeterminate;
                             temp.checkbox_list = field.value.list;
                             temp.checkbox_value = field.value.default;
-                            this.$set(this.submit_data, field.key + this.checkall_temp, temp);
+                            this.$set(this.submit_data, field.key + this.checkall_temp, temp);*/
                         } else {
                             this.$set(this.submit_data, field.key, field.value.default);
                         }
@@ -205,14 +286,21 @@ module.exports = {
                     }
 
 
-                    if (field.type && field.type === 'editor') {
-                        k++;
-                        this.initEditor(field.id, field.config || {});
-                        if (k == 2) {
-                            this.wangEditor.many = true;
-                        }
-                        if (k == 1) {
-                            this.wangEditor.has = true;
+                    if (field.type) {
+                        switch (field.type) {
+                            case 'editor':
+                                k++;
+                                this.initEditor(field.id, field.config || {});
+                                if (k == 2) {
+                                    this.wangEditor.many = true;
+                                }
+                                if (k == 1) {
+                                    this.wangEditor.has = true;
+                                }
+                                break;
+                            case 'date':
+                                this.initDate(fields, i);
+                                break;
                         }
                     }
                 }
@@ -283,7 +371,17 @@ module.exports = {
 
         onCascaderItemChange(value) {
             // console.log(value);
+        },
+
+
+        onChangeDateTime(v) {
+            console.log(v + '    formdata');
         }
+    },
+
+
+    created() {
+        this.deepObj();
     },
 
 
@@ -291,7 +389,7 @@ module.exports = {
      * ready
      */
     mounted() {
-        this.deepObj();
+        // this.deepObj();
     },
 
 

@@ -63,6 +63,8 @@ module.exports = {
         }
     },
     mounted() {
+        // this.setDialogInfo('pass');
+
         // this.onGetSetting();
     },
     methods: {

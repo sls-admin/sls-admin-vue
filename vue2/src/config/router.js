@@ -31,24 +31,14 @@ module.exports = [{
     name: '功能模块',
     icon: 'inbox',
     component: Home,
+    redirect: '/function/open',
     children: [{
-        hidden: true,
-        path: '',
-        redirect: to => {
-            return 'open'
-        }
-    }, {
         path: 'open',
         name: '公共内容',
         icon: 'inbox',
         component: Content,
+        redirect: '/function/open/list',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'echarts'
-            }
-        }, {
             path: 'echarts',
             name: '图表',
             icon: 'bar-chart',
@@ -80,24 +70,14 @@ module.exports = [{
     name: '演示模块',
     icon: 'inbox',
     component: Home,
+    redirect: '/demo/user',
     children: [{
-        hidden: true,
-        path: '',
-        redirect: to => {
-            return 'user'
-        }
-    }, {
         path: 'user',
         name: '用户管理',
         icon: 'inbox',
         component: Content,
+        redirect: '/demo/user/list',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'list'
-            }
-        }, {
             path: 'list',
             name: '用户列表',
             icon: 'reorder',
@@ -113,13 +93,8 @@ module.exports = [{
         name: '文章管理',
         icon: 'inbox',
         component: Content,
+        redirect: '/demo/article/list',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'list'
-            }
-        }, {
             path: 'list',
             name: '文章列表',
             icon: 'reorder',
@@ -135,13 +110,8 @@ module.exports = [{
         name: '订单管理',
         icon: 'inbox',
         component: Content,
+        redirect: '/demo/order/list',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'list'
-            }
-        }, {
             path: 'list',
             name: '订单列表',
             icon: 'reorder',
@@ -157,13 +127,8 @@ module.exports = [{
         name: '订单统计',
         icon: 'inbox',
         component: Content,
+        redirect: '/demo/orderstatis/bar',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'bar'
-            }
-        }, {
             path: 'bar',
             name: '柱状图',
             icon: 'reorder',
@@ -180,24 +145,14 @@ module.exports = [{
     name: '高级模块',
     icon: 'inbox',
     component: Home,
+    redirect: '/adv/form',
     children: [{
-        hidden: true,
-        path: '',
-        redirect: to => {
-            return 'article'
-        }
-    }, {
         path: 'form',
         name: '表单组件',
         icon: 'inbox',
         component: Modules.Adv.Form.Form,
+        redirect: '/adv/form/input',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'input'
-            }
-        }, {
             path: 'input',
             name: 'input框',
             icon: 'reorder',
@@ -253,13 +208,8 @@ module.exports = [{
         name: '列表组件',
         icon: 'inbox',
         component: Content,
+        redirect: '/adv/list/render',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'render'
-            }
-        }, {
             path: 'render',
             name: '渲染列表',
             icon: 'reorder',
@@ -290,13 +240,8 @@ module.exports = [{
         name: '综合实战',
         icon: 'inbox',
         component: Content,
+        redirect: '/adv/article/list',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'list'
-            }
-        }, {
             path: 'list',
             name: '文章列表',
             icon: 'reorder',
@@ -312,13 +257,8 @@ module.exports = [{
         name: 'wangeditor富文本',
         icon: 'inbox',
         component: Content,
+        redirect: '/adv/wangeditor/one',
         children: [{
-            hidden: true,
-            path: '',
-            redirect: to => {
-                return 'one'
-            }
-        }, {
             path: 'one',
             name: '单个',
             icon: 'reorder',

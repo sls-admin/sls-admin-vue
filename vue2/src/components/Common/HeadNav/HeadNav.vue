@@ -53,7 +53,7 @@
             </el-col>
         </el-row>
 
-        <el-dialog size="tiny" :title="dialog.title" 
+        <el-dialog size="small" :title="dialog.title" 
             v-model="dialog.show_pass">
             <el-form style="margin:20px;width:80%;" 
                 label-width="100px" 
@@ -168,7 +168,7 @@
         position: fixed;
         top:0px;
         left:0px;
-        z-index: 999;
+        z-index: 1000000;
         color:#FFF;
         border-bottom: 1px solid #1F2D3D;
 

@@ -89,6 +89,16 @@
                     :off-text="field.value.off" 
                     :disabled='field.disabled'
                     v-model="submit_data[field.key]"></el-switch>
+                
+                <!-- date，日期类型 -->
+                <el-date-picker
+                    v-if='field.type==="date"'
+                    v-model="submit_data[field.key]"
+                    :type="field.type"
+                    :placeholder="field.placeholder"
+                    @change='field.change'
+                   :picker-options="field.options">
+                </el-date-picker>
             </el-form-item>
 
             <el-form-item>
