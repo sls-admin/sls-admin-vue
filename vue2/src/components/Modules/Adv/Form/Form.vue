@@ -17,7 +17,7 @@
         },
         methods: {
         	onTest(data){
-        		console.log(data);
+        		console.log(data.data);
         	}
         },
         created() {

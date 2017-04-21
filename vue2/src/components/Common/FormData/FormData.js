@@ -1,3 +1,4 @@
+//noinspection JSAnnotator
 module.exports = {
     name: 'list',
     data() {
@@ -192,19 +193,37 @@ module.exports = {
 
 
         /**
-         * 处理日期
+         * 日期时间空间增加改变回掉
          * @param  {array} fields 字段数组
-         * @param  {number} i      当前日期对象的索引
+         * @param  {number} i      当前对象索引
          */
-        initDate(fields, i) {
-            var field = fields[i];
-
+        onDateTimeChange(fields, i, type) {
+            console.log(this.submit_data);
             //如果没有传改变事件回调，需要补回调
-            if (!field.change || typeof field.change !== 'function') {
+            if (!fields[i].change || typeof fields[i].change !== 'function') {
                 this.$set(fields[i], 'change', v => {
-                    this.submit_data[field.key] = v;
+                    console.log(this.submit_data);
+                    /*switch (type) {
+                        case 'range':
+                            this.submit_data[fields[i].key] = v;
+                            // var temp = v.split(' - ');
+                            // this.submit_data[fields[i].key] = temp;
+                            break;
+                        default:
+                            this.submit_data[fields[i].key] = v;
+                    }*/
                 });
             }
+        },
+
+
+        /**
+         * 日期时间设置一些参数
+         * @param  {array} fields 字段数组
+         * @param  {number} i      [当前对象索引]
+         */
+        onDateTimeOptions(fields, i, type) {
+            var field = fields[i];
 
             if (!field.options) {
                 var options = {},
@@ -257,7 +276,41 @@ module.exports = {
 
 
         /**
-         * 从字段列表中提取出来表单字段       
+         * 处理日期
+         * @param  {array} fields 字段数组
+         * @param  {number} i      当前日期对象的索引
+         */
+        initDate(fields, i, type) {
+            //设置回调
+            this.onDateTimeChange(fields, i, type);
+
+            //设置日期参数
+            this.onDateTimeOptions(fields, i, type);
+        },
+
+
+        initYear(fields, i) {
+            //设置回调
+            this.onDateTimeChange(fields, i);
+        },
+
+        initMonth(fields, i) {
+            //设置回调
+            this.onDateTimeChange(fields, i);
+        },
+
+        initWeek(fields, i) {
+            //设置回调
+            this.onDateTimeChange(fields, i);
+
+            if (!fields[i].format) {
+                this.$set(fields[i], 'format', 'yyyy 第 WW 周');
+            }
+        },
+
+
+        /**
+         * 从字段列表中提取出来表单字段
          * @return {object} [表单需要的字段]
          */
         deepObj() {
@@ -268,18 +321,20 @@ module.exports = {
                 for (var i = 0; i < fields.length; i++) {
                     var field = fields[i];
 
-                    if (field.value && field.value.constructor === Object) {
-                        if (field.checkall && typeof field.checkall === 'object') {
-                            this.initCheckall(field);
-                            /*var temp = {};
-                            temp.text = field.checkall.text;
-                            temp.value = field.checkall.value;
-                            temp.indeterminate = field.checkall.indeterminate;
-                            temp.checkbox_list = field.value.list;
-                            temp.checkbox_value = field.value.default;
-                            this.$set(this.submit_data, field.key + this.checkall_temp, temp);*/
-                        } else {
-                            this.$set(this.submit_data, field.key, field.value.default);
+                    if (field.value) {
+                        if (field.value.constructor === Object) {
+                            if (field.checkall && typeof field.checkall === 'object') {
+                                this.initCheckall(field);
+                                /*var temp = {};
+                                temp.text = field.checkall.text;
+                                temp.value = field.checkall.value;
+                                temp.indeterminate = field.checkall.indeterminate;
+                                temp.checkbox_list = field.value.list;
+                                temp.checkbox_value = field.value.default;
+                                this.$set(this.submit_data, field.key + this.checkall_temp, temp);*/
+                            } else {
+                                this.$set(this.submit_data, field.key, field.value.default);
+                            }
                         }
                     } else {
                         this.$set(this.submit_data, field.key, field.value);
@@ -301,6 +356,19 @@ module.exports = {
                             case 'date':
                                 this.initDate(fields, i);
                                 break;
+                            case 'daterange':
+                                this.initDate(fields, i, 'range');
+                                break;
+                            case 'year':
+                                this.initYear(fields, i);
+                                break;
+                            case 'month':
+                                this.initMonth(fields, i);
+                                break;
+                            case 'week':
+                                this.initWeek(fields, i);
+                                break;
+
                         }
                     }
                 }

@@ -7,7 +7,7 @@
             :model='submit_data'>
             <el-form-item 
                 class='edit-form'
-                v-for='field in fields'
+                v-for='(field,index) in fields'
                 :label="field.label" 
                 :prop='field.key'
                 :style="field.item_style">
@@ -98,6 +98,46 @@
                     :placeholder="field.placeholder"
                     @change='field.change'
                    :picker-options="field.options">
+                </el-date-picker>
+
+                <!-- date，日期类型-选择范围 -->
+                <!-- 
+                    @change='field.change'
+                 -->
+                <el-date-picker
+                    v-if='field.type==="daterange"'
+                    v-model="submit_data[field.key]"
+                    :type="field.type"
+                    :placeholder="field.placeholder"
+                    @change='field.change'>
+                </el-date-picker>
+
+                <!-- date，日期类型-年 -->
+                <el-date-picker
+                    v-if='field.type==="year"'
+                    v-model="submit_data[field.key]"
+                    :type="field.type"
+                    :placeholder="field.placeholder"
+                    @change='field.change'>
+                </el-date-picker>
+
+                <!-- date，日期类型-月 -->
+                <el-date-picker
+                    v-if='field.type==="month"'
+                    v-model="submit_data[field.key]"
+                    :type="field.type"
+                    :placeholder="field.placeholder"
+                    @change='field.change'>
+                </el-date-picker>
+
+                <!-- date，日期类型-周 -->
+                <el-date-picker
+                    v-if='field.type==="week"'
+                    v-model="submit_data[field.key]"
+                    :type="field.type"
+                    :format="field.format"
+                    :placeholder="field.placeholder"
+                    @change='field.change'>
                 </el-date-picker>
             </el-form-item>
 

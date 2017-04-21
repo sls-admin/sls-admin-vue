@@ -14,11 +14,33 @@ module.exports = {
                 key: 'create_time',
                 placeholder: '开始日期',
                 value: '',
-                // shortcuts: false,
-                // disabledDate: false,
-                /*change(v) {
-                    console.log(v);
-                }*/
+            }, {
+                label: '默认日期范围',
+                type: 'daterange',
+                key: 'create_time_range_init',
+                placeholder: '日期范围-默认',
+                value: {
+                    default: '2017-01-27 - 2018-01-26',
+                    list: ['2017-01-27', '2018-01-26']
+                },
+            }, {
+                label: '年',
+                type: 'year',
+                key: 'create_year',
+                placeholder: '选择年份',
+                value: '',
+            }, {
+                label: '月',
+                type: 'month',
+                key: 'create_month',
+                placeholder: '选择月份',
+                value: '',
+            }, {
+                label: '周',
+                type: 'week',
+                key: 'create_week',
+                placeholder: '选择周',
+                value: '',
             }],
 
         }
