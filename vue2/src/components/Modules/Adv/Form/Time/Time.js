@@ -9,33 +9,16 @@ module.exports = {
     data() {
         return {
             fields: [{
-                label: 'Checkbox',
-                type: 'checkbox',
-                key: 'checkbox',
-                value: true,
-            }, {
-                label: 'Checkbox-multiple',
-                type: 'checkbox',
-                key: 'checkbox-multiple',
-                multiple: true,
-                checkall: {
-                    value: true,
-                    indeterminate: true,
-                    text: '全选吧我曹',
-                },
-                value: {
-                    default: [1, 3],
-                    list: [{
-                        text: 'one',
-                        value: 1
-                    }, {
-                        text: 'two',
-                        value: 2
-                    }, {
-                        text: 'three',
-                        value: 3
-                    }]
-                },
+                label: '时间',
+                type: 'time',
+                key: 'create_time',
+                placeholder: '创建时间',
+                value: '18:00',
+                options: {
+                    start: '10:00',
+                    step: '01:00',
+                    end: '21:00'
+                }
             }],
 
         }

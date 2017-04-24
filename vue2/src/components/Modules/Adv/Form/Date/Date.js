@@ -20,8 +20,7 @@ module.exports = {
                 key: 'create_time_range_init',
                 placeholder: '日期范围-默认',
                 value: {
-                    default: '2017-01-27 - 2018-01-26',
-                    list: ['2017-01-27', '2018-01-26']
+                    default: []
                 },
             }, {
                 label: '年',

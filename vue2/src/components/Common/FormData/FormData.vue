@@ -139,6 +139,17 @@
                     :placeholder="field.placeholder"
                     @change='field.change'>
                 </el-date-picker>
+
+
+                <!-- time，时间类型 -->
+                <el-time-select
+                    v-if='field.type==="time"'
+                    v-model="submit_data[field.key]"
+                    :type="field.type"
+                    :placeholder="field.placeholder"
+                    @change='field.change'
+                   :picker-options="field.options">
+                </el-time-select>
             </el-form-item>
 
             <el-form-item>

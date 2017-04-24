@@ -198,23 +198,21 @@ module.exports = {
          * @param  {number} i      当前对象索引
          */
         onDateTimeChange(fields, i, type) {
-            console.log(this.submit_data);
             //如果没有传改变事件回调，需要补回调
             if (!fields[i].change || typeof fields[i].change !== 'function') {
                 this.$set(fields[i], 'change', v => {
-                    console.log(this.submit_data);
-                    /*switch (type) {
+                    switch (type) {
                         case 'range':
-                            this.submit_data[fields[i].key] = v;
-                            // var temp = v.split(' - ');
-                            // this.submit_data[fields[i].key] = temp;
+                            var temp = v.split(' - ');
+                            this.submit_data[fields[i].key] = temp;
                             break;
                         default:
                             this.submit_data[fields[i].key] = v;
-                    }*/
+                    }
                 });
             }
         },
+
 
 
         /**
@@ -222,7 +220,7 @@ module.exports = {
          * @param  {array} fields 字段数组
          * @param  {number} i      [当前对象索引]
          */
-        onDateTimeOptions(fields, i, type) {
+        onDateOptions(fields, i, type) {
             var field = fields[i];
 
             if (!field.options) {
@@ -275,6 +273,19 @@ module.exports = {
         },
 
 
+        onTimeOptions(fields, i, type) {
+            var field = fields[i];
+
+            if (!field.options) {
+                var options = {};
+
+
+
+                this.$set(fields[i], 'options', options);
+            }
+        },
+
+
         /**
          * 处理日期
          * @param  {array} fields 字段数组
@@ -285,7 +296,21 @@ module.exports = {
             this.onDateTimeChange(fields, i, type);
 
             //设置日期参数
-            this.onDateTimeOptions(fields, i, type);
+            this.onDateOptions(fields, i, type);
+        },
+
+
+        /**
+         * 处理时间
+         * @param  {array} fields 字段数组
+         * @param  {number} i      当前日期对象的索引
+         */
+        initTime(fields, i, type) {
+            //设置回调
+            this.onDateTimeChange(fields, i, type);
+
+            //设置日期参数
+            this.onTimeOptions(fields, i, type);
         },
 
 
@@ -321,20 +346,11 @@ module.exports = {
                 for (var i = 0; i < fields.length; i++) {
                     var field = fields[i];
 
-                    if (field.value) {
-                        if (field.value.constructor === Object) {
-                            if (field.checkall && typeof field.checkall === 'object') {
-                                this.initCheckall(field);
-                                /*var temp = {};
-                                temp.text = field.checkall.text;
-                                temp.value = field.checkall.value;
-                                temp.indeterminate = field.checkall.indeterminate;
-                                temp.checkbox_list = field.value.list;
-                                temp.checkbox_value = field.value.default;
-                                this.$set(this.submit_data, field.key + this.checkall_temp, temp);*/
-                            } else {
-                                this.$set(this.submit_data, field.key, field.value.default);
-                            }
+                    if (field.value && field.value.constructor === Object) {
+                        if (field.checkall && typeof field.checkall === 'object') {
+                            this.initCheckall(field);
+                        } else {
+                            this.$set(this.submit_data, field.key, field.value.default);
                         }
                     } else {
                         this.$set(this.submit_data, field.key, field.value);
@@ -367,6 +383,8 @@ module.exports = {
                                 break;
                             case 'week':
                                 this.initWeek(fields, i);
+                            case 'time':
+                                this.initTime(fields, i);
                                 break;
 
                         }
