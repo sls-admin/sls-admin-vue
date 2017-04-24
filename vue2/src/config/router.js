@@ -269,5 +269,17 @@ module.exports = [{
             icon: 'edit',
             component: Modules.Adv.Wangeditor.Many
         }]
+    }, {
+        path: 'open',
+        name: '第三方接入',
+        icon: 'inbox',
+        component: Content,
+        redirect: '/adv/open/qiniu',
+        children: [{
+            path: 'qiniu',
+            name: '七牛',
+            icon: 'reorder',
+            component: Modules.Adv.Open.Qiniu
+        }]
     }]
 }];

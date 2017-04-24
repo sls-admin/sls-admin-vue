@@ -40,7 +40,7 @@ var settings = {
 		requestError(err) {
 			this.$message({
 				showClose: true,
-				message: '请求错误：' + err.response.status + ',' + err.response.statusText,
+				message: '请求错误：' + (err.response ? err.response.status : '') + ',' + (err.response ? err.response.statusText : ''),
 				type: 'error'
 			});
 		}

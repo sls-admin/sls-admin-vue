@@ -193,5 +193,21 @@ module.exports = {
 		updateSetting(data, fn) {
 			ajax.call(this, 'post', '/System/updateSetting', data, fn);
 		}
+	},
+
+	/**
+	 * 第三方接入
+	 * @type {Object}
+	 */
+	open: {
+		/**
+		 * 获取系统设置信息
+		 * @param  {Function} fn 成功回调
+		 */
+		getQiniuToken(fn) {
+			ajax.call(this, 'get', '/Open/getQiniuToken', {}, fn);
+		},
+
+
 	}
 };
