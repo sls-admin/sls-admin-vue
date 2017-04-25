@@ -14,17 +14,33 @@
                 width="55">
             </el-table-column>
 
-
-            <el-table-column v-for='field in fields'
-                :prop="field.key"
-                :label="field.label"
-                :align="field.align || 'center'"
-                :sortable="field.sort || false"
-                :formatter='field.formatter'
-                :filters='field.filter_list'
-                :filter-method="field.filter_method"
-                :filter-multiple="field.filter_multiple">
-            </el-table-column>
+            
+            <template
+                v-for='field in fields'>
+                <el-table-column
+                    v-if='!field.type || field.type!=="image"'
+                    :prop="field.key"
+                    :label="field.label"
+                    :align="field.align || 'center'"
+                    :sortable="field.sort || false"
+                    :formatter='field.formatter'
+                    :filters='field.filter_list'
+                    :filter-method="field.filter_method"
+                    :filter-multiple="field.filter_multiple"
+                    :style='field.style'
+                    :width='field.width'>
+                </el-table-column>
+                <el-table-column
+                    v-if='field.type && field.type==="image"'
+                    :prop="field.key"
+                    :label="field.label"
+                    :align="field.align || 'center'"
+                    :width='field.width'>
+                    <template scope='scope'>
+                        <img :src="(image_host || '')+scope.row[field.key]" alt="">
+                    </template>
+                </el-table-column>
+            </template>
             
 
 
@@ -100,5 +116,13 @@
     }
     .pagination{
         display: inline-block;
+    }
+    .list{
+        table{
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
     }
 </style>

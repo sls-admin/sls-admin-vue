@@ -201,11 +201,20 @@ module.exports = {
 	 */
 	open: {
 		/**
-		 * 获取系统设置信息
+		 * 获取七牛上传图片token
 		 * @param  {Function} fn 成功回调
 		 */
 		getQiniuToken(fn) {
 			ajax.call(this, 'get', '/Open/getQiniuToken', {}, fn);
+		},
+
+
+		/**
+		 * 获取七牛图片列表
+		 * @param  {Function} fn 成功回调
+		 */
+		getQiniuList(fn) {
+			ajax.call(this, 'get', '/Open/getQiniuList', {}, fn);
 		},
 
 

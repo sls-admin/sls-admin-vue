@@ -6,6 +6,8 @@ module.exports = {
             batch_datas: [],
             batch_ids: [],
 
+            image_host: this.ImageHost, //如果列表中有图片，并且不是绝对路径的话，可以传入这个参数
+
             list: this.List, //列表数组
             fields: this.FieldList, //字段数组
             selection: this.Selection, //是否需要批量选择
@@ -163,6 +165,10 @@ module.exports = {
      * @type {Object}
      */
     props: {
+        ImageHost: {
+            type: String,
+            default: ''
+        },
         List: {
             type: Array,
             required: true
@@ -173,7 +179,9 @@ module.exports = {
         },
         BtnInfo: {
             type: Object,
-            default: {}
+            default () {
+                return {};
+            }
         },
         Selection: {
             type: Boolean,
@@ -193,6 +201,11 @@ module.exports = {
      * @type {Object}
      */
     watch: {
+        ImageHost(v) {
+            if (v) {
+                this.image_host = v;
+            }
+        },
         List(v) {
             if (v) {
                 this.list = v;
