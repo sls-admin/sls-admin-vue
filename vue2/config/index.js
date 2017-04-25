@@ -28,7 +28,14 @@ module.exports = {
                 pathRewrite: {
                     '^/slsAdminApi': ''
                 }
-            }
+            },
+	        '/slsAdminQiniu': {
+		        target: '//up-z2.qiniu.com',
+		        changeOrigin: true,
+		        pathRewrite: {
+			        '^/slsAdminQiniu': ''
+		        }
+	        }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
