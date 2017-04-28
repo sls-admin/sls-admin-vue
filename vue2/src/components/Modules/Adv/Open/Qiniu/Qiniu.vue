@@ -8,7 +8,13 @@
             :Selection='true'
             @onDelete="onDelete"
             @onGetInfo="onGetInfo"></list-data>
-
+        
+        <el-button
+            type="primary"
+            @click="onLoadMoreData"
+            :loading="false">
+            加载更多
+        </el-button>
 
         <el-upload
             class="upload-demo"

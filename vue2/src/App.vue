@@ -14,7 +14,7 @@
             
         },
         mounted(){
-            
+            // console.log(this.$$ajax);
         },
         watch:{
             $route(to,from){

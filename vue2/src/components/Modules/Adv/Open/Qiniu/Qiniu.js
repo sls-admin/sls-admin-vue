@@ -34,12 +34,25 @@ module.exports = {
 				key: 'fsize',
 				label: '文件大小'
 			}],
+
+			qiniu: {
+				marker: '',
+				limit: 10,
+				prefix: '',
+			}
 		}
 	},
 	methods: {
+		onLoadMoreData() {
+			this.onGetQiniuList();
+		},
+
 		onGetQiniuList() {
-			this.$$getQiniuFileList(data => {
+			this.$$getQiniuFileList(this.qiniu, data => {
 				this.list = data.list;
+				if (data.other) {
+					this.qiniu.marker = data.other.marker || '';
+				}
 				// this.onShowDialog(this.list[3]);
 			});
 		},
@@ -62,27 +75,16 @@ module.exports = {
 				if (this.params.key) {
 					formData.append('key', this.params.key);
 				}
-				$.ajax({
-					url: '//up-z2.qiniu.com/',
-					type: 'POST',
-					dataType: 'json',
-					cache: false,
-					data: formData,
-					processData: false,
-					contentType: false
-				}).done(res => {
-					if (res.error) {
-						this.$message({
-							showClose: true,
-							message: res.error,
-							type: 'error'
-						});
-					} else {
-						this.onGetQiniuList();
+				this.$$uploadQiniuFile(formData, data => {
+					this.onGetQiniuList();
+				}, {
+					host: '//up-z2.qiniu.com/',
+					errFn: err => {
+						console.log(err);
+					},
+					headers: {
+						'Content-Type': 'multipart/form-data'
 					}
-				}).fail(err => {
-					console.log('error');
-					console.log(err);
 				});
 			});
 

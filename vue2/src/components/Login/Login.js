@@ -1,7 +1,3 @@
-import {
-    user as UserApi
-} from '../../config/request.js';
-
 module.exports = {
     name: 'login',
     data() {
@@ -58,7 +54,7 @@ module.exports = {
                     this.login_actions.disabled = true;
                     //如果记住密码，提交的信息包括真实token，密码则是假的
                     //服务端登录验证优先级：用户名必须，其次先取token，不存在时再取密码
-                    UserApi.login.call(this, this[ref], data => {
+                    this.$$login(this[ref], data => {
                         //登录成功之后，验证是否记住密码，如果记住密码，本地保存记住信息
                         //如果没有记住，就初始化本地记住信息
                         if (this.remumber.remumber_flag === true) {
@@ -80,10 +76,11 @@ module.exports = {
                             this.login_actions.disabled = false;
                             this.$router.push('/demo/user/list');
                         });
-                    }, () => {
-                        this.login_actions.disabled = false;
-                    }, () => {
-                        this.login_actions.disabled = false;
+                    }, {
+                        errFn: () => {
+                            this.login_actions.disabled = false;
+                        },
+                        tokenFlag: true
                     });
                 }
             });
