@@ -59,109 +59,20 @@
                 <i class='el-icon-arrow-left'></i>
             </div>
         </div>
+
+        <div class="toggle-menu"
+             @click='toggleMenu'
+             :style='{left:$store.state.leftmenu.width}'>
+            <i
+                :class='{"el-icon-arrow-left":$store.state.leftmenu.menu_flag,"el-icon-arrow-right":!$store.state.leftmenu.menu_flag}'></i>
+        </div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'left-menu',
-        data () {
-            return {
-                menu_list:[],
-
-                win_size:{
-                    height:'',
-                }
-            }
-        },
-        methods:{
-            setSize(){
-                this.win_size.height=$(window).height()+"px";
-            },
-
-            toggleMenu(){
-                this.$store.dispatch(this.$store.state.leftmenu.menu_flag?'set_menu_close':'set_menu_open');
-            },
-
-            updateCurMenu(route){
-                var route=route || this.$route;
-                if (route.matched.length) {
-                    var rootPath=route.matched[0].path,
-                        fullPath=route.path;
-                    this.$store.dispatch('set_cur_route',{
-                        rootPath,
-                        fullPath
-                    });
-                    var routes=this.$router.options.routes;
-                    for (var i = 0; i < routes.length; i++) {
-                        if (routes[i].path===rootPath && !routes[i].hidden) {
-                            this.menu_list=routes[i].children;
-                            break;
-                        }
-                    }
-                }else{
-                    this.$router.push('/404');
-                }
-            }
-
-        },
-        created(){
-            this.setSize();
-            $(window).resize(()=>{
-                this.setSize();
-            });
-
-            this.updateCurMenu();
-        },
-        mounted(){
-            // console.log(this.$store.state.user.userinfo.access);
-        },
-        watch:{
-            $route(to,from){
-                this.updateCurMenu(to);
-            }
-        }
-    }
+    module.exports=require('./LeftMenu.js');
 </script>
 
 <style scoped lang='less'>
-    .fa{
-        margin-right: 8px;
-    }
-    .left-fixed-right-auto{
-        padding-top: 60px;
-    }
-    .left{
-        position:fixed;
-        float:left;
-        /*width:190px;
-        margin-right:-190px;*/
-        top:60px;
-    }
-    .right-content{
-        float:right;
-        width:100%;
-    }
-    #left-menu{
-        height: 100%;
-        background: #324057;
-        position: relative;
-        overflow-x: hidden;
-        
-
-        .toggle-menu{
-            width: 100%;
-            height: 50px;
-            background: #1f2f3d;
-            position: absolute;
-            bottom: 50px;
-            left: 0px;
-            z-index: 1000;
-            cursor: pointer;
-            line-height: 40px;
-            text-align: center;
-            color: #fff;
-            font-size: 14px;
-        }
-    }
+    @import url(./LeftMenu.less);
 </style>
