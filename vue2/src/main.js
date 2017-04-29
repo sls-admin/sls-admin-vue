@@ -27,7 +27,7 @@ import store from './store/';
 
 import routes from './config/router.js';
 
-import 'plugins/';
+import 'register/';
 import 'mixin/';
 
 const router = new VueRouter({
