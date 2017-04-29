@@ -12,6 +12,7 @@ module.exports = {
 			fields: [{
 				key  : 'cate',
 				type : 'select',
+				multiple: false,
 				value: {
 					default: '',
 					list   : [{
@@ -49,10 +50,15 @@ module.exports = {
 				},
 				desc    : '请选择文章标签',
 				label   : '多选下拉框'
-			}]
+			}],
 		}
 	},
 	methods   : {
+		onSelectChange(v){
+			console.log(v);
+			this.value=v+'';
+		},
+
 		onSubmit(data) {
 			this.$emit('onTest', data);
 		}

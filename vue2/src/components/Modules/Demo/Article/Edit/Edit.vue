@@ -12,9 +12,9 @@
             </el-form-item>
             <el-form-item label="文章分类" prop='cate'>
                 <el-select v-model="article_data.cate" placeholder="请选择文章分类">
-                    <el-option value="qita" label='技术'></el-option>
-                    <el-option value="sanwen" label="散文"></el-option>
-                    <el-option value="qita" label="其他"></el-option>
+                    <el-option value="技术"></el-option>
+                    <el-option value="散文"></el-option>
+                    <el-option value="其他"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="文章标签" prop='tabs'>
