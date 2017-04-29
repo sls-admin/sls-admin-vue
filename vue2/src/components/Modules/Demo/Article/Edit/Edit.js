@@ -8,7 +8,7 @@ module.exports = {
         return {
             article_data: {
                 title: '',
-                cate: '其他',
+                cate: '',
                 tabs: ['html'],
                 status: true,
                 content: '',

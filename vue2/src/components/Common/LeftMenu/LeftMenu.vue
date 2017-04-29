@@ -55,16 +55,11 @@
                     </el-menu>
                 </el-col>
             </el-row>
-            <div class="toggle-menu" @click='toggleMenu'>
-                <i class='el-icon-arrow-left'></i>
+            <div class="toggle-menu"
+                 @click='toggleMenu'
+                 :style='{left:$store.state.leftmenu.width}'>
+                <i :class='[{"el-icon-arrow-left":$store.state.leftmenu.menu_flag},{"el-icon-arrow-right":!$store.state.leftmenu.menu_flag}]'></i>
             </div>
-        </div>
-
-        <div class="toggle-menu"
-             @click='toggleMenu'
-             :style='{left:$store.state.leftmenu.width}'>
-            <i
-                :class='{"el-icon-arrow-left":$store.state.leftmenu.menu_flag,"el-icon-arrow-right":!$store.state.leftmenu.menu_flag}'></i>
         </div>
     </div>
 </template>
