@@ -8,35 +8,21 @@ module.exports = {
     },
     data() {
         return {
-            fields: [{
-                label: 'Checkbox',
-                type: 'checkbox',
-                key: 'checkbox',
-                value: true,
-            }, {
-                label: 'Checkbox-multiple',
-                type: 'checkbox',
-                key: 'checkbox-multiple',
-                multiple: true,
-                checkall: {
-                    value: true,
-                    indeterminate: true,
-                    text: '全选吧我曹',
-                },
-                value: {
-                    default: [1, 3],
-                    list: [{
-                        text: 'one',
-                        value: 1
-                    }, {
-                        text: 'two',
-                        value: 2
-                    }, {
-                        text: 'three',
-                        value: 3
-                    }]
-                },
-            }],
+			fields: [{
+				label: '日期时间',
+				type: 'datetime',
+				key: 'date_time',
+				placeholder: '请选择日期时间',
+				value: '',
+			}, {
+				label: '日期时间范围',
+				type: 'datetimerange',
+				key: 'date_time_range_init',
+				placeholder: '日期范围',
+				value: {
+					default: []
+				},
+			}],
 
         }
     },

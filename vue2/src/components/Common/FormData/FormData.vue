@@ -155,6 +155,30 @@
                         @change='field.change'
                         :picker-options="field.options">
                 </el-time-select>
+
+
+                <!-- 日期时间组合 -->
+                <el-date-picker
+                        v-if='field.type==="datetime"'
+                        v-model="submit_data[field.key]"
+                        :type="field.type"
+                        @change='field.change'
+                        :placeholder="field.placeholder"
+                        :picker-options="field.options">
+                </el-date-picker>
+
+
+                <!-- datetime，日期时间类型-选择范围 -->
+                <!--
+                    @change='field.change'
+                 -->
+                <el-date-picker
+                        v-if='field.type==="datetimerange"'
+                        v-model="submit_data[field.key]"
+                        :type="field.type"
+                        :placeholder="field.placeholder"
+                        @change='field.change'>
+                </el-date-picker>
             </el-form-item>
 
             <el-form-item>

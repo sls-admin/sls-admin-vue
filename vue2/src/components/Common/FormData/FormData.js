@@ -270,6 +270,12 @@ module.exports = {
 		},
 
 
+		/**
+		 * 设置时间参数
+		 * @param fields	字段数组
+		 * @param i			当前索引
+		 * @param type		类型
+		 */
 		onTimeOptions(fields, i, type) {
 			var field = fields[i];
 
@@ -365,29 +371,44 @@ module.exports = {
 									this.wangEditor.has = true;
 								}
 								break;
+
 							case 'date':
 								this.initDate(fields, i);
 								break;
+
 							case 'daterange':
 								this.initDate(fields, i, 'range');
 								break;
+
 							case 'year':
 								this.initYear(fields, i);
 								break;
+
 							case 'month':
 								this.initMonth(fields, i);
 								break;
+
 							case 'week':
 								this.initWeek(fields, i);
+								break;
+
 							case 'time':
 								this.initTime(fields, i);
+								break;
+
+							case 'datetime':
+								this.initDate(fields, i);
+								break;
+
+							case 'datetimerange':
+								this.initDate(fields, i, 'range');
 								break;
 
 						}
 					}
 				}
 
-				console.log(this.submit_data);
+				// console.log(this.submit_data);
 			}
 		},
 
