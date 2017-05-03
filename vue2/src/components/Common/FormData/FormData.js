@@ -82,6 +82,8 @@ module.exports = {
 		 */
 		configEditor(id, config) {
 			if (id && config) {
+				this.wangEditor.editor[id].config={};
+				this.wangEditor.editor[id].config.uploadImgFns={};
 				this.wangEditor.editor[id].config.uploadImgFileName = config.name || this.editor.name || 'sls-admin';
 				this.wangEditor.editor[id].config.uploadImgUrl      = config.url || this.editor.url || '';
 				this.wangEditor.editor[id].config.uploadParams      = config.params || this.editor.params || {};
@@ -115,6 +117,7 @@ module.exports = {
 				}
 
 				this.wangEditor.editor[id].config.menus = bar;
+				console.log(this.wangEditor.editor[id].config.menus);
 			}
 
 			return this;
@@ -171,7 +174,9 @@ module.exports = {
 		 * @param  {string} id 编辑器ID
 		 */
 		createEditor(id) {
+			console.log(this.wangEditor.editor[id]);
 			this.wangEditor.editor[id].create();
+			console.log(id);
 		},
 
 
@@ -484,7 +489,7 @@ module.exports = {
 
 
 	created() {
-		this.deepObj();
+		// this.deepObj();
 	},
 
 
@@ -492,7 +497,7 @@ module.exports = {
 	 * ready
 	 */
 	mounted() {
-		// this.deepObj();
+		this.deepObj();
 	},
 
 
