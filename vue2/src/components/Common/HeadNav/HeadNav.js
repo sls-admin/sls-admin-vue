@@ -8,6 +8,7 @@ module.exports = {
     data() {
         return {
             dialog: {
+                show_access: false,
                 show_set: false,
                 show_pass: false,
                 title: '修改密码',
@@ -58,12 +59,18 @@ module.exports = {
                             }
                         }
                     }],
+                },
+
+                set_access:{
+                    routers:[{},{},{}],
+                    apis:[],
+                    users:[],
                 }
             }
         }
     },
     mounted() {
-        // this.setDialogInfo('pass');
+        // this.setDialogInfo('access');
 
         // this.onGetSetting();
     },
@@ -89,7 +96,8 @@ module.exports = {
          */
         setDialogInfo(cmditem) {
             if (!cmditem) {
-                this.$message.error('菜单选项缺少command属性');
+                console.log('test');
+                this.$message('菜单选项缺少command属性');
                 return;
             }
             switch (cmditem) {
@@ -109,6 +117,10 @@ module.exports = {
                     this.onGetSetting();
                     this.dialog.show_set = true;
                     this.dialog.title = '系统设置';
+                    break;
+                case 'access':
+                    this.dialog.show_access = true;
+                    this.dialog.title = '设置权限';
                     break;
             }
         },

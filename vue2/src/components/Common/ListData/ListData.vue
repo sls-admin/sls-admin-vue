@@ -1,20 +1,34 @@
 <template>
     <div class="list">
         <el-col :span="24" class='actions-top'>
-            <el-button type='danger' icon='delete'
+            <el-button 
+                type='danger' 
+                icon='delete'
+                v-if='selection'
                 :disabled='batch_flag'
                 @click='onDelete(true)'>删除选中</el-button>
+
+            <div class='list-header'>
+                <slot name='list-header'></slot>
+            </div>
         </el-col>
 
         <el-table border style="width: 100%" align='center' 
             :data="list"
             @selection-change='onSelectionChange'>
+
+
+            <el-table-column type="expand"
+                v-if='expand.show===true && (!expand.position || expand.position==="left")'>
+                <template scope="props">
+                </template>
+            </el-table-column>
+
             <el-table-column v-if='selection'
                 type="selection"
                 width="55">
             </el-table-column>
 
-            
             <template
                 v-for='field in fields'>
                 <el-table-column
@@ -78,6 +92,12 @@
                         @click='onGetInfo(scope.row,scope.$index,list,btn.fn_type || btn.text)'>{{btn.text}}</el-button>
                 </template>
             </el-table-column>
+
+
+            <el-table-column type="expand"
+                v-if='expand.show===true && expand.position && expand.position==="right"'>
+                <slot name="list-expand"></slot>
+            </el-table-column>
         </el-table>
         <el-col :span="24" class='btm-action'>
             <!-- 
@@ -124,5 +144,9 @@
                 height: auto;
             }
         }
+    }
+
+    .list-header{
+        display: inline-block;
     }
 </style>

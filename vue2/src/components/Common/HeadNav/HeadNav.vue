@@ -46,6 +46,8 @@
                             <el-dropdown-item 
                                 command='set' 
                                 v-if='$store.state.user.userinfo.pid==0'>系统设置</el-dropdown-item>
+                            <el-dropdown-item 
+                                command='access'>设置权限</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                 </span>
@@ -138,6 +140,28 @@
                 <el-button type="primary" @click="onUpdateSetting">确 定</el-button>
             </span>
         </el-dialog>
+
+
+        <el-dialog size="small" :title="dialog.title" 
+            v-model="dialog.show_access">
+            <el-form style="margin:20px;width:90%;" 
+                label-width="100px" 
+                v-model='dialog.set_access'>
+                <el-form-item label="登录方式">
+                    <el-select placeholder="请选择登录方式"
+                        v-model='dialog.set_info.login_style'>
+                        <el-option
+                            v-for='(item,index) in dialog.set_access.routers'
+                            :value='item.value'
+                            :label='item.label'></el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialog.show_set = false">取 消</el-button>
+                <el-button type="primary" @click="onUpdateSetting">确 定</el-button>
+            </span>
+        </el-dialog>
     </header>
 </template>
 
@@ -168,7 +192,7 @@
         position: fixed;
         top:0px;
         left:0px;
-        z-index: 1000000;
+        z-index: 999999;
         color:#FFF;
         border-bottom: 1px solid #1F2D3D;
 

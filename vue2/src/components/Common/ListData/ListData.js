@@ -11,6 +11,7 @@ module.exports = {
             list: this.List, //列表数组
             fields: this.FieldList, //字段数组
             selection: this.Selection, //是否需要批量选择
+            expand:this.Expand,
             btn_info: this.BtnInfo,
 
             pagination: this.Pagination,
@@ -187,6 +188,15 @@ module.exports = {
             type: Boolean,
             default: false
         },
+        Expand: {
+            type: Object,
+            default(){
+                return {
+                    show:false,
+                    position:"left"
+                };
+            }
+        },
         Pagination: {
             type: Object,
             default () {
@@ -218,6 +228,9 @@ module.exports = {
         },
         Selection(v) {
             this.selection = v;
+        },
+        Expand(v){
+            this.expand=v;
         },
         BtnInfo(v) {
             this.btn_info = v;

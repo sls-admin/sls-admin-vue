@@ -5,7 +5,11 @@
             :List='list'
             :FieldList='fields'
             :Selection='true'
-            :BtnInfo='btn_info'></list-data>
+            :Expand='expand'
+            :BtnInfo='btn_info'>
+                <div slot='list-header'>我曹，垃圾玩意啊。</div>
+                <span slot='list-expand'>测试自定义折叠属性</span>
+            </list-data>
     </div>
 </template>
 
