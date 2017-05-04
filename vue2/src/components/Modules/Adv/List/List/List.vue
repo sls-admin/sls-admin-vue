@@ -5,7 +5,9 @@
             :List='list'
             :FieldList='fields'
             :Selection='true'
-            :BtnInfo='btn_info'></list-data>
+            :BtnInfo='btn_info'>
+
+        </list-data>
     </div>
 </template>
 

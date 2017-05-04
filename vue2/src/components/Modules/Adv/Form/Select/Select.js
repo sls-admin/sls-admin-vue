@@ -15,17 +15,17 @@ module.exports = {
 				multiple: false,
 				value: {
 					default: '',
-					list   : [{
-						value: 'jishu',
-						text : '技术'
-					}, {
-						value: 'sanwen',
-						text : '散文'
-					}, {
-						value: 'qita',
-						text : '其他'
-					}]
-				},
+				list   : [{
+					value: 'jishu',
+					text : '技术'
+				}, {
+					value: 'sanwen',
+					text : '散文'
+				}, {
+					value: 'qita',
+					text : '其他'
+				}]
+			},
 				desc : '请选择文章分类',
 				label: '单选下拉框'
 			}, {
