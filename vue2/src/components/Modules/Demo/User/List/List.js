@@ -19,6 +19,13 @@ module.exports = {
                 user_info: {}
             },
 
+            dialog_access:{
+                show:false,
+                userinfo:{},
+                web_routers:[],
+                api_routers:[]
+            },
+
             //列表过滤性别
             sex_filters: {
                 list: [{
@@ -44,10 +51,139 @@ module.exports = {
                     value: 2
                 }],
                 multiple: false
+            },
+
+
+
+            checkAll: true,
+            checkedCities: ['上海', '北京'],
+            cities: ['上海', '北京', '广州', '深圳'],
+            isIndeterminate: true,
+
+            accesss: [],
+            checkeds: [],
+            defaultProps: {
+                children: 'children',
+                label: 'name'
             }
+            
         }
     },
     methods: {
+        handleCheckAllChange(event) {
+            this.checkedCities = event.target.checked ? this.cities : [];
+            this.isIndeterminate = false;
+        },
+        handleCheckedCitiesChange(value) {
+            let checkedCount = value.length;
+            this.checkAll = checkedCount === this.cities.length;
+            this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+        },
+
+        filterNode(value, data) {
+            if (!value) return true;
+            return data.label.indexOf(value) !== -1;
+        },
+
+        currentChange(data, node) {
+            // console.log(data, node);
+        },
+
+        nodeClick(data, node, self) {
+            // console.log(node);
+        },
+
+        checkChange(data, selfIsChecked, childHasChecked) {
+            if (selfIsChecked === true && data.access.split('/').length == 4 && this.checkeds.indexOf(data.access) === -1) {
+                this.checkeds.push(data.access);
+            } else {
+                var index = this.checkeds.indexOf(data.access);
+                if (index !== -1) {
+                    this.checkeds.splice(index, 1);
+                }
+            }
+        },
+
+        setUserAccess() {
+            var flag = false;
+            for (var i = 0; i < this.checkeds.length; i++) {
+                var arr = this.checkeds[i].split('/');
+
+                if (arr.length === 4) {
+                    flag = true;
+                    var rootPath = '/' + arr[1],
+                        twoPath = rootPath + '/' + arr[2];
+
+                    if (this.checkeds.indexOf(rootPath) === -1) {
+                        this.checkeds.push(rootPath);
+                    }
+                    if (this.checkeds.indexOf(twoPath) === -1) {
+                        this.checkeds.push(twoPath);
+                    }
+                }
+            }
+
+            //当前所选中的节点
+            if (flag === false) {
+                this.checkeds = [];
+            }
+
+            // console.log(this.checkeds.join(','));
+            // console.log(this.user_id.join(','));
+
+
+            if (this.user_id.length) {
+                UserApi.setAccessUser.call(this, {
+                    user_id: this.user_id.join(','),
+                    user_accesss: this.checkeds.join(',')
+                }, data => {
+                    this.$message.success('设置成功');
+                });
+            } else {
+                this.$message.error('用户不能为空');
+            }
+        },
+
+
+        initRouters(){
+            var routes = this.$router.options.routes;
+            for (var i = 0; i < routes.length; i++) {
+                if (routes[i].hidden !== true && routes[i].children && routes[i].children.length) {
+                    var tempObj = {},
+                        module = routes[i],
+                        menus = module.children;
+                    tempObj.name = module.name;
+                    tempObj.path = module.path;
+                    tempObj.access = module.path;
+                    tempObj.children = [];
+                    for (var j = 0; j < menus.length; j++) {
+                        if (menus[j].hidden !== true && menus[j].children && menus[j].children.length) {
+                            var tempChildObj = {},
+                                menu = menus[j],
+                                pages = menu.children;
+                            tempChildObj.name = menu.name;
+                            tempChildObj.path = '/' + menu.path;
+                            tempChildObj.access = tempObj.path + '/' + menu.path;
+                            tempChildObj.children = [];
+                            for (var k = 0; k < pages.length; k++) {
+                                if (pages[k].hidden !== true) {
+                                    var tempPageObj = {},
+                                        page = pages[k];
+                                    tempPageObj.name = page.name;
+                                    tempPageObj.path = '/' + page.path;
+                                    tempPageObj.access = tempObj.path + '/' + menu.path + '/' + page.path;
+                                    tempChildObj.children.push(tempPageObj);
+                                }
+                            }
+                            tempObj.children.push(tempChildObj);
+                        }
+                    }
+                    this.accesss.push(tempObj);
+                }
+            }
+        },
+
+
         /**
          * 列表性别格式化事件
          * @param  {object} item 当前用户信息
@@ -175,12 +311,32 @@ module.exports = {
         },
 
 
-        onAccessUser(user, index, list) {
+        /**
+         * 设置状态
+         */
+        onSetStatusUser(user, index, list) {
             this.$$accessUser({
                 id: user.id
             }, (data) => {
                 user.status = user.status == 1 ? 2 : 1;
             });
+        },
+
+
+        /**
+         * 设置权限
+         */
+        onSetAccess(user,index,list){
+            this.$router.push({
+                path:'/demo/user/access',
+                query:{
+                    id:user.id,
+                    username:user.username
+                }
+            });
+
+            // this.dialog_access.userinfo=user;
+            // this.dialog_access.show=true;       
         },
 
 
@@ -265,6 +421,8 @@ module.exports = {
 
     mounted() {
         this.getList();
+
+        this.initRouters();
 
         //test dialog
 

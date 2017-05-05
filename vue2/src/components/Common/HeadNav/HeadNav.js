@@ -59,12 +59,6 @@ module.exports = {
                             }
                         }
                     }],
-                },
-
-                set_access:{
-                    routers:[{},{},{}],
-                    apis:[],
-                    users:[],
                 }
             }
         }
@@ -117,10 +111,6 @@ module.exports = {
                     this.onGetSetting();
                     this.dialog.show_set = true;
                     this.dialog.title = '系统设置';
-                    break;
-                case 'access':
-                    this.dialog.show_access = true;
-                    this.dialog.title = '设置权限';
                     break;
             }
         },

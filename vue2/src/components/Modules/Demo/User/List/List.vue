@@ -77,7 +77,7 @@
             </el-table-column>
             <el-table-column
                 label="操作"
-                :width="$store.state.user.userinfo.pid==0 ? 200 : 136" 
+                :width="$store.state.user.userinfo.pid==0 ? 260 : 136" 
                 :context="_self">
                 <template scope='scope'>
                     <el-button 
@@ -90,18 +90,26 @@
                         icon='edit' 
                         size="mini"
                         @click='onEditUser(scope.row)'></el-button>
+                    
+                    <el-button 
+                        type="primary" 
+                        size="mini"
+                        @click='onSetAccess(scope.row,scope.$index,user_list)'>设置权限</el-button>
+
+
                     <el-button 
                         type="danger" 
                         icon='delete' 
                         size="mini"
                         @click='onDeleteUser(scope.row,scope.$index,user_list)'></el-button>
 
+
                     <!-- 不要试图强制打开这个操作，因为服务端做了验证，打开也没用n(*≧▽≦*)n -->
                     <el-button
                         v-if='$store.state.user.userinfo.pid==0'
                         size="mini"
                         :type="scope.row.status==1 ? 'danger' : 'info'" 
-                        @click='onAccessUser(scope.row,scope.$index,user_list)'>{{scope.row.status==1 ? '禁用' : '启用'}}</el-button>
+                        @click='onSetStatusUser(scope.row,scope.$index,user_list)'>{{scope.row.status==1 ? '禁用' : '启用'}}</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -143,6 +151,55 @@
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialog.show = false">取 消</el-button>
                 <el-button type="primary" @click="dialog.show = false">确 定</el-button>
+            </span>
+        </el-dialog>
+
+
+        <el-dialog title="设置权限" v-model="dialog_access.show" size="small">
+            <el-form style="margin:20px;width:60%;min-width:100%" 
+                label-width="100px" 
+                :model="dialog_access.userinfo">
+                <el-form-item class='edit-form' 
+                    label="邮箱" 
+                    prop='email'>
+                    {{dialog_access.userinfo.email}}
+                </el-form-item>
+                <el-form-item class='edit-form' 
+                    label="用户名称" 
+                    prop='username'>
+                    {{dialog_access.userinfo.username}}
+                </el-form-item>
+                
+                <el-form-item class='edit-form' 
+                    label="前端页面">
+                    <!-- CheckBox选项列表 -->
+                    <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+                    <div style="margin: 15px 0;"></div>
+                    <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+                        <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
+
+                <el-form-item class='edit-form'>
+                    <el-tree
+                            class="filter-tree"
+                            show-checkbox
+                            default-expand-all
+                            node-key="path"
+                            :data="accesss"
+                            :props="defaultProps"
+                            :filter-node-method="filterNode"
+                            @check-change='checkChange'
+                            @current-change='currentChange'
+                            @node-click='nodeClick'
+                            ref="accesss">
+                    </el-tree>
+                </el-form-item>
+                
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialog_access.show = false">取 消</el-button>
+                <el-button type="primary" @click="dialog_access.show = false">确 定</el-button>
             </span>
         </el-dialog>
     </div>

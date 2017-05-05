@@ -29,6 +29,12 @@ module.exports = [{
 			name: '编辑用户',
 			icon: 'edit',
 			component: Modules.Demo.User.Edit
+		}, {
+			path: 'access',
+			hidden:true,
+			name: '设置权限',
+			icon: 'edit',
+			component: Modules.Demo.User.Access
 		}]
 	}, {
 		path: 'article',

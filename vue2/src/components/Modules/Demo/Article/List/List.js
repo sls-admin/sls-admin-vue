@@ -316,12 +316,10 @@ module.exports = {
                 for (var s in query) {
                     if (this.search_data[s] !== undefined) {
                         this.search_data[s] = query[s];
-
                         data[s] = query[s];
                     }
                 }
             }
-
 
             this.$$selectArticle(data, (article_data) => {
                 this.article_list = article_data.list.data;

@@ -1,59 +1,61 @@
 <template>
-    <header class="head-nav">
-       <el-row>
-            <el-col :span="4" class='logo-container'>
-                <img src="../../../assets/logo-sm.png" class='logo' alt="">
-            </el-col>
-            <el-col :span="16">
-                <el-menu theme="dark" :default-active="$store.state.router.headerCurRouter" class="el-menu-demo" mode="horizontal" unique-opened router>
-                    <!-- <el-submenu index="1">
-                        <template slot="title">向导中心</template>
-                        <el-menu-item index="1-1">快捷方式1</el-menu-item>
-                        <el-menu-item index="1-2">快捷方式2</el-menu-item>
-                        <el-menu-item index="1-3">快捷方式3</el-menu-item>
-                    </el-submenu>
-                    <el-submenu index="2">
-                        <template slot="title">商城中心</template>
-                        <el-menu-item index="2-1">订单统计</el-menu-item>
-                        <el-menu-item index="2-2">其他</el-menu-item>
-                    </el-submenu> -->
-                    <!-- <el-menu-item index="2">商城中心</el-menu-item>
-                    <el-menu-item index="3">系统设置</el-menu-item> -->
-                    
-                    <!-- v-if='!item.hidden && $store.state.user.userinfo.access.indexOf(item.path)===-1' -->
-                    <el-menu-item 
-                        :index="item.path" 
-                        v-for='(item,index) in $router.options.routes' 
-                        v-if='!item.hidden'>
-                        {{item.name}}<!-- {{item.path}} -->
-                    </el-menu-item>
-                </el-menu>
-            </el-col>
-            <el-col :span="4" class="userinfo">
-                <!-- <span class='username'><i class='fa fa-user'></i>{{this.$store.state.user.userinfo.username}}</span> -->
-                <span class='username'>
-                    <el-dropdown 
-                        trigger="click"
-                        @command='setDialogInfo'>
-                        <span class="el-dropdown-link">
-                            {{this.$store.state.user.userinfo.username}}<i class="el-icon-caret-bottom el-icon--right"></i>
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item command='info'>修改信息</el-dropdown-item>
-                            <el-dropdown-item 
-                                command='pass'
-                                v-if='$store.state.user.userinfo.is_update_pass'>修改密码</el-dropdown-item>
-                            <el-dropdown-item 
-                                command='set' 
-                                v-if='$store.state.user.userinfo.pid==0'>系统设置</el-dropdown-item>
-                            <el-dropdown-item 
-                                command='access'>设置权限</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </span>
-                <i class="fa fa-sign-out logout" @click='logout'></i>
-            </el-col>
-        </el-row>
+    <div>
+        
+        <header class="head-nav">
+           <el-row>
+                <el-col :span="4" class='logo-container'>
+                    <img src="../../../assets/logo-sm.png" class='logo' alt="">
+                </el-col>
+                <el-col :span="16">
+                    <el-menu theme="dark" :default-active="$store.state.router.headerCurRouter" class="el-menu-demo" mode="horizontal" unique-opened router>
+                        <!-- <el-submenu index="1">
+                            <template slot="title">向导中心</template>
+                            <el-menu-item index="1-1">快捷方式1</el-menu-item>
+                            <el-menu-item index="1-2">快捷方式2</el-menu-item>
+                            <el-menu-item index="1-3">快捷方式3</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="2">
+                            <template slot="title">商城中心</template>
+                            <el-menu-item index="2-1">订单统计</el-menu-item>
+                            <el-menu-item index="2-2">其他</el-menu-item>
+                        </el-submenu> -->
+                        <!-- <el-menu-item index="2">商城中心</el-menu-item>
+                        <el-menu-item index="3">系统设置</el-menu-item> -->
+                        
+                        <!-- v-if='!item.hidden && $store.state.user.userinfo.access.indexOf(item.path)===-1' -->
+                        <el-menu-item 
+                            :index="item.path" 
+                            v-for='(item,index) in $router.options.routes' 
+                            v-if='!item.hidden'>
+                            {{item.name}}<!-- {{item.path}} -->
+                        </el-menu-item>
+                    </el-menu>
+                </el-col>
+                <el-col :span="4" class="userinfo">
+                    <!-- <span class='username'><i class='fa fa-user'></i>{{this.$store.state.user.userinfo.username}}</span> -->
+                    <span class='username'>
+                        <el-dropdown 
+                            trigger="click"
+                            @command='setDialogInfo'>
+                            <span class="el-dropdown-link">
+                                {{this.$store.state.user.userinfo.username}}<i class="el-icon-caret-bottom el-icon--right"></i>
+                            </span>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command='info'>修改信息</el-dropdown-item>
+                                <el-dropdown-item 
+                                    command='pass'
+                                    v-if='$store.state.user.userinfo.is_update_pass'>修改密码</el-dropdown-item>
+                                <el-dropdown-item 
+                                    command='set' 
+                                    v-if='$store.state.user.userinfo.pid==0'>系统设置</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </span>
+                    <i class="fa fa-sign-out logout" @click='logout'></i>
+                </el-col>
+            </el-row>
+        </header>
+
 
         <el-dialog size="small" :title="dialog.title" 
             v-model="dialog.show_pass">
@@ -140,29 +142,7 @@
                 <el-button type="primary" @click="onUpdateSetting">确 定</el-button>
             </span>
         </el-dialog>
-
-
-        <el-dialog size="small" :title="dialog.title" 
-            v-model="dialog.show_access">
-            <el-form style="margin:20px;width:90%;" 
-                label-width="100px" 
-                v-model='dialog.set_access'>
-                <el-form-item label="登录方式">
-                    <el-select placeholder="请选择登录方式"
-                        v-model='dialog.set_info.login_style'>
-                        <el-option
-                            v-for='(item,index) in dialog.set_access.routers'
-                            :value='item.value'
-                            :label='item.label'></el-option>
-                    </el-select>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialog.show_set = false">取 消</el-button>
-                <el-button type="primary" @click="onUpdateSetting">确 定</el-button>
-            </span>
-        </el-dialog>
-    </header>
+    </div>
 </template>
 
 <script>
