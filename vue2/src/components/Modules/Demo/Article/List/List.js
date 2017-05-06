@@ -239,7 +239,7 @@ module.exports = {
                 var id = article.id;
             }
 
-            this.$$deleteArticle({
+            this.$$api_article_deleteArticle({
                 id: id
             }, (data) => {
                 if (article === true) {
@@ -321,7 +321,7 @@ module.exports = {
                 }
             }
 
-            this.$$selectArticle(data, (article_data) => {
+            this.$$api_article_selectArticle(data, (article_data) => {
                 this.article_list = article_data.list.data;
                 this.paginations.total = article_data.list.total;
 

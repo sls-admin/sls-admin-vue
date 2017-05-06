@@ -54,7 +54,7 @@ module.exports = {
                     this.login_actions.disabled = true;
                     //如果记住密码，提交的信息包括真实token，密码则是假的
                     //服务端登录验证优先级：用户名必须，其次先取token，不存在时再取密码
-                    this.$$login(this[ref], data => {
+                    this.$$api_user_login(this[ref], data => {
                         //登录成功之后，验证是否记住密码，如果记住密码，本地保存记住信息
                         //如果没有记住，就初始化本地记住信息
                         if (this.remumber.remumber_flag === true) {
@@ -70,6 +70,16 @@ module.exports = {
                         }
 
                         // this.$set(data.userinfo, 'access', ['/adv', '/demo/user', '/demo/user/list']);
+                        try{
+							data.userinfo.web_routers=JSON.parse(data.userinfo.web_routers) ? JSON.parse(data.userinfo.web_routers) : {};
+                        }catch(e){
+							data.userinfo.web_routers={};
+                        }
+						try{
+							data.userinfo.api_routers=JSON.parse(data.userinfo.api_routers) ? JSON.parse(data.userinfo.api_routers) : {};
+						}catch(e){
+							data.userinfo.api_routers={};
+						}
                         this.$store.dispatch('update_userinfo', {
                             userinfo: data.userinfo
                         }).then(() => {

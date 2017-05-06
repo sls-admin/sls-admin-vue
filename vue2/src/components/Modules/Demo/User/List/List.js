@@ -330,8 +330,7 @@ module.exports = {
             this.$router.push({
                 path:'/demo/user/access',
                 query:{
-                    id:user.id,
-                    username:user.username
+                    id:user.id
                 }
             });
 
@@ -355,7 +354,7 @@ module.exports = {
                 var id = user.id;
             }
 
-            this.$$deleteUser({
+            this.$$api_user_deleteUser({
                 id: id
             }, (data) => {
                 if (user === true) {
@@ -413,7 +412,7 @@ module.exports = {
                 }
             }
 
-            this.$$selectUser(data, (data) => {
+            this.$$api_user_selectUser(data, (data) => {
                 this.user_list = data.list;
             });
         }

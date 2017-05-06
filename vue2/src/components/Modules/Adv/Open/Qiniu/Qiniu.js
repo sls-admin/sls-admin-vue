@@ -48,7 +48,7 @@ module.exports = {
 		},
 
 		onGetQiniuList() {
-			this.$$getQiniuFileList(this.qiniu, data => {
+			this.$$api_open_getQiniuFileList(this.qiniu, data => {
 				this.list = data.list;
 				if (data.other) {
 					this.qiniu.marker = data.other.marker || '';
@@ -58,7 +58,7 @@ module.exports = {
 		},
 
 		onGetQiniuToken(file, fn) {
-			this.$$getQiniuToken(data => {
+			this.$$api_open_getQiniuToken(data => {
 				this.params.token = data.qiniu.token;
 				if (data.qiniu.key) {
 					this.$set(this.params, 'key', data.qiniu.key);
@@ -75,7 +75,7 @@ module.exports = {
 				if (this.params.key) {
 					formData.append('key', this.params.key);
 				}
-				this.$$uploadQiniuFile(formData, data => {
+				this.$$api_open_uploadQiniuFile(formData, data => {
 					this.onGetQiniuList();
 				}, {
 					host: '//up-z2.qiniu.com/',

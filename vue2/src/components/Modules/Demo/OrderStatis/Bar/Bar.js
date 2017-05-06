@@ -2,10 +2,6 @@ import {
     Default as Statis
 } from 'common/Echarts/Bar/';
 
-import {
-    order
-} from 'config/request.js';
-
 module.exports = {
     name: 'echarts',
     components: {
@@ -43,7 +39,7 @@ module.exports = {
         },
 
         getStatis() {
-            order.statisOrder.call(this, {}, (data) => {
+            this.$$api_order_statisOrder({}, (data) => {
                 for (var f in data.statis) {
                     this.$set(this.echarts_data.value_list, f - 1, data.statis[f]);
                 }

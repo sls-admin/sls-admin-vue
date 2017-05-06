@@ -1,7 +1,3 @@
-import {
-    order
-} from 'config/request.js';
-
 module.exports = {
     name: 'order-list',
     data() {
@@ -185,7 +181,7 @@ module.exports = {
             }
 
 
-            order.selectOrder.call(this, data, (article_data) => {
+            this.$$api_order_selectOrder(data, (article_data) => {
                 this.article_list = article_data.list.data;
                 this.paginations.total = article_data.list.total;
 

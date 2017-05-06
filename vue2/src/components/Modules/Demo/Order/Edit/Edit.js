@@ -2,11 +2,6 @@ import {
     gbs
 } from 'config/settings.js';
 
-import {
-    order
-} from 'config/request.js';
-
-
 module.exports = {
     name: 'edit-order',
     data() {
@@ -39,7 +34,7 @@ module.exports = {
             ref.validate((valid) => {
                 if (valid) {
                     console.log(this.form_data);
-                    order.saveOrder.call(this, this.form_data, (data) => {
+                    this.$$api_order_saveOrder(this.form_data, (data) => {
                         console.log(data);
                     });
                 }

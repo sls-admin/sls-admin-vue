@@ -74,8 +74,8 @@ module.exports = {
 
             apis: {
                 method: {
-                    get_list: '$$selectArticle',
-                    delete_data: '$$deleteArticle'
+                    get_list: '$$api_article_selectArticle',
+                    delete_data: '$$api_article_deleteArticle'
                 },
                 route: {
                     update_path: '/adv/article/edit'

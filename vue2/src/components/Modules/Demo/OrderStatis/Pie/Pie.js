@@ -2,10 +2,6 @@ import {
     Default as Statis
 } from 'common/Echarts/Pie/';
 
-import {
-    order
-} from 'config/request.js';
-
 module.exports = {
     name: 'order-statis-pie',
     components: {
@@ -64,7 +60,7 @@ module.exports = {
 
 
         getStatis() {
-            order.statisOrder.call(this, {}, (data) => {
+            this.$$api_order_statisOrder({}, (data) => {
                 for (var f in data.statis) {
                     var value = this.echarts_data.data_list[f - 1];
                     value.value = data.statis[f];

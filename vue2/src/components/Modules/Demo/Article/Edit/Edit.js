@@ -83,7 +83,7 @@ module.exports = {
 
 					// console.log(this.article_data);
 
-					this.$$saveArticle(this.article_data, data => {
+					this.$$api_article_saveArticle(this.article_data, data => {
 						this.$router.push('/demo/article/list');
 					});
 				}
@@ -171,7 +171,7 @@ module.exports = {
 			var data = {
 				id: this.$route.query.id
 			};
-			this.$$findArticle(data, (data) => {
+			this.$$api_article_findArticle(data, (data) => {
 				// console.log(data);
 
 				this.article_data        = data.article_info;
