@@ -59,11 +59,10 @@ module.exports = {
 		 * 提交表单
 		 * @param  {string} formName 表单名称
 		 */
-		onSubmit(formName)
-		{
+		onSubmit(formName){
 
-			console.log(this.article_data);
-			return;
+			// console.log(this.article_data);
+			// return;
 
 			var ref = this.$refs[formName];
 			ref.validate((valid) => {
@@ -90,25 +89,17 @@ module.exports = {
 			});
 		}
 		,
-		setContent(html, text)
-		{
+		setContent(html, text){
 			this.article_data.content = html;
 			this.temp.content         = text;
 		}
 		,
-		reset_article(article)
-		{
+		reset_article(article){
 			this.$refs[article].resetFields();
 		}
-		,
-	}
-	,
-	created()
-	{
-	}
-	,
-	mounted()
-	{
+	},
+
+	mounted(){
 		var self   = this;
 		var editor = new wangEditor('article');
 

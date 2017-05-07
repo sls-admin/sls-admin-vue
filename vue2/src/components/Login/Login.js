@@ -15,27 +15,65 @@ module.exports = {
 
             remumber: this.$store.state.user.remumber,
 
+            register:false,
+
             login_actions: {
                 disabled: false
             },
 
             data: {
-                username: '',
-                password: '',
+                username: 'aaaaaa',
+                password: 'qqqqqq',
                 // token: ''
             },
 
             rule_data: {
                 username: [{
-                    required: true,
-                    message: '用户名不能为空！',
+					validator:(rule, value, callback)=>{
+						if (value === '') {
+							callback(new Error('请输入用户名'));
+						} else {
+							if(/^[a-zA-Z0-9_-]{6,16}$/.test(value)){
+								callback();
+							}else{
+								callback(new Error('用户名至少6位,由大小写字母和数字,-,_组成'));
+							}
+						}
+					},
                     trigger: 'blur'
                 }],
                 password: [{
-                    required: true,
-                    message: '密码不能为空！',
+					validator:(rule, value, callback)=>{
+						if (value === '') {
+							callback(new Error('请输入密码'));
+						} else {
+						    if(!(/^[a-zA-Z0-9_-]{6,16}$/.test(value))){
+								callback(new Error('密码至少6位,由大小写字母和数字,-,_组成'));
+							}else{
+						        if(this.register===true){
+									if (this.data.repassword !== ''){
+										this.$refs.data.validateField('repassword');
+									}
+                                }
+								callback();
+                            }
+
+						}
+                    },
                     trigger: 'blur'
                 }],
+                repassword:[{
+					validator:(rule, value, callback)=>{
+						if (value === '') {
+							callback(new Error('请再次输入密码'));
+						} else if (value !== this.data.password) {
+							callback(new Error('两次输入密码不一致!'));
+						} else {
+							callback();
+						}
+					},
+					trigger: 'blur'
+                }]
             }
         }
     },
@@ -48,7 +86,11 @@ module.exports = {
             this.formOffset.top = (parseInt(this.winSize.height) / 2 - 178) + 'px';
         },
 
-        login(ref) {
+        onLogin(ref,type) {
+            if(type && this.register===true){
+                this.$message.error('请输入确认密码');
+                return;
+            }
             this.$refs[ref].validate((valid) => {
                 if (valid) {
                     this.login_actions.disabled = true;
@@ -96,8 +138,35 @@ module.exports = {
             });
         },
 
+        onRegister(ref){
+			this.$refs[ref].validate((valid) => {
+				if (valid) {
+					this.login_actions.disabled = true;
+					this.$$api_user_register(this[ref], data => {
+						this.login_actions.disabled = false;
+					    this.$message.success('注册成功，请登录。');
+					    this.toggleStatus(false);
+                    }, {
+						errFn: () => {
+							this.login_actions.disabled = false;
+						},
+						tokenFlag: true
+					});
+                }
+            });
+        },
+
         resetForm(ref) {
             this.$refs[ref].resetFields();
+        },
+
+        toggleStatus(type){
+            this.register=type;
+            if(this.register===true){
+                this.$set(this.data,'repassword','qqqqqq');
+            }else{
+				this.$delete(this.data,'repassword');
+            }
         }
     },
     created() {
@@ -107,6 +176,7 @@ module.exports = {
         });
     },
     mounted() {
+        // this.toggleStatus(true);
         // console.log(this.remumber);
 
         //如果上次登录选择的是记住密码并登录成功，则会保存状态，用户名以及token

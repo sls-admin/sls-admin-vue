@@ -110,7 +110,6 @@
 
                     <!-- 不要试图强制打开这个操作，因为服务端做了验证，打开也没用n(*≧▽≦*)n -->
                     <el-button
-                            v-if='$store.state.user.userinfo.pid==0'
                             size="mini"
                             :type="scope.row.status==1 ? 'danger' : 'info'"
                             @click='onSetStatusUser(scope.row,scope.$index,user_list)'>{{scope.row.status==1 ? '禁用' :

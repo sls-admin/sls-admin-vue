@@ -315,7 +315,7 @@ module.exports = {
          * 设置状态
          */
         onSetStatusUser(user, index, list) {
-            this.$$accessUser({
+            this.$$api_user_updateUserStatus({
                 id: user.id
             }, (data) => {
                 user.status = user.status == 1 ? 2 : 1;
@@ -353,21 +353,25 @@ module.exports = {
             } else {
                 var id = user.id;
             }
+			this.$confirm('你确定删除用户 '+user.username+' 么?', '删除用户', {
+				confirmButtonText: '确定',
+				cancelButtonText: '取消',
+				type: 'warning'
+			}).then(() => {
+				this.$$api_user_deleteUser({
+					id: id
+				}, (data) => {
+					if (user === true) {
+						this.user_list = this.user_list.filter(function(item, idx) {
+							return id.indexOf(item.id) === -1;
+						});
+					} else {
+						list.splice(index, 1);
+					}
+					this.getList();
+				});
+			});
 
-            this.$$api_user_deleteUser({
-                id: id
-            }, (data) => {
-                if (user === true) {
-                    this.user_list = this.user_list.filter(function(item, idx) {
-                        return id.indexOf(item.id) === -1;
-                    });
-                } else {
-                    list.splice(index, 1);
-                }
-
-
-                this.getList();
-            });
         },
 
 

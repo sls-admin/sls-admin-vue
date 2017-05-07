@@ -8,7 +8,9 @@
             <el-form-item class='edit-form' 
                 label="邮箱" 
                 prop='email'>
-                <el-input v-model="user_data.email" placeholder='常用邮箱'></el-input>
+                <el-input
+                        :disabled='user_data.id ? true : false'
+                        v-model="user_data.email" placeholder='常用邮箱'></el-input>
             </el-form-item>
             <el-form-item class='edit-form' 
                 label="用户名称" 
@@ -39,8 +41,7 @@
                     placeholder='住址'></el-input>
             </el-form-item>
             <el-form-item label="状态">
-                <el-switch on-text="启用" off-text="禁用" 
-                    :disabled='user_data.id ? true : false'
+                <el-switch on-text="启用" off-text="禁用"
                     v-model="user_data.status"></el-switch>
             </el-form-item>
             <el-form-item label="密码" v-if='!user_data.id'>
@@ -48,7 +49,9 @@
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click='save_user("user_data")'>{{user_data.id ? '修改' : '添加'}}</el-button>
-                <el-button type="default" @click='reset_user("user_data")'>重置</el-button>
+                <el-button type="default"
+                           v-if="!user_data.id"
+                           @click='reset_user("user_data")'>重置</el-button>
             </el-form-item>
         </el-form>
     </div>
