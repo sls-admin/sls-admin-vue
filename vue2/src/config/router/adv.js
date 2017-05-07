@@ -30,7 +30,7 @@ module.exports = [{
 			icon: 'edit',
 			component: Modules.Adv.Article.Edit
 		}]
-	}, {
+	}, /*{
 		path: 'wangeditor',
 		name: 'wangeditor富文本',
 		icon: 'inbox',
@@ -47,7 +47,7 @@ module.exports = [{
 			icon: 'edit',
 			component: Modules.Adv.Wangeditor.Many
 		}]
-	}, {
+	},*/ {
 		path: 'open',
 		name: '第三方接入',
 		icon: 'inbox',

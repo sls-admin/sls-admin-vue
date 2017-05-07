@@ -40,12 +40,12 @@ module.exports = [{
 			name: 'Radio单选',
 			icon: 'edit',
 			component: Modules.Components.Form.Radio
-		}, {
+		}, /*{
 			path: 'select',
 			name: '下拉框',
 			icon: 'edit',
 			component: Modules.Components.Form.Select
-		}, {
+		}, */{
 			path: 'switch',
 			name: '开关',
 			icon: 'edit',
@@ -82,7 +82,7 @@ module.exports = [{
 			name: '渲染列表',
 			icon: 'reorder',
 			component: Modules.Components.List.List
-		}, {
+		},/* {
 			path: 'pagination',
 			name: '分页',
 			icon: 'edit',
@@ -102,6 +102,6 @@ module.exports = [{
 			name: '自定义按钮',
 			icon: 'edit',
 			component: Modules.Components.List.CustomBtn
-		}]
+		}*/]
 	}]
 }];
