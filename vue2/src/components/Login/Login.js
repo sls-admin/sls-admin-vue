@@ -22,8 +22,8 @@ module.exports = {
             },
 
             data: {
-                username: 'aaaaaa',
-                password: 'qqqqqq',
+                username: '',
+                password: '',
                 // token: ''
             },
 
@@ -163,7 +163,7 @@ module.exports = {
         toggleStatus(type){
             this.register=type;
             if(this.register===true){
-                this.$set(this.data,'repassword','qqqqqq');
+                this.$set(this.data,'repassword','');
             }else{
 				this.$delete(this.data,'repassword');
             }
