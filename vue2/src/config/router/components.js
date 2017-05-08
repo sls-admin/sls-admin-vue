@@ -76,10 +76,10 @@ module.exports = [{
 		name: '列表组件',
 		icon: 'inbox',
 		component: Content,
-		redirect: '/components/list/render',
+		redirect: '/components/list/default',
 		children: [{
-			path: 'render',
-			name: '渲染列表',
+			path: 'default',
+			name: '默认渲染列表',
 			icon: 'reorder',
 			component: Modules.Components.List.List
 		},/* {

@@ -413,7 +413,7 @@ module.exports = {
 					}
 				}
 
-				console.log(this.submit_data);
+				// console.log(this.submit_data);
 			}
 		},
 

@@ -3,10 +3,7 @@
         <list-data
             ref='list-data'
             :List='list'
-            :FieldList='fields'
-            :Selection='true'
-            :Expand='expand'
-            :BtnInfo='btn_info'>
+            :FieldList='fields'>
                 <div slot='list-header'>自定义头部，可以在这里放上一些东西</div>
                 <!--<span slot='list-expand'>测试自定义折叠属性</span>-->
                 <template slot="list-expand" scope="props">

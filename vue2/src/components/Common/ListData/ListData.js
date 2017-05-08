@@ -76,6 +76,10 @@ module.exports = {
             this.$emit('onDelete', opts);
         },
 
+        onAdd(){
+            this.$emit('onAdd', {});
+        },
+
         /**
          * 获取行信息事件
          * @param  {object} row   当前行对象
@@ -88,6 +92,15 @@ module.exports = {
                 index,
                 list,
                 type
+            });
+        },
+
+
+        onBtnEvent(type,row={},index=-1,list=[]){
+            this.$emit('onBtn'+type, {
+                row,
+                index,
+                list
             });
         },
 

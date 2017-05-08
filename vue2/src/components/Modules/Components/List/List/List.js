@@ -96,13 +96,13 @@ module.exports = {
                 },
                 filter_multiple: false,
             }],
-            btn_info: {
-                show: false
-            },
-            expand:{
-                show:true,
-                position:'right'
-            }
+            // btn_info: {
+            //     show: false
+            // },
+            // expand:{
+            //     show:true,
+            //     position:'right'
+            // }
         }
     },
     methods: {

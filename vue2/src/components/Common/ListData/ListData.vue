@@ -6,7 +6,13 @@
                     icon='delete'
                     v-if='selection'
                     :disabled='batch_flag'
-                    @click='onDelete(true)'>删除选中
+                    @click='onBtnEvent("BatchDelete")'>删除选中
+            </el-button>
+
+            <el-button
+                    type='primary'
+                    icon='add'
+                    @click='onBtnEvent("Add")'>添加
             </el-button>
 
             <div class='list-header'>
@@ -20,7 +26,7 @@
 
 
             <el-table-column type="expand"
-                             v-if='expand.show===true && (!expand.position || expand.position==="left")'>
+                             v-if='expand && expand.show && expand.show===true && (!expand.position || expand.position==="left")'>
                 <template scope="props">
                 </template>
             </el-table-column>
@@ -64,24 +70,25 @@
                     :width="btn_info.width || 160"
                     :context="_self">
                 <template scope='scope'>
+                    <!-- @click='onGetInfo(scope.row,scope.$index,list,"select")' -->
                     <el-button
                             v-if='btn_info.select!==false'
                             type="info"
                             icon='view'
                             size="mini"
-                            @click='onGetInfo(scope.row,scope.$index,list,"select")'></el-button>
+                            @click='onBtnEvent("Select",scope.row,scope.$index,list)'></el-button>
                     <el-button
                             v-if='btn_info.update!==false'
                             type="info"
                             icon='edit'
                             size="mini"
-                            @click='onUpdateBtn(scope.row,scope.$index,list)'></el-button>
+                            @click='onBtnEvent("Update",scope.row,scope.$index,list)'></el-button>
                     <el-button
                             v-if='btn_info.delete!==false'
                             type="danger"
                             icon='delete'
                             size="mini"
-                            @click='onDelete(scope.row,scope.$index)'></el-button>
+                            @click='onBtnEvent("Delete",scope.row,scope.$index,list)'></el-button>
 
 
                     <el-button
@@ -97,7 +104,7 @@
 
             <el-table-column type="expand"
                              :context="_self"
-                             v-if='expand.show===true && expand.position && expand.position==="right"'>
+                             v-if='expand && expand.show && expand.show===true && expand.position && expand.position==="right"'>
                 <!--<slot name="list-expand" index="index"></slot>-->
                 <template scope="scope">
                     <slot name="list-expand"
