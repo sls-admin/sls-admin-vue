@@ -126,7 +126,11 @@ module.exports = {
                             userinfo: data.userinfo
                         }).then(() => {
                             this.login_actions.disabled = false;
-                            this.$router.push('/demo/user/list');
+                            if (data.userinfo.default_web_routers){
+								this.$router.push(data.userinfo.default_web_routers);
+							}else{
+								this.$router.push('/function/open/echarts');
+							}
                         });
                     }, {
                         errFn: () => {
