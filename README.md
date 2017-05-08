@@ -17,6 +17,30 @@
 #### 具体文档请查看[sls-admin文档](https://vue2doc.slsadmin.sailengsi.com/)
 #### 在线演示查看[sls-admin演示](https://vue2.slsadmin.sailengsi.com/)
 
+使用步骤
+
+``` bash
+# get project
+git clone https://github.com/sailengsi/sls-admin.git
+
+#进入项目目录
+cd sls-admin/vue2
+
+#修改api代理
+- 把sls-admin/vue2/config中的index.js打开
+- 找到 target: 'http://slsadmin.api.sls.com' 这一行
+- 修改target值为：'http://slsadmin.api.sailengsi.com'
+
+# 安装依赖
+npm install
+
+# 启动server
+npm run dev
+
+# 编译
+npm run build
+```
+
 
 
 #### 架构模式特点：
