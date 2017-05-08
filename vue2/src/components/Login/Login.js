@@ -33,7 +33,7 @@ module.exports = {
 						if (value === '') {
 							callback(new Error('请输入用户名'));
 						} else {
-							if(/^[a-zA-Z0-9_-]{6,16}$/.test(value)){
+							if(/^[a-zA-Z0-9_-]{1,16}$/.test(value)){
 								callback();
 							}else{
 								callback(new Error('用户名至少6位,由大小写字母和数字,-,_组成'));
