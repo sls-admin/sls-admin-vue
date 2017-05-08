@@ -80,9 +80,8 @@
                         :placeholder="field.desc">
                     <el-option
                             v-for='item in field.value.list'
-                            :key="item.value"
                             :value="item.value"
-                            :label="item.text || item.value"></el-option>
+                            :label="item.text"></el-option>
                 </el-select>
 
                 <!-- 

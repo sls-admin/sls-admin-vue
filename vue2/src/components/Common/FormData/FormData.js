@@ -413,7 +413,7 @@ module.exports = {
 					}
 				}
 
-				// console.log(this.submit_data);
+				console.log(this.submit_data);
 			}
 		},
 
@@ -489,7 +489,7 @@ module.exports = {
 
 
 	created() {
-		// this.deepObj();
+		this.deepObj();
 	},
 
 
@@ -497,7 +497,7 @@ module.exports = {
 	 * ready
 	 */
 	mounted() {
-		this.deepObj();
+		// this.deepObj();
 	},
 
 

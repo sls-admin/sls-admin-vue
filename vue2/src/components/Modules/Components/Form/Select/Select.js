@@ -3,7 +3,7 @@ import {
 } from 'common/';
 
 module.exports = {
-	name      : 'edit-article',
+	name      : 'form-select',
 	components: {
 		FormData
 	},

@@ -40,12 +40,12 @@ module.exports = [{
 			name: 'Radio单选',
 			icon: 'edit',
 			component: Modules.Components.Form.Radio
-		}, /*{
+		}, {
 			path: 'select',
 			name: '下拉框',
 			icon: 'edit',
 			component: Modules.Components.Form.Select
-		}, */{
+		}, {
 			path: 'switch',
 			name: '开关',
 			icon: 'edit',
