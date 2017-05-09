@@ -13,10 +13,10 @@
     </div>
 </template>
 <script>
-    import Common from '../Common/';
+    import Layout from './';
     export default {
         name: 'home',
-        components:Common
+        components:Layout
     }
 </script>
 <style scoped lang='less'>
