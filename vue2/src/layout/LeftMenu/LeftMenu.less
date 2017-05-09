@@ -1,0 +1,43 @@
+.fa {
+    margin-right: 8px;
+}
+.left-fixed-right-auto {
+    padding-top: 60px;
+}
+.left {
+    position: fixed;
+    float: left;
+    /*width:190px;
+    margin-right:-190px;*/
+    top: 60px;
+}
+.right-content {
+    float: right;
+    width: 100%;
+}
+#left-menu {
+    height: 100%;
+    background: #324057;
+    //position: relative;
+    overflow-x: hidden;
+}
+.toggle-menu {
+    width: 40px;
+    height: 40px;
+    background: #1f2f3d;
+    position: absolute;
+    top: 0px;
+    /*left: 190px;*/
+    z-index: 1000;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.2;
+    transition: opacity .3s ease-out;
+    
+    &:hover {
+        opacity: 1;
+    }
+}
