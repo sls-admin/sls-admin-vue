@@ -64,7 +64,7 @@ npm run build
 * [ElementUI](https://github.com/ElemeFE/element) 饿了么团队开发的基于Vue的一套UI组件库
 
 #### 富文本：
-* [wangEditor](https://github.com/ElemeFE/element) 一款国人开发的富文本编辑器
+* [wangEditor](http://www.wangeditor.com/) 一款国人开发的富文本编辑器
 
 #### 七牛云：
 * [七牛云开发文档](https://developer.qiniu.com/) 官方开发者文档
