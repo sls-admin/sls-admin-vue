@@ -22,6 +22,7 @@ Vue.axios.defaults.baseURL = gbs.host;
  * @param  {boolean}   tokenFlag 是否需要携带token参数，为true，不需要；false，需要。一般除了登录，都需要
  */
 module.exports = function (type, url, data, fn, {
+	cbFn,
 	tokenFlag,
 	errFn,
 	host,
@@ -72,12 +73,17 @@ module.exports = function (type, url, data, fn, {
 				fn(res.data.data);
 			} else {
 
-				// 调用全局配置错误回调
-				cbs.statusError.call(this, res.data);
+				if (cbFn) {
+					cbFn(res.data);
+				}else{
+					// 调用全局配置错误回调
+					cbs.statusError.call(this, res.data);
 
-				if (tokenFlag === true) {
-					errFn && errFn.call(this);
+					if (tokenFlag === true) {
+						errFn && errFn.call(this);
+					}
 				}
+
 			}
 			this.$store.dispatch('hide_loading');
 		}).catch((err) => {
