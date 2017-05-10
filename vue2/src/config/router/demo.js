@@ -1,11 +1,10 @@
 /**
  * Created by sailengsi on 2017/4/30.
  */
-import {
-	Home,
-	Content,
-	Modules
-} from '../../components/';
+
+
+import {Home,Content} from '../../layout/';
+import Modules from '../../views/';
 
 module.exports = [{
 	path: '/demo',

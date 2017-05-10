@@ -1,7 +1,7 @@
 import {
     user as UserApi,
     system as SystemApi
-} from '../../../config/request.js';
+} from '../../config/request.js';
 
 module.exports = {
     name: 'head-nav',

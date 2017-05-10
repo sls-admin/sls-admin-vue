@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-    import Layout from './';
+    import Layout from '../';
     export default {
         name: 'home',
         components:Layout

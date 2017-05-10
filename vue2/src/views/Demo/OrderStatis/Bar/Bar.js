@@ -1,6 +1,6 @@
 import {
     Default as Statis
-} from 'common/Echarts/Bar/';
+} from 'components/Echarts/Bar/';
 
 module.exports = {
     name: 'echarts',

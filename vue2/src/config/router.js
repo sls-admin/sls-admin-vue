@@ -1,10 +1,6 @@
-import {
-	Login,
-	Home,
-	NotFound,
-	Content,
-	Modules
-} from '../components/';
+import {Home,NotFound} from '../layout/';
+
+import Modules from '../views/';
 
 module.exports = [{
 	path    : '/',
@@ -14,7 +10,7 @@ module.exports = [{
 	hidden  : true
 }, {
 	path     : '/login',
-	component: Login,
+	component: Modules.Login,
 	hidden   : true
 }, {
 	path     : '/404',
@@ -22,7 +18,7 @@ module.exports = [{
 	hidden   : true,
 	children : [{
 		path     : '',
-		component: NotFound
+		component: Modules.NotFound
 	}]
 }]
 	.concat(require('./router/function.js'))

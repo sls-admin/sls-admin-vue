@@ -1,6 +1,6 @@
 import {
 	FormData
-} from 'common/';
+} from 'components/';
 
 module.exports = {
 	name      : 'form-select',

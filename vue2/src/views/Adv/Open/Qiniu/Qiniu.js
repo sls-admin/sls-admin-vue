@@ -1,6 +1,6 @@
 import {
 	ListData
-} from 'common/';
+} from 'components/';
 
 module.exports = {
 	name: '',

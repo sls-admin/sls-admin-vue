@@ -4,7 +4,7 @@ import {
 
 import {
     FormData
-} from 'common/';
+} from 'components/';
 
 module.exports = {
     name: 'edit-article',

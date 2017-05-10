@@ -4,7 +4,7 @@
         <header class="head-nav">
             <el-row>
                 <el-col :span="4" class='logo-container'>
-                    <img src="../../../assets/logo-sm.png" class='logo' alt="">
+                    <img src="../../assets/logo-sm.png" class='logo' alt="">
                 </el-col>
                 <el-col :span="16">
                     <el-menu theme="dark" :default-active="$store.state.router.headerCurRouter" class="el-menu-demo"

@@ -1,7 +1,7 @@
 import {
     ListData,
     DialogInfo
-} from 'common/';
+} from 'components/';
 
 
 module.exports = {

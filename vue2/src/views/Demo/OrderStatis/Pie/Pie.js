@@ -1,6 +1,6 @@
 import {
     Default as Statis
-} from 'common/Echarts/Pie/';
+} from 'components/Echarts/Pie/';
 
 module.exports = {
     name: 'order-statis-pie',
