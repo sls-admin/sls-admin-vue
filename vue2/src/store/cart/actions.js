@@ -20,7 +20,7 @@ for (var i = 0; i < mts.length; i++) {
     })();
 }
 console.log(actions);
-module.exports = actions;*/
+export default actions;*/
 
 
 export default {

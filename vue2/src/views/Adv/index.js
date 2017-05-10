@@ -1,5 +1,9 @@
-module.exports = {
-    Article: require('./Article/'),
-    Wangeditor: require('./Wangeditor/'),
-    Open: require('./Open/')
+import Article from './article/';
+import Open from './open/';
+import Wangeditor from './wangeditor/';
+
+export default {
+    Article,
+    Wangeditor,
+    Open
 };

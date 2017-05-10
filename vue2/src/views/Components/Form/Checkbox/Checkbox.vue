@@ -7,7 +7,7 @@
 </template>
 <script>
     import CheckboxJs from './Checkbox.js';
-    module.exports=CheckboxJs;
+    export default CheckboxJs;
 </script>
 <style scoped>
     

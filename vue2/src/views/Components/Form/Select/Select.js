@@ -1,8 +1,4 @@
-import {
-	FormData
-} from 'components/';
-
-module.exports = {
+export default {
 	name      : 'form-select',
 	components: {
 		FormData

@@ -18,7 +18,7 @@
 
 <script>
     import SearchJs from './Search.js';
-    module.exports=SearchJs;
+    export default SearchJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline{

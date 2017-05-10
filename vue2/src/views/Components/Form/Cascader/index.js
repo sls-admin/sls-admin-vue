@@ -1,2 +1,2 @@
 import Cascader from './Cascader.vue';
-module.exports = Cascader;
+export default Cascader;

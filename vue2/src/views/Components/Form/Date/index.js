@@ -1,1 +1,2 @@
-module.exports = require('./Date.vue');
+import Date from './Date.vue';
+export default Date;

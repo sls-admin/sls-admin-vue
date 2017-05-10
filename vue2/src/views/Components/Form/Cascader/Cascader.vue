@@ -7,7 +7,7 @@
 </template>
 <script>
     import CascaderJs from './Cascader.js';
-    module.exports=CascaderJs;
+    export default CascaderJs;
 </script>
 <style scoped>
     

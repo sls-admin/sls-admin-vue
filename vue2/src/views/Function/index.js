@@ -1,3 +1,5 @@
-module.exports = {
-    Open: require('./Open/')
+import Open from './open/';
+
+export default {
+    Open
 };

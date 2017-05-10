@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	name   : 'user',
 	data() {
 		return {

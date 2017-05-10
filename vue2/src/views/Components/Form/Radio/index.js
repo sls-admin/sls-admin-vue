@@ -1,2 +1,2 @@
 import Radio from './Radio.vue';
-module.exports = Radio;
+export default Radio;

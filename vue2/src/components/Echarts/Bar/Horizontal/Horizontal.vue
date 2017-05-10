@@ -9,7 +9,7 @@
 </template>
 <script>
     import HorizontalJs from './Horizontal.js';
-    module.exports=HorizontalJs;
+    export default HorizontalJs;
 </script>
 <style scoped>
     

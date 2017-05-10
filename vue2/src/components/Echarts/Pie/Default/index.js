@@ -1,2 +1,2 @@
 import Default from './Default.vue';
-module.exports = Default;
+export default Default;

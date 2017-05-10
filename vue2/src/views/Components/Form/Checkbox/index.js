@@ -1,2 +1,2 @@
 import Checkbox from './Checkbox.vue';
-module.exports = Checkbox;
+export default Checkbox;

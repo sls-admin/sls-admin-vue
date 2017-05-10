@@ -1,2 +1,2 @@
 import List from './List.vue';
-module.exports = List;
+export default List;

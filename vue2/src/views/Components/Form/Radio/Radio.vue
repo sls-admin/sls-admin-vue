@@ -7,7 +7,7 @@
 </template>
 <script>
     import RadioJs from './Radio.js';
-    module.exports=RadioJs;
+    export default RadioJs;
 </script>
 <style scoped>
     

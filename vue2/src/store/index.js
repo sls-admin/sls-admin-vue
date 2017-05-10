@@ -3,24 +3,17 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import cart from './cart/';
-import router from './router/';
-import leftmenu from './leftmenu/';
-import user from './userinfo/';
+import user from './user/';
 import global from './global/';
+import leftmenu from './leftmenu/';
+import router from './router/';
 
-console.log(user);
-console.log(Vuex);
-
-var store= Vuex.Store({
+export default new Vuex.Store({
     modules: {
-        global,
         cart,
-        router,
-        leftmenu,
-        user
+        user,
+		global,
+		router,
+		leftmenu
     }
 });
-
-console.log(store);
-
-export default store;

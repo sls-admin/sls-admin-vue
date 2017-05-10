@@ -18,7 +18,7 @@
 
 <script>
     import PaginationJs from './Pagination.js';
-    module.exports=PaginationJs;
+    export default PaginationJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline{

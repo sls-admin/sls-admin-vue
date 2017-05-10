@@ -1,10 +1,6 @@
-import {
-    FormData
-} from 'components/';
-
-module.exports = {
+export default {
     components: {
-        FormData
+        // FormData
     },
     data() {
         return {

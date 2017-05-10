@@ -1,2 +1,2 @@
 import Info from './Info.vue';
-module.exports = Info;
+export default Info;

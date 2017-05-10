@@ -16,7 +16,7 @@
 </template>
 <script>
     import Test404Js from './Test404.js';
-    module.exports=Test404Js;
+    export default Test404Js;
 </script>
 <style scoped>
     

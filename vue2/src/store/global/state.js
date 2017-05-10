@@ -1,6 +1,6 @@
 import {
     store
-} from '../../util/';
+} from 'utils/';
 
 
 export default {

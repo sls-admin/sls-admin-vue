@@ -1,14 +1,15 @@
-import Home from './Routeview/Home.vue';
-import Bread from './Bread/Bread.vue';
-import HeadNav from './HeadNav/HeadNav.vue';
-import LeftMenu from './LeftMenu/LeftMenu.vue';
+import Bread from './bread/Bread.vue';
+import HeadNav from './head-nav/HeadNav.vue';
+import LeftMenu from './left-menu/LeftMenu.vue';
 
-console.log(HeadNav);
+import {Home, Content} from './routeview/';
 
-// export {
-// 	Home,
-// 	Bread,
-// 	HeadNav,
-// 	LeftMenu
-// };
+
+export {
+	Home,
+	Content,
+	Bread,
+	HeadNav,
+	LeftMenu,
+};
 

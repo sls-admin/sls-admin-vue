@@ -7,7 +7,7 @@
 </template>
 <script>
     import InputJs from './Input.js';
-    module.exports=InputJs;
+    export default InputJs;
 </script>
 <style scoped>
     

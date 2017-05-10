@@ -2,7 +2,7 @@ import {
 	request
 } from 'config/';
 
-module.exports = {
+export default {
 	name      : 'user',
 	components: {},
 	data() {

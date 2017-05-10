@@ -1,14 +1,8 @@
-import {
-    ListData,
-    DialogInfo
-} from 'components/';
-
-
-module.exports = {
+export default {
     name: 'article-list',
     components: {
-        ListData,
-        DialogInfo
+        // ListData,
+        // DialogInfo
     },
     data() {
         return {

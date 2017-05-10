@@ -72,7 +72,7 @@
 </template>
 <script>
     import FormJs from './Form.js';
-    module.exports=FormJs;
+    export default FormJs;
 </script>
 <style scoped>
     

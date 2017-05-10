@@ -7,7 +7,7 @@
 </template>
 <script>
     import SelectJs from './Select.js';
-    module.exports=SelectJs;
+    export default SelectJs;
 </script>
 <style scoped>
     

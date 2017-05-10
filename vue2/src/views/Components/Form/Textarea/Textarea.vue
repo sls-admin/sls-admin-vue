@@ -7,7 +7,7 @@
 </template>
 <script>
     import TextareaJs from './Textarea.js';
-    module.exports=TextareaJs;
+    export default TextareaJs;
 </script>
 <style scoped>
     

@@ -1,5 +1,5 @@
 import echarts from 'echarts';
-module.exports = {
+export default {
     name: 'echarts',
     data() {
         return {

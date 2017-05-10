@@ -1,2 +1,2 @@
 import Textarea from './Textarea.vue';
-module.exports = Textarea;
+export default Textarea;

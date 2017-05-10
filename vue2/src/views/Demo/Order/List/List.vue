@@ -45,7 +45,7 @@
 
 <script>
     import ListJs from './List.js';
-    module.exports=ListJs;
+    export default ListJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline{

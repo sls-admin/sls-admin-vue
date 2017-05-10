@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     name: 'shop-list',
     data() {
         return {

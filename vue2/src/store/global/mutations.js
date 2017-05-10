@@ -2,7 +2,7 @@ import * as types from './mutations_types'
 
 import {
     store
-} from '../../util/';
+} from 'utils/';
 
 export default {
     [types.SHOW_LOADING](state) {

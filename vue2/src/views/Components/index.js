@@ -1,7 +1,11 @@
 /**
  * Created by sailengsi on 2017/4/30.
  */
-module.exports = {
-	Form: require('./Form/'),
-	List: require('./List/')
+
+import Form from './form/';
+import List from './list/';
+
+export default {
+	Form,
+	List
 };

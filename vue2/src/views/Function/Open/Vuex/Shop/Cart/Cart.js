@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     name: 'cart-list',
     computed: {
         cartList() {

@@ -1,12 +1,7 @@
-import {
-    ListData
-} from 'components/';
-
-
-module.exports = {
+export default {
     name: 'article-list',
     components: {
-        ListData
+        // ListData
     },
     data() {
         return {

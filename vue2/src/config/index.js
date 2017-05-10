@@ -1,5 +1,11 @@
-module.exports = {
-	routes: require('./router.js'),
-	settings: require('./settings.js'),
-	request: require('./request.js')
+/**
+ * Created by sailengsi on 2017/5/10.
+ */
+
+import {gbs,cbs} from './settings';
+
+
+export {
+	gbs,
+	cbs
 };

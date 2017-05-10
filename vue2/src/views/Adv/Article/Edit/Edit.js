@@ -1,12 +1,8 @@
 import {
     gbs
-} from 'config/settings.js';
+} from 'config/';
 
-import {
-    FormData
-} from 'components/';
-
-module.exports = {
+export default {
     name: 'edit-article',
     components: {
         FormData

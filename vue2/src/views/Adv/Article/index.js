@@ -1,4 +1,7 @@
-module.exports = {
-    Edit: require('./Edit/'),
-    List: require('./List/')
+import Edit from './edit/';
+import List from './list/';
+
+export default {
+	Edit,
+	List
 };

@@ -49,7 +49,6 @@
                     <el-option
                             v-for='(value,key) in checkeds.web_routers'
                             v-if="key.split('/').length===4"
-                            :key='key'
                             :value='key'
                             :label='value'></el-option>
                 </el-select>
@@ -63,7 +62,7 @@
 </template>
 <script>
     import AccessJs from './Access.js';
-    module.exports=AccessJs;
+    export default AccessJs;
 </script>
 <style scoped>
     .edit-form{

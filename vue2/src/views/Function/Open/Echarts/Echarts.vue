@@ -18,7 +18,7 @@
 </template>
 <script>
     import EchartsJs from './Echarts.js';
-    module.exports=EchartsJs;
+    export default EchartsJs;
 </script>
 <style scoped>
     

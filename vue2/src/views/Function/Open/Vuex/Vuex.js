@@ -1,5 +1,5 @@
-import Shop from './Shop/';
-module.exports = {
+import Shop from './shop/';
+export default {
     name: 'vuex',
     components: Shop,
     data() {

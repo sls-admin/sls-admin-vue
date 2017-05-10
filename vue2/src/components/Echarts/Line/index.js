@@ -1,3 +1,5 @@
-module.exports = {
-    Default: require('./Default/')
+import Default from './default/';
+
+export default {
+    Default
 };

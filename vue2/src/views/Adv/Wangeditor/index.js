@@ -1,4 +1,7 @@
-module.exports = {
-	Many: require('./Many/'),
-	One: require('./One/')
+import Many from './many/';
+import One from './one/';
+
+export default {
+	Many,
+	One
 };

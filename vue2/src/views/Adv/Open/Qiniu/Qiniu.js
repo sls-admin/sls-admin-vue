@@ -1,11 +1,7 @@
-import {
-	ListData
-} from 'components/';
-
-module.exports = {
+export default {
 	name: '',
 	components: {
-		ListData
+		// ListData
 	},
 	data() {
 		return {
@@ -58,7 +54,7 @@ module.exports = {
 		},
 
 		onGetQiniuToken(file, fn) {
-			this.$$api_open_getQiniuToken(data => {
+			this.$$api_open_getQiniuToken({},data => {
 				this.params.token = data.qiniu.token;
 				if (data.qiniu.key) {
 					this.$set(this.params, 'key', data.qiniu.key);
@@ -75,10 +71,11 @@ module.exports = {
 				if (this.params.key) {
 					formData.append('key', this.params.key);
 				}
-				this.$$api_open_uploadQiniuFile(formData, data => {
-					this.onGetQiniuList();
-				}, {
+				this.$$api_open_uploadQiniuFile(formData, data => {}, {
 					host: '//up-z2.qiniu.com/',
+					cbFn:res=>{
+						this.onGetQiniuList();
+					},
 					errFn: err => {
 						console.log(err);
 					},

@@ -1,2 +1,2 @@
 import Cart from './Cart.vue';
-module.exports = Cart;
+export default Cart;

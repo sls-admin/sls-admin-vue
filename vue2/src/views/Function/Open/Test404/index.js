@@ -1,2 +1,2 @@
 import Test404 from './Test404.vue';
-module.exports = Test404;
+export default Test404;

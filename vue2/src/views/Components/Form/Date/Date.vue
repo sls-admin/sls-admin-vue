@@ -7,7 +7,7 @@
 </template>
 <script>
     import DateJs from './Date.js';
-    module.exports=DateJs;
+    export default DateJs;
 </script>
 <style scoped>
     

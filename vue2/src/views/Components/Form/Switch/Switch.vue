@@ -7,7 +7,7 @@
 </template>
 <script>
     import SwitchJs from './Switch.js';
-    module.exports=SwitchJs;
+    export default SwitchJs;
 </script>
 <style scoped>
     

@@ -1,7 +1,13 @@
-module.exports = {
-    Echarts: require('./Echarts/'),
-    Form: require('./Form/'),
-    List: require('./List/'),
-    Vuex: require('./Vuex/'),
-    Test404: require('./Test404/'),
+import Echarts from './echarts/';
+import Form from './form/';
+import List from './list/';
+import Vuex from './vuex/';
+import Test404 from './test404/';
+
+export default {
+	Echarts,
+	Form,
+	List,
+	Vuex,
+	Test404
 };

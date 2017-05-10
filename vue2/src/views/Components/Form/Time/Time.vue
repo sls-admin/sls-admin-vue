@@ -7,7 +7,7 @@
 </template>
 <script>
     import TimeJs from './Time.js';
-    module.exports=TimeJs;
+    export default TimeJs;
 </script>
 <style scoped>
     

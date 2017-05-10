@@ -9,7 +9,7 @@
 </template>
 <script>
     import DefaultJs from './Default.js';
-    module.exports=DefaultJs;
+    export default DefaultJs;
 </script>
 <style scoped>
     

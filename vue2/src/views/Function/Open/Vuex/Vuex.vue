@@ -10,7 +10,7 @@
 </template>
 <script>
     import VuexJs from './Vuex.js';
-    module.exports=VuexJs;
+    export default VuexJs;
 </script>
 <style scoped lang='less'>
     .vuex-content{

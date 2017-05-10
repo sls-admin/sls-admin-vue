@@ -1,3 +1,5 @@
-module.exports = {
-    Qiniu: require('./Qiniu/')
+import Qiniu from './qiniu/';
+
+export default {
+	Qiniu,
 };

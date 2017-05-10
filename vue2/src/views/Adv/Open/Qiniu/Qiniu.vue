@@ -41,7 +41,7 @@
 </template>
 <script>
     import QiniuJs from './Qiniu.js';
-    module.exports=QiniuJs;
+    export default QiniuJs;
 </script>
 <style scoped>
     .qiniu-pic{

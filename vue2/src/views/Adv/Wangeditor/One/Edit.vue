@@ -9,7 +9,7 @@
 </template>
 <script>
     import EditJs from './Edit.js';
-    module.exports=EditJs;
+    export default EditJs;
 </script>
 <style scoped>
     

@@ -1,7 +1,7 @@
-import Info from './Info/';
-import List from './List/';
-import Cart from './Cart/';
-module.exports = {
+import Info from './info/';
+import List from './list/';
+import Cart from './cart/';
+export default {
     Info,
     List,
     Cart

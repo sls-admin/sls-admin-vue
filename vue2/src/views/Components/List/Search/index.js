@@ -1,2 +1,2 @@
 import Search from './Search.vue';
-module.exports = Search;
+export default Search;

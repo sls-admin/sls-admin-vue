@@ -13,9 +13,10 @@
     </div>
 </template>
 <script>
-    import HeadNav from '../HeadNav/HeadNav.vue';
-    import LeftMenu from '../LeftMenu/LeftMenu.vue';
-    import Bread from '../Bread/Bread.vue';
+    import HeadNav from '../head-nav/HeadNav.vue';
+	import LeftMenu from '../left-menu/LeftMenu.vue';
+	import Bread from '../bread/Bread.vue';
+
     export default {
         name: 'home',
         components:{

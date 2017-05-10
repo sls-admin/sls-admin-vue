@@ -2,7 +2,7 @@ import {
     gbs
 } from 'config/settings.js';
 
-module.exports = {
+export default {
     name: 'edit-order',
     data() {
         return {

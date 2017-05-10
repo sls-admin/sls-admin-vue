@@ -5,36 +5,21 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 Vue.use(ElementUI);
 
-
-//页面顶部进度条
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
+Vue.config.productionTip = true;
+Vue.config.devtools = true
 
 
-// root component
+
+import router from 'router/';
+import 'register/';
+import store from 'store/';
+
 import App from './App';
 
-//vuex store
-// import store from './store/';
-// console.log(store);
-
-
-import router from './config/router.js';
-
-// import 'register/';
-// import 'mixin/';
-
-
-
-
-const appAdmin = new Vue({
-	el    : '#app',
-	data() {
-		return {};
-	},
-	// store,
+new Vue({
+	el        : '#app',
 	router,
-	template: '<App/>',
-  	components: { App },
-	render: h => h(App)
+	store,
+	template  : '<App/>',
+	components: {App}
 })

@@ -1,19 +1,32 @@
+/**
+ * Created by sailengsi on 2017/5/11.
+ */
 import Vue from 'vue';
 
+import {string} from 'utils/';
+
+import cps from 'cps/register.js';
+for(var cp in cps){
+	var cp_name=string.humpToLowercase(cp);
+	Vue.component(cp_name,cps[cp]);
+}
 
 /**
  * 导入需要注册的对象
  */
-import {
-	plugins
-} from 'plugins/';
+// import {
+// 	plugins
+// } from 'plugins/';
 
+import $ from 'jquery';
 
 /**
  * 注册到Vue对象中
  */
 Vue.use({
 	install(Vue, options) {
+
+		Vue.prototype.$ = $;
 
 		/**
 		 * 递归把需要用到的方法以插件形式注册到Vue上
@@ -30,6 +43,6 @@ Vue.use({
 			}
 		}
 
-		deepRegister(Vue, plugins);
+		// deepRegister(Vue, plugins);
 	}
 });
