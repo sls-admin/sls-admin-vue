@@ -1,7 +1,14 @@
-module.exports = {
-	Home:require('./Routeview/Home.vue'),
-	Bread: require('./Bread/Bread.vue'),
-	HeadNav: require('./HeadNav/HeadNav.vue'),
-	LeftMenu: require('./LeftMenu/LeftMenu.vue')
-};
+import Home from './Routeview/Home.vue';
+import Bread from './Bread/Bread.vue';
+import HeadNav from './HeadNav/HeadNav.vue';
+import LeftMenu from './LeftMenu/LeftMenu.vue';
+
+console.log(HeadNav);
+
+// export {
+// 	Home,
+// 	Bread,
+// 	HeadNav,
+// 	LeftMenu
+// };
 

@@ -8,6 +8,7 @@
             <el-form-item
                     class='edit-form'
                     v-for='(field,index) in fields'
+                    :key='index'
                     :label="field.label"
                     :prop='field.key'
                     :style="field.item_style">
@@ -39,7 +40,8 @@
                         v-model="submit_data[field.key+checkall_temp].checkbox_value"
                         @change='onCheckboxChange(field.key)'>
                     <el-checkbox
-                            v-for='item in submit_data[field.key+checkall_temp].checkbox_list'
+                            v-for='(item,index) in submit_data[field.key+checkall_temp].checkbox_list'
+                            :key='index'
                             :label="item.value">{{item.text}}
                     </el-checkbox>
                 </el-checkbox-group>
@@ -67,7 +69,8 @@
                         v-if='field.type==="radio"'
                         v-model="submit_data[field.key]">
                     <el-radio
-                            v-for='item in field.value.list'
+                            v-for='(item,index) in field.value.list'
+                            :key='index'
                             :label="item.value">{{item.text || item.value}}
                     </el-radio>
                 </el-radio-group>
@@ -79,7 +82,8 @@
                         :multiple='field.multiple ? true : false'
                         :placeholder="field.desc">
                     <el-option
-                            v-for='item in field.value.list'
+                            v-for='(item,index) in field.value.list'
+                            :key='index'
                             :value="item.value"
                             :label="item.text"></el-option>
                 </el-select>

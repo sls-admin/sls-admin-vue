@@ -37,7 +37,7 @@
             </el-table-column>
 
             <template
-                    v-for='field in fields'>
+                    v-for='(field,index) in fields'>
                 <el-table-column
                         v-if='!field.type || field.type!=="image"'
                         :prop="field.key"
@@ -93,7 +93,8 @@
 
                     <el-button
                             v-if='btn_info.list'
-                            v-for='btn in btn_info.list'
+                            v-for='(btn,index) in btn_info.list'
+                            :key='btn.text'
                             :type="btn.type || 'info'"
                             size="mini"
                             @click='onGetInfo(scope.row,scope.$index,list,btn.fn_type || btn.text)'>{{btn.text}}

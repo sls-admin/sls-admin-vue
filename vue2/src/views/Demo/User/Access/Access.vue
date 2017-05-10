@@ -49,6 +49,7 @@
                     <el-option
                             v-for='(value,key) in checkeds.web_routers'
                             v-if="key.split('/').length===4"
+                            :key='key'
                             :value='key'
                             :label='value'></el-option>
                 </el-select>

@@ -1,6 +1,6 @@
 import * as types from './mutations_types';
 
-module.exports = {
+export default {
 	update_userinfo: ({
 		commit
 	}, {

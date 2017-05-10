@@ -1,6 +1,6 @@
 import * as types from './mutations_types';
 
-module.exports = {
+export default {
 	show_loading: ({
 		commit
 	}) => {

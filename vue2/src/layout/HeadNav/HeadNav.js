@@ -1,9 +1,4 @@
-import {
-    user as UserApi,
-    system as SystemApi
-} from '../../config/request.js';
-
-module.exports = {
+export default {
     name: 'head-nav',
     data() {
         return {

@@ -42,4 +42,4 @@ class Store {
         this.store.removeItem(this.prefix + key);
     }
 }
-module.exports = new Store();
+export default new Store();

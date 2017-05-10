@@ -1,4 +1,6 @@
-module.exports = {
-	store: require('./store/'),
-	ajax: require('./ajax/')
+import store from './store/';
+import ajax from './ajax/';
+export {
+    store,
+    ajax
 };

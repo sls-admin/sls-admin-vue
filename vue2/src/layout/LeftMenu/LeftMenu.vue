@@ -3,6 +3,7 @@
         <div id='left-menu'>
             <el-row class='tac'
                     v-for="(route,index) in $router.options.routes"
+                    :key='route.path'
                     v-if='!route.hidden && $route.matched.length && $route.matched[0].path===route.path'>
                 <el-col :span="24">
                     <el-menu
@@ -28,6 +29,7 @@
                                         <i :class="'fa fa-'+item.icon"></i>
                                     </el-tooltip>
                                     <span
+
                                             class='menu-name'
                                             v-if="$store.state.leftmenu.menu_flag">{{item.name}}
                                         <!-- {{route.path+'/'+item.path}} --></span>
@@ -36,6 +38,7 @@
                                 <!-- v-if="!child.hidden && (($store.state.user.userinfo.access_status===1 && $store.state.user.userinfo.web_routers[route.path+'/'+item.path+'/'+child.path]) || $store.state.user.userinfo.access_status!==1)" -->
                                 <el-menu-item
                                         v-for='(child,cindex) in item.children'
+                                        :key='child.path'
                                         v-if="!child.hidden && (($store.state.user.userinfo.access_status===1 && $store.state.user.userinfo.web_routers[route.path+'/'+item.path+'/'+child.path]) || $store.state.user.userinfo.access_status!==1)"
                                         :style="{'padding-left':$store.state.leftmenu.menu_flag? '40px' : '23px'}"
                                         :index='$store.state.router.headerCurRouter+"/"+item.path+"/"+child.path'>
@@ -67,7 +70,8 @@
 </template>
 
 <script>
-	module.exports = require('./LeftMenu.js');
+    import LeftMenu from './LeftMenu.js';
+    export default LeftMenu;
 </script>
 
 <style scoped lang='less'>

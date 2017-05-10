@@ -8,7 +8,10 @@ import leftmenu from './leftmenu/';
 import user from './userinfo/';
 import global from './global/';
 
-module.exports = new Vuex.Store({
+console.log(user);
+console.log(Vuex);
+
+var store= Vuex.Store({
     modules: {
         global,
         cart,
@@ -17,3 +20,7 @@ module.exports = new Vuex.Store({
         user
     }
 });
+
+console.log(store);
+
+export default store;

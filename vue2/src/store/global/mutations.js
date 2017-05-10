@@ -4,7 +4,7 @@ import {
     store
 } from '../../util/';
 
-module.exports = {
+export default {
     [types.SHOW_LOADING](state) {
         state.ajax_loading = true;
     },

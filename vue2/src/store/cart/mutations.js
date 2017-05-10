@@ -1,6 +1,6 @@
 import * as types from './mutations_types'
 
-module.exports = {
+export default {
     [types.CLEAR_LOCAL](state) {
         state.cartList.forEach(function(item) {
             item.num = 0;

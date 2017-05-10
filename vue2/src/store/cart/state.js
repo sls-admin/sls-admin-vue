@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     //购物车列表
     cartList: localStorage.getItem('vuex_cart') ? JSON.parse(localStorage.getItem('vuex_cart')) : [],
 

@@ -7,7 +7,8 @@
             <el-form style="margin:20px;width:60%;min-width:100%" 
                 label-width="100px">
                 <el-form-item class='edit-form'
-                    v-for='field in dialog.fields'
+                    v-for='(field,index) in dialog.fields'
+                    :key='index'
                     :label='field.label'>
                     {{dialog.data[field.key]}}
                 </el-form-item>
@@ -21,7 +22,7 @@
 
 <script>
     import DialogInfoJs from './DialogInfo.js';
-    module.exports=DialogInfoJs;
+    export default DialogInfoJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline{

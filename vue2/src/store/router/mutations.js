@@ -1,6 +1,6 @@
 import * as types from './mutations_types'
 
-module.exports = {
+export default {
     [types.SET_CUR_ROUTE](state, paths) {
         // console.log(paths);
         state.headerCurRouter = paths.rootPath;

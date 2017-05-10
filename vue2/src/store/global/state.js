@@ -3,6 +3,6 @@ import {
 } from '../../util/';
 
 
-module.exports = {
+export default {
     ajax_loading: false
 };

@@ -23,7 +23,7 @@ console.log(actions);
 module.exports = actions;*/
 
 
-module.exports = {
+export default {
     clear_local: ({
         commit
     }) => {

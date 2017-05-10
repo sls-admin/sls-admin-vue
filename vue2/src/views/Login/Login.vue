@@ -64,7 +64,7 @@
 
 <script>
 	import LoginJs from './Login.js';
-	module.exports = LoginJs;
+	export default LoginJs;
 </script>
 
 <style scoped lang='less'>

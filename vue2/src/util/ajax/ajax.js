@@ -21,7 +21,7 @@ Vue.axios.defaults.baseURL = gbs.host;
  * @param  {Function} fn        回调函数
  * @param  {boolean}   tokenFlag 是否需要携带token参数，为true，不需要；false，需要。一般除了登录，都需要
  */
-module.exports = function (type, url, data, fn, {
+export default function (type, url, data, fn, {
 	tokenFlag,
 	errFn,
 	host,

@@ -13,10 +13,14 @@
     </div>
 </template>
 <script>
-    import Layout from '../';
+    import HeadNav from '../HeadNav/HeadNav.vue';
+    import LeftMenu from '../LeftMenu/LeftMenu.vue';
+    import Bread from '../Bread/Bread.vue';
     export default {
         name: 'home',
-        components:Layout
+        components:{
+            HeadNav,LeftMenu,Bread
+        }
     }
 </script>
 <style scoped lang='less'>

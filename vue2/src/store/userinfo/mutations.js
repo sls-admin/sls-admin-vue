@@ -4,7 +4,7 @@ import {
 	store
 } from '../../util/';
 
-module.exports = {
+export default {
 	[types.UPDATE_USERINFO](state, user_db) {
 		state.userinfo = user_db.userinfo || {};
 		store.set('userinfo', state.userinfo);

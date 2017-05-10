@@ -11,8 +11,9 @@
                              mode="horizontal" unique-opened router>
                         <!-- v-if='!item.hidden && (($store.state.user.userinfo.access_status===1 && $store.state.user.userinfo.web_routers[item.path]) || $store.state.user.userinfo.access_status!==1)' -->
                         <el-menu-item
-                                :index="item.path"
                                 v-for='(item,index) in $router.options.routes'
+                                :index="item.path"
+                                :key='item.path'
                                 v-if='!item.hidden && (($store.state.user.userinfo.access_status===1 && $store.state.user.userinfo.web_routers[item.path]) || $store.state.user.userinfo.access_status!==1)'>
                             {{item.name}}<!-- {{item.path}} -->
                         </el-menu-item>
@@ -119,7 +120,8 @@
                             因为elementUI内部用了=== 
                         -->
                         <el-option
-                                v-for='user in dialog.set_info.select_users'
+                                v-for='(user,index) in dialog.set_info.select_users'
+                                :key='index'
                                 :label='user.username'
                                 :value='user.id+""'></el-option>
                     </el-select>

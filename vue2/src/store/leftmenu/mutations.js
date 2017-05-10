@@ -1,6 +1,6 @@
 import * as types from './mutations_types'
 
-module.exports = {
+export default {
     [types.SET_MENU_OPEN](state) {
         state.width = '190px';
         state.menu_flag = true;

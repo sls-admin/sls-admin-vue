@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     getInfos(state) {
         state.cartInfos.total_price = 0;
         state.cartInfos.total_nums = 0;
