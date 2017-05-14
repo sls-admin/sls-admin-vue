@@ -82,8 +82,8 @@ export default {
 	},
 	methods: {
 		setSize() {
-			this.winSize.width = this.$(window).width() + "px";
-			this.winSize.height = this.$(window).height() + "px";
+			this.winSize.width = this.$$lib_$(window).width() + "px";
+			this.winSize.height = this.$$lib_$(window).height() + "px";
 
 			this.formOffset.left = (parseInt(this.winSize.width) / 2 - 175) + 'px';
 			this.formOffset.top = (parseInt(this.winSize.height) / 2 - 178) + 'px';
@@ -178,7 +178,7 @@ export default {
 	},
 	created() {
 		this.setSize();
-		this.$(window).resize(() => {
+		this.$$lib_$(window).resize(() => {
 			this.setSize();
 		});
 	},
