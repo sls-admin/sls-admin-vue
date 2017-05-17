@@ -20,12 +20,12 @@
             </el-col>
 
             <el-col :span="24">
-                <statis
+                <pie-default
                 	:id='echarts_data.id'
                 	:title='echarts_data.title'
                 	:subtext='echarts_data.subtext'
                 	:hoverTitle='echarts_data.hover_title'
-                	:dataList='echarts_data.data_list'></statis>
+                	:dataList='echarts_data.data_list'></pie-default>
             </el-col>
         </el-row>
     </section>

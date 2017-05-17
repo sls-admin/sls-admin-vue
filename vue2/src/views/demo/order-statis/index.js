@@ -1,4 +1,7 @@
+import Bar from './Bar/';
+import Pie from './Pie/';
+
 export default {
-    Bar: require('./Bar/'),
-    Pie: require('./Pie/')
+    Bar,
+    Pie
 };

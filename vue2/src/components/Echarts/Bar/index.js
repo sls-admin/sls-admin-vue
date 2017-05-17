@@ -1,5 +1,5 @@
 import Default from './default/';
-import Horizontal from './horizontal';
+import Horizontal from './horizontal/';
 
 export default {
     Default,

@@ -10,10 +10,10 @@ import order from './order.js';
 import orderstatis from './order-statis.js';
 
 export default {
-	path: '/components',
-	name: '组件封装',
+	path: '/demo',
+	name: '完整交互',
 	icon: 'inbox',
 	component: Home,
-	redirect: '/components/form',
+	redirect: '/demo/article',
 	children:[article,user,order,orderstatis]
 };

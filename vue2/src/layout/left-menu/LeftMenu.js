@@ -10,7 +10,7 @@ export default {
     },
     methods: {
         setSize() {
-            this.win_size.height = this.$(window).height() + "px";
+            this.win_size.height = this.$$lib_$(window).height() + "px";
         },
         toggleMenu() {
             this.$store.dispatch(this.$store.state.leftmenu.menu_flag ? 'set_menu_close' : 'set_menu_open');
@@ -38,7 +38,7 @@ export default {
     },
     created() {
         this.setSize();
-        this.$(window).resize(() => {
+        this.$$lib_$(window).resize(() => {
             this.setSize();
         });
         this.updateCurMenu();

@@ -2,6 +2,7 @@
  * Created by sailengsi on 2017/5/14.
  */
 
+import {ajax} from 'utils/';
 import request from 'apis/';
 
 
@@ -11,7 +12,15 @@ for (var i = 0; i < request.length; i++) {
 		for(var j=0;j<request[i].list.length;j++){
 			plugins['api_'+request[i].module+'_'+request[i].list[j].method]=(function(n,m){
 				return function(data, fn, opts){
-					this.$$ajax(request[n].list[m].type, request[n].list[m].path, data, fn, opts);
+					//request[n].list[m].type, request[n].list[m].path, data, fn, opts
+					ajax.call(this,{
+						type:request[n].list[m].type,
+						path:request[n].list[m].path,
+						data,
+						fn,
+						errFn,
+						opts
+					});
 				};
 			})(i,j);
 		}

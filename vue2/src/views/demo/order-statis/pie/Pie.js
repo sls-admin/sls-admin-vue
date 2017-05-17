@@ -1,11 +1,7 @@
-import {
-    Default as Statis
-} from 'common/Echarts/Pie/';
-
 export default {
     name: 'order-statis-pie',
     components: {
-        Statis
+
     },
     data() {
         return {

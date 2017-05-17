@@ -1,11 +1,7 @@
-import {
-    Default as Statis
-} from 'common/Echarts/Bar/';
-
 export default {
     name: 'echarts',
     components: {
-        Statis
+
     },
     data() {
         return {

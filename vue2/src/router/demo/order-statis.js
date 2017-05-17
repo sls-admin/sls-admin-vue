@@ -7,6 +7,8 @@ import {Content} from 'layout/';
 
 import {Demo} from 'views/';
 
+console.log(Demo);
+
 export default {
 	path: 'orderstatis',
 	name: '订单统计',
