@@ -37,6 +37,8 @@
                                 <el-dropdown-item
                                         command='set'
                                         v-if='$store.state.user.userinfo.pid==0'>系统设置</el-dropdown-item>
+                                <el-dropdown-item
+                                        command='logout'>退出</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </span>

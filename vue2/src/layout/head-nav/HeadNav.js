@@ -107,6 +107,9 @@ export default {
                     this.dialog.show_set = true;
                     this.dialog.title = '系统设置';
                     break;
+				case 'logout':
+					this.logout();
+					break;
             }
         },
 
