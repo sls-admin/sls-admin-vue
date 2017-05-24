@@ -4,7 +4,7 @@
 
 import {ListData,FormData,DialogInfo,Echarts} from 'cps/';
 
-console.log(Echarts);
+// console.log(Echarts);
 
 export default {
     ListData,
@@ -12,10 +12,8 @@ export default {
     DialogInfo,
 
 
-    BarDefault:Echarts.Bar.Default,
-    BarHorizontal:Echarts.Bar.Horizontal,
-
-	LineDefault:Echarts.Line.Default,
-
-	PieDefault:Echarts.Pie.Default
+    EchartsBarDefault:Echarts.Bar.Default,
+	EchartsBarHorizontal:Echarts.Bar.Horizontal,
+	EchartsLineDefault:Echarts.Line.Default,
+	EchartsPieDefault:Echarts.Pie.Default
 };

@@ -1,5 +1,9 @@
+import Edit from './Edit/';
+import List from './List/';
+import Access from './Access/';
+
 export default {
-    Edit: require('./Edit/'),
-    List: require('./List/'),
-    Access:require('./Access/')
+    Edit,
+    List,
+    Access
 };

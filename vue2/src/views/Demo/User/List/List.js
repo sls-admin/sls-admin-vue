@@ -104,46 +104,6 @@ export default {
             }
         },
 
-        setUserAccess() {
-            var flag = false;
-            for (var i = 0; i < this.checkeds.length; i++) {
-                var arr = this.checkeds[i].split('/');
-
-                if (arr.length === 4) {
-                    flag = true;
-                    var rootPath = '/' + arr[1],
-                        twoPath = rootPath + '/' + arr[2];
-
-                    if (this.checkeds.indexOf(rootPath) === -1) {
-                        this.checkeds.push(rootPath);
-                    }
-                    if (this.checkeds.indexOf(twoPath) === -1) {
-                        this.checkeds.push(twoPath);
-                    }
-                }
-            }
-
-            //当前所选中的节点
-            if (flag === false) {
-                this.checkeds = [];
-            }
-
-            // console.log(this.checkeds.join(','));
-            // console.log(this.user_id.join(','));
-
-
-            if (this.user_id.length) {
-                UserApi.setAccessUser.call(this, {
-                    user_id: this.user_id.join(','),
-                    user_accesss: this.checkeds.join(',')
-                }, data => {
-                    this.$message.success('设置成功');
-                });
-            } else {
-                this.$message.error('用户不能为空');
-            }
-        },
-
 
         initRouters(){
             var routes = this.$router.options.routes;
@@ -315,10 +275,13 @@ export default {
          * 设置状态
          */
         onSetStatusUser(user, index, list) {
-            this.$$api_user_updateUserStatus({
-                id: user.id
-            }, (data) => {
-                user.status = user.status == 1 ? 2 : 1;
+			this.$$api_user_updateUserStatus({
+			    data:{
+					id: user.id
+                },
+                fn:data=>{
+					user.status = user.status == 1 ? 2 : 1;
+                }
             });
         },
 
@@ -359,17 +322,20 @@ export default {
 				type: 'warning'
 			}).then(() => {
 				this.$$api_user_deleteUser({
-					id: id
-				}, (data) => {
-					if (user === true) {
-						this.user_list = this.user_list.filter(function(item, idx) {
-							return id.indexOf(item.id) === -1;
-						});
-					} else {
-						list.splice(index, 1);
-					}
-					this.getList();
-				});
+				    data:{
+						id: id
+                    },
+                    fn:data=>{
+						if (user === true) {
+							this.user_list = this.user_list.filter(function(item, idx) {
+								return id.indexOf(item.id) === -1;
+							});
+						} else {
+							list.splice(index, 1);
+						}
+						this.getList();
+                    }
+                });
 			});
 
         },
@@ -416,8 +382,11 @@ export default {
                 }
             }
 
-            this.$$api_user_selectUser(data, (data) => {
-                this.user_list = data.list;
+			this.$$api_user_selectUser({
+			    data,
+                fn:data=>{
+					this.user_list = data.list;
+                }
             });
         }
     },

@@ -7,6 +7,8 @@ import {Content} from 'layout/';
 
 import {Demo} from 'views/';
 
+// console.log(Demo);
+
 export default {
 	path: 'user',
 	name: '用户管理',

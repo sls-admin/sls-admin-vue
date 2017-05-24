@@ -33,9 +33,13 @@ export default {
             var ref = this.$refs[formName];
             ref.validate((valid) => {
                 if (valid) {
-                    console.log(this.form_data);
-                    this.$$api_order_saveOrder(this.form_data, (data) => {
-                        console.log(data);
+                    // console.log(this.form_data);
+					this.$$api_order_saveOrder({
+					    data:this.form_data,
+                        fn:data=>{
+							// console.log(data);
+							this.$router.push("/demo/order/list");
+                        }
                     });
                 }
             });

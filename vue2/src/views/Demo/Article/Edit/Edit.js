@@ -82,8 +82,11 @@ export default {
 
 					// console.log(this.article_data);
 
-					this.$$api_article_saveArticle(this.article_data, data => {
-						this.$router.push('/demo/article/list');
+					this.$$api_article_saveArticle({
+						data:this.article_data,
+						fn:data=>{
+							this.$router.push('/demo/article/list');
+						}
 					});
 				}
 			});
@@ -162,14 +165,15 @@ export default {
 			var data = {
 				id: this.$route.query.id
 			};
-			this.$$api_article_findArticle(data, (data) => {
-				// console.log(data);
+			this.$$api_article_findArticle({
+				data,
+				fn:data=>{
+					this.article_data        = data.article_info;
+					this.article_data.status = data.article_info.status == 1 ? true : false;
+					this.article_data.tabs   = data.article_info.tabs.split(',');
 
-				this.article_data        = data.article_info;
-				this.article_data.status = data.article_info.status == 1 ? true : false;
-				this.article_data.tabs   = data.article_info.tabs.split(',');
-
-				$("#article").html(this.article_data.content);
+					$("#article").html(this.article_data.content);
+				}
 			});
 		}
 	}

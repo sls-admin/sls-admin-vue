@@ -35,11 +35,14 @@ export default {
         },
 
         getStatis() {
-            this.$$api_order_statisOrder({}, (data) => {
-                for (var f in data.statis) {
-                    this.$set(this.echarts_data.value_list, f - 1, data.statis[f]);
+			this.$$api_order_statisOrder({
+			    data:{},
+                fn:data=>{
+					for (var f in data.statis) {
+						this.$set(this.echarts_data.value_list, f - 1, data.statis[f]);
+					}
                 }
-            })
+            });
         }
     },
     mounted: function() {}

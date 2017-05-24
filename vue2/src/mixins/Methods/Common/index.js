@@ -1,4 +1,5 @@
-module.exports = {
-    Area: require('./Area.js'),
-	PullMessage:require('./PullMessage')
+import Test from './Test.js';
+
+export default {
+	Test
 };

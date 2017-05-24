@@ -53,8 +53,11 @@ export default {
 					 // this[userdata].status=!this[userdata].status;
 					 }*/
 
-					this.$$api_user_saveUser(this[userdata], data => {
-						this.$router.push('/demo/user/list');
+					this.$$api_user_saveUser({
+						data:this[userdata],
+						fn:data=>{
+							this.$router.push('/demo/user/list');
+						}
 					});
 				}
 			});
@@ -70,11 +73,13 @@ export default {
 		getView(){
 			if (this.$route.query.id) {
 				this.$$api_user_findUser({
-					id: this.$route.query.id
-				}, (data) => {
-					this.user_data        = data.userinfo;
-					this.user_data.status = this.user_data.status == 1 ? true : false;
-
+					data:{
+						id: this.$route.query.id
+					},
+					fn:data=>{
+						this.user_data        = data.userinfo;
+						this.user_data.status = this.user_data.status == 1 ? true : false;
+					}
 				});
 			}else{
 				this.$delete(this.user_data,'id');

@@ -112,9 +112,12 @@ export default {
         }
     },
     methods: {
-        onSubmitFn(submit_data) {
-            this.$$api_article_saveArticle(submit_data, data => {
-                this.$router.push('/adv/article/list');
+        onSubmitFn(data) {
+			this.$$api_article_saveArticle({
+			    data,
+                fn:()=>{
+					this.$router.push('/adv/article/list');
+                }
             });
         }
     },
@@ -126,10 +129,13 @@ export default {
             var data = {
                 id: this.$route.query.id
             };
-            this.$$api_article_findArticle(data, (data) => {
-                this.default_value = data.article_info;
-                this.default_value.status = data.article_info.status == 1 ? true : false;
-                this.default_value.tabs = data.article_info.tabs.split(',');
+			this.$$api_article_findArticle({
+			    data,
+                fn:(data)=>{
+					this.default_value = data.article_info;
+					this.default_value.status = data.article_info.status == 1 ? true : false;
+					this.default_value.tabs = data.article_info.tabs.split(',');
+                }
             });
         }
     }

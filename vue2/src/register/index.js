@@ -35,10 +35,12 @@ Vue.use({
 
 
 _.each(cps, (item, key) => {
-    var cp_name = string.humpToLowercase(key);
-    console.log('注册的全局组件：'+cp_name);
+	var cp_name=key.replace(/([A-Z])/g,"-$1").toLowerCase();
+	if(cp_name && cp_name[0]==='-'){
+		cp_name=cp_name.replace('-','');
+	}
     Vue.component(cp_name, item);
-})
+});
 
 
 

@@ -1,65 +1,70 @@
 export default {
-	name: '',
+	name      : '',
 	components: {
 		// ListData
 	},
 	data() {
 		return {
-			params: {
+			params    : {
 				token: '',
 			},
 			image_host: '//slsadmin.qiniu.sailengsi.com/',
-			dialog: {
+			dialog    : {
 				show: false,
 				info: {}
 			},
-			list: [],
-			fields: [{
-				key: 'key',
+			list      : [],
+			fields    : [{
+				key  : 'key',
 				label: '文件类型',
-				type: 'image',
+				type : 'image',
 				width: '100',
 				style: {
-					width: '80px',
+					width : '80px',
 					height: '60px'
 				}
 			}, {
-				key: 'key',
+				key  : 'key',
 				label: '文件路径'
 			}, {
-				key: 'fsize',
+				key  : 'fsize',
 				label: '文件大小'
 			}],
 
 			qiniu: {
 				marker: '',
-				limit: 10,
+				limit : 10,
 				prefix: '',
 			}
 		}
 	},
-	methods: {
+	methods   : {
 		onLoadMoreData() {
 			this.onGetQiniuList();
 		},
 
 		onGetQiniuList() {
-			this.$$api_open_getQiniuFileList(this.qiniu, data => {
-				this.list = data.list;
-				if (data.other) {
-					this.qiniu.marker = data.other.marker || '';
+			this.$$api_open_getQiniuFileList({
+				data: this.qiniu,
+				fn  : (data) => {
+					this.list = data.list;
+					if (data.other) {
+						this.qiniu.marker = data.other.marker || '';
+					}
 				}
-				// this.onShowDialog(this.list[3]);
 			});
 		},
 
 		onGetQiniuToken(file, fn) {
-			this.$$api_open_getQiniuToken({},data => {
-				this.params.token = data.qiniu.token;
-				if (data.qiniu.key) {
-					this.$set(this.params, 'key', data.qiniu.key);
+			this.$$api_open_getQiniuToken({
+				data: {},
+				fn  : data => {
+					this.params.token = data.qiniu.token;
+					if (data.qiniu.key) {
+						this.$set(this.params, 'key', data.qiniu.key);
+					}
+					fn && fn();
 				}
-				fn && fn();
 			});
 		},
 
@@ -71,12 +76,26 @@ export default {
 				if (this.params.key) {
 					formData.append('key', this.params.key);
 				}
-				this.$$api_open_uploadQiniuFile(formData, data => {}, {
-					host: '//up-z2.qiniu.com/',
-					cbFn:res=>{
-						this.onGetQiniuList();
+				/*this.$$api_open_uploadQiniuFile(formData, data => {}, {
+				 host: '//up-z2.qiniu.com/',
+				 cbFn:res=>{
+				 this.onGetQiniuList();
+				 },
+				 errFn: err => {
+				 console.log(err);
+				 },
+				 headers: {
+				 'Content-Type': 'multipart/form-data'
+				 }
+				 });*/
+
+				this.$$api_open_uploadQiniuFile({
+					data   : formData,
+					path   : '//up-z2.qiniu.com/',
+					fn     : data => {
+
 					},
-					errFn: err => {
+					errFn  : err => {
 						console.log(err);
 					},
 					headers: {
@@ -96,13 +115,16 @@ export default {
 			}
 			this.$confirm('确定删除该图片?', '删除图片', {
 				confirmButtonText: '确定',
-				cancelButtonText: '取消',
-				type: 'warning'
+				cancelButtonText : '取消',
+				type             : 'warning'
 			}).then(() => {
 				this.$$deleteQiniuFile({
-					key: opts.data.key
-				}, data => {
-					this.list.splice(opts.index, 1);
+					data:{
+						key: opts.data.key
+					},
+					fn:data=>{
+						this.list.splice(opts.index, 1);
+					}
 				});
 			});
 		},
@@ -126,7 +148,8 @@ export default {
 			this.dialog.show = false;
 		}
 	},
-	created() {},
+	created() {
+	},
 	mounted() {
 		this.onGetQiniuList();
 	}

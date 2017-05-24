@@ -56,13 +56,16 @@ export default {
 
 
         getStatis() {
-            this.$$api_order_statisOrder({}, (data) => {
-                for (var f in data.statis) {
-                    var value = this.echarts_data.data_list[f - 1];
-                    value.value = data.statis[f];
-                    this.$set(this.echarts_data.data_list, f - 1, value);
+			this.$$api_order_statisOrder({
+			    data:{},
+                fn:data=>{
+					for (var f in data.statis) {
+						var value = this.echarts_data.data_list[f - 1];
+						value.value = data.statis[f];
+						this.$set(this.echarts_data.data_list, f - 1, value);
+					}
                 }
-            })
+            });
         }
     },
     mounted: function() {

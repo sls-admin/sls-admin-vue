@@ -180,12 +180,14 @@ export default {
                 data = Object.assign(data, where || {});
             }
 
+			this.$$api_order_selectOrder({
+			    data,
+                fn:article_data=>{
+					this.article_list = article_data.list.data;
+					this.paginations.total = article_data.list.total;
 
-            this.$$api_order_selectOrder(data, (article_data) => {
-                this.article_list = article_data.list.data;
-                this.paginations.total = article_data.list.total;
-
-                fn && fn();
+					fn && fn();
+                }
             });
         },
     },

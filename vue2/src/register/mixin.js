@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import {methods} from 'mixins/';
 
-console.log(_.functions(methods));
+// console.log(_.functions(methods));
 
 
 export default {

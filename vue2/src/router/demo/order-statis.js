@@ -7,7 +7,7 @@ import {Content} from 'layout/';
 
 import {Demo} from 'views/';
 
-console.log(Demo);
+// console.log(Demo);
 
 export default {
 	path: 'orderstatis',

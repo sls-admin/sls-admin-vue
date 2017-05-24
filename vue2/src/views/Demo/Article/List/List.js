@@ -233,17 +233,20 @@ export default {
 			}
 
 			this.$$api_article_deleteArticle({
-				id: id
-			}, (data) => {
-				if (article === true) {
-					this.article_list = this.article_list.filter(function (item, idx) {
-						return id.indexOf(item.id) === -1;
-					});
-				} else {
-					list.splice(index, 1);
-				}
+				data:{
+					id: id
+				},
+				fn:data=>{
+					if (article === true) {
+						this.article_list = this.article_list.filter(function (item, idx) {
+							return id.indexOf(item.id) === -1;
+						});
+					} else {
+						list.splice(index, 1);
+					}
 
-				this.getList();
+					this.getList();
+				}
 			});
 		},
 
@@ -314,11 +317,14 @@ export default {
 				}
 			}
 
-			this.$$api_article_selectArticle(data, (article_data) => {
-				this.article_list      = article_data.list.data;
-				this.paginations.total = article_data.list.total;
+			this.$$api_article_selectArticle({
+				data,
+				fn:article_data=>{
+					this.article_list      = article_data.list.data;
+					this.paginations.total = article_data.list.total;
 
-				fn && fn();
+					fn && fn();
+				}
 			});
 		},
 	},

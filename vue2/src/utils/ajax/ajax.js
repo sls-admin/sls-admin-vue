@@ -29,7 +29,7 @@ export default function ({
 							 errFn,
 							 tokenFlag,
 							 headers,
-							 axios_opts
+							 opts
 						 } = {}) {
 
 	var options = {
@@ -62,32 +62,37 @@ export default function ({
 		}
 
 		//axios内置属性均可写在这里
-		if (axios_opts && typeof axios_opts === 'object') {
-			for (var f in axios_opts) {
-				options[f] = axios_opts[f];
+		if (opts && typeof opts === 'object') {
+			for (var f in opts) {
+				options[f] = opts[f];
 			}
 		}
 
+		// console.log(options);
+
 		//发送请求
 		Vue.axios(options).then((res) => {
-			if (res.data.status === 200) {
-				// console.dir(res.data);
-				fn(res.data.data);
-			} else {
-
-				// 调用全局配置错误回调
-				cbs.statusError.call(this, res.data);
-
-				if (tokenFlag === true) {
-					errFn && errFn.call(this);
+			this.$store.dispatch('hide_loading');
+			if(res.data[gbs.api_status_key_field]===gbs.api_status_value_field){
+				if(gbs.api_data_field){
+					fn(res.data[gbs.api_data_field]);
+				}else{
+					fn(res.data);
+				}
+			}else{
+				if(gbs.api_custom[res.data[gbs.api_status_key_field]]){
+					gbs.api_custom[res.data[gbs.api_status_key_field]].call(this,res.data);
+				}else{
+					if(errFn){
+						errFn.call(this.res.data);
+					}else{
+						cbs.statusError.call(this, res.data);
+					}
 				}
 			}
-			this.$store.dispatch('hide_loading');
 		}).catch((err) => {
 			this.$store.dispatch('hide_loading');
 			cbs.requestError.call(this, err);
-
-			errFn && errFn.call(this);
 		});
 	} else {
 		this.$alert('您没用权限请求该接口！', '请求错误', {

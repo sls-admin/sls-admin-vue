@@ -50,10 +50,10 @@
                             v-for='(value,key) in checkeds.web_routers'
                             v-if="key.split('/').length===4"
                             :value='key'
+                            :key="key"
                             :label='value'></el-option>
                 </el-select>
             </el-form-item>
-
             <el-form-item>
                 <el-button type="primary" @click="setUserAccess">设置权限</el-button>
             </el-form-item>

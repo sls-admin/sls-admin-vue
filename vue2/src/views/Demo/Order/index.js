@@ -1,4 +1,7 @@
+import Edit from './Edit/';
+import List from './List/';
+
 export default {
-    Edit: require('./Edit/'),
-    List: require('./List/')
+    Edit,
+    List
 };

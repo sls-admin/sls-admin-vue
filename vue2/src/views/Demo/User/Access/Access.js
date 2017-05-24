@@ -1,7 +1,3 @@
-import {
-	request
-} from 'config/';
-
 export default {
 	name      : 'user',
 	components: {},
@@ -141,32 +137,33 @@ export default {
 		 */
 		getUserinfo(){
 			this.$$api_user_findUser({
-				id: this.data.id
-			}, data => {
-				// console.log(data.userinfo);
+				data:{
+					id: this.data.id
+				},
+				fn:data=>{
+					this.username                 = data.userinfo.username;
+					this.data.access_status       = data.userinfo.access_status === 1 ? true : false;
+					this.data.default_web_routers = data.userinfo.default_web_routers;
+					this.data.web_routers         = data.userinfo.web_routers;
+					this.data.api_routers         = data.userinfo.api_routers;
 
-				this.username                 = data.userinfo.username;
-				this.data.access_status       = data.userinfo.access_status === 1 ? true : false;
-				this.data.default_web_routers = data.userinfo.default_web_routers;
-				this.data.web_routers         = data.userinfo.web_routers;
-				this.data.api_routers         = data.userinfo.api_routers;
+
+					if (data.userinfo.web_routers) {
+						this.checkeds.web_routers = JSON.parse(data.userinfo.web_routers);
+					}
+					var keys=Object.keys(this.checkeds.web_routers).filter((item)=>{
+						return item.split('/').length===4;
+					})
+					this.$refs.webRouters.setCheckedKeys(keys);
 
 
-				if (data.userinfo.web_routers) {
-					this.checkeds.web_routers = JSON.parse(data.userinfo.web_routers);
+					if (data.userinfo.api_routers) {
+						this.checkeds.api_routers = JSON.parse(data.userinfo.api_routers);
+					}
+					this.$refs.apiRouters.setCheckedKeys(Object.keys(this.checkeds.api_routers));
+
+					console.log(this.checkeds.web_routers);
 				}
-				var keys=Object.keys(this.checkeds.web_routers).filter((item)=>{
-					return item.split('/').length===4;
-				})
-				this.$refs.webRouters.setCheckedKeys(keys);
-
-
-				if (data.userinfo.api_routers) {
-					this.checkeds.api_routers = JSON.parse(data.userinfo.api_routers);
-				}
-				this.$refs.apiRouters.setCheckedKeys(Object.keys(this.checkeds.api_routers));
-
-				console.log(this.checkeds.web_routers);
 			});
 		},
 
@@ -211,9 +208,12 @@ export default {
 				if (this.data.access_status === 1 && !this.data.default_web_routers) {
 					this.$message.error('开启权限时必须设置默认页面');
 				} else {
-					this.$$api_user_updateUserAccess(this.data, data => {
-						this.data.access_status = this.data.access_status === 1 ? true : false;
-						this.$message.success('设置成功');
+					this.$$api_user_updateUserAccess({
+						data:this.data,
+						fn:data=>{
+							this.data.access_status = this.data.access_status === 1 ? true : false;
+							this.$message.success('设置成功');
+						}
 					});
 				}
 			} else {
