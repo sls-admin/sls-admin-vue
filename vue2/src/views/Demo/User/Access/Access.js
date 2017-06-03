@@ -1,3 +1,5 @@
+import apis from 'apis/';
+
 export default {
 	name      : 'user',
 	components: {},
@@ -128,7 +130,15 @@ export default {
 		 * @return {array} 组装好的接口数组
 		 */
 		initApis(){
-			this.datas.api_routers = request;
+		    // console.log(apis);
+
+            this.datas.api_routers=[];
+		    this.$$lib__.mapObject(apis,item=>{
+		        console.log(item);
+		        this.datas.api_routers.concat(item.list);
+            });
+		    console.log(this.datas.api_routers);
+			// this.datas.api_routers = request;
 		},
 
 

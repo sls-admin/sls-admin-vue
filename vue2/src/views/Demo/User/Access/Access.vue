@@ -19,7 +19,7 @@
                         v-model="data.access_status"></el-switch>
             </el-form-item>
 
-            <el-form-item class='edit-form' label="API路由">
+            <!--<el-form-item class='edit-form' label="API路由">
                 <el-tree
                     class="filter-tree"
                     show-checkbox
@@ -29,7 +29,7 @@
                     @check-change='checkChangeApiRouters'
                     ref="apiRouters">
                 </el-tree>
-            </el-form-item>
+            </el-form-item>-->
 
             <el-form-item class='edit-form' label="web页面">
                 <!-- :filter-node-method="filterNode" -->
