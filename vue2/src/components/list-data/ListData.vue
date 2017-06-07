@@ -6,13 +6,13 @@
                     icon='delete'
                     v-if='selection'
                     :disabled='batch_flag'
-                    @click='onBtnEvent("BatchDelete")'>删除选中
+                    @click='onBtnEvent({type:"BatchDelete"})'>删除选中
             </el-button>
 
             <el-button
                     type='primary'
                     icon='add'
-                    @click='onBtnEvent("Add")'>添加
+                    @click='onBtnEvent({type:"Add"})'>添加
             </el-button>
 
             <div class='list-header'>
@@ -76,19 +76,19 @@
                             type="info"
                             icon='view'
                             size="mini"
-                            @click='onBtnEvent("Select",scope.row,scope.$index,list)'></el-button>
+                            @click='onBtnEvent({type:"Select",data:scope.row,index:scope.$index,list:list})'></el-button>
                     <el-button
                             v-if='btn_info.update!==false'
                             type="info"
                             icon='edit'
                             size="mini"
-                            @click='onBtnEvent("Update",scope.row,scope.$index,list)'></el-button>
+                            @click='onBtnEvent({type:"Update",data:scope.row,index:scope.$index,list:list})'></el-button>
                     <el-button
                             v-if='btn_info.delete!==false'
                             type="danger"
                             icon='delete'
                             size="mini"
-                            @click='onBtnEvent("Delete",scope.row,scope.$index,list)'></el-button>
+                            @click='onBtnEvent({type:"Delete",data:scope.row,index:scope.$index,list:list})'></el-button>
 
 
                     <el-button
@@ -97,7 +97,7 @@
                             :key='btn.text'
                             :type="btn.type || 'info'"
                             size="mini"
-                            @click='onGetInfo(scope.row,scope.$index,list,btn.fn_type || btn.text)'>{{btn.text}}
+                            @click='onBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn})'>{{btn.text}}
                     </el-button>
                 </template>
             </el-table-column>
@@ -119,7 +119,7 @@
      
              -->
             <el-pagination
-                    v-if='pagination  && pagination.total && pagination.total>0'
+                    v-if='pagination  && ( (pagination.total!==undefined && pagination.total>0) || (pagination["page-count"]!==undefined && pagination["page-count"]>0) )'
                     class='pagination'
                     :page-sizes="pagination.page_sizes"
                     :page-size="pagination.page_size"

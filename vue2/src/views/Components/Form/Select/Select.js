@@ -1,7 +1,7 @@
 export default {
 	name      : 'form-select',
 	components: {
-		FormData
+
 	},
 	data() {
 		return {

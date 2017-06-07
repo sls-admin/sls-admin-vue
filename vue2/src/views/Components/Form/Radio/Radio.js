@@ -1,6 +1,6 @@
 export default {
     components: {
-        FormData
+
     },
     data() {
         return {

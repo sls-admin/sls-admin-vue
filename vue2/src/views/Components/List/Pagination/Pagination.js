@@ -1,8 +1,7 @@
 export default {
     name: 'article-list',
     components: {
-        // ListData,
-        // DialogInfo
+
     },
     data() {
         return {
@@ -31,56 +30,19 @@ export default {
                 },
                 filter_multiple: false,
             }],
-            btn_info: {
-                // show: false,
-                label: '操作',
-                width: 300,
-                // delete: false,
-                // select: false,
-
-                //配置点击修改按钮时跳转的路径
-                //只有传了path才会自动跳转，否则将执行onGetInfo方法
-                //path=>路径
-                //query_keys=>跳转时需要携带的字段
-                update: {
-                    path: '/adv/article/edit',
-                    // param_keys: ['id', 'status'],
-                    query_keys: ['id', 'status']
-                },
-
-                // list: [{
-                //     text: '设置权限',
-                //     fn_type: 'access'
-                // }, {
-                //     text: '修改状态',
-                //     fn_type: 'status'
-                // }]
-            },
-
             pagination: {
                 current_page: 1,
                 total: 0,
+                'page-count':0,
                 page_size: 12,
                 page_sizes: [3, 9, 12, 24],
                 layout: "total, sizes, prev, pager, next, jumper"
             },
-
-
-            apis: {
-                method: {
-                    get_list: '$$selectArticle',
-                    delete_data: '$$deleteArticle'
-                },
-                route: {
-                    update_path: '/adv/article/edit'
-                }
-            }
-
         }
     },
     methods: {
         init() {
-            this.getDataList();
+
         }
     },
     mounted() {

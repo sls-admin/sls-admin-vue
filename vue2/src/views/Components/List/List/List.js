@@ -15,7 +15,7 @@ export default {
                 id:1,
                 name:'赛',
                 type:'A',
-                image:'afdf',
+                image:'fdf',
                 create_time:'2016-2-23',
                 status:1
             },{
@@ -69,7 +69,7 @@ export default {
                     text: '三级',
                     value: 'D'
                 }],
-                filter_method: function(value, item) {
+                filter_method: (value, item)=>{
                     return item.type == value;
                 },
                 filter_multiple: true,
@@ -101,7 +101,10 @@ export default {
         }
     },
     methods: {
-        
+        //{type,data,dataIndex,list,btn,btnIndex}
+        onClickBtn(opts){
+            console.log(opts);
+        }
     },
     mounted() {
 

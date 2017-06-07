@@ -18,7 +18,7 @@ export default {
 		name: '默认渲染列表',
 		icon: 'reorder',
 		component: Components.List.List
-	},/* {
+	}, {
 	 path: 'pagination',
 	 name: '分页',
 	 icon: 'edit',
@@ -38,5 +38,5 @@ export default {
 	 name: '自定义按钮',
 	 icon: 'edit',
 	 component: Components.List.CustomBtn
-	 }*/]
+	 }]
 };

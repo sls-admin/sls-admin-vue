@@ -96,12 +96,9 @@ module.exports = {
         },
 
 
-        onBtnEvent(type,row={},index=-1,list=[]){
-            this.$emit('onBtn'+type, {
-                row,
-                index,
-                list
-            });
+
+        onBtnEvent(opts){
+            this.$emit('onClickBtn',opts);
         },
 
 
