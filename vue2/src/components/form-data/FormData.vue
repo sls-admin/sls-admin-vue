@@ -3,6 +3,7 @@
         <el-form style=""
                  label-width="100px"
                  ref='form-data'
+                 :inline="setting.inline"
                  :rules='rules'
                  :model='submit_data'>
             <el-form-item

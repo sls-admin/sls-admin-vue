@@ -7,32 +7,15 @@ export default {
         return {
             list: [],
             fields: [{
-                key: 'create_time',
-                label: '创建时间'
+                key: 'name',
+                label: '姓名'
             }, {
-                key: 'title',
-                label: '标题'
-            }, {
-                key: 'status',
-                label: '状态',
-                formatter: function(item) {
-                    return item.status == 1 ? '启用' : '禁用';
-                },
-                filter_list: [{
-                    text: '启用',
-                    value: 1
-                }, {
-                    text: '禁用',
-                    value: 2
-                }],
-                filter_method: function(value, item) {
-                    return item.status == value;
-                },
-                filter_multiple: false,
+                key: 'age',
+                label: '年龄'
             }],
             pagination: {
                 current_page: 1,
-                total: 0,
+                total: 30,
                 'page-count':0,
                 page_size: 12,
                 page_sizes: [3, 9, 12, 24],
@@ -40,7 +23,16 @@ export default {
             },
         }
     },
+    created(){
+
+    },
     methods: {
+        onChangeCurPage(page){
+            this.$message('当前页是第'+page+'页');
+        },
+        onChangeCurPageSize(page_size){
+			this.$message('当前每页显示 '+page_size+' 条');
+        },
         init() {
 
         }

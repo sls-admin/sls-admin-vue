@@ -4,6 +4,8 @@
             ref='list-data'
             :List='list'
             :FieldList='fields'
+            @onChangeCurrentPage="onChangeCurPage"
+            @onChangePageSize="onChangeCurPageSize"
             :Pagination='pagination'></list-data>
     </div>
 </template>
@@ -13,18 +15,5 @@
     export default PaginationJs;
 </script>
 <style scoped lang='less'>
-    .demo-form-inline{
-        display: inline-block;
-        float: right;
-    }
-    .btm-action{
-        margin-top: 20px;
-        text-align: center;
-    }
-    .actions-top{
-        height: 46px;
-    }
-    .pagination{
-        display: inline-block;
-    }
+
 </style>

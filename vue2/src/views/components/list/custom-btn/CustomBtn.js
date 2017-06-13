@@ -1,5 +1,5 @@
 export default {
-    name: 'article-list',
+    name: 'custom-btn',
     components: {
 
     },
@@ -55,37 +55,19 @@ export default {
                 //     fn_type: 'status'
                 // }]
             },
-
-            pagination: {
-                current_page: 1,
-                total: 0,
-                page_size: 12,
-                page_sizes: [3, 9, 12, 24],
-                layout: "total, sizes, prev, pager, next, jumper"
-            },
-
-
-            apis: {
-                method: {
-                    get_list: '$$selectArticle',
-                    delete_data: '$$deleteArticle'
-                },
-                route: {
-                    update_path: '/adv/article/edit'
-                }
-            }
-
         }
     },
     methods: {
         init() {
-            this.getDataList();
+
         }
     },
     mounted() {
         this.init();
     },
-    '$route' (to, from) {
+    watch:{
+        $route(){
 
+        }
     }
 }

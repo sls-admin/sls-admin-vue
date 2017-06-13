@@ -2,15 +2,17 @@
     <div class="list">
         <list-data
             ref='list-data'
+            @onClickBtnAdd="onClickBtnAdd"
+            @onClickBtnUpdate="onClickBtnUpdate"
+            @onClickBtnSelect="onClickBtnSelect"
+            @onClickBtnDelete="onClickBtnDelete"
             :List='list'
-            :FieldList='fields'
-            :BtnInfo='btn_info'></list-data>
+            :FieldList='fields'></list-data>
     </div>
 </template>
-
 <script>
-    import CustomBtnJs from './CustomBtn.js';
-    export default CustomBtnJs;
+    import FilterJs from './Filter.js';
+    export default FilterJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline{

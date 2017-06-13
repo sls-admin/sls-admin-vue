@@ -5,10 +5,12 @@ export default {
 		return {
 			checkall_temp: '_checkall_temp',
 
-			fields     : this.FieldList || [],
+			fields     : this.FieldList,
 			editor     : this.Editor || {},
 			submit_data: this.DefaultValue || {},
 			rules      : this.Rules || {},
+
+			setting: this.Setting,
 
 			/**
 			 * 富文本编辑器信息
@@ -82,8 +84,8 @@ export default {
 		 */
 		configEditor(id, config) {
 			if (id && config) {
-				this.wangEditor.editor[id].config={};
-				this.wangEditor.editor[id].config.uploadImgFns={};
+				this.wangEditor.editor[id].config                   = {};
+				this.wangEditor.editor[id].config.uploadImgFns      = {};
 				this.wangEditor.editor[id].config.uploadImgFileName = config.name || this.editor.name || 'sls-admin';
 				this.wangEditor.editor[id].config.uploadImgUrl      = config.url || this.editor.url || '';
 				this.wangEditor.editor[id].config.uploadParams      = config.params || this.editor.params || {};
@@ -277,9 +279,9 @@ export default {
 
 		/**
 		 * 设置时间参数
-		 * @param fields	字段数组
-		 * @param i			当前索引
-		 * @param type		类型
+		 * @param fields    字段数组
+		 * @param i            当前索引
+		 * @param type        类型
 		 */
 		onTimeOptions(fields, i, type) {
 			var field = fields[i];
@@ -508,7 +510,10 @@ export default {
 	props: {
 		FieldList   : {
 			type    : Array,
-			required: true
+			required: true,
+			default(){
+				return [];
+			}
 		},
 		Editor      : {
 			type: Object
@@ -518,6 +523,12 @@ export default {
 		},
 		DefaultValue: {
 			type: Object
+		},
+		Setting     : {
+			type: Object,
+			default(){
+				return {};
+			}
 		}
 	},
 
@@ -539,6 +550,9 @@ export default {
 			if (v) {
 				this.submit_data = v;
 			}
+		},
+		Setting(v){
+			this.setting = v;
 		}
 	}
 }

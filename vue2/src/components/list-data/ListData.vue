@@ -18,16 +18,27 @@
             <div class='list-header'>
                 <slot name='list-header'></slot>
             </div>
+
+            <div
+                    v-if="search.fields && search.fields.length"
+                    class="list-search">
+                <form-data
+                        :Setting="search.setting"
+                        :FieldList='search.fields'
+                        @onSubmit='onSearch'></form-data>
+            </div>
         </el-col>
 
         <el-table border style="width: 100%" align='center'
                   :data="list"
                   @selection-change='onSelectionChange'>
 
-
             <el-table-column type="expand"
                              v-if='expand && expand.show && expand.show===true && (!expand.position || expand.position==="left")'>
-                <template scope="props">
+                <template scope="scope">
+                    <slot name="expand"
+                          :data="scope.row"
+                          :index="scope.$index"></slot>
                 </template>
             </el-table-column>
 
@@ -39,7 +50,7 @@
             <template
                     v-for='(field,index) in fields'>
                 <el-table-column
-                        v-if='!field.type || field.type!=="image"'
+                        v-if='!field.type'
                         :prop="field.key"
                         :label="field.label"
                         :align="field.align || 'center'"
@@ -58,7 +69,19 @@
                         :align="field.align || 'center'"
                         :width='field.width'>
                     <template scope='scope'>
-                        <img :src="(image_host || '')+scope.row[field.key]" alt="">
+                        <img :src="(field.host || '')+scope.row[field.key]" alt="">
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        v-if='field.type && field.type==="link"'
+                        :prop="field.key"
+                        :label="field.label"
+                        :align="field.align || 'center'"
+                        :width='field.width'>
+                    <template scope='scope'>
+                        <a
+                                :target="field.link_target || '_self'"
+                                :href="scope.row[field.key]">{{field.link_text || scope.row[field.key]}}</a>
                     </template>
                 </el-table-column>
             </template>
@@ -97,7 +120,8 @@
                             :key='btn.text'
                             :type="btn.type || 'info'"
                             size="mini"
-                            @click='onBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn})'>{{btn.text}}
+                            @click='onBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn})'>
+                        {{btn.text}}
                     </el-button>
                 </template>
             </el-table-column>
@@ -106,9 +130,8 @@
             <el-table-column type="expand"
                              :context="_self"
                              v-if='expand && expand.show && expand.show===true && expand.position && expand.position==="right"'>
-                <!--<slot name="list-expand" index="index"></slot>-->
                 <template scope="scope">
-                    <slot name="list-expand"
+                    <slot name="expand"
                           :data="scope.row"
                           :index="scope.$index"></slot>
                 </template>
@@ -123,6 +146,7 @@
                     class='pagination'
                     :page-sizes="pagination.page_sizes"
                     :page-size="pagination.page_size"
+                    :page-count="pagination['page-count']"
                     :layout="pagination.layout"
                     :total="pagination.total"
                     :current-page='pagination.current_page'
@@ -139,36 +163,41 @@
 </script>
 <style scoped lang='less'>
     .demo-form-inline {
-        display: inline-block;
-        float: right;
+        display : inline-block;
+        float   : right;
     }
 
     .btm-action {
-        margin-top: 20px;
-        text-align: center;
+        margin-top : 20px;
+        text-align : center;
     }
 
     .actions-top {
-        height: 46px;
+        /*line-height : 46px;*/
     }
 
     .pagination {
-        display: inline-block;
+        display : inline-block;
     }
 
     .list {
 
-    table {
+        table {
 
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+            img {
+                max-width : 100%;
+                height    : auto;
+            }
 
-    }
+        }
     }
 
     .list-header {
-        display: inline-block;
+        display : inline-block;
+    }
+    
+    .list-search{
+        display : inline-block;
+        float : right;
     }
 </style>

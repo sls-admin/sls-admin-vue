@@ -2,19 +2,14 @@
     <div class="list">
         <list-data
             ref='list-data'
-            @onClickBtn="onClickBtn"
+            @onClickBtnAdd="onClickBtnAdd"
+            @onClickBtnUpdate="onClickBtnUpdate"
+            @onClickBtnSelect="onClickBtnSelect"
+            @onClickBtnDelete="onClickBtnDelete"
             :List='list'
-            :FieldList='fields'>
-                <span slot='list-expand'>测试自定义折叠属性</span>
-                <template slot="list-expand" scope="props">
-                    <div>当前索引：{{ props.index }}</div>
-                    <div>姓名：{{ props.data.name }}</div>
-                    <div>创建时间：{{ props.data.create_time }}</div>
-                </template>
-            </list-data>
+            :FieldList='fields'></list-data>
     </div>
 </template>
-
 <script>
     import ListJs from './List.js';
     export default ListJs;

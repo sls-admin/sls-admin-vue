@@ -1,17 +1,21 @@
 <template>
     <div class="list">
+        <h2>
+            注意：如果后台给你的数据中的图片路径没有带域名，那么你可以在field数组中的image里面设置域名。
+        </h2>
         <list-data
             ref='list-data'
-            :Search="search_data"
-            @onSearch="onSearch"
+            @onClickBtnAdd="onClickBtnAdd"
+            @onClickBtnUpdate="onClickBtnUpdate"
+            @onClickBtnSelect="onClickBtnSelect"
+            @onClickBtnDelete="onClickBtnDelete"
             :List='list'
             :FieldList='fields'></list-data>
     </div>
 </template>
-
 <script>
-    import SearchJs from './Search.js';
-    export default SearchJs;
+    import DataTypeJs from './DataType.js';
+    export default DataTypeJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline{
