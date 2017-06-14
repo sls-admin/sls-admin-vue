@@ -7,57 +7,62 @@ export default {
         return {
             list: [],
             fields: [{
-                key: 'create_time',
-                label: '创建时间'
+                key: 'name',
+                label: '姓名'
             }, {
-                key: 'title',
-                label: '标题'
-            }, {
-                key: 'status',
-                label: '状态',
-                formatter: function(item) {
-                    return item.status == 1 ? '启用' : '禁用';
-                },
-                filter_list: [{
-                    text: '启用',
-                    value: 1
-                }, {
-                    text: '禁用',
-                    value: 2
-                }],
-                filter_method: function(value, item) {
-                    return item.status == value;
-                },
-                filter_multiple: false,
+                key: 'address',
+                label: '地址'
             }],
-            btn_info: {
-                // show: false,
-                label: '操作',
-                width: 300,
-                // delete: false,
-                // select: false,
 
-                //配置点击修改按钮时跳转的路径
-                //只有传了path才会自动跳转，否则将执行onGetInfo方法
-                //path=>路径
-                //query_keys=>跳转时需要携带的字段
-                update: {
-                    path: '/adv/article/edit',
-                    // param_keys: ['id', 'status'],
-                    query_keys: ['id', 'status']
-                },
 
-                // list: [{
-                //     text: '设置权限',
-                //     fn_type: 'access'
-                // }, {
-                //     text: '修改状态',
-                //     fn_type: 'status'
-                // }]
+            btn_info:{
+                update_default :{
+                    width:300,
+
+                    // all:false,//false:不显示按钮操作列
+
+                    // default:false,//false:不显示默认所有按钮(查看，修改，删除)
+
+                    // select:false,//false:不显示查看按钮
+					// update:false,//false:不显示修改按钮
+					// delete:false,//false:不显示删除按钮
+
+                    //增加自定义按钮，默认会排到默认按钮的右边
+                    list:[{
+                        text:'同步',//按钮文本
+                        type:'warning',//按钮类型，遵循elementUI的几种按钮类型
+                        //如果不传按钮，默认会触发onClickBtn方法，传了则不会调用onClickBtn方法
+                        fn:(opts)=>{
+                            console.log('custom btn cb');
+                            console.log(opts);
+                        }
+                    },{
+						text:'刷新',
+                        type:'primary'
+					}],
+                    // list_position:'before'//默认不传或者为after在默认按钮的后边,before则在前边。
+                }
             },
         }
     },
+	created(){
+		for(let i=1;i<=3;i++){
+			this.list.push({
+				name:'赛冷思'+i,
+				address:'北京上海第 '+i+" 区",
+			});
+		}
+	},
     methods: {
+		onClickBtn(opts){
+	        console.log(opts);
+        },
+		onClickBtnAdd(opts){
+			console.log(opts);
+		},
+		onClickBtnSelect(opts){
+			console.log(opts);
+		},
         init() {
 
         }

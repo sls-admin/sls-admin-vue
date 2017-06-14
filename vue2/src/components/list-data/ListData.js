@@ -131,6 +131,19 @@ module.exports = {
 		},
 
 
+		/**
+		 * 自定义按钮事件
+		 * @param opts
+		 */
+		onCustomBtnEvent(opts){
+			if(opts.btn.fn){
+				opts.btn.fn(opts);
+			}else{
+				this.$emit('onClickBtn', opts);
+			}
+		},
+
+
 		onUpdateBtn(data, index, list) {
 			if (this.btn_info.update && this.btn_info.update.path) {
 				var path       = this.btn_info.update.path,

@@ -88,39 +88,53 @@
 
 
             <el-table-column
-                    v-if='btn_info.show!==false'
+                    v-if="btn_info.all!==false"
                     :label="btn_info.label || '操作'"
                     :width="btn_info.width || 160"
                     :context="_self">
                 <template scope='scope'>
-                    <!-- @click='onGetInfo(scope.row,scope.$index,list,"select")' -->
                     <el-button
-                            v-if='btn_info.select!==false'
-                            type="info"
-                            icon='view'
-                            size="mini"
-                            @click='onBtnEvent({type:"Select",data:scope.row,index:scope.$index,list:list})'></el-button>
-                    <el-button
-                            v-if='btn_info.update!==false'
-                            type="info"
-                            icon='edit'
-                            size="mini"
-                            @click='onBtnEvent({type:"Update",data:scope.row,index:scope.$index,list:list})'></el-button>
-                    <el-button
-                            v-if='btn_info.delete!==false'
-                            type="danger"
-                            icon='delete'
-                            size="mini"
-                            @click='onBtnEvent({type:"Delete",data:scope.row,index:scope.$index,list:list})'></el-button>
-
-
-                    <el-button
-                            v-if='btn_info.list'
+                            v-if='btn_info.list && btn_info.list_position==="before"'
                             v-for='(btn,index) in btn_info.list'
                             :key='btn.text'
                             :type="btn.type || 'info'"
                             size="mini"
-                            @click='onBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn})'>
+                            @click='onCustomBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn})'>
+                        {{btn.text}}
+                    </el-button>
+
+
+                    <span v-if="btn_info.default!==false">
+                        <el-button
+                                v-if='btn_info.select!==false'
+                                type="info"
+                                icon='view'
+                                size="mini"
+                                @click='onBtnEvent({type:"Select",data:scope.row,dataIndex:scope.$index,list:list})'></el-button>
+                        <el-button
+                                v-if='btn_info.update!==false'
+                                type="info"
+                                icon='edit'
+                                size="mini"
+                                @click='onBtnEvent({type:"Update",data:scope.row,dataIndex:scope.$index,list:list})'></el-button>
+                        <el-button
+                                v-if='btn_info.delete!==false'
+                                type="danger"
+                                icon='delete'
+                                size="mini"
+                                @click='onBtnEvent({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})'></el-button>
+                    </span>
+
+                    <!--
+                         {list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn}
+                    -->
+                    <el-button
+                            v-if='btn_info.list && (btn_info.list_position==="after" || !btn_info.list_position)'
+                            v-for='(btn,index) in btn_info.list'
+                            :key='btn.text'
+                            :type="btn.type || 'info'"
+                            size="mini"
+                            @click='onCustomBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btn:btn})'>
                         {{btn.text}}
                     </el-button>
                 </template>
@@ -195,9 +209,9 @@
     .list-header {
         display : inline-block;
     }
-    
-    .list-search{
+
+    .list-search {
         display : inline-block;
-        float : right;
+        float   : right;
     }
 </style>

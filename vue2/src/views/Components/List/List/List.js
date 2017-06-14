@@ -27,14 +27,16 @@ export default {
     methods: {
         //{type,data,dataIndex,list,btn,btnIndex}
         onClickBtn(opts){
-            console.log(opts);
+            // console.log(opts);
         },
 
 
-        onClickBtnAdd(){
+        onClickBtnAdd(opts){
+			// console.log(opts);
             this.$message('点击的是添加按钮');
         },
-		onClickBtnUpdate(){
+		onClickBtnUpdate(opts){
+			// console.log(opts);
 			this.$message('点击的是修改按钮');
 		},
 		onClickBtnSelect(){

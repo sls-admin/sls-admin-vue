@@ -40,7 +40,10 @@ export default {
     mounted() {
         this.init();
     },
-    '$route' (to, from) {
+    watch:{
+		$route (to, from) {
 
+		}
     }
+
 }

@@ -1,10 +1,20 @@
 <template>
     <div class="list">
+        <h2>默认按钮</h2>
         <list-data
             ref='list-data'
             :List='list'
-            :FieldList='fields'
-            :BtnInfo='btn_info'></list-data>
+            :FieldList='fields'></list-data>
+
+        <h2>修改默认按钮</h2>
+        <list-data
+                ref='list-data'
+                @onClickBtn="onClickBtn"
+                @onClickBtnAdd="onClickBtnAdd"
+                @onClickBtnSelect="onClickBtnSelect"
+                :List='list'
+                :BtnInfo="btn_info.update_default"
+                :FieldList='fields'></list-data>
     </div>
 </template>
 
