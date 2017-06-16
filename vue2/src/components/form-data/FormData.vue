@@ -78,7 +78,7 @@
 
                 <!-- select,下拉框 -->
                 <el-select
-                        v-if='field.type==="select"'
+                        v-if='field.type==="select" && field.value && field.value.list && submit_data && ((field.multiple && Array.isArray(submit_data[field.key])) || !field.multiple)'
                         v-model="submit_data[field.key]"
                         :multiple='field.multiple ? true : false'
                         :placeholder="field.desc">
@@ -101,7 +101,7 @@
 
                 <!-- date，日期类型 -->
                 <el-date-picker
-                        v-if='field.type==="date"'
+                        v-if='field.type==="date" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         :placeholder="field.placeholder"
@@ -110,11 +110,11 @@
                 </el-date-picker>
 
                 <!-- date，日期类型-选择范围 -->
-                <!-- 
+                <!--
                     @change='field.change'
                  -->
                 <el-date-picker
-                        v-if='field.type==="daterange"'
+                        v-if='field.type==="daterange" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         :placeholder="field.placeholder"
@@ -123,7 +123,7 @@
 
                 <!-- date，日期类型-年 -->
                 <el-date-picker
-                        v-if='field.type==="year"'
+                        v-if='field.type==="year" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         :placeholder="field.placeholder"
@@ -132,7 +132,7 @@
 
                 <!-- date，日期类型-月 -->
                 <el-date-picker
-                        v-if='field.type==="month"'
+                        v-if='field.type==="month" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         :placeholder="field.placeholder"
@@ -141,7 +141,7 @@
 
                 <!-- date，日期类型-周 -->
                 <el-date-picker
-                        v-if='field.type==="week"'
+                        v-if='field.type==="week" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         :format="field.format"
@@ -152,7 +152,7 @@
 
                 <!-- time，时间类型 -->
                 <el-time-select
-                        v-if='field.type==="time"'
+                        v-if='field.type==="time" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         :placeholder="field.placeholder"
@@ -163,7 +163,7 @@
 
                 <!-- 日期时间组合 -->
                 <el-date-picker
-                        v-if='field.type==="datetime"'
+                        v-if='field.type==="datetime" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         @change='field.change'
@@ -177,7 +177,7 @@
                     @change='field.change'
                  -->
                 <el-date-picker
-                        v-if='field.type==="datetimerange"'
+                        v-if='field.type==="datetimerange" && field.change'
                         v-model="submit_data[field.key]"
                         :type="field.type"
                         :placeholder="field.placeholder"

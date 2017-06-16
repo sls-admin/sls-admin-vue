@@ -74,7 +74,9 @@ export default {
 					text: ''
 				};
 			}
-			this.configEditor(id, config).eventEditor(id).createEditor(id);
+			this.eventEditor(id).createEditor(id);
+
+			//this.configEditor(id, config).eventEditor(id).createEditor(id);
 		},
 
 
@@ -115,9 +117,9 @@ export default {
 					var bar = this.wangEditor.bar;
 				}
 
-				if (this.wangEditor.many === true && bar.indexOf('location') !== -1) {
-					var bar = bar.splice(bar.indexOf('location'), 1);
-				}
+				// if (this.wangEditor.many === true && bar.indexOf('location') !== -1) {
+				// 	var bar = bar.splice(bar.indexOf('location'), 1);
+				// }
 
 				this.wangEditor.editor[id].config.menus = bar;
 			}
@@ -367,7 +369,7 @@ export default {
 						switch (field.type) {
 							case 'editor':
 								k++;
-								// this.initEditor(field.id, field.config || {});
+								this.initEditor(field.id, field.config || {});
 								if (k == 2) {
 									this.wangEditor.many = true;
 								}

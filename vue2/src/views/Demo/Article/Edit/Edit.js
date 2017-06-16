@@ -2,7 +2,7 @@ import {
 	gbs
 } from 'config/';
 
-import 'wangeditor';
+import E from 'wangeditor';
 
 export default {
 	name   : 'edit-article',
@@ -102,25 +102,63 @@ export default {
          * 初始化wangeditor编辑器
          */
         initWangeditor(){
+
             var self   = this;
-            this.wangEditor.obj = new wangEditor('article');
+            this.wangEditor.obj = new E('#article');
 
-            this.wangEditor.obj.config.uploadImgFileName = 'article';
+            this.wangEditor.obj.customConfig.uploadFileName = 'article';
 
-            this.wangEditor.obj.config.uploadImgUrl = gbs.host + '/Article/editUpload';
+            this.wangEditor.obj.customConfig.uploadImgServer = gbs.host + '/Article/editUpload';
 
             // 配置自定义参数（举例）
-            this.wangEditor.obj.config.uploadParams = {
+            this.wangEditor.obj.customConfig.uploadImgParams = {
                 username: this.$store.state.user.userinfo.username
             };
 
             //自定义header，因为服务器验证通过header中的token进行的验证
-            this.wangEditor.obj.config.uploadHeaders = {
+            this.wangEditor.obj.customConfig.uploadImgHeaders = {
                 token : this.$store.state.user.userinfo.token
             };
 
+
+			this.wangEditor.obj.customConfig.uploadImgHooks = {
+				before: function (xhr, editor, files) {
+					// 图片上传之前触发
+					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+				},
+				success: function (xhr, editor, result) {
+					// 图片上传并返回结果，图片插入成功之后触发
+					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+					console.log(result);
+				},
+				fail: function (xhr, editor, result) {
+					// 图片上传并返回结果，但图片插入错误时触发
+					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+					console.log(result);
+				},
+				error: function (xhr, editor) {
+					// 图片上传出错时触发
+					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+				},
+				timeout: function (xhr, editor) {
+					// 图片上传超时时触发
+					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+				},
+
+				// 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+				customInsert: function (insertImg, result, editor) {
+					console.log(result);
+					// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+					// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+
+					// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+					var url = result.url
+					insertImg(url)
+				}
+			};
+
             // 自定义load事件
-            this.wangEditor.obj.config.uploadImgFns.onload = (data) => {
+            /*this.wangEditor.obj.customConfig.uploadImgFns.onload = (data) => {
                 //注意：这是原生ajax的处理,返回的是原生的JSON串
                 if(typeof data==='string'){
                     data=JSON.parse(data);
@@ -141,15 +179,15 @@ export default {
                     }
                 }
 
-            };
+            };*/
 
             //自定义错误信息
-            this.wangEditor.obj.config.uploadImgFns.onerror = (xhr) => {
+            /*this.wangEditor.obj.customConfig.uploadImgFns.onerror = (xhr) => {
                 this.$message.error('上传错误信息：网络错误！');
-            };
+            };*/
 
             //自定义工具栏
-            this.wangEditor.obj.config.menus = this.wangEditor.bar;
+            // this.wangEditor.obj.config.menus = this.wangEditor.bar;
 
             //编辑器改变事件时，同步更新文章内容
             this.wangEditor.obj.onchange = function () {

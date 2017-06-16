@@ -8,7 +8,7 @@
                 <el-input v-model="article_data.title"></el-input>
             </el-form-item>
             <el-form-item label="文章内容" style="width:986px;" prop='content'>
-                <div id="article" style="height:260px;"></div>
+                <div id="article"></div>
             </el-form-item>
             <el-form-item label="文章分类" prop='cate'>
                 <el-select v-model="article_data.cate" placeholder="请选择文章分类">
