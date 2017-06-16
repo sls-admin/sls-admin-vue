@@ -3,16 +3,7 @@
         <list-data
             ref='list-data'
             :List='list'
-            :FieldList='fields'
-            :Selection='true'
-            :BtnInfo='btn_info'
-            :Pagination='pagination'
-            @onGetInfo='onGetInfo'
-            @onDelete='onDelete'
-            @onSelectionChange='onSelectionChange'
-            @onSelectionChangeObj='onSelectionChangeObj'
-            @onChangeCurrentPage='onChangeCurrentPage'
-            @onChangePageSize='onChangePageSize'></list-data>
+            :FieldList='fields'></list-data>
     </div>
 </template>
 

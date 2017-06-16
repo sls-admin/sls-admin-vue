@@ -3,9 +3,9 @@ import {
 } from 'config/';
 
 export default {
-    name: 'edit-article',
+    name: 'adv-edit-article',
     components: {
-        FormData
+
     },
     data() {
         return {
@@ -16,12 +16,21 @@ export default {
                 label: '文章标题'
             }, {
                 key: 'content',
+				value: '',
                 type: 'editor',
                 id: 'article',
                 desc: '请输入文章内容',
                 label: '文章内容',
                 style: {
                     height: '260px'
+                },
+                config:{
+					name: 'article',
+					url: gbs.host + '/Article/editUpload',
+					params: {
+						token: this.$store.state.user.userinfo.token,
+						username: this.$store.state.user.userinfo.username
+					}
                 }
             }, {
                 key: 'cate',
@@ -112,7 +121,7 @@ export default {
         }
     },
     methods: {
-        onSubmitFn(data) {
+        onSubmit(data) {
 			this.$$api_article_saveArticle({
 			    data,
                 fn:()=>{

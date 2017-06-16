@@ -14,7 +14,7 @@ module.exports = {
 
 			pagination: this.Pagination,
 
-			search:this.Search
+			search: this.Search
 		}
 	},
 	methods: {
@@ -47,10 +47,10 @@ module.exports = {
 
 		/**
 		 * 搜索事件
-		 * @param data	搜索表单的值
+		 * @param data    搜索表单的值
 		 */
 		onSearch({data}){
-			this.$emit('onSearch',data);
+			this.$emit('onSearch', data);
 		},
 
 
@@ -136,9 +136,9 @@ module.exports = {
 		 * @param opts
 		 */
 		onCustomBtnEvent(opts){
-			if(opts.btn.fn){
+			if (opts.btn.fn) {
 				opts.btn.fn(opts);
-			}else{
+			} else {
 				this.$emit('onClickBtn', opts);
 			}
 		},
@@ -184,7 +184,7 @@ module.exports = {
 			if (!Array.isArray(row)) {
 				this.list.splice(row, 1);
 			} else {
-				this.list = this.list.filter(function (item, idx) {
+				this.list = this.list.filter(function(item, idx) {
 					return row.indexOf(item.id) === -1;
 				});
 			}
@@ -288,7 +288,7 @@ module.exports = {
 			this.pagination = v;
 		},
 		Search(v){
-			this.search=v;
+			this.search = v;
 		}
 	}
 }

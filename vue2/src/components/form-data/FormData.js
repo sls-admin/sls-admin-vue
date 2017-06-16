@@ -1,4 +1,5 @@
-//noinspection JSAnnotator
+import 'wangeditor';
+
 export default {
 	name   : 'list',
 	data() {
@@ -119,7 +120,6 @@ export default {
 				}
 
 				this.wangEditor.editor[id].config.menus = bar;
-				console.log(this.wangEditor.editor[id].config.menus);
 			}
 
 			return this;
@@ -166,7 +166,6 @@ export default {
 					}
 				});
 			};
-
 			return this;
 		},
 
@@ -176,9 +175,7 @@ export default {
 		 * @param  {string} id 编辑器ID
 		 */
 		createEditor(id) {
-			console.log(this.wangEditor.editor[id]);
 			this.wangEditor.editor[id].create();
-			console.log(id);
 		},
 
 
@@ -370,7 +367,7 @@ export default {
 						switch (field.type) {
 							case 'editor':
 								k++;
-								this.initEditor(field.id, field.config || {});
+								// this.initEditor(field.id, field.config || {});
 								if (k == 2) {
 									this.wangEditor.many = true;
 								}
@@ -491,7 +488,7 @@ export default {
 
 
 	created() {
-		this.deepObj();
+		// this.deepObj();
 	},
 
 
@@ -499,7 +496,7 @@ export default {
 	 * ready
 	 */
 	mounted() {
-		// this.deepObj();
+		this.deepObj();
 	},
 
 
@@ -516,13 +513,22 @@ export default {
 			}
 		},
 		Editor      : {
-			type: Object
+			type: Object,
+			default(){
+				return {};
+			}
 		},
 		Rules       : {
-			type: Object
+			type: Object,
+			default(){
+				return {};
+			}
 		},
 		DefaultValue: {
-			type: Object
+			type: Object,
+			default(){
+				return {};
+			}
 		},
 		Setting     : {
 			type: Object,
