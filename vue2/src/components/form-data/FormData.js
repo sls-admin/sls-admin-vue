@@ -1,4 +1,4 @@
-import 'wangeditor';
+import {wangEditor} from 'libs/wangeditor/wangEditor.js';
 
 export default {
 	name   : 'list',
@@ -26,34 +26,24 @@ export default {
 				has   : false,
 				//默认显示菜单，支持自定义
 				bar   : [
-					'source', '|',
-					'bold',
-					'underline',
-					'italic',
-					'strikethrough',
-					'eraser',
-					'forecolor',
-					'bgcolor', '|',
-					'quote',
-					'fontfamily',
-					'fontsize',
-					'head',
-					'unorderlist',
-					'orderlist',
-					'alignleft',
-					'aligncenter',
-					'alignright', '|',
-					'link',
-					'unlink',
-					'table',
-					'emotion', '|',
-					'img',
-					'video',
-					// 'location',
-					'insertcode', '|',
-					'undo',
-					'redo',
-					'fullscreen'
+					'head',  // 标题
+					'bold',  // 粗体
+					'italic',  // 斜体
+					'underline',  // 下划线
+					'strikeThrough',  // 删除线
+					'foreColor',  // 文字颜色
+					'backColor',  // 背景颜色
+					'link',  // 插入链接
+					'list',  // 列表
+					'justify',  // 对齐方式
+					'quote',  // 引用
+					'emoticon',  // 表情
+					'image',  // 插入图片
+					'table',  // 表格
+					'video',  // 插入视频
+					'code',  // 插入代码
+					'undo',  // 撤销
+					'redo'  // 重复
 				],
 				temp  : {},
 			},
@@ -68,15 +58,16 @@ export default {
 		 */
 		initEditor(id, config) {
 			if (id) {
-				this.wangEditor.editor[id] = new wangEditor(id);
+				this.wangEditor.editor[id] = new wangEditor('#' + id);
 				this.wangEditor.temp[id]   = {
 					html: '',
 					text: ''
 				};
 			}
-			this.eventEditor(id).createEditor(id);
 
-			//this.configEditor(id, config).eventEditor(id).createEditor(id);
+			// this.eventEditor(id).createEditor(id);
+
+			this.configEditor(id, config).eventEditor(id).createEditor(id);
 		},
 
 
@@ -87,11 +78,11 @@ export default {
 		 */
 		configEditor(id, config) {
 			if (id && config) {
-				this.wangEditor.editor[id].config                   = {};
-				this.wangEditor.editor[id].config.uploadImgFns      = {};
-				this.wangEditor.editor[id].config.uploadImgFileName = config.name || this.editor.name || 'sls-admin';
-				this.wangEditor.editor[id].config.uploadImgUrl      = config.url || this.editor.url || '';
-				this.wangEditor.editor[id].config.uploadParams      = config.params || this.editor.params || {};
+				this.wangEditor.editor[id].customConfig.uploadFileName   = config.name || this.editor.name || 'sls-admin';
+				this.wangEditor.editor[id].customConfig.uploadImgServer  = config.url || this.editor.url || '';
+				this.wangEditor.editor[id].customConfig.uploadImgParams  = config.params || this.editor.params || {};
+				this.wangEditor.editor[id].customConfig.uploadImgHeaders = config.headers || this.editor.headers || {};
+
 
 				/**
 				 * 显示的菜单，分四种情况
@@ -101,27 +92,27 @@ export default {
 				 * 4-啥都不传，取默认全部显示
 				 * @type {object}
 				 */
-				if (Array.isArray(config.show_bar) && config.show_bar.length) {
-					var bar = config.show_bar;
-				} else if (Array.isArray(config.hide_bar) && config.hide_bar.length) {
-					var bar = this.wangEditor.bar.filter((item) => {
-						return config.hide_bar.indexOf(item) === -1;
-					});
-				} else if (Array.isArray(this.editor.show_bar) && this.editor.show_bar.length) {
-					var bar = this.editor.show_bar;
-				} else if (Array.isArray(this.editor.hide_bar) && this.editor.hide_bar.length) {
-					var bar = this.wangEditor.bar.filter((item) => {
-						return this.editor.hide_bar.indexOf(item) === -1;
-					});
-				} else {
-					var bar = this.wangEditor.bar;
-				}
+				/*if (Array.isArray(config.show_bar) && config.show_bar.length) {
+				 var bar = config.show_bar;
+				 } else if (Array.isArray(config.hide_bar) && config.hide_bar.length) {
+				 var bar = this.wangEditor.bar.filter((item) => {
+				 return config.hide_bar.indexOf(item) === -1;
+				 });
+				 } else if (Array.isArray(this.editor.show_bar) && this.editor.show_bar.length) {
+				 var bar = this.editor.show_bar;
+				 } else if (Array.isArray(this.editor.hide_bar) && this.editor.hide_bar.length) {
+				 var bar = this.wangEditor.bar.filter((item) => {
+				 return this.editor.hide_bar.indexOf(item) === -1;
+				 });
+				 } else {
+				 var bar = this.wangEditor.bar;
+				 }*/
 
 				// if (this.wangEditor.many === true && bar.indexOf('location') !== -1) {
 				// 	var bar = bar.splice(bar.indexOf('location'), 1);
 				// }
 
-				this.wangEditor.editor[id].config.menus = bar;
+				// this.wangEditor.editor[id].config.menus = bar;
 			}
 
 			return this;
@@ -133,34 +124,38 @@ export default {
 		 * @param  {string} id 编辑器ID
 		 */
 		eventEditor(id) {
-			var self                                              = this;
-			this.wangEditor.editor[id].config.uploadImgFns.onload = function (data) {
-				if (data.status === 200) {
-					var originalName = this.uploadImgOriginalName || '';
-
-					this.command(null, 'insertHtml', '<img src="' + data.data.fileinfo.getSaveName + '" alt="' + originalName + '" style="max-width:100%;"/>');
-				} else {
-					if (data.status === 404) {
-						self.$message.error('上传错误信息：token无效！');
+			this.wangEditor.editor[id].customConfig.uploadImgHooks = {
+				error       : function(xhr, editor) {
+					console.log('error');
+					this.$message.error('上传错误信息：上传错误！');
+				},
+				timeout     : function(xhr, editor) {
+					console.log('timeout');
+					this.$message.error('上传错误信息：网络超时！');
+				},
+				customInsert: function(insertImg, data, editor) {
+					if (data.status === 200) {
+						var url = data.data.fileinfo.getSaveName;
+						insertImg(url);
 					} else {
-						self.$message.error('上传错误信息：' + data.msg);
+						//这里可以判断到token无效时，可以退出登录，让用户重新登录
+						if (data.status === 404) {
+							this.$message.error('上传错误信息：token无效！');
+						} else {
+							this.$message.error('上传错误信息：' + data.msg);
+						}
 					}
 				}
-
 			};
 
-			this.wangEditor.editor[id].config.uploadImgFns.onerror = (xhr) => {
-				this.$message.error('上传错误信息：网络错误！');
-			};
+			this.wangEditor.editor[id].customConfig.onchange = () => {
+				var text = this.wangEditor.editor[id].txt.text().replace(/(^\s*)|(\s*$)/g, ""),
+					html = this.wangEditor.editor[id].txt.html();
 
-			this.wangEditor.editor[id].onchange = function () {
-				var text = this.$txt.text().replace(/(^\s*)|(\s*$)/g, ""),
-					html = this.$txt.html();
+				this.wangEditor.temp[id].html = html;
+				this.wangEditor.temp[id].text = text;
 
-				self.wangEditor.temp[id].html = html;
-				self.wangEditor.temp[id].text = text;
-
-				self.$emit('onEditorChange', {
+				this.$emit('onEditorChange', {
 					id,
 					data: {
 						html,
@@ -251,7 +246,7 @@ export default {
 						}
 					}],
 					//默认禁止今天以前的日期
-					disabledDate = function (time) {
+					disabledDate = function(time) {
 						return time.getTime() < Date.now() - 8.64e7;
 					};
 

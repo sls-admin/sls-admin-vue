@@ -31,7 +31,6 @@ export default {
                 },
                 filter_multiple: false,
             }]
-
         }
     },
     methods: {

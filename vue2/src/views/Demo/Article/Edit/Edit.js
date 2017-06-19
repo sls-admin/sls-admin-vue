@@ -2,7 +2,8 @@ import {
 	gbs
 } from 'config/';
 
-import E from 'wangeditor';
+// var wangEditor=require('libs/wangeditor/wangEditor.js');
+import {wangEditor as E} from 'libs/wangeditor/wangEditor.js';
 
 export default {
 	name   : 'edit-article',
@@ -43,15 +44,24 @@ export default {
 			},
 			wangEditor  : {
 				bar: [
-					'source', '|',
-					'bold', 'underline', 'italic', 'strikethrough', 'eraser', 'forecolor', 'bgcolor', '|',
-					'quote', 'fontfamily', 'fontsize', 'head', 'unorderlist', 'orderlist', 'alignleft', 'aligncenter', 'alignright', '|',
-					'link', 'unlink', 'table', 'emotion', '|',
-					'img',
-					'video',
-					// 'location',
-					'insertcode', '|',
-					'undo', 'redo', 'fullscreen'
+					'head',  // 标题
+					'bold',  // 粗体
+					'italic',  // 斜体
+					'underline',  // 下划线
+					'strikeThrough',  // 删除线
+					'foreColor',  // 文字颜色
+					'backColor',  // 背景颜色
+					'link',  // 插入链接
+					'list',  // 列表
+					'justify',  // 对齐方式
+					'quote',  // 引用
+					'emoticon',  // 表情
+					'image',  // 插入图片
+					'table',  // 表格
+					'video',  // 插入视频
+					'code',  // 插入代码
+					'undo',  // 撤销
+					'redo'  // 重复
 				],
                 obj:null
 			}
@@ -70,9 +80,6 @@ export default {
 			var ref = this.$refs[formName];
 			ref.validate((valid) => {
 				if (valid) {
-					// console.log(this.article_data.content);
-					// console.log(this.temp.content);
-					// return;
 
 					if (!this.temp.content) {
 						if ((this.article_data.content.indexOf('<iframe') == -1 || this.article_data.content.indexOf('</iframe>') == -1) && (this.article_data.content.indexOf('<img') == -1)) {
@@ -80,8 +87,6 @@ export default {
 							return;
 						}
 					}
-
-					// console.log(this.article_data);
 
 					this.$$api_article_saveArticle({
 						data:this.article_data,
@@ -102,105 +107,53 @@ export default {
          * 初始化wangeditor编辑器
          */
         initWangeditor(){
-
             var self   = this;
             this.wangEditor.obj = new E('#article');
 
             this.wangEditor.obj.customConfig.uploadFileName = 'article';
-
             this.wangEditor.obj.customConfig.uploadImgServer = gbs.host + '/Article/editUpload';
-
-            // 配置自定义参数（举例）
             this.wangEditor.obj.customConfig.uploadImgParams = {
                 username: this.$store.state.user.userinfo.username
             };
-
-            //自定义header，因为服务器验证通过header中的token进行的验证
             this.wangEditor.obj.customConfig.uploadImgHeaders = {
                 token : this.$store.state.user.userinfo.token
             };
-
-
 			this.wangEditor.obj.customConfig.uploadImgHooks = {
-				before: function (xhr, editor, files) {
-					// 图片上传之前触发
-					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
-				},
-				success: function (xhr, editor, result) {
-					// 图片上传并返回结果，图片插入成功之后触发
-					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-					console.log(result);
-				},
-				fail: function (xhr, editor, result) {
-					// 图片上传并返回结果，但图片插入错误时触发
-					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-					console.log(result);
-				},
 				error: function (xhr, editor) {
-					// 图片上传出错时触发
-					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+					console.log('error');
+					this.$message.error('上传错误信息：上传错误！');
 				},
 				timeout: function (xhr, editor) {
-					// 图片上传超时时触发
-					// xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+					console.log('timeout');
+					this.$message.error('上传错误信息：网络超时！');
 				},
-
-				// 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
-				customInsert: function (insertImg, result, editor) {
-					console.log(result);
-					// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
-					// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
-
-					// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
-					var url = result.url
-					insertImg(url)
+				customInsert: function (insertImg, data, editor) {
+					if (data.status === 200) {
+						var url = data.data.fileinfo.getSaveName;
+						insertImg(url);
+					} else {
+						//这里可以判断到token无效时，可以退出登录，让用户重新登录
+						if (data.status === 404) {
+							this.$message.error('上传错误信息：token无效！');
+						} else {
+							this.$message.error('上传错误信息：' + data.msg);
+						}
+					}
 				}
 			};
 
-            // 自定义load事件
-            /*this.wangEditor.obj.customConfig.uploadImgFns.onload = (data) => {
-                //注意：这是原生ajax的处理,返回的是原生的JSON串
-                if(typeof data==='string'){
-                    data=JSON.parse(data);
-                }
-                // console.log(data);
-                if (data.status === 200) {
-                    // 上传图片时，已经将图片的名字存在 this.wangEditor.obj.uploadImgOriginalName
-                    var originalName = this.wangEditor.obj.uploadImgOriginalName || '';
 
-                    // 如果 resultText 是图片的url地址，可以这样插入图片：
-                    this.wangEditor.obj.command(null, 'insertHtml', '<img src="' + data.data.fileinfo.getSaveName + '" alt="' + originalName + '" style="max-width:100%;"/>');
-                } else {
-                    //这里可以判断到token无效时，可以退出登录，让用户重新登录
-                    if (data.status === 404) {
-                        this.$message.error('上传错误信息：token无效！');
-                    } else {
-                        this.$message.error('上传错误信息：' + data.msg);
-                    }
-                }
 
-            };*/
-
-            //自定义错误信息
-            /*this.wangEditor.obj.customConfig.uploadImgFns.onerror = (xhr) => {
-                this.$message.error('上传错误信息：网络错误！');
-            };*/
 
             //自定义工具栏
-            // this.wangEditor.obj.config.menus = this.wangEditor.bar;
+            // this.wangEditor.obj.customConfig.menus = this.wangEditor.bar;
 
             //编辑器改变事件时，同步更新文章内容
-            this.wangEditor.obj.onchange = function () {
-                var text = this.$txt.text().replace(/(^\s*)|(\s*$)/g, ""),
-                    html = this.$txt.html();
-
-                /*console.log(text);
-                 console.log(html);*/
-
-                self.setContent(html, text);
+            this.wangEditor.obj.customConfig.onchange = (html)=> {
+                var text = this.wangEditor.obj.txt.text().replace(/(^\s*)|(\s*$)/g, ""),
+                    html = this.wangEditor.obj.txt.html();
+                this.setContent(html, text);
             };
-
-            // this.wangEditor.obj.config.hideLinkImg = true;
 
             //自定义上传图片错误事件
             this.wangEditor.obj.create();
@@ -212,7 +165,11 @@ export default {
 	},
 
 	mounted(){
-		this.initWangeditor();
+		if(this.wangEditor.obj===null){
+			console.log('test');
+			this.initWangeditor();
+		}
+
 
 		if (this.$route.query.id) {
 			var data = {

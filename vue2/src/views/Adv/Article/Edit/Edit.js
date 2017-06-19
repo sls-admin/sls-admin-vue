@@ -22,16 +22,18 @@ export default {
                 desc: '请输入文章内容',
                 label: '文章内容',
                 style: {
-                    height: '260px'
+
                 },
-                config:{
+                /*config:{
 					name: 'article',
 					url: gbs.host + '/Article/editUpload',
 					params: {
-						token: this.$store.state.user.userinfo.token,
 						username: this.$store.state.user.userinfo.username
-					}
-                }
+					},
+                    headers:{
+						token: this.$store.state.user.userinfo.token
+                    }
+                }*/
             }, {
                 key: 'cate',
                 type: 'select',
@@ -87,10 +89,12 @@ export default {
             editor: {
                 name: 'article',
                 url: gbs.host + '/Article/editUpload',
-                params: {
-                    token: this.$store.state.user.userinfo.token,
-                    username: this.$store.state.user.userinfo.username
-                }
+				params: {
+					username: this.$store.state.user.userinfo.username
+				},
+				headers:{
+					token: this.$store.state.user.userinfo.token
+				}
             },
             rules: {
                 title: [{
@@ -121,8 +125,17 @@ export default {
         }
     },
     methods: {
-        onSubmit(data) {
-			this.$$api_article_saveArticle({
+        onSubmit({data,editor_temp_data}) {
+			if (!editor_temp_data.article.text) {
+				if ((editor_temp_data.article.html.indexOf('<iframe') == -1 || editor_temp_data.article.html.indexOf('</iframe>') == -1) && (editor_temp_data.article.html.indexOf('<img') == -1)) {
+					this.$message.error('文章内容不能为空！');
+					return;
+				}
+			}
+
+			data.content=editor_temp_data.article.html;
+
+            this.$$api_article_saveArticle({
 			    data,
                 fn:()=>{
 					this.$router.push('/adv/article/list');
