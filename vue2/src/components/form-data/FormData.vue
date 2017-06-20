@@ -51,7 +51,6 @@
                 <div
                         v-if='field.type==="editor"'
                         :id="field.id"
-                        v-demo="submit_data[field.key]"
                         :style="field.style"></div>
 
                 <!--
@@ -60,7 +59,7 @@
                 <el-input
                         v-if='!field.type || field.type==="input" || field.type==="textarea"'
                         :type='!field.type ? "input" : field.type'
-                        v-model="submit_data[field.key]"
+                        :value="submit_data[field.key]"
                         :placeholder='field.desc'></el-input>
 
                 <!-- 

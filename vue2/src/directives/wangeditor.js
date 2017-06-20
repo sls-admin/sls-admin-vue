@@ -5,10 +5,11 @@
 import Vue from 'vue';
 
 export default function() {
-	console.log('wangeditor');
 	Vue.directive('demo', {
 		bind: function (el, binding, vnode) {
 			var s = JSON.stringify;
+
+			console.log(el);
 
 			// el.innerHTML =
 			// 	'name: '       + s(binding.name) + '<br>' +

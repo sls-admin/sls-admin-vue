@@ -181,7 +181,7 @@ export default {
 					this.article_data        = data.article_info;
 					this.article_data.status = data.article_info.status == 1 ? true : false;
 					this.article_data.tabs   = data.article_info.tabs.split(',');
-                    this.wangEditor.obj.$txt.html(this.article_data.content);
+                    this.wangEditor.obj.txt.html(this.article_data.content);
 				}
 			});
 		}

@@ -84,7 +84,7 @@ export default function ({
 					gbs.api_custom[res.data[gbs.api_status_key_field]].call(this,res.data);
 				}else{
 					if(errFn){
-						errFn.call(this.res.data);
+						errFn.call(this,res.data);
 					}else{
 						cbs.statusError.call(this, res.data);
 					}

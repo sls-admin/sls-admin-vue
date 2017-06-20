@@ -1,7 +1,4 @@
 import {wangEditor} from 'libs/wangeditor/wangEditor.js';
-import {wangeditorContent} from 'directives/';
-console.log(wangeditorContent);
-wangeditorContent();
 
 export default {
 	name   : 'list',
@@ -15,6 +12,13 @@ export default {
 			rules      : this.Rules || {},
 
 			setting: this.Setting,
+
+			primary_key: this.PrimaryKey,
+
+
+			wangeditor_update:[],
+
+
 
 			/**
 			 * 富文本编辑器信息
@@ -59,7 +63,7 @@ export default {
 		 * @param  {object} config 初始化配置
 		 * @return {object}        所有编辑器所在对象，属性已ID为key
 		 */
-		initEditor(id, config) {
+		initEditor(id, config, key) {
 			if (id) {
 				this.wangEditor.editor[id] = new wangEditor('#' + id);
 				this.wangEditor.temp[id]   = {
@@ -70,7 +74,7 @@ export default {
 
 			// this.eventEditor(id).createEditor(id);
 
-			this.configEditor(id, config).eventEditor(id).createEditor(id);
+			this.configEditor(id, config, key).eventEditor(id, key).createEditor(id, key);
 		},
 
 
@@ -174,8 +178,11 @@ export default {
 		 * 创建编辑器
 		 * @param  {string} id 编辑器ID
 		 */
-		createEditor(id) {
+		createEditor(id, key) {
 			this.wangEditor.editor[id].create();
+			this.wangeditor_update.push({
+				id,key
+			});
 		},
 
 
@@ -352,22 +359,25 @@ export default {
 				for (var i = 0; i < fields.length; i++) {
 					var field = fields[i];
 
-					if (field.value && field.value.constructor === Object) {
-						if (field.checkall && typeof field.checkall === 'object') {
-							this.initCheckall(field);
+					if(!this.submit_data[this.primary_key]){
+						if (field.value && field.value.constructor === Object) {
+							if (field.checkall && typeof field.checkall === 'object') {
+								this.initCheckall(field);
+							} else {
+								// this.$set(this.submit_data, field.key, field.value.default);
+							}
 						} else {
-							this.$set(this.submit_data, field.key, field.value.default);
+							// this.$set(this.submit_data, field.key, field.value);
 						}
-					} else {
-						this.$set(this.submit_data, field.key, field.value);
 					}
+
 
 
 					if (field.type) {
 						switch (field.type) {
 							case 'editor':
 								k++;
-								this.initEditor(field.id, field.config || {});
+								this.initEditor(field.id, field.config || {}, field.key);
 								if (k == 2) {
 									this.wangEditor.many = true;
 								}
@@ -535,6 +545,10 @@ export default {
 			default(){
 				return {};
 			}
+		},
+		PrimaryKey  : {
+			type   : String,
+			default: 'id'
 		}
 	},
 
@@ -544,7 +558,7 @@ export default {
 	 * @type {Object}
 	 */
 	watch: {
-		FieldList: {
+		FieldList   : {
 			deep: true,
 			handler(v){
 				if (v) {
@@ -552,13 +566,25 @@ export default {
 				}
 			}
 		},
-		DefaultValue(v) {
-			if (v) {
-				this.submit_data = v;
+		DefaultValue: {
+			deep: true,
+			handler(v){
+				if (v) {
+					this.submit_data = v;
+					this.wangeditor_update.forEach(item=>{
+						this.wangEditor.editor[item.id].txt.html(v[item.key]);
+					});
+				}
 			}
+		},
+		wangeditor_update(v){
+			console.log(v);
 		},
 		Setting(v){
 			this.setting = v;
+		},
+		PrimaryKey(v){
+			this.primary_key = v;
 		}
 	}
 }

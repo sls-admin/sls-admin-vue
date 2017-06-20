@@ -2,12 +2,11 @@
     <div>
         <list-data
             ref='list-data'
-            :ImageHost='image_host'
             :List='list'
             :FieldList='fields'
-            :Selection='true'
-            @onDelete="onDelete"
-            @onGetInfo="onGetInfo"></list-data>
+            :BtnInfo="btn_info"
+            @onClickBtnDelete="onDeleteQiniuFile"
+            @onClickBtnSelect="onSelectQiniuFile"></list-data>
         
         <el-button
             type="primary"
@@ -19,7 +18,7 @@
         <el-upload
             class="upload-demo"
             drag
-            action="/slsAdminQiniu/"
+            action=""
             :data="params"
             :before-upload="onUploadQiniu"
             multiple>
@@ -31,7 +30,7 @@
 
         <el-dialog title="查看图片" v-model="dialog.show" size="small">
             <div>
-                <img class="qiniu-pic" :src="image_host+dialog.info.key" alt="">
+                <img class="qiniu-pic" :src="'//slsadmin.qiniu.sailengsi.com/'+dialog.info.key" alt="">
             </div>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="onHideDialog">关 闭</el-button>

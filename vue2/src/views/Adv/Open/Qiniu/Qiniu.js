@@ -8,7 +8,6 @@ export default {
 			params    : {
 				token: '',
 			},
-			image_host: '//slsadmin.qiniu.sailengsi.com/',
 			dialog    : {
 				show: false,
 				info: {}
@@ -18,6 +17,7 @@ export default {
 				key  : 'key',
 				label: '文件类型',
 				type : 'image',
+				host: '//slsadmin.qiniu.sailengsi.com/',
 				width: '100',
 				style: {
 					width : '80px',
@@ -30,6 +30,10 @@ export default {
 				key  : 'fsize',
 				label: '文件大小'
 			}],
+
+			btn_info:{
+				update:false
+			},
 
 			qiniu: {
 				marker: '',
@@ -68,6 +72,12 @@ export default {
 			});
 		},
 
+
+		/**
+		 * 七牛只传
+		 * @param file	文件对象
+		 * @returns {boolean}	return false阻止elementUI内部上传
+		 */
 		onUploadQiniu(file) {
 			this.onGetQiniuToken(file, () => {
 				var formData = new FormData();
@@ -76,27 +86,12 @@ export default {
 				if (this.params.key) {
 					formData.append('key', this.params.key);
 				}
-				/*this.$$api_open_uploadQiniuFile(formData, data => {}, {
-				 host: '//up-z2.qiniu.com/',
-				 cbFn:res=>{
-				 this.onGetQiniuList();
-				 },
-				 errFn: err => {
-				 console.log(err);
-				 },
-				 headers: {
-				 'Content-Type': 'multipart/form-data'
-				 }
-				 });*/
 
 				this.$$api_open_uploadQiniuFile({
 					data   : formData,
 					path   : '//up-z2.qiniu.com/',
-					fn     : data => {
-
-					},
-					errFn  : err => {
-						console.log(err);
+					errFn  : data => {
+						this.onGetQiniuList();
 					},
 					headers: {
 						'Content-Type': 'multipart/form-data'
@@ -108,7 +103,11 @@ export default {
 		},
 
 
-		onDelete(opts) {
+		/**
+		 * 删除七牛图片
+		 * @param opts
+		 */
+		onDeleteQiniuFile(opts){
 			if (opts.batch_ids) {
 				this.$alert('暂时不支持批量批量删除七牛图片，完善中...', '不支持的操作');
 				return;
@@ -118,38 +117,47 @@ export default {
 				cancelButtonText : '取消',
 				type             : 'warning'
 			}).then(() => {
-				this.$$deleteQiniuFile({
-					data:{
+				this.$$api_open_deleteQiniuFile({
+					data: {
 						key: opts.data.key
 					},
-					fn:data=>{
-						this.list.splice(opts.index, 1);
+					fn  : data => {
+						this.onGetQiniuList();
 					}
 				});
+			}).catch(()=>{
+				this.$message('已取消删除！');
 			});
 		},
 
-		onGetInfo(opts) {
-			switch (opts.type) {
-				case 'select':
-					this.onShowDialog(opts.row);
-					break;
-				default:
-
-			}
+		/**
+		 * 查看图片
+		 * @param opts
+		 */
+		onSelectQiniuFile(opts){
+			console.log(opts);
+			this.onShowDialog(opts.data);
 		},
 
+
+		/**
+		 * 弹框查看图片
+		 * @param info
+		 */
 		onShowDialog(info) {
 			this.dialog.info = info || {};
 			this.dialog.show = true;
 		},
 
+
+		/**
+		 * 关闭弹框查看图片
+		 */
 		onHideDialog() {
 			this.dialog.show = false;
 		}
 	},
-	created() {
-	},
+	created() {},
 	mounted() {
 		this.onGetQiniuList();
 	}

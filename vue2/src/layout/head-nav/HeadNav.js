@@ -120,15 +120,16 @@ export default {
         updUserPass(userinfo) {
             this.$refs[userinfo].validate((valid) => {
                 if (valid) {
-                    UserApi.updPass.call(this, {
-                        old_password: this.dialog[userinfo].old_password,
-                        password: this.dialog[userinfo].password,
-                        password_confirm: this.dialog[userinfo].password_confirm
-                    }, (data) => {
-                        this.dialog.show_pass = false;
-                        // this.$nextTick(() => {
-                        this.$message.success('修改成功！');
-                        // });
+					this.$$api_user_updatePass({
+                        data:{
+							old_password: this.dialog[userinfo].old_password,
+							password: this.dialog[userinfo].password,
+							password_confirm: this.dialog[userinfo].password_confirm
+                        },
+                        fn:data=>{
+							this.dialog.show_pass = false;
+							this.$message.success('修改成功！');
+                        }
                     });
                 }
             });
@@ -140,16 +141,17 @@ export default {
         onGetSetting() {
             //获取系统设置信息
             if (this.$store.state.user.userinfo.pid == 0) {
-                SystemApi.getSetting.call(this, (data) => {
-                    // console.log(data);
-                    if (data.setting_info.disabled_update_pass) {
-                        data.setting_info.disabled_update_pass = data.setting_info.disabled_update_pass.split(',');
-                    } else {
-                        data.setting_info.disabled_update_pass = [];
-                    }
-                    data.setting_info.login_style = data.setting_info.login_style + '';
+                this.$$api_system_getSetting({
+                    fn:data=>{
+						if (data.setting_info.disabled_update_pass) {
+							data.setting_info.disabled_update_pass = data.setting_info.disabled_update_pass.split(',');
+						} else {
+							data.setting_info.disabled_update_pass = [];
+						}
+						data.setting_info.login_style = data.setting_info.login_style + '';
 
-                    this.dialog.set_info = data.setting_info;
+						this.dialog.set_info = data.setting_info;
+                    }
                 });
             } else {
                 this.$message.error('只有管理员才能操作！');
@@ -164,13 +166,15 @@ export default {
             // console.log(this.dialog.set_info.disabled_update_pass);
             // console.log(this.dialog.set_info.id);
 
-            SystemApi.updateSetting.call(this, {
-                id: this.dialog.set_info.id,
-                login_style: this.dialog.set_info.login_style,
-                disabled_update_pass: this.dialog.set_info.disabled_update_pass && this.dialog.set_info.disabled_update_pass.length ? this.dialog.set_info.disabled_update_pass.join(',') : ''
-            }, (data) => {
-                // console.log(data);
-                this.dialog.show_set = false;
+            this.$$api_system_updateSetting({
+                data:{
+					id: this.dialog.set_info.id,
+					login_style: this.dialog.set_info.login_style,
+					disabled_update_pass: this.dialog.set_info.disabled_update_pass && this.dialog.set_info.disabled_update_pass.length ? this.dialog.set_info.disabled_update_pass.join(',') : ''
+                },
+                fn:data=>{
+					this.dialog.show_set = false;
+                }
             });
         }
     }
