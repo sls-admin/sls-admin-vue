@@ -4,6 +4,9 @@ export default {
     },
     data() {
         return {
+            default_value:{
+                input:'default value'
+            },
             fields: [{
                 label: 'Input',
                 key: 'input',

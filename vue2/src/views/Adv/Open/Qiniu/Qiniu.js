@@ -135,7 +135,6 @@ export default {
 		 * @param opts
 		 */
 		onSelectQiniuFile(opts){
-			console.log(opts);
 			this.onShowDialog(opts.data);
 		},
 

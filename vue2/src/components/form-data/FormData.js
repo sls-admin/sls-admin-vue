@@ -8,16 +8,12 @@ export default {
 
 			fields     : this.FieldList,
 			editor     : this.Editor || {},
-			submit_data: this.DefaultValue || {},
+			submit_data: this.DefaultValue,
 			rules      : this.Rules || {},
 
 			setting: this.Setting,
-
 			primary_key: this.PrimaryKey,
-
-
 			wangeditor_update:[],
-
 
 
 			/**
@@ -352,6 +348,7 @@ export default {
 		 * @return {object} [表单需要的字段]
 		 */
 		deepObj() {
+
 			if (this.fields) {
 				var fields = this.fields,
 					k      = 0,
@@ -359,16 +356,14 @@ export default {
 				for (var i = 0; i < fields.length; i++) {
 					var field = fields[i];
 
-					if(!this.submit_data[this.primary_key]){
-						if (field.value && field.value.constructor === Object) {
-							if (field.checkall && typeof field.checkall === 'object') {
-								this.initCheckall(field);
-							} else {
-								// this.$set(this.submit_data, field.key, field.value.default);
-							}
+					if (field.value && field.value.constructor === Object) {
+						if (field.checkall && typeof field.checkall === 'object') {
+							this.initCheckall(field);
 						} else {
-							// this.$set(this.submit_data, field.key, field.value);
+							// this.$set(this.submit_data, field.key, field.value.default);
 						}
+					} else {
+						// this.$set(this.submit_data, field.key, field.value);
 					}
 
 
@@ -423,6 +418,7 @@ export default {
 				}
 
 				// console.log(this.submit_data);
+
 			}
 		},
 
@@ -437,6 +433,8 @@ export default {
 			if (this.wangEditor.has === true) {
 				data.editor_temp_data = this.wangEditor.temp;
 			}
+
+			console.log(data);
 
 			if (this.rules) {
 				this.$refs[ref].validate((valid) => {
@@ -566,16 +564,19 @@ export default {
 				}
 			}
 		},
-		DefaultValue: {
+		/*submit_data: {
 			deep: true,
 			handler(v){
+				console.log(v);
 				if (v) {
-					this.submit_data = v;
 					this.wangeditor_update.forEach(item=>{
 						this.wangEditor.editor[item.id].txt.html(v[item.key]);
 					});
 				}
 			}
+		},*/
+		DefaultValue(v){
+			this.submit_data=v;
 		},
 		wangeditor_update(v){
 			console.log(v);
