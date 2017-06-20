@@ -51,8 +51,8 @@
                 <div
                         v-if='field.type==="editor"'
                         :id="field.id"
-                        :style="field.style"
-                        v-html='submit_data[field.key]'></div>
+                        v-demo="submit_data[field.key]"
+                        :style="field.style"></div>
 
                 <!--
                     input,textarea 

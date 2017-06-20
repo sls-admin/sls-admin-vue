@@ -8,18 +8,18 @@ import {Adv} from 'views/';
 
 export default {
 	path: 'article',
-	name: '文章管理',
+	name: 'article-manager',
 	icon: 'inbox',
 	component: Content,
 	redirect: '/adv/article/list',
 	children: [{
 		path: 'list',
-		name: '文章列表',
+		name: 'article-list',
 		icon: 'reorder',
 		component: Adv.Article.List
 	}, {
 		path: 'edit',
-		name: '编辑文章',
+		name: 'article-edit',
 		icon: 'edit',
 		component: Adv.Article.Edit
 	}]

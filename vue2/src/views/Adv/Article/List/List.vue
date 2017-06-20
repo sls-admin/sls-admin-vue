@@ -2,6 +2,9 @@
     <div class="list">
         <list-data
             ref='list-data'
+            @onClickBtnAdd="onClickBtnAdd"
+            @onClickBtnDelete="onClickBtnDelete"
+            @onClickBtnUpdate="onClickBtnUpdate"
             :List='list'
             :FieldList='fields'></list-data>
     </div>

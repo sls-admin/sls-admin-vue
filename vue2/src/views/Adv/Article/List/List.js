@@ -13,6 +13,7 @@ export default {
                 key: 'title',
                 label: '标题'
             }, {
+                width:'160',
                 key: 'status',
                 label: '状态',
                 formatter: function(item) {
@@ -34,7 +35,10 @@ export default {
         }
     },
     methods: {
-        onGetList(){
+		/**
+         * 获取文章列表
+		 */
+		onGetList(){
             this.$$api_article_selectArticle({
                 fn:data=>{
                     console.log(data);
@@ -43,8 +47,51 @@ export default {
             });
         },
 
-        init() {
-            this.onGetList();
+
+		/**
+         * 点击删除按钮
+		 */
+		onClickBtnDelete(opts){
+            this.$confirm('删除后不可恢复','确认删除？').then(()=>{
+				this.$$api_article_deleteArticle({
+					data:{
+						id: opts.data.id
+					},
+					fn:data=>{
+						this.onGetList();
+					}
+				});
+            });
+        },
+
+
+        /**
+         * 添加文章
+		 */
+		onClickBtnAdd(){
+            this.$router.push('/adv/article/edit');
+        },
+
+
+		/**
+         * 修改按钮
+		 * @param opts
+		 */
+		onClickBtnUpdate(opts){
+            this.$router.push({
+                path:'/adv/article/edit',
+                query:{
+                    id:opts.data.id
+                }
+            });
+        },
+
+
+		/**
+         * 初始化
+		 */
+		init() {
+			this.onGetList();
         }
     },
     mounted() {

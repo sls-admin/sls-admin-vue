@@ -1,4 +1,7 @@
 import {wangEditor} from 'libs/wangeditor/wangEditor.js';
+import {wangeditorContent} from 'directives/';
+console.log(wangeditorContent);
+wangeditorContent();
 
 export default {
 	name   : 'list',
