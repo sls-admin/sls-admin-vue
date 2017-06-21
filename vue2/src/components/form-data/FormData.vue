@@ -59,7 +59,7 @@
                 <el-input
                         v-if='!field.type || field.type==="input" || field.type==="textarea"'
                         :type='!field.type ? "input" : field.type'
-                        :value="submit_data[field.key]"
+                        v-model="submit_data[field.key]"
                         :placeholder='field.desc'></el-input>
 
                 <!-- 

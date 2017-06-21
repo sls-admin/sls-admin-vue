@@ -17,14 +17,14 @@
         },
         methods: {
         	onTest(data){
-        		console.log(data.data);
+
         	}
         },
         created() {
 
         },
         mounted() {
-
+            console.log('form');
         }
     }
 </script>

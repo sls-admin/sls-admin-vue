@@ -427,6 +427,7 @@ export default {
 		 * 表单提交事件
 		 */
 		onSubmit(ref) {
+
 			var data = {
 				data: this.submit_data,
 			};
@@ -434,7 +435,6 @@ export default {
 				data.editor_temp_data = this.wangEditor.temp;
 			}
 
-			console.log(data);
 
 			if (this.rules) {
 				this.$refs[ref].validate((valid) => {
@@ -490,7 +490,7 @@ export default {
 
 
 		onChangeDateTime(v) {
-			console.log(v + '    formdata');
+			console.log(v + 'formdata');
 		}
 	},
 
@@ -564,22 +564,21 @@ export default {
 				}
 			}
 		},
-		/*submit_data: {
+		submit_data: {
 			deep: true,
 			handler(v){
-				console.log(v);
 				if (v) {
 					this.wangeditor_update.forEach(item=>{
 						this.wangEditor.editor[item.id].txt.html(v[item.key]);
 					});
 				}
 			}
-		},*/
+		},
 		DefaultValue(v){
 			this.submit_data=v;
 		},
 		wangeditor_update(v){
-			console.log(v);
+
 		},
 		Setting(v){
 			this.setting = v;

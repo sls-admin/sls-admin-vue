@@ -1,7 +1,4 @@
 export default {
-    components: {
-
-    },
     data() {
         return {
             default_value:{
@@ -10,7 +7,6 @@ export default {
             fields: [{
                 label: 'Input',
                 key: 'input',
-                value: 'sailengsi',
                 desc: '请输入标题'
             }],
         }
@@ -19,5 +15,11 @@ export default {
         onSubmit(data) {
             this.$emit('onTest', data);
         }
+    },
+    created(){
+        // console.log('created input')
+    },
+    mounted(){
+        // console.log('mountd input')
     }
 }

@@ -32,6 +32,7 @@ var cbs={
 	 * @param  {object} err 返回的对象，包含错误码和错误信息
 	 */
 	statusError(err) {
+		console.log('err');
 		if (err.status !== 404) {
 			this.$message({
 				showClose: true,

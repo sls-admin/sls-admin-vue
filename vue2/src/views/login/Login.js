@@ -138,7 +138,8 @@ export default {
 								}
 							});
 						},
-						errFn    : () => {
+						errFn    : (err) => {
+							this.$message.error(err.msg);
 							this.login_actions.disabled = false;
 						},
 						tokenFlag: true

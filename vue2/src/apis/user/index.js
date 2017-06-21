@@ -10,7 +10,7 @@ export default [
     {
         name  : '登录',
         method: 'login',
-        path  : '/Login/login',
+        path  : '/login/login',
         type  : 'post',
     },
     {
