@@ -35,7 +35,7 @@ export default {
 
         this.chartBar.setOption({
             title: {
-                text: 'Bar Chart',
+                text: 'bar Chart',
                 subtext: '数据来自网络'
             },
             tooltip: {
@@ -74,7 +74,7 @@ export default {
 
         this.chartLine.setOption({
             title: {
-                text: 'Line Chart'
+                text: 'line Chart'
             },
             tooltip: {
                 trigger: 'axis'
@@ -116,7 +116,7 @@ export default {
 
         this.chartPie.setOption({
             title: {
-                text: 'Pie Chart',
+                text: 'pie Chart',
                 subtext: '纯属虚构',
                 x: 'center'
             },

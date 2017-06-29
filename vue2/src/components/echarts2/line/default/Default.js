@@ -22,7 +22,7 @@ export default {
             }
             this.chartDom.setOption({
                 title: {
-                    text: 'Line Chart'
+                    text: 'line Chart'
                 },
                 tooltip: {
                     trigger: 'axis'

@@ -19,7 +19,7 @@ export default {
             }
             this.chartDom.setOption({
                 title: {
-                    text: 'Bar Chart',
+                    text: 'bar Chart',
                     subtext: '数据来自网络'
                 },
                 tooltip: {
