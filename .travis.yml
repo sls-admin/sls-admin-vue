@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-  - "6"
+  - "7"
+branches:
+  only:
+  - webpack2
 before_install:
-  - cd ./vue2 && npm install && npm run build
+  - cd vue2
+install:
+  - npm install
+script:
+  - npm run build
