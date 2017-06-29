@@ -2,5 +2,6 @@ language: node_js
 node_js:
   - "6"
 before_install:
+  - cd vue2
   - npm install
   - npm run build
