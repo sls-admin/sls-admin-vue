@@ -1,8 +1,9 @@
 ### SlsAdmin介绍
 
+[![Build Status](https://travis-ci.org/sailengsi/sls-admin.svg?branch=master)](https://travis-ci.org/sailengsi/sls-admin)
+
 此项目是一个后台管理系统，里面有完整并且实际的增删改查功能，有普通模式操作，也有高级模式操作，用此项目，可以快速帮您完成后台功能。
 此项目重点突出在于架构模式，相比那些有很多页面，但架构混乱的项目来说，一个真正的前端应该更在意项目的架构。
-
 
 
 ### 文档更新
