@@ -1,0 +1,20 @@
+export default {
+    components: {
+        // FormData
+    },
+    data() {
+        return {
+            fields: [{
+                label: '文本框',
+                key: 'textarea',
+                type: 'textarea',
+                desc: '请输入内容',
+            }],
+        }
+    },
+    methods: {
+        onSubmit(data) {
+            this.$emit('onTest', data);
+        }
+    }
+}
