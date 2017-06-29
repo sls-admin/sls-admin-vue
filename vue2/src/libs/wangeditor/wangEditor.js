@@ -61,7 +61,7 @@ function createElemByHTML(html) {
     return div.children;
 }
 
-// 是否是 DOM List
+// 是否是 DOM list
 function isDOMList(selector) {
     if (!selector) {
         return false;
@@ -95,13 +95,13 @@ function DomElement(selector) {
 
     this.selector = selector;
 
-    // 根据 selector 得出的结果（如 DOM，DOM List）
+    // 根据 selector 得出的结果（如 DOM，DOM list）
     var selectorResult = [];
     if (selector.nodeType === 1) {
         // 单个 DOM 节点
         selectorResult = [selector];
     } else if (isDOMList(selector)) {
-        // DOM List
+        // DOM list
         selectorResult = selector;
     } else if (typeof selector === 'string') {
         // 字符串
@@ -1432,7 +1432,7 @@ function List(editor) {
         type: 'list', // droplist 以列表形式展示
         list: [{ $elem: $('<span><i class="w-e-icon-list-numbered"></i> 有序列表</span>'), value: 'insertOrderedList' }, { $elem: $('<span><i class="w-e-icon-list2"></i> 无序列表</span>'), value: 'insertUnorderedList' }],
         onClick: function onClick(value) {
-            // 注意 this 是指向当前的 List 对象
+            // 注意 this 是指向当前的 list 对象
             _this._command(value);
         }
     });
@@ -1509,7 +1509,7 @@ function Justify(editor) {
         type: 'list', // droplist 以列表形式展示
         list: [{ $elem: $('<span><i class="w-e-icon-paragraph-left"></i> 靠左</span>'), value: 'justifyLeft' }, { $elem: $('<span><i class="w-e-icon-paragraph-center"></i> 居中</span>'), value: 'justifyCenter' }, { $elem: $('<span><i class="w-e-icon-paragraph-right"></i> 靠右</span>'), value: 'justifyRight' }],
         onClick: function onClick(value) {
-            // 注意 this 是指向当前的 List 对象
+            // 注意 this 是指向当前的 list 对象
             _this._command(value);
         }
     });

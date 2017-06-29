@@ -1,5 +1,5 @@
-import Edit from './Edit/';
-import List from './List/';
+import Edit from './edit/';
+import List from './list/';
 
 export default {
     Edit,

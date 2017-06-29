@@ -1,5 +1,5 @@
-import Bar from './Bar/';
-import Pie from './Pie/';
+import Bar from './bar/';
+import Pie from './pie/';
 
 export default {
     Bar,

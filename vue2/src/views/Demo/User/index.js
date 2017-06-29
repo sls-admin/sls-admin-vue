@@ -1,6 +1,6 @@
-import Edit from './Edit/';
-import List from './List/';
-import Access from './Access/';
+import Edit from './edit/';
+import List from './list/';
+import Access from './access/';
 
 export default {
     Edit,
