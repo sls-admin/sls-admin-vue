@@ -38,7 +38,6 @@ export default {
                 key: 'cate',
                 type: 'select',
                 value: {
-                    default: 'sanwen',
                     list: [{
                         value: 'jishu',
                         text: '技术'
@@ -57,7 +56,6 @@ export default {
                 type: 'select',
                 multiple: true,
                 value: {
-                    default: ['javascript', 'html'],
                     list: [{
                         value: 'html',
                         text: 'html'
@@ -78,7 +76,6 @@ export default {
                 key: 'status',
                 type: 'switch',
                 value: {
-                    default: true,
                     on: '启用',
                     off: '禁用'
                 },

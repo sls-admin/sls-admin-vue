@@ -6,7 +6,7 @@ import 'element-ui/lib/theme-default/index.css';
 Vue.use(ElementUI);
 
 Vue.config.productionTip = true;
-Vue.config.devtools      = true
+Vue.config.devtools      = true;
 
 
 import router from 'router/';
