@@ -12,7 +12,7 @@
                     :key='index'
                     :label="field.label"
                     :prop='field.key'
-                    :style="field.item_style">
+                    :style="field.style">
 
                 <!-- 单选CheckBox -->
                 <el-checkbox
@@ -59,6 +59,7 @@
                 <el-input
                         v-if='!field.type || field.type==="input" || field.type==="textarea"'
                         :type='!field.type ? "input" : field.type'
+                        :disabled="field.disabled===true ? true : false"
                         v-model="submit_data[field.key]"
                         :placeholder='field.desc'></el-input>
 
@@ -77,6 +78,10 @@
 
                 <!-- select,下拉框 -->
                 <el-select
+                        @change="field.change"
+                        :filterable="field.search===true ? true : false"
+                        :clearable="field.clear===true ? true : false"
+                        :style="field.style"
                         v-if='field.type==="select" && field.value && field.value.list && submit_data && ((field.multiple && Array.isArray(submit_data[field.key])) || !field.multiple)'
                         v-model="submit_data[field.key]"
                         :multiple='field.multiple ? true : false'

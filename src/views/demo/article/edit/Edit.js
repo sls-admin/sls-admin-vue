@@ -3,7 +3,9 @@ import {
 } from 'config/';
 
 // var wangEditor=require('libs/wangeditor/wangEditor.js');
-import {wangEditor as E} from 'libs/wangeditor/wangEditor.js';
+// import {wangEditor as E} from 'libs/wangeditor/wangEditor.js';
+
+import E from 'wangeditor';
 
 export default {
 	name   : 'edit-article',

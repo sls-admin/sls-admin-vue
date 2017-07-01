@@ -11,14 +11,12 @@ export default {
         return {
             fields: [{
                 key: 'title',
-                value: '',
                 desc: '请输入文章标题',
                 label: '文章标题'
             }, {
                 key: 'content',
-				value: '',
                 type: 'editor',
-                id: 'article',
+                id: 'adv-article',
                 desc: '请输入文章内容',
                 label: '文章内容',
                 style: {
@@ -82,7 +80,12 @@ export default {
                 desc: '',
                 label: '状态'
             }],
-            default_value: {},
+            default_value: {
+				title:'',
+				content:'',
+				cate:'',
+				tabs:[]
+			},
             editor: {
                 name: 'article',
                 url: gbs.host + '/Article/editUpload',

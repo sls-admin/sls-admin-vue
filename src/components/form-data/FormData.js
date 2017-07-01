@@ -1,4 +1,7 @@
-import {wangEditor} from 'libs/wangeditor/wangEditor.js';
+// import {wangEditor} from 'libs/wangeditor/wangEditor.js';
+
+import wangEditor from 'wangeditor';
+console.log(wangEditor);
 
 export default {
 	name   : 'list',
@@ -497,6 +500,17 @@ export default {
 
 	created() {
 		// this.deepObj();
+		if(this.fields){
+			this.fields.forEach(item=>{
+				if(!item.change){
+					item.change=(function(){
+						return function() {
+							console.log('fdf');
+						}
+					})();
+				}
+			});
+		}
 	},
 
 

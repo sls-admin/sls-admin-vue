@@ -3,6 +3,7 @@
         <form-data
             :FieldList='fields'
             :DefaultValue='default_value'
+            :Editor="editor"
             :Rules='rules'
             @onSubmit='onSubmit'></form-data>
     </div>

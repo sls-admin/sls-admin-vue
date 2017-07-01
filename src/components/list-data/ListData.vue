@@ -10,6 +10,7 @@
             </el-button>
 
             <el-button
+                    v-if='btn_info.add!==false'
                     type='primary'
                     icon='add'
                     @click='onBtnEvent({type:"Add"})'>添加
@@ -25,6 +26,7 @@
                 <form-data
                         :Setting="search.setting"
                         :FieldList='search.fields'
+                        :DefaultValue="search.default_value"
                         @onSubmit='onSearch'></form-data>
             </div>
         </el-col>
@@ -126,7 +128,7 @@
                     </span>
 
                     <!--
-                         {list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn}
+                      my-key-listlmy-key-listlist,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn}
                     -->
                     <el-button
                             v-if='btn_info.list && (btn_info.list_position==="after" || !btn_info.list_position)'
@@ -172,18 +174,18 @@
 </template>
 
 <script>
-	import ListDataJs from './ListData.js';
-	export default ListDataJs;
+    import ListDataJs from './ListData.js';
+    export default ListDataJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline {
-        display : inline-block;
-        float   : right;
+        display: inline-block;
+        float: right;
     }
 
     .btm-action {
-        margin-top : 20px;
-        text-align : center;
+        margin-top: 20px;
+        text-align: center;
     }
 
     .actions-top {
@@ -191,7 +193,7 @@
     }
 
     .pagination {
-        display : inline-block;
+        display: inline-block;
     }
 
     .list {
@@ -199,19 +201,19 @@
         table {
 
             img {
-                max-width : 100%;
-                height    : auto;
+                max-width: 100%;
+                height: auto;
             }
 
         }
     }
 
     .list-header {
-        display : inline-block;
+        display: inline-block;
     }
 
     .list-search {
-        display : inline-block;
-        float   : right;
+        display: inline-block;
+        float: right;
     }
 </style>
