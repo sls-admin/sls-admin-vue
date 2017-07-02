@@ -4,35 +4,44 @@ export default {
     },
     data() {
         return {
+            default_value:{
+                love:['chi','wan'],
+				like:['du']
+            },
             fields: [{
-                label: 'Checkbox',
+                label: '爱好',
                 type: 'checkbox',
-                key: 'checkbox',
-                value: true,
-            }, {
-                label: 'Checkbox-multiple',
-                type: 'checkbox',
-                key: 'checkbox-multiple',
-                multiple: true,
-                checkall: {
-                    value: true,
-                    indeterminate: true,
-                    text: '全选吧我曹',
-                },
-                value: {
-                    default: [1, 3],
-                    list: [{
-                        text: 'one',
-                        value: 1
-                    }, {
-                        text: 'two',
-                        value: 2
-                    }, {
-                        text: 'three',
-                        value: 3
-                    }]
-                },
-            }],
+                key: 'love',
+                list:[{
+                    text:'吃',
+                    value:'chi'
+                },{
+					text:'喝',
+					value:'he'
+				},{
+					text:'玩',
+					value:'wan'
+				}],
+				events:{
+                	change:({info,value})=>{
+                		this.$message('当前选中的值：'+value.join(',')+'；当前选中的值对应的文本是：'+info.join(','));
+					}
+				}
+            },{
+				label: '喜好',
+				type: 'checkbox',
+				key: 'like',
+				list:[{
+					text:'嫖',
+					value:'piao'
+				},{
+					text:'赌',
+					value:'du'
+				},{
+					text:'耍',
+					value:'shua'
+				}]
+			}],
 
         }
     },

@@ -2,6 +2,7 @@
     <div class="form">
         <form-data
             :FieldList='fields'
+            :DefaultValue="default_value"
             @onSubmit='onSubmit'></form-data>
     </div>
 </template>

@@ -9,184 +9,90 @@
             <el-form-item
                     class='edit-form'
                     v-for='(field,index) in fields'
+                    v-bind="field.attrs || {}"
                     :key='index'
                     :label="field.label"
-                    :prop='field.key'
-                    :style="field.style">
-
-                <!-- 单选CheckBox -->
-                <el-checkbox
-                        v-if='field.type==="checkbox" && field.multiple!==true'
-                        v-model="submit_data[field.key]">{{field.label}}
-                </el-checkbox>
-
-                <el-cascader
-                        v-if='field.type==="cascader"'
-                        :options="field.value.list"
-                        :props="field.props || {}"
-                        @active-item-change='onCascaderItemChange'></el-cascader>
+                    :prop='field.key'>
 
 
-                <!-- 复选CheckBox -->
-                <!-- 是否全选全不选 -->
-                <el-checkbox
-                        v-if='field.checkall && typeof field.checkall==="object" && submit_data[field.key+checkall_temp]'
-                        :indeterminate="submit_data[field.key+checkall_temp].indeterminate"
-                        v-model="submit_data[field.key+checkall_temp].value"
-                        @change='onCheckallChange(field.key)'>{{submit_data[field.key+checkall_temp].text}}
-                </el-checkbox>
-                <!-- CheckBox选项列表 -->
-                <el-checkbox-group
-                        v-if='(field.type==="checkbox" && field.multiple===true && !field.checkall) || (field.type==="checkbox" && field.multiple===true && field.checkall && submit_data[field.key+checkall_temp])'
-                        v-model="submit_data[field.key+checkall_temp].checkbox_value"
-                        @change='onCheckboxChange(field.key)'>
-                    <el-checkbox
-                            v-for='(item,index) in submit_data[field.key+checkall_temp].checkbox_list'
-                            :key='index'
-                            :label="item.value">{{item.text}}
-                    </el-checkbox>
-                </el-checkbox-group>
+                <!--<sls-input
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='!field.type || field.type==="input"'></sls-input>
 
-                <!-- wangeditor -->
-                <div
-                        v-if='field.type==="editor"'
-                        :id="field.id"
-                        :style="field.style"></div>
+                <sls-textarea
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="textarea"'></sls-textarea>
 
-                <!--
-                    input,textarea 
-                 -->
-                <el-input
-                        v-if='!field.type || field.type==="input" || field.type==="textarea"'
-                        :type='!field.type ? "input" : field.type'
-                        :disabled="field.disabled===true ? true : false"
-                        v-model="submit_data[field.key]"
-                        :placeholder='field.desc'></el-input>
+                <sls-checkbox
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="checkbox"'></sls-checkbox>
 
-                <!-- 
-                    radia,单选
-                 -->
-                <el-radio-group
-                        v-if='field.type==="radio"'
-                        v-model="submit_data[field.key]">
-                    <el-radio
-                            v-for='(item,index) in field.value.list'
-                            :key='index'
-                            :label="item.value">{{item.text || item.value}}
-                    </el-radio>
-                </el-radio-group>
+                <sls-radio
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="radio"'></sls-radio>
 
-                <!-- select,下拉框 -->
-                <el-select
-                        @change="field.change"
-                        :filterable="field.search===true ? true : false"
-                        :clearable="field.clear===true ? true : false"
-                        :style="field.style"
-                        v-if='field.type==="select" && field.value && field.value.list && submit_data && ((field.multiple && Array.isArray(submit_data[field.key])) || !field.multiple)'
-                        v-model="submit_data[field.key]"
-                        :multiple='field.multiple ? true : false'
-                        :placeholder="field.desc">
-                    <el-option
-                            v-for='(item,index) in field.value.list'
-                            :key='index'
-                            :value="item.value"
-                            :label="item.text"></el-option>
-                </el-select>
+                <sls-select
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="select"'></sls-select>
 
-                <!-- 
-                    switch，开关
-                 -->
-                <el-switch
-                        v-if='field.type==="switch"'
-                        :on-text="field.value.on"
-                        :off-text="field.value.off"
-                        :disabled='field.disabled'
-                        v-model="submit_data[field.key]"></el-switch>
+                <sls-switch
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="switch"'></sls-switch>
 
-                <!-- date，日期类型 -->
-                <el-date-picker
-                        v-if='field.type==="date" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        :placeholder="field.placeholder"
-                        @change='field.change'
-                        :picker-options="field.options">
-                </el-date-picker>
+                <sls-cascader
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="cascader"'></sls-cascader>
 
-                <!-- date，日期类型-选择范围 -->
-                <!--
-                    @change='field.change'
-                 -->
-                <el-date-picker
-                        v-if='field.type==="daterange" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        :placeholder="field.placeholder"
-                        @change='field.change'>
-                </el-date-picker>
+                <sls-date
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="date"'></sls-date>
+                <sls-date-range
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="daterange"'></sls-date-range>
+                <sls-date-year
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="year"'></sls-date-year>
+                <sls-date-month
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="month"'></sls-date-month>
 
-                <!-- date，日期类型-年 -->
-                <el-date-picker
-                        v-if='field.type==="year" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        :placeholder="field.placeholder"
-                        @change='field.change'>
-                </el-date-picker>
+                <sls-date-week
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="week"'></sls-date-week>
 
-                <!-- date，日期类型-月 -->
-                <el-date-picker
-                        v-if='field.type==="month" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        :placeholder="field.placeholder"
-                        @change='field.change'>
-                </el-date-picker>
+                <sls-time
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="time"'></sls-time>
 
-                <!-- date，日期类型-周 -->
-                <el-date-picker
-                        v-if='field.type==="week" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        :format="field.format"
-                        :placeholder="field.placeholder"
-                        @change='field.change'>
-                </el-date-picker>
+                <sls-date-time
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="datetime"'></sls-date-time>
 
+                <sls-date-time-range
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        v-if='field.type==="datetimerange"'></sls-date-time-range>-->
 
-                <!-- time，时间类型 -->
-                <el-time-select
-                        v-if='field.type==="time" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        :placeholder="field.placeholder"
-                        @change='field.change'
-                        :picker-options="field.options">
-                </el-time-select>
-
-
-                <!-- 日期时间组合 -->
-                <el-date-picker
-                        v-if='field.type==="datetime" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        @change='field.change'
-                        :placeholder="field.placeholder"
-                        :picker-options="field.options">
-                </el-date-picker>
-
-
-                <!-- datetime，日期时间类型-选择范围 -->
-                <!--
-                    @change='field.change'
-                 -->
-                <el-date-picker
-                        v-if='field.type==="datetimerange" && field.change'
-                        v-model="submit_data[field.key]"
-                        :type="field.type"
-                        :placeholder="field.placeholder"
-                        @change='field.change'>
-                </el-date-picker>
+                <component
+                        :Data="field"
+                        :SubmitData="submit_data"
+                        :SubmitInfo="submit_info"
+                        :TempFieldObj="temp_field_obj"
+                        :is="components[field.type] || 'SlsInput'"></component>
             </el-form-item>
 
             <el-form-item>

@@ -2,12 +2,12 @@ export default {
     data() {
         return {
             default_value:{
-                input:'default value'
+                input:''
             },
             fields: [{
                 label: 'Input',
                 key: 'input',
-                desc: '请输入标题'
+                desc: '请输入标题...',
             }],
         }
     },
@@ -17,6 +17,7 @@ export default {
         }
     },
     created(){
+        console.log('input')
         // console.log('created input')
     },
     mounted(){

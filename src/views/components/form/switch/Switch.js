@@ -4,16 +4,23 @@ export default {
     },
     data() {
         return {
+            default_value:{
+				status:true
+            },
             fields: [{
                 key: 'status',
                 type: 'switch',
                 value: {
-                    default: true,
                     on: '启用',
                     off: '禁用'
                 },
                 desc: '',
-                label: 'Switch'
+                label: '状态',
+                events:{
+                    change:({info,value})=>{
+						this.$message('当前选中的值：'+value+'；当前选中的值对应的文本是：'+info);
+                    }
+                }
             }],
         }
     },

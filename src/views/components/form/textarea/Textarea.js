@@ -4,11 +4,17 @@ export default {
     },
     data() {
         return {
+            default_value:{
+                content:'hello word'
+            },
             fields: [{
                 label: '文本框',
-                key: 'textarea',
+                key: 'content',
                 type: 'textarea',
                 desc: '请输入内容',
+                attrs:{
+					rows:4
+                }
             }],
         }
     },
