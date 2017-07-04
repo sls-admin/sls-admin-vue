@@ -152,15 +152,17 @@ export default {
 			this.$refs[ref].validate((valid) => {
 				if (valid) {
 					this.login_actions.disabled = true;
-					this.$$api_user_register(this[ref], data => {
-						this.login_actions.disabled = false;
-						this.$message.success('注册成功，请登录。');
-						this.toggleStatus(false);
-					}, {
-						errFn    : () => {
-							this.login_actions.disabled = false;
+                    this.$$api_user_register({
+						data:this[ref],
+						fn:data=>{
+                            this.login_actions.disabled = false;
+                            this.$message.success('注册成功，请登录。');
+                            this.toggleStatus(false);
 						},
-						tokenFlag: true
+						errFn:()=>{
+                            this.login_actions.disabled = false;
+						},
+                        tokenFlag: true
 					});
 				}
 			});
