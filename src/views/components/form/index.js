@@ -9,6 +9,7 @@ import Input from './input/';
 import Date from './date/';
 import Time from './time/';
 import DateTime from './date-time/';
+import Editor from './editor/';
 
 
 
@@ -24,4 +25,5 @@ export default {
 	Date,
 	Time,
 	DateTime,
+	Editor
 };

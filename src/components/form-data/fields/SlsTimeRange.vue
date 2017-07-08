@@ -2,6 +2,7 @@
     <div>
         <el-time-picker
                 @change="onChange"
+                is-range
                 v-bind="time_attrs"
                 v-model="submit_data[data.key]"
                 :placeholder="data.desc">

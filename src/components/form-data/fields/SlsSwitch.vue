@@ -29,10 +29,15 @@
 				});
 			}
 		},
-		mounted(){
+        created(){
 			this.temp_field_obj[this.data.key]={};
-            this.temp_field_obj[this.data.key].on=this.data.value.on;
-            this.temp_field_obj[this.data.key].off=this.data.value.off;
+			this.temp_field_obj[this.data.key].on=this.data.value.on;
+			this.temp_field_obj[this.data.key].off=this.data.value.off;
+
+			this.submit_info[this.data.key] = this.temp_field_obj[this.data.key][this.submit_data[this.data.key] ? 'on' : 'off'];
+        },
+		mounted(){
+
 		}
 	}];
 	export default Js;

@@ -22,7 +22,10 @@
 			onChange(v){
 				this.events.change && this.events.change(v);
 			}
-		}
+		},
+        created(){
+
+        }
 	}];
 	export default Js;
 </script>

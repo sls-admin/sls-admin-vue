@@ -62,5 +62,10 @@ export default {
 		name: '日期时间',
 		icon: 'edit',
 		component: Components.Form.DateTime
+	}, {
+		path: 'editor',
+		name: '富文本',
+		icon: 'edit',
+		component: Components.Form.Editor
 	}]
 };

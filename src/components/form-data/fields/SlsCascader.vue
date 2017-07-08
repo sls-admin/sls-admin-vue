@@ -14,7 +14,7 @@
 	var Js=Common('sls-cascader');
 	Js.mixins=[{
 		data(){
-
+            return {};
         },
 		computed:{
 			cascader_attrs(){
@@ -45,6 +45,11 @@
 				}
 			},
 
+
+			/**
+             * 最后一级选择完后触发
+			 * @param v 选中的值数组，根据这个数组取出对应的文本
+			 */
 			onChange(v){
 				this.temp_field_obj[this.data.key]=[];
 				this.onDeepGetCityName(this.data.options,v,0);
@@ -53,6 +58,12 @@
 				this.events.change && this.events.change({value:v,info:this.submit_info[this.data.key]});
 			},
 
+
+			/**
+             * 每选择一项时就触发这个
+             * 场景：当选择的条件不允许继续选择时，可以使用这个事件
+			 * @param v 选中的值数组，根据这个数组取出对应的文本
+			 */
 			onActiveItemChange(v){
 				this.temp_field_obj[this.data.key]=[];
 				this.onDeepGetCityName(this.data.options,v,0);
@@ -60,8 +71,11 @@
 				this.events['active-item-change'] && this.events['active-item-change']({value:v,info:this.submit_info[this.data.key]});
             }
 		},
-        mounted(){
+        created(){
 			this.temp_field_obj[this.data.key]=[];
+        },
+        mounted(){
+
         }
 	}];
 	export default Js;

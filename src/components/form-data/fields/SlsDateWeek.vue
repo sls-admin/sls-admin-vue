@@ -11,16 +11,15 @@
 </template>
 <script>
 	import Common from './js/Common';
-	var Js=Common('sls-date-week');
-	Js.mixins=[{
-		computed:{
+	var Js = Common('sls-date-week');
+	Js.mixins = [{
+		computed: {
 			date_week_attrs(){
 				return this.Data.date_week_attrs || {};
 			}
 		},
-		methods:{
+		methods : {
 			onChange(v){
-				console.log(v);
 				this.events.change && this.events.change(v);
 			}
 		}

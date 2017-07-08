@@ -15,8 +15,12 @@ import SlsDateYear from './SlsDateYear.vue';
 import SlsDateMonth from './SlsDateMonth.vue';
 import SlsDateWeek from './SlsDateWeek.vue';
 import SlsTime from './SlsTime.vue';
+import SlsTimeRange from './SlsTimeRange.vue';
+import SlsTimeFixed from './SlsTimeFixed.vue';
+import SlsTimeFixedRange from './SlsTimeFixedRange.vue';
 import SlsDateTime from './SlsDateTime.vue';
 import SlsDateTimeRange from './SlsDateTimeRange.vue';
+import SlsEditor from './SlsEditor.vue';
 
 export default {
 	SlsInput,
@@ -32,6 +36,10 @@ export default {
 	SlsDateMonth,
 	SlsDateWeek,
 	SlsTime,
+	SlsTimeRange,
+	SlsTimeFixed,
+	SlsTimeFixedRange,
 	SlsDateTime,
-	SlsDateTimeRange
+	SlsDateTimeRange,
+	SlsEditor
 }

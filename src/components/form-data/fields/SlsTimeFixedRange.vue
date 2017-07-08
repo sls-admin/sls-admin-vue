@@ -1,11 +1,17 @@
 <template>
     <div>
-        <el-time-picker
+        <el-time-select
                 @change="onChange"
                 v-bind="time_attrs"
                 v-model="submit_data[data.key]"
                 :placeholder="data.desc">
-        </el-time-picker>
+        </el-time-select>
+        <el-time-select
+                @change="onChange"
+                v-bind="time_attrs"
+                v-model="submit_data[data.key]"
+                :placeholder="data.desc">
+        </el-time-select>
     </div>
 </template>
 <script>

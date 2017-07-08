@@ -15,9 +15,6 @@ export default function(name) {
 			events(){
 				return this.Data.events || {};
 			},
-			group_attrs(){
-				return this.Data.group_attrs || {};
-			},
 			submit_data(){
 				return this.SubmitData;
 			},
@@ -62,18 +59,21 @@ export default function(name) {
 			 */
 			setArrayValue(){
 				//把存储value和text的数组转成对象格式，有利于提高根据值取文本的效率
-				this.temp_field_obj[this.data.key] = {};
+				if (!this.temp_field_obj[this.data.key]) {
+					this.temp_field_obj[this.data.key] = {};
+				}
+
 
 				//当存在value和text数组时，才可调用
 				if (this.data.list && Array.isArray(this.data.list)) {
 
 					//遍历value和text数组，组装成对象格式
 					this.data.list.forEach(item => {
-						this.temp_field_obj[this.data.key][item.value!==undefined ? item.value : item.text] = item.text!==undefined ? item.text : item.value;
+						this.temp_field_obj[this.data.key][item.value !== undefined ? item.value : item.text] = item.text !== undefined ? item.text : item.value;
 					});
 
 					//如果当前默认值为真，默认先提取一下默认值对应的文本
-					if (this.submit_data[this.data.key]!==undefined) {
+					if (this.submit_data[this.data.key] !== undefined) {
 						//默认值分两种：数组(多选)，字符串或整形(单选)
 						if (Array.isArray(this.submit_data[this.data.key])) {
 							//循环数组值，把每个对应的文本取出来
@@ -93,10 +93,24 @@ export default function(name) {
 					}
 				}
 			},
+
+
+			/**
+			 * 当没有传默认值或者连default_value都不存在时(添加的时候确实是不需要传default_value,如果不这样操作一下，绑定将会失败)
+			 * 此时，组件中定义的default_value只是一个空对象，这时，v-model是无法绑定的，所以这个函数用来设置默认字段。
+			 */
+			setDefaultFieldByNoDefaultValue(){
+				if(this.submit_data[this.data.key]===undefined){
+					this.$set(this.submit_data,this.data.key,'');
+				}
+			},
+
 			init(){
+
 			}
 		},
 		created(){
+			this.setDefaultFieldByNoDefaultValue();
 			this.setArrayValue();
 		},
 		mounted(){
