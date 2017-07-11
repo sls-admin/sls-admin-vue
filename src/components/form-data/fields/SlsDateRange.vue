@@ -3,7 +3,7 @@
         <el-date-picker
                 @change="onChange"
                 v-model="submit_data[data.key]"
-                v-bind="date_range_attrs"
+                v-bind="date_attrs"
                 type="daterange"
                 :placeholder="data.desc">
         </el-date-picker>
@@ -14,8 +14,8 @@
 	var Js=Common('sls-date-range');
 	Js.mixins=[{
 		computed:{
-			date_range_attrs(){
-				return this.Data.date_range_attrs || {};
+			date_attrs(){
+				return this.Data.date_attrs || {};
 			},
 
 
@@ -24,7 +24,7 @@
 			 * @returns {*|string}
 			 */
 			range_separator(){
-				return this.Data.date_range_attrs['range-separator'] || ' - ';
+				return this.Data.date_attrs['range-separator'] || ' - ';
             }
 		},
 		methods:{

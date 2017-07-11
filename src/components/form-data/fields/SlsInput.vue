@@ -3,6 +3,7 @@
         <el-input
                 type='input'
                 v-model="submit_data[data.key]"
+                v-bind="attrs"
                 :placeholder="data.desc"
                 @click="onClick"
                 @blur="onBlur"

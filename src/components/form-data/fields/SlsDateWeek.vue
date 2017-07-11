@@ -3,7 +3,7 @@
         <el-date-picker
                 @change="onChange"
                 v-model="submit_data[data.key]"
-                v-bind="date_week_attrs"
+                v-bind="date_attrs"
                 type="week"
                 :placeholder="data.desc">
         </el-date-picker>
@@ -14,8 +14,8 @@
 	var Js = Common('sls-date-week');
 	Js.mixins = [{
 		computed: {
-			date_week_attrs(){
-				return this.Data.date_week_attrs || {};
+			date_attrs(){
+				return this.Data.date_attrs || {};
 			}
 		},
 		methods : {

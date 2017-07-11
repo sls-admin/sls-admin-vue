@@ -4,7 +4,7 @@
                 type="month"
                 @change="onChange"
                 v-model="submit_data[data.key]"
-                v-bind="date_month_attrs"
+                v-bind="date_attrs"
                 :placeholder="data.desc">
         </el-date-picker>
     </div>
@@ -14,8 +14,8 @@
 	var Js=Common('sls-date-month');
 	Js.mixins=[{
 		computed:{
-			date_month_attrs(){
-				return this.Data.date_month_attrs || {};
+			date_attrs(){
+				return this.Data.date_attrs || {};
 			}
 		},
 		methods:{

@@ -4,7 +4,7 @@
                 type="year"
                 @change="onChange"
                 v-model="submit_data[data.key]"
-                v-bind="date_year_attrs"
+                v-bind="date_attrs"
                 :placeholder="data.desc">
         </el-date-picker>
     </div>
@@ -14,8 +14,8 @@
 	var Js=Common('sls-date-year');
 	Js.mixins=[{
 		computed:{
-			date_year_attrs(){
-				return this.Data.date_year_attrs || {};
+			date_attrs(){
+				return this.Data.date_attrs || {};
 			}
 		},
 		methods:{
