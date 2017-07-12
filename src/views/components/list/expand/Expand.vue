@@ -6,11 +6,11 @@
             :Expand="expand"
             :FieldList='fields'>
             <template
-                    scope="props"
+                    scope="scope"
                     slot="expand">
-                <div>索引：{{props.index}}</div>
-                <div>地址：{{props.data.address}}</div>
-                <div>行数据：{{JSON.stringify(props.data)}}</div>
+                <div>索引：{{scope.index}}</div>
+                <div>地址：{{scope.data.address}}</div>
+                <div>行数据：{{JSON.stringify(scope.data)}}</div>
             </template>
         </list-data>
     </div>

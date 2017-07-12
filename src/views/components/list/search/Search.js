@@ -21,25 +21,21 @@ export default {
 					key  : 'cate',
 					type : 'select',
 					multiple: false,
-					value: {
-						default: '',
-						list   : [{
-							value: 'jishu',
-							text : '技术'
-						}, {
-							value: 'sanwen',
-							text : '散文'
-						}, {
-							value: 'qita',
-							text : '其他'
-						}]
-					},
+					list   : [{
+						value: 'jishu',
+						text : '技术'
+					}, {
+						value: 'sanwen',
+						text : '散文'
+					}, {
+						value: 'qita',
+						text : '其他'
+					}],
 					desc : '请选择分类',
 					label: ''
 				}, {
 					label: '',
 					key: 'input',
-					value: '',
 					desc: '请输入标题'
 				}],
             }

@@ -12,7 +12,7 @@ export default {
             }],
             expand:{
                 show:true,
-                position:'left'
+                // position:'right'
             }
         }
     },

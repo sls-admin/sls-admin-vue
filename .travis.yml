@@ -7,8 +7,6 @@ branches:
 cache:
   directories:
     - "node_modules"
-before_install:
-  - cd vue2
 install:
   - npm install
 script:
