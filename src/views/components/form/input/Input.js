@@ -2,7 +2,7 @@ export default {
     data() {
         return {
             default_value:{
-                input:'1'
+                input:'111'
             },
             fields: [{
                 label: 'Input',
