@@ -13,6 +13,8 @@
 	Js.mixins = [{
 		data(){
 			return {
+				is_init: true,
+
 				editor: null,
 
 				id: '',
@@ -131,12 +133,14 @@
 				this.editor.customConfig.uploadImgHooks = {};
 				this.editor.customConfig.uploadImgHooks = Object.assign(this.editor.customConfig.uploadImgHooks, this.config.events);
 				this.editor.customConfig.onchange       = (html) => {
-					this.submit_data[this.data.key]=html;
-					this.submit_info[this.data.key]=this.editor.txt.text();
-					this.config.onchange && this.config.onchange({value:this.submit_data[this.data.key],info:this.submit_info[this.data.key]});
+					this.submit_data[this.data.key] = html;
+					this.submit_info[this.data.key] = this.editor.txt.text();
+					this.config.onchange && this.config.onchange({
+						value: this.submit_data[this.data.key],
+						info : this.submit_info[this.data.key]
+					});
 				};
 				this.editor.create();
-				this.editor.txt.html(this.submit_data[this.data.key]);
 			}
 		},
 		created(){
@@ -144,6 +148,18 @@
 		},
 		mounted(){
 			this.initWangEditor();
+		},
+		watch   : {
+			submit_data: {
+				deep: true,
+				handler(v){
+					this.submit_data = v;
+					if (this.editor && this.is_init === true) {
+						this.is_init = false;
+						this.editor.txt.html(this.submit_data[this.data.key]);
+					}
+				}
+			}
 		}
 	}];
 	export default Js;

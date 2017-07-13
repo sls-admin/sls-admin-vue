@@ -148,8 +148,11 @@ export default {
 			this.$$api_article_findArticle({
 				data,
 				fn:data=>{
-					this.default_value = data.article_info;
-					this.default_value.status = data.article_info.status == 1 ? true : false;
+					console.dir(data);
+					this.default_value.content=data.article_info.content;
+					this.default_value.title=data.article_info.title;
+					this.default_value.cate=data.article_info.cate;
+					this.default_value.status=data.article_info.status == 1 ? true : false;
 					this.default_value.tabs = data.article_info.tabs.split(',');
 				}
 			});
@@ -157,5 +160,13 @@ export default {
     },
     mounted() {
 
-    }
+    },
+	watch:{
+    	default_value:{
+    		deep:true,
+			handler(v){
+    			this.default_value=v;
+			}
+		}
+	}
 }

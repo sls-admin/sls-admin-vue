@@ -1,35 +1,15 @@
 <template>
     <div class="list">
-        <el-col :span="24" class='actions-top'>
-            <el-button
-                    type='danger'
-                    icon='delete'
-                    v-if='selection'
-                    :disabled='batch_flag'
-                    @click='onBtnEvent({type:"BatchDelete"})'>删除选中
-            </el-button>
 
-            <el-button
-                    v-if='btn_info.add!==false'
-                    type='primary'
-                    icon='add'
-                    @click='onBtnEvent({type:"Add"})'>添加
-            </el-button>
-
-            <div class='list-header'>
-                <slot name='list-header'></slot>
-            </div>
-
-            <div
-                    v-if="search.fields && search.fields.length"
-                    class="list-search">
-                <form-data
-                        :Setting="search.setting"
-                        :FieldList='search.fields'
-                        :DefaultValue="search.default_value"
-                        @onSubmit='onSearch'></form-data>
-            </div>
-        </el-col>
+        <sls-table-head
+                @onSearch="onSearch"
+                @onBtnEvent="onBtnEvent"
+                :Batch="batch"
+                :Search="search"
+                :BtnInfo="btn_info">
+            <span slot="sls-header-after"><slot name="header-after"></slot></span>
+            <span slot="sls-header-before"><slot name="header-before"></slot></span>
+        </sls-table-head>
 
         <el-table border style="width: 100%" align='center'
                   :data="list"
@@ -44,7 +24,7 @@
                 </template>
             </el-table-column>
 
-            <el-table-column v-if='selection'
+            <el-table-column v-if='btn_info.batch!==false'
                              type="selection"
                              width="55">
             </el-table-column>
@@ -112,19 +92,19 @@
                                 type="info"
                                 icon='view'
                                 size="mini"
-                                @click='onBtnEvent({type:"Select",data:scope.row,dataIndex:scope.$index,list:list})'></el-button>
+                                @click='onBtnEvent({type:"Select",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.select_text || ''}}</el-button>
                         <el-button
                                 v-if='btn_info.update!==false'
                                 type="info"
                                 icon='edit'
                                 size="mini"
-                                @click='onBtnEvent({type:"Update",data:scope.row,dataIndex:scope.$index,list:list})'></el-button>
+                                @click='onBtnEvent({type:"Update",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.update_text || ''}}</el-button>
                         <el-button
                                 v-if='btn_info.delete!==false'
                                 type="danger"
                                 icon='delete'
                                 size="mini"
-                                @click='onBtnEvent({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})'></el-button>
+                                @click='onBtnEvent({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.delete_text || ''}}</el-button>
                     </span>
 
                     <!--
@@ -154,9 +134,6 @@
             </el-table-column>
         </el-table>
         <el-col :span="24" class='btm-action'>
-            <!-- 
-     
-             -->
             <el-pagination
                     v-if='pagination  && ( (pagination.total!==undefined && pagination.total>0) || (pagination["page-count"]!==undefined && pagination["page-count"]>0) )'
                     class='pagination'
@@ -206,14 +183,5 @@
             }
 
         }
-    }
-
-    .list-header {
-        display: inline-block;
-    }
-
-    .list-search {
-        display: inline-block;
-        float: right;
     }
 </style>

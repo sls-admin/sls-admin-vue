@@ -105,9 +105,7 @@ export default function(name) {
 				}
 			},
 
-			init(){
-
-			}
+			init(){}
 		},
 		created(){
 			this.setDefaultFieldByNoDefaultValue();

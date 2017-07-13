@@ -68,6 +68,7 @@ export default {
 	},
 	mounted() {
 		// console.log(this.fields);
+
 	},
 	props     : {
 		FieldList   : {
@@ -127,8 +128,11 @@ export default {
 
 			}
 		},
-		DefaultValue(v){
-			this.submit_data = v;
+		DefaultValue:{
+			deep: true,
+			handler(v){
+				this.default_value = v;
+			}
 		},
 		wangeditor_update(v){
 
