@@ -15,6 +15,8 @@ module.exports = {
 			 * @type {Object}
 			 */
 			wangEditor: {
+				temp:{},
+
 				//存富文本实例的对象，支持多个
 				//key为富文本对象ID，value为实例
 				editor: {},
@@ -23,7 +25,8 @@ module.exports = {
 				has   : false,
 				//默认显示菜单，支持自定义
 				bar   : [
-					'source', '|',
+					'source',
+					'|',
 					'bold',
 					'underline',
 					'italic',
@@ -368,7 +371,8 @@ module.exports = {
 						switch (field.type) {
 							case 'editor':
 								k++;
-								this.initEditor(field.id, field.config || {});
+								this.wangEditor.temp=field;
+								// this.initEditor(field.id, field.config || {});
 								if (k == 2) {
 									this.wangEditor.many = true;
 								}
@@ -497,6 +501,7 @@ module.exports = {
 	 * ready
 	 */
 	mounted() {
+		this.initEditor(this.wangEditor.temp.id, this.wangEditor.temp.config || {});
 		// this.deepObj();
 	},
 
