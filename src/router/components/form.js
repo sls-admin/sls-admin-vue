@@ -67,5 +67,10 @@ export default {
 		name: '富文本',
 		icon: 'edit',
 		component: Components.Form.Editor
+	}, {
+		path: 'validate',
+		name: '验证',
+		icon: 'edit',
+		component: Components.Form.Validate
 	}]
 };

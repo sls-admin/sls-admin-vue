@@ -5,7 +5,10 @@
             @onClickBtnAdd="onClickBtnAdd"
             @onClickBtnDelete="onClickBtnDelete"
             @onClickBtnUpdate="onClickBtnUpdate"
+            @onChangeCurrentPage="onChangeCurPage"
+            @onChangePageSize="onChangePageSize"
             :List='list'
+            :Pagination="paginations"
             :FieldList='fields'></list-data>
     </div>
 </template>

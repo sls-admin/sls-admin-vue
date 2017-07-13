@@ -10,6 +10,7 @@ import Date from './date/';
 import Time from './time/';
 import DateTime from './date-time/';
 import Editor from './editor/';
+import Validate from './validate/';
 
 
 
@@ -25,5 +26,6 @@ export default {
 	Date,
 	Time,
 	DateTime,
-	Editor
+	Editor,
+	Validate
 };

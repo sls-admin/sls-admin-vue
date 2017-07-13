@@ -41,7 +41,7 @@
 
 
 				attrs: {
-					zIndex: 100,
+					zIndex: 90,
 
 					uploadImgShowBase64: false,   // 使用 base64 保存图片
 					uploadImgServer    : '',// 上传图片到服务器
@@ -132,7 +132,8 @@
 				this.editor.customConfig.uploadImgHooks = Object.assign(this.editor.customConfig.uploadImgHooks, this.config.events);
 				this.editor.customConfig.onchange       = (html) => {
 					this.submit_data[this.data.key]=html;
-					this.config.onchange && this.config.onchange(html);
+					this.submit_info[this.data.key]=this.editor.txt.text();
+					this.config.onchange && this.config.onchange({value:this.submit_data[this.data.key],info:this.submit_info[this.data.key]});
 				};
 				this.editor.create();
 				this.editor.txt.html(this.submit_data[this.data.key]);

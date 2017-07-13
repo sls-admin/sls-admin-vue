@@ -2,14 +2,14 @@
     <div class="form">
         <form-data
             :FieldList='fields'
-            :DefaultValue='default_value'
+            :DefaultValue="default_value"
             :Rules="rules"
             @onSubmit='onSubmit'></form-data>
     </div>
 </template>
 <script>
-    import EditJs from './Edit.js';
-    export default EditJs;
+    import ValidateJs from './Validate.js';
+    export default ValidateJs;
 </script>
 <style scoped>
     

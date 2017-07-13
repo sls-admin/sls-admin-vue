@@ -33,7 +33,7 @@
         },
 		methods:{
 			onChange(v){
-				console.log(v);
+//				console.log(v);
 				if(v){
 					if(Array.isArray(v)){
                         this.submit_info[this.data.key]=[];

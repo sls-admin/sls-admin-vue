@@ -19,55 +19,78 @@ export default {
                 id: 'adv-article',
                 desc: '请输入文章内容',
                 label: '文章内容',
-                style: {
+                config:{
+					attrs:{
+						uploadImgServer:gbs.host + '/Article/editUpload',
+						uploadFileName:'article',
 
-                },
-                /*config:{
-					name: 'article',
-					url: gbs.host + '/Article/editUpload',
-					params: {
-						username: this.$store.state.user.userinfo.username
+						uploadImgParams:{
+							username: this.$store.state.user.userinfo.username
+						},
+						uploadImgHeaders:{
+							token: this.$store.state.user.userinfo.token
+						}
 					},
-                    headers:{
-						token: this.$store.state.user.userinfo.token
-                    }
-                }*/
+					//上传自定义事件
+					events:{
+						customInsert:(insertImg, result, editor)=>{
+							if(result.status===404){
+								this.$store.dispatch('remove_userinfo').then(() => {
+									this.$alert(result.status + ',' + result.msg + '！', '登录错误', {
+										confirmButtonText: '确定',
+										callback: action => {
+											this.$router.push('/login');
+										}
+									});
+								});
+							}else{
+								if(result.status!=200){
+									this.$alert(result.status + ',' + result.msg + '！', '登录错误', {
+										confirmButtonText: '确定',
+										callback: action => {
+											this.$router.push('/login');
+										}
+									});
+								}else{
+									insertImg(result.data.fileinfo.getSaveName);
+								}
+							}
+						}
+					},
+
+                }
             }, {
                 key: 'cate',
                 type: 'select',
-                value: {
-                    list: [{
-                        value: 'jishu',
-                        text: '技术'
-                    }, {
-                        value: 'sanwen',
-                        text: '散文'
-                    }, {
-                        value: 'qita',
-                        text: '其他'
-                    }]
-                },
+				list: [{
+					value: 'jishu',
+					text: '技术'
+				}, {
+					value: 'sanwen',
+					text: '散文'
+				}, {
+					value: 'qita',
+					text: '其他'
+				}],
                 desc: '请选择文章分类',
                 label: '文章分类'
             }, {
                 key: 'tabs',
                 type: 'select',
                 multiple: true,
-                value: {
-                    list: [{
-                        value: 'html',
-                        text: 'html'
-                    }, {
-                        value: 'css',
-                        text: 'css'
-                    }, {
-                        value: 'javascript',
-                        text: 'javascript'
-                    }, {
-                        value: 'jquery',
-                        text: 'jquery'
-                    }]
-                },
+				list: [{
+					value: 'html',
+					text: 'html'
+				}, {
+					value: 'css',
+					text: 'css'
+				}, {
+					value: 'javascript',
+					text: 'javascript'
+				}, {
+					value: 'jquery',
+					text: 'jquery'
+				}],
                 desc: '请选择文章标签',
                 label: '文章标签'
             }, {
@@ -84,57 +107,31 @@ export default {
 				title:'',
 				content:'',
 				cate:'',
-				tabs:[]
+				tabs:[],
+				status:true,
 			},
-            editor: {
-                name: 'article',
-                url: gbs.host + '/Article/editUpload',
-				params: {
-					username: this.$store.state.user.userinfo.username
-				},
-				headers:{
-					token: this.$store.state.user.userinfo.token
-				}
-            },
-            rules: {
-                title: [{
-                    required: true,
-                    message: '文章标题不能为空！',
-                    trigger: 'blur'
-                }],
-                cate: [{
-                    required: true,
-                    message: '文章分类不能为空！',
-                    trigger: 'change'
-                }],
-                tabs: [{
-                    type: 'array',
-                    required: true,
-                    message: '请至少选择一个文章标签！',
-                    trigger: 'change'
-                }]
-            },
-
-            tips: {
-                article: {
-                    msg: '文章内容不能为空',
-                    field: 'content'
-                },
-            },
-
+			rules:{
+				title:[{
+					required: true, message: '请输入标题', trigger: 'blur'
+				}],
+				cate:[{
+					required: true, message: '请选择分类', trigger: 'blur'
+				}],
+				tabs:[{
+					type:'array',required: true, message: '至少选择一个标签', trigger: 'blur'
+				}]
+			}
         }
     },
     methods: {
-        onSubmit({data,editor_temp_data}) {
-			if (!editor_temp_data.article.text) {
-				if ((editor_temp_data.article.html.indexOf('<iframe') == -1 || editor_temp_data.article.html.indexOf('</iframe>') == -1) && (editor_temp_data.article.html.indexOf('<img') == -1)) {
+        onSubmit({data,info}) {
+        	//如果没有任何文本text，就检测html中是否包含图片img，iframe,如果都没有，代表真的没有数据。
+        	if(!info.content){
+				if ((data.content.indexOf('<iframe') == -1 || data.content.indexOf('</iframe>') == -1) && (data.content.indexOf('<img') == -1)) {
 					this.$message.error('文章内容不能为空！');
 					return;
 				}
 			}
-
-			data.content=editor_temp_data.article.html;
-
             this.$$api_article_saveArticle({
 			    data,
                 fn:()=>{
