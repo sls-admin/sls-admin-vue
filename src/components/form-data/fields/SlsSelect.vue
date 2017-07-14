@@ -13,8 +13,8 @@
                     v-for='(item,index) in data.list'
                     v-bind="option_attrs"
                     :key='index'
-                    :value="item.value"
-                    :label="item.text"></el-option>
+                    :value="item[value_attr]"
+                    :label="item[label_attr]"></el-option>
         </el-select>
     </div>
 </template>
@@ -23,6 +23,11 @@
 	import Common from './js/Common';
 	var Js=Common('sls-select');
 	Js.mixins=[{
+		data(){
+			return {
+
+            };
+        },
 		computed:{
 			select_attrs(){
 				return this.Data.select_attrs || {};
@@ -57,7 +62,10 @@
 			onClear(){
 				this.events.clear && this.events.clear();
             }
-		}
+		},
+        created(){
+
+        }
 	}];
 	export default Js;
 </script>

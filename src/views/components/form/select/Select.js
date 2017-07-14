@@ -7,7 +7,8 @@ export default {
 		return {
 			default_value:{
 				cate:'sanwen',
-				tabs:['javascript','html']
+				tabs:['javascript','html'],
+				custom_attr:'C'
 			},
 			fields: [{
 				key  : 'cate',
@@ -51,6 +52,30 @@ export default {
 				events:{
 					change:({value,info})=>{
 						this.$message('当前选中的值：'+value.join(',')+'；当前选中的值对应的文本是：'+info.join(','));
+					}
+				}
+			},{
+				key     : 'custom_attr',
+				type    : 'select',
+				desc    : '自定义属性',
+				label   : '自定义属性',
+				list   : [{
+					v: 'H',
+					t : 'HTML'
+				}, {
+					v: 'C',
+					t : 'Css'
+				}, {
+					v: 'J',
+					t : 'Javascript'
+				}],
+				custom_attrs:{
+					label:'t',
+					value:'v'
+				},
+				events:{
+					change:({value,info})=>{
+						this.$message('当前选中的值：'+value+'；当前选中的值对应的文本是：'+info);
 					}
 				}
 			}],

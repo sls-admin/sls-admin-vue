@@ -23,6 +23,15 @@ export default function(name) {
 			},
 			temp_field_obj(){
 				return this.TempFieldObj;
+			},
+			custom_attrs(){
+				return this.Data.custom_attrs || {};
+			},
+			label_attr(){
+				return this.custom_attrs.label || 'text';
+			},
+			value_attr(){
+				return this.custom_attrs.value || 'value';
 			}
 		},
 		props   : {
@@ -63,13 +72,14 @@ export default function(name) {
 					this.temp_field_obj[this.data.key] = {};
 				}
 
+				console.log(this.custom_attrs);
 
 				//当存在value和text数组时，才可调用
 				if (this.data.list && Array.isArray(this.data.list)) {
 
 					//遍历value和text数组，组装成对象格式
 					this.data.list.forEach(item => {
-						this.temp_field_obj[this.data.key][item.value !== undefined ? item.value : item.text] = item.text !== undefined ? item.text : item.value;
+						this.temp_field_obj[this.data.key][item[this.value_attr] !== undefined ? item[this.value_attr] : item[this.label_attr]] = item[this.label_attr] !== undefined ? item[this.label_attr] : item[this.value_attr];
 					});
 
 					//如果当前默认值为真，默认先提取一下默认值对应的文本
