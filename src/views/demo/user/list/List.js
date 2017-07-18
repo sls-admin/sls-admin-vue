@@ -372,20 +372,10 @@ export default {
          * 获取用户信息列表方法
          */
         getList() {
-            var data = {};
-
-            var query = this.$route.query;
-            for (var k in query) {
-                if (this.search_data[k] !== undefined) {
-                    this.search_data[k] = query[k];
-                    data[k] = query[k];
-                }
-            }
-
 			this.$$api_user_selectUser({
-			    data,
+			    data:{},
                 fn:data=>{
-					this.user_list = data.list;
+					this.user_list = data.list.data;
                 }
             });
         }

@@ -100,7 +100,6 @@
                             @click='onSetAccess(scope.row,scope.$index,user_list)'>设置权限
                     </el-button>
 
-
                     <el-button
                             type="danger"
                             icon='delete'

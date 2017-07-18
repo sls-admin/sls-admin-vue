@@ -5,7 +5,7 @@
 import {Home,Content} from 'layout/';
 
 import article from './article.js';
-import user from './user.js';
+// import user from './user.js';
 import order from './order.js';
 import orderstatis from './order-statis.js';
 
@@ -15,5 +15,5 @@ export default {
 	icon: 'inbox',
 	component: Home,
 	redirect: '/demo/article',
-	children:[article,user,order,orderstatis]
+	children:[article,order,orderstatis]
 };
