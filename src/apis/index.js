@@ -13,7 +13,6 @@ import user from './user/';
 import article from './article/';
 import order from './order/';
 import system from './system/';
-import open from './open/';
 
 export default [{
     module:'user',
@@ -31,8 +30,4 @@ export default [{
     module:'system',
     name:'系统设置',
     list:system
-},{
-    module:'open',
-    name:'第三方接入',
-    list:open
 }];

@@ -5,7 +5,6 @@
 import {Home,Content} from 'layout/';
 
 import article from './article';
-import open from './open';
 
 
 export default {
@@ -14,5 +13,5 @@ export default {
 	icon: 'inbox',
 	component: Home,
 	redirect: '/adv/article',
-	children:[article,open]
+	children:[article]
 };
