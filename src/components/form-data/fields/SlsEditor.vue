@@ -153,11 +153,11 @@
 			submit_data: {
 				deep: true,
 				handler(v){
-					this.submit_data = v;
+					/*this.submit_data = v;
 					if (this.editor && this.is_init === true) {
 						this.is_init = false;
 						this.editor.txt.html(this.submit_data[this.data.key]);
-					}
+					}*/
 				}
 			}
 		}

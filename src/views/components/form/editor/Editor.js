@@ -67,8 +67,9 @@ export default {
 
 
                     //change改变事件
-                    onchange:(html)=> {
-
+                    onchange:({value,info})=> {
+						console.log(value);
+						console.log(info)
 					}
                 }
             }],
