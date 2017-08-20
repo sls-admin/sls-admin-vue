@@ -15,7 +15,7 @@ import Demo from './demo/';
 import components from './components/';*/
 
 import {store} from 'utils/';
-var user_routes=store.get('user_routes');
+var user_routes=store.get('user_routes') || [];
 user_routes.forEach((one, one_key) => {
 	one.component = Home;
 	one.children.forEach((two, two_key) => {

@@ -233,6 +233,7 @@ export default {
 		});
 	},
 	mounted () {
+		this.$store.dispatch('remove_user_routes');
 		// this.toggleStatus(true);
 		// console.log(this.remumber);
 
