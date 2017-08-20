@@ -1,6 +1,10 @@
 /**
  * Created by sailengsi on 2017/5/11.
  */
+
+import {Function,Demo,Components,Adv} from '../../async-router/';
+console.log(Function,Demo,Components,Adv);
+
 export default {
 	name   : 'login',
 	data() {
@@ -131,11 +135,28 @@ export default {
 								userinfo: data.userinfo
 							}).then(() => {
 								this.login_actions.disabled = false;
-								if (data.userinfo.default_web_routers) {
+
+
+								// console.log(AsyncRouter);
+								// this.$router.options.routes.push(AsyncRouter);
+								// this.$router.addRoutes(this.$router.options.routes);
+								// this.$router.push('/function/open/echarts');
+
+
+
+								this.$router.options.routes.push(Function);
+								this.$router.options.routes.push(Demo);
+								this.$router.options.routes.push(Components);
+								this.$router.options.routes.push(Adv);
+								this.$router.addRoutes(this.$router.options.routes);
+								this.$router.push('/function/open/echarts');
+
+
+								/*if (data.userinfo.default_web_routers) {
 									this.$router.push(data.userinfo.default_web_routers);
 								} else {
 									this.$router.push('/function/open/echarts');
-								}
+								}*/
 							});
 						},
 						errFn    : (err) => {

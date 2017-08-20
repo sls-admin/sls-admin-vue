@@ -8,30 +8,30 @@ Vue.use(Router);
 import {Home, Content} from 'layout/';
 import {Login} from 'views/';
 
-import Adv from './adv/';
+/*import Adv from './adv/';
 import Function from './function/';
 import Demo from './demo/';
-import components from './components/';
+import components from './components/';*/
 
 
 export default new Router({
 	routes: [
 		{
 			path  : '/',
-			name  : 'Hello',
 			hidden: true,
 			redirect(to){
 				return 'login';
 			}
 		}, {
 			path     : '/login',
-			name     : '登录',
 			hidden   : true,
-			component: Login
+			component: resolve=>{
+				require(['views/login/'], resolve);
+			},
 		},
-		Function,
+		/*Function,
 		Demo,
 		components,
-		Adv,
+		Adv,*/
 	]
 })

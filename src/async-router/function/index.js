@@ -4,13 +4,13 @@
 
 import {Home,Content} from 'layout/';
 
-import article from './article';
+import open from './open';
 
 export default {
-	path: '/adv',
-	name: '高级实战',
+	path: '/function',
+	name: '静态演示',
 	icon: 'inbox',
 	component: Home,
-	redirect: '/adv/article',
-	children:[article]
+	redirect: '/function/open',
+	children:[open]
 };
