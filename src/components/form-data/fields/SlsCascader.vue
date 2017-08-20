@@ -72,6 +72,9 @@
             }
 		},
         created(){
+			if(!this.submit_data[this.data.key] || !Array.isArray(this.submit_data[this.data.key])){
+				this.submit_data[this.data.key]=[];
+            }
 			this.temp_field_obj[this.data.key]=[];
         },
         mounted(){

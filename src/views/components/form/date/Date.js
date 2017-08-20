@@ -11,7 +11,7 @@ export default {
 				create_month          : '11',
 				create_week           : '2017-3-8'
 			},
-			fields       : [{
+			fields       : [/*{
 				label      : '创建日期',
 				type       : 'date',
 				key        : 'create_time',
@@ -21,7 +21,7 @@ export default {
 						this.$message('值：' + value);
 					}
 				}
-			}, {
+			}, */{
 				label           : '默认日期范围',
 				type            : 'daterange',
 				key             : 'create_time_range_init',
@@ -34,7 +34,7 @@ export default {
 						this.$message('字符串值：' + value + '；数组值：' + info);
 					}
 				}
-			}, {
+			}/*, {
 				label      : '年',
 				type       : 'year',
 				key        : 'create_year',
@@ -67,7 +67,7 @@ export default {
 						this.$message('当前选中的值：' + value);
 					}
 				}
-			}],
+			}*/],
 
 		}
 	},

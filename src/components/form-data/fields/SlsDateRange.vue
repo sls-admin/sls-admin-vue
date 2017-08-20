@@ -15,7 +15,7 @@
 	Js.mixins=[{
 		computed:{
 			date_attrs(){
-				return this.Data.date_attrs || {};
+				return this.Data.date_range_attrs || {};
 			},
 
 
@@ -24,7 +24,7 @@
 			 * @returns {*|string}
 			 */
 			range_separator(){
-				return this.Data.date_attrs['range-separator'] || ' - ';
+				return this.Data.date_range_attrs['range-separator'] || ' - ';
             }
 		},
 		methods:{
