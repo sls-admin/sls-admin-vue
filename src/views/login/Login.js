@@ -2,14 +2,14 @@
  * Created by sailengsi on 2017/5/11.
  */
 
-import {Function, Demo, Components, Adv} from '../../async-router/';
+// import {Function, Demo, Components, Adv} from '../../async-router/';
 // console.log(Function,Demo,Components,Adv);
 
 import Home from 'layout/routeview/Home.vue';
 import Content from 'layout/routeview/Content.vue';
 import Functions from 'views/function/';
 // console.log(Home,Content);
-console.log(Functions);
+// console.log(Functions);
 
 export default {
 	name   : 'login',
@@ -142,6 +142,9 @@ export default {
 							}).then(() => {
 								this.login_actions.disabled = false;
 
+								this.$store.dispatch('update_user_routes', {
+									routes: data.routes
+								});
 
 								console.log(data.routes);
 								data.routes.forEach((one, one_key) => {

@@ -18,6 +18,7 @@ export default {
 		});
 	},
 
+
 	remove_userinfo: ({
 		commit
 	}) => {
@@ -43,12 +44,33 @@ export default {
 		});
 	},
 
+
 	remove_remumber: ({
 		commit
 	}) => {
 		return new Promise((resolve, reject) => {
 			commit(types.REMOVE_REMUMBER);
 			resolve()
+		});
+	},
+
+
+	update_user_routes:({commit},{
+		routes
+	})=>{
+		return new Promise((resolve,reject)=>{
+			commit(types.UPDATE_USER_ROUTES,{
+				routes
+			});
+			resolve();
+		});
+	},
+
+
+	remove_user_routes:({commit})=>{
+		return new Promise((resolve,reject)=>{
+			commit(types.REMOVE_USER_ROUTES);
+			resolve();
 		});
 	}
 };
