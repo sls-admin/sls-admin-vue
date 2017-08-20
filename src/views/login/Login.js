@@ -2,12 +2,18 @@
  * Created by sailengsi on 2017/5/11.
  */
 
-import {Function,Demo,Components,Adv} from '../../async-router/';
-console.log(Function,Demo,Components,Adv);
+import {Function, Demo, Components, Adv} from '../../async-router/';
+// console.log(Function,Demo,Components,Adv);
+
+import Home from 'layout/routeview/Home.vue';
+import Content from 'layout/routeview/Content.vue';
+import Functions from 'views/function/';
+// console.log(Home,Content);
+console.log(Functions);
 
 export default {
 	name   : 'login',
-	data() {
+	data () {
 		return {
 			winSize: {
 				width : '',
@@ -85,7 +91,7 @@ export default {
 		}
 	},
 	methods: {
-		setSize() {
+		setSize () {
 			this.winSize.width  = this.$$lib_$(window).width() + "px";
 			this.winSize.height = this.$$lib_$(window).height() + "px";
 
@@ -93,7 +99,7 @@ export default {
 			this.formOffset.top  = (parseInt(this.winSize.height) / 2 - 178) + 'px';
 		},
 
-		onLogin(ref, type) {
+		onLogin (ref, type) {
 			if (type && this.register === true) {
 				this.$message.error('请输入确认密码');
 				return;
@@ -137,19 +143,34 @@ export default {
 								this.login_actions.disabled = false;
 
 
+								console.log(data.routes);
+								data.routes.forEach((one, one_key) => {
+									console.log(one_key)
+									one.component = Home;
+									one.children.forEach((two, two_key) => {
+										two.component = Content;
+										two.children.forEach((route, route_key) => {
+											var page = route.component;
+											console.log(page)
+											route.component = Functions.Open[page];
+										});
+									});
+								});
+								console.log(data.routes);
+
+
 								// console.log(AsyncRouter);
-								// this.$router.options.routes.push(AsyncRouter);
-								// this.$router.addRoutes(this.$router.options.routes);
-								// this.$router.push('/function/open/echarts');
-
-
-
-								this.$router.options.routes.push(Function);
-								this.$router.options.routes.push(Demo);
-								this.$router.options.routes.push(Components);
-								this.$router.options.routes.push(Adv);
+								this.$router.options.routes.push(data.routes[0]);
 								this.$router.addRoutes(this.$router.options.routes);
 								this.$router.push('/function/open/echarts');
+
+
+								// this.$router.options.routes.push(Function);
+								// this.$router.options.routes.push(Demo);
+								// this.$router.options.routes.push(Components);
+								// this.$router.options.routes.push(Adv);
+								// this.$router.addRoutes(this.$router.options.routes);
+								// this.$router.push('/function/open/echarts');
 
 
 								/*if (data.userinfo.default_web_routers) {
@@ -169,31 +190,31 @@ export default {
 			});
 		},
 
-		onRegister(ref){
+		onRegister (ref) {
 			this.$refs[ref].validate((valid) => {
 				if (valid) {
 					this.login_actions.disabled = true;
-                    this.$$api_user_register({
-						data:this[ref],
-						fn:data=>{
-                            this.login_actions.disabled = false;
-                            this.$message.success('注册成功，请登录。');
-                            this.toggleStatus(false);
+					this.$$api_user_register({
+						data     : this[ref],
+						fn       : data => {
+							this.login_actions.disabled = false;
+							this.$message.success('注册成功，请登录。');
+							this.toggleStatus(false);
 						},
-						errFn:()=>{
-                            this.login_actions.disabled = false;
+						errFn    : () => {
+							this.login_actions.disabled = false;
 						},
-                        tokenFlag: true
+						tokenFlag: true
 					});
 				}
 			});
 		},
 
-		resetForm(ref) {
+		resetForm (ref) {
 			this.$refs[ref].resetFields();
 		},
 
-		toggleStatus(type){
+		toggleStatus (type) {
 			this.register = type;
 			if (this.register === true) {
 				this.$set(this.data, 'repassword', '');
@@ -202,13 +223,13 @@ export default {
 			}
 		}
 	},
-	created() {
+	created () {
 		this.setSize();
 		this.$$lib_$(window).resize(() => {
 			this.setSize();
 		});
 	},
-	mounted() {
+	mounted () {
 		// this.toggleStatus(true);
 		// console.log(this.remumber);
 
