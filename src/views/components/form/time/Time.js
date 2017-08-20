@@ -2,13 +2,13 @@ export default {
 	components: {
 		// FormData
 	},
-	data() {
+	data () {
 		return {
 			default_value: {
-				fixed_create_time: '16:00',
-				fixed_create_time_range:'',
-				create_time:'2017-12-16 12:32',
-				create_time_range:''
+				fixed_create_time      : '16:00',
+				fixed_create_time_range: '',
+				create_time            : '2017-12-16 12:32',
+				create_time_range      : ''
 			},
 			fields       : [{
 				label      : '固定时间',
@@ -27,7 +27,7 @@ export default {
 						this.$message('当前选中的值：' + value);
 					}
 				}
-			},{
+			}, /*{
 				label      : '固定时间范围',
 				type       : 'timefixedrange',
 				key        : 'fixed_create_time_range',
@@ -44,7 +44,7 @@ export default {
 						this.$message('当前选中的值：' + value);
 					}
 				}
-			},{
+			},*/ {
 				label      : '任意时间',
 				type       : 'time',
 				key        : 'create_time',
@@ -59,7 +59,7 @@ export default {
 						this.$message('当前选中的值：' + value);
 					}
 				}
-			},{
+			}/*, {
 				label      : '任意时间范围',
 				type       : 'timerange',
 				key        : 'create_time_range',
@@ -74,12 +74,12 @@ export default {
 						this.$message('当前选中的值：' + value);
 					}
 				}
-			}],
+			}*/],
 
 		}
 	},
 	methods   : {
-		onSubmit(data) {
+		onSubmit (data) {
 			this.$emit('onTest', data);
 		}
 	}
