@@ -73,7 +73,7 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-				this.$store.dipatch('remove_user_routes');
+				this.$store.dispatch('remove_user_routes');
                 this.$store.dispatch('remove_userinfo').then(() => {
                     this.$router.push('/login');
                 });
