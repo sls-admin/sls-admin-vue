@@ -3,25 +3,25 @@
  */
 
 
-import {Content} from 'layout/';
+import Container from '../../views/container/';
 
-import {Demo} from 'views/';
+import Demo from '../../views/page/demo/';
 
 export default {
-	path: 'order',
-	name: '订单管理',
-	icon: 'inbox',
-	component: Content,
-	redirect: '/demo/order/list',
-	children: [{
-		path: 'list',
-		name: '订单列表',
-		icon: 'reorder',
+	path     : 'order',
+	name     : '订单管理',
+	icon     : 'inbox',
+	component: Container.Content,
+	redirect : '/demo/order/list',
+	children : [{
+		path     : 'list',
+		name     : '订单列表',
+		icon     : 'reorder',
 		component: Demo.Order.List
 	}, {
-		path: 'edit',
-		name: '编辑订单',
-		icon: 'edit',
+		path     : 'edit',
+		name     : '编辑订单',
+		icon     : 'edit',
 		component: Demo.Order.Edit
 	}]
 };

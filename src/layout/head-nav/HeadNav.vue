@@ -30,7 +30,6 @@
                                     class="el-icon-caret-bottom el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item command='info'>修改信息</el-dropdown-item>
                                 <el-dropdown-item
                                         command='pass'
                                         v-if='$store.state.user.userinfo.is_update_pass'>修改密码</el-dropdown-item>

@@ -3,15 +3,15 @@
  */
 
 
-import {Content} from 'layout/';
+import Container from '../../views/container/';
 
-import {Components} from 'views/';
+import Components from '../../views/page/components/';
 
 export default {
 	path     : 'list',
 	name     : '列表组件',
 	icon     : 'inbox',
-	component: Content,
+	component: Container.Content,
 	redirect : '/components/list/default',
 	children : [{
 		path     : 'default',

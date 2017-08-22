@@ -5,7 +5,7 @@ export default {
 			user_data : {
 				email   : '',
 				username: '',
-				address : '',
+				address : '上海市浦东新区',
 				sex     : '3',
 				status  : true,
 				birthday: '1992-11-5'

@@ -5,11 +5,15 @@
 // import {Function, Demo, Components, Adv} from '../../async-router/';
 // console.log(Function,Demo,Components,Adv);
 
-import Home from 'layout/routeview/Home.vue';
-import Content from 'layout/routeview/Content.vue';
-import Functions from 'views/function/';
+// import Home from 'layout/routeview/Home.vue';
+// import Content from 'layout/routeview/Content.vue';
+// import Functions from 'views/function/';
 // console.log(Home,Content);
 // console.log(Functions);
+
+import Views from 'views/';
+
+// console.log(Views);
 
 export default {
 	name   : 'login',
@@ -142,30 +146,35 @@ export default {
 							}).then(() => {
 								this.login_actions.disabled = false;
 
-								this.$store.dispatch('update_user_routes', {
+								/*this.$store.dispatch('update_user_routes', {
 									routes: data.routes
-								});
+								});*/
 
-								console.log(data.routes);
-								data.routes.forEach((one, one_key) => {
-									console.log(one_key)
-									one.component = Home;
+								// console.log(data.routes);
+								/*data.routes.forEach((one, one_key) => {
+									var one_path = one.component_path;
+									var cp       = one.component;
+									console.log(cp);
+									console.log(Views[cp]);
+									one.component = Views[cp];
 									one.children.forEach((two, two_key) => {
-										two.component = Content;
+										var two_path = two.component_path;
+										var cp2      = two.component;
+										console.log(cp2);
+										console.log(Views[cp2]);
+										two.component = Views[cp2];
 										two.children.forEach((route, route_key) => {
-											var page = route.component;
-											console.log(page)
-											route.component = Functions.Open[page];
+											var page        = route.component;
+											route.component = Views.Page[one_path][two_path][page];
 										});
 									});
-								});
-								console.log(data.routes);
-
+								});*/
+								// console.log(data.routes);
 
 								// console.log(AsyncRouter);
-								this.$router.options.routes.push(data.routes[0]);
+								/*this.$router.options.routes.push(data.routes[0]);
 								this.$router.addRoutes(this.$router.options.routes);
-								this.$router.push('/function/open/echarts');
+								this.$router.push('/function/open/echarts');*/
 
 
 								// this.$router.options.routes.push(Function);
@@ -176,11 +185,11 @@ export default {
 								// this.$router.push('/function/open/echarts');
 
 
-								/*if (data.userinfo.default_web_routers) {
+								if (data.userinfo.default_web_routers) {
 									this.$router.push(data.userinfo.default_web_routers);
 								} else {
 									this.$router.push('/function/open/echarts');
-								}*/
+								}
 							});
 						},
 						errFn    : (err) => {

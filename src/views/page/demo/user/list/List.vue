@@ -101,6 +101,12 @@
                     </el-button>
 
                     <el-button
+                            type="primary"
+                            size="mini"
+                            @click='getList(scope.row.id)'>查看子用户
+                    </el-button>
+
+                    <el-button
                             type="danger"
                             icon='delete'
                             size="mini"
@@ -111,8 +117,8 @@
                     <el-button
                             size="mini"
                             :type="scope.row.status==1 ? 'danger' : 'info'"
-                            @click='onSetStatusUser(scope.row,scope.$index,user_list)'>{{scope.row.status==1 ? '禁用' :
-                        '启用'}}
+                            @click='onSetStatusUser(scope.row,scope.$index,user_list)'>{{scope.row.status == 1 ? '禁用' :
+						'启用'}}
                     </el-button>
                 </template>
             </el-table-column>
@@ -133,7 +139,7 @@
                     {{dialog.user_info.username}}
                 </el-form-item>
                 <el-form-item label="性别">
-                    {{dialog.user_info.sex==1 ? '男' : (dialog.user_info.sex==2 ? '女' : '未知')}}
+                    {{dialog.user_info.sex == 1 ? '男' : (dialog.user_info.sex == 2 ? '女' : '未知')}}
                 </el-form-item>
                 <el-form-item label="生日">
                     {{dialog.user_info.birthday}}
@@ -143,7 +149,7 @@
                     {{dialog.user_info.address}}
                 </el-form-item>
                 <el-form-item label="状态">
-                    {{dialog.user_info.status==1 ? '启用' : '禁用'}}
+                    {{dialog.user_info.status == 1 ? '启用' : '禁用'}}
                 </el-form-item>
                 <el-form-item label="创建时间">
                     {{dialog.user_info.create_time}}
@@ -157,79 +163,30 @@
                 <el-button type="primary" @click="dialog.show = false">确 定</el-button>
             </span>
         </el-dialog>
-
-
-        <el-dialog title="设置权限" v-model="dialog_access.show" size="small">
-            <el-form style="margin:20px;width:60%;min-width:100%"
-                     label-width="100px"
-                     :model="dialog_access.userinfo">
-                <el-form-item class='edit-form'
-                              label="邮箱"
-                              prop='email'>
-                    {{dialog_access.userinfo.email}}
-                </el-form-item>
-                <el-form-item class='edit-form'
-                              label="用户名称"
-                              prop='username'>
-                    {{dialog_access.userinfo.username}}
-                </el-form-item>
-
-                <el-form-item class='edit-form'
-                              label="前端页面">
-                    <!-- CheckBox选项列表 -->
-                    <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选
-                    </el-checkbox>
-                    <div style="margin: 15px 0;"></div>
-                    <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
-                        <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-
-                <el-form-item class='edit-form'>
-                    <el-tree
-                            class="filter-tree"
-                            show-checkbox
-                            default-expand-all
-                            node-key="path"
-                            :data="accesss"
-                            :props="defaultProps"
-                            :filter-node-method="filterNode"
-                            @check-change='checkChange'
-                            @current-change='currentChange'
-                            @node-click='nodeClick'
-                            ref="accesss">
-                    </el-tree>
-                </el-form-item>
-
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialog_access.show = false">取 消</el-button>
-                <el-button type="primary" @click="dialog_access.show = false">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
 <script>
 	import ListJs from './List.js';
+
 	export default ListJs;
 </script>
 <style scoped lang='less'>
     .demo-form-inline {
-        display: inline-block;
-        float: right;
+        display : inline-block;
+        float   : right;
     }
 
     .btm-action {
-        margin-top: 20px;
-        text-align: center;
+        margin-top : 20px;
+        text-align : center;
     }
 
     .actions-top {
-        height: 46px;
+        height : 46px;
     }
 
     .pagination {
-        display: inline-block;
+        display : inline-block;
     }
 </style>

@@ -2,7 +2,7 @@
  * Created by sailengsi on 2017/5/11.
  */
 
-import {Home,Content} from 'layout/';
+import Container from '../../views/container/';
 
 import article from './article.js';
 // import user from './user.js';
@@ -13,7 +13,7 @@ export default {
 	path: '/demo',
 	name: '完整交互',
 	icon: 'inbox',
-	component: Home,
+	component: Container.Home,
 	redirect: '/demo/article',
 	children:[article,order,orderstatis]
 };

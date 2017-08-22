@@ -3,20 +3,21 @@
  */
 import Vue from 'vue';
 import Router from 'vue-router';
+
 Vue.use(Router);
 
-import {Home, Content} from 'layout/';
-import {Login,Functions} from 'views/';
-console.log(Functions.Open);
+import Login from '../views/login/';
+// console.log(Functions.Open);
 
-/*import Adv from './adv/';
+import Adv from './adv/';
 import Function from './function/';
 import Demo from './demo/';
-import components from './components/';*/
+import Components from './components/';
 
 import {store} from 'utils/';
-var user_routes=store.get('user_routes') || [];
-user_routes.forEach((one, one_key) => {
+
+var user_routes = store.get('user_routes') || [];
+/*user_routes.forEach((one, one_key) => {
 	one.component = Home;
 	one.children.forEach((two, two_key) => {
 		two.component = Content;
@@ -27,29 +28,28 @@ user_routes.forEach((one, one_key) => {
 	});
 });
 console.log(user_routes);
-console.log('init router.js');
+console.log('init router.js');*/
 
 
-var default_routes=[
+var default_routes = [
 	{
 		path  : '/',
 		hidden: true,
-		redirect(to){
+		redirect (to) {
 			return 'login';
 		}
 	}, {
 		path     : '/login',
 		hidden   : true,
-		component: resolve=>{
-			require(['views/login/'], resolve);
-		},
+		component: Login,
 	},
+	Function, Demo, Components, Adv
 ];
 
 
-user_routes.forEach(item=>{
+/*user_routes.forEach(item=>{
 	default_routes.push(item);
-});
+});*/
 
 export default new Router({
 	routes: default_routes

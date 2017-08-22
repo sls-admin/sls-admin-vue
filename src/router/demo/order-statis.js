@@ -3,27 +3,27 @@
  */
 
 
-import {Content} from 'layout/';
+import Container from '../../views/container/';
 
-import {Demo} from 'views/';
+import Demo from '../../views/page/demo/';
 
 // console.log(Demo);
 
 export default {
-	path: 'orderstatis',
-	name: '订单统计',
-	icon: 'inbox',
-	component: Content,
-	redirect: '/demo/orderstatis/bar',
-	children: [{
-		path: 'bar',
-		name: '柱状图',
-		icon: 'reorder',
+	path     : 'orderstatis',
+	name     : '订单统计',
+	icon     : 'inbox',
+	component: Container.Content,
+	redirect : '/demo/orderstatis/bar',
+	children : [{
+		path     : 'bar',
+		name     : '柱状图',
+		icon     : 'reorder',
 		component: Demo.OrderStatis.Bar
 	}, {
-		path: 'pie',
-		name: '饼状图',
-		icon: 'edit',
+		path     : 'pie',
+		name     : '饼状图',
+		icon     : 'edit',
 		component: Demo.OrderStatis.Pie
 	}]
 };

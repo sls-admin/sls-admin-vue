@@ -13,9 +13,9 @@
     </div>
 </template>
 <script>
-    import HeadNav from '../head-nav/HeadNav.vue';
-	import LeftMenu from '../left-menu/LeftMenu.vue';
-	import Bread from '../bread/Bread.vue';
+    import HeadNav from 'layout/head-nav/HeadNav.vue';
+	import LeftMenu from 'layout/left-menu/LeftMenu.vue';
+	import Bread from 'layout/bread/Bread.vue';
 
     export default {
         name: 'home',
