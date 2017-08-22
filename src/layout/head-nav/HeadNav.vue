@@ -104,7 +104,33 @@
                      label-width="100px"
                      v-model='dialog.set_info'
                      ref='set_info'>
+                <el-collapse v-model="dialog.activeNames" @change="onChangeRootPath">
+                    <el-collapse-item
+                            v-for="(root_item,root_key) in dialog.routes"
+                            :key="root_key"
+                            :title="root_item.name"
+                            :name="root_item.path">
+                        <div
+                                :key="two_key"
+                                v-for="(two_item,two_key) in root_item.children">
+                            <div style="margin: 15px 0;"></div>
+                            <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll"
+                                         @change="onChangeTwoPath">{{two_item.name}}
+                            </el-checkbox>
 
+                            <el-checkbox-group
+                                    style="margin-left:20px;"
+                                    v-model="checkedCities"
+                                    @change="onChangeThreePath">
+                                <el-checkbox
+                                        v-for="(three_item,three_key) in two_item.children"
+                                        :key="three_key"
+                                        :label="three_item.path">{{three_item.name}}
+                                </el-checkbox>
+                            </el-checkbox-group>
+                        </div>
+                    </el-collapse-item>
+                </el-collapse>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialog.show_set = false">取 消</el-button>
