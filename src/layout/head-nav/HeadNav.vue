@@ -104,33 +104,40 @@
                      label-width="100px"
                      v-model='dialog.set_info'
                      ref='set_info'>
-                <el-collapse v-model="dialog.activeNames" @change="onChangeRootPath">
-                    <el-collapse-item
-                            v-for="(root_item,root_key) in dialog.routes"
-                            :key="root_key"
-                            :title="root_item.name"
-                            :name="root_item.path">
-                        <div
-                                :key="two_key"
-                                v-for="(two_item,two_key) in root_item.children">
-                            <div style="margin: 15px 0;"></div>
-                            <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll"
-                                         @change="onChangeTwoPath">{{two_item.name}}
-                            </el-checkbox>
-
-                            <el-checkbox-group
-                                    style="margin-left:20px;"
-                                    v-model="checkedCities"
-                                    @change="onChangeThreePath">
+                <div class="all-route">
+                    <el-checkbox
+                            @change="onChangeAllRoute"
+                            v-model="routes_all">全选
+                    </el-checkbox>
+                </div>
+                <div
+                        class="root-route"
+                        :key="root_index"
+                        v-for="(root_route,root_index) in routes">
+                    <el-checkbox
+                            @change="onChangeRootRoute(root_index)"
+                            v-model="root_route.value">{{root_route.name}}
+                    </el-checkbox>
+                    <div
+                            class="two-route"
+                            v-for="(two_route,two_index) in root_route.children"
+                            :key="two_index">
+                        <el-checkbox
+                                @change="onChangeTwoRoute(two_index,root_index)"
+                                v-model="two_route.value">{{two_route.name}}
+                        </el-checkbox>
+                        <div class="three-route">
+                            <span
+                                    v-for="(three_route,three_index) in two_route.children"
+                                    :key="three_index"
+                                    class="checkbox-route">
                                 <el-checkbox
-                                        v-for="(three_item,three_key) in two_item.children"
-                                        :key="three_key"
-                                        :label="three_item.path">{{three_item.name}}
-                                </el-checkbox>
-                            </el-checkbox-group>
+                                        @change="onChangeThreeRoute"
+                                        v-model="three_route.value">{{three_route.name}}</el-checkbox>
+                            </span>
                         </div>
-                    </el-collapse-item>
-                </el-collapse>
+                    </div>
+                </div>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialog.show_set = false">取 消</el-button>
@@ -147,6 +154,31 @@
 </script>
 
 <style scoped lang='less'>
+    .all-route {
+        margin-bottom : 16px;
+    }
+
+    .root-route {
+        margin-bottom : 16px;
+        margin-left   : 20px;
+    }
+
+    .two-route {
+        margin-left : 20px;
+        clear       : both;
+        margin-top  : 6px;
+    }
+
+    .three-route {
+        margin-left : 20px;
+        margin-top  : 6px;
+
+        .checkbox-route {
+            display      : inline-block;
+            margin-right : 12px;
+        }
+    }
+
     .logo-container {
         height : 60px;
     }

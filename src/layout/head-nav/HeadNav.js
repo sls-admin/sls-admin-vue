@@ -55,29 +55,10 @@ export default {
 						}
 					}],
 				},
-
-
-				activeNames: ['/function', '/demo'],
-				routes     : [],
 			},
 
-
-			checkAll       : true,
-			checkedCities  : [],
-			cities         : [{
-				value: 'sh',
-				label: '上海'
-			}, {
-				label: '北京',
-				value: 'bj'
-			}, {
-				label: '广州',
-				value: 'gz'
-			}, {
-				label: '深圳',
-				value: 'sz'
-			}],
-			isIndeterminate: true
+			routes    : [],
+			routes_all: false,
 		}
 	},
 	mounted () {
@@ -91,7 +72,7 @@ export default {
 		 * 初始化组装路由
 		 */
 		onInitRoutes () {
-			this.dialog.routes = [
+			this.routes = [
 				{
 					'path'          : '/function',
 					'name'          : '静态演示',
@@ -99,6 +80,7 @@ export default {
 					'component_path': 'Function',
 					'component'     : 'Home',
 					'redirect'      : '/function/open',
+					'value'         : false,
 					'children'      : [
 						{
 							'path'          : 'open',
@@ -107,36 +89,42 @@ export default {
 							'component_path': 'Open',
 							'component'     : 'Content',
 							'redirect'      : '/function/open/echarts',
+							'value'         : false,
 							'children'      : [
 								{
 									'path'     : 'echarts',
 									'name'     : '图表',
 									'icon'     : 'bar-chart',
-									'component': 'Echarts'
+									'component': 'Echarts',
+									'value'    : false,
 								},
 								{
 									'path'     : 'list',
 									'name'     : '列表',
 									'icon'     : 'reorder',
-									'component': 'List'
+									'component': 'List',
+									'value'    : false,
 								},
 								{
 									'path'     : 'form',
 									'name'     : '表单',
 									'icon'     : 'edit',
-									'component': 'Form'
+									'component': 'Form',
+									'value'    : false,
 								},
 								{
 									'path'     : 'vuex',
 									'name'     : 'vuex',
 									'icon'     : 'window-restore',
-									'component': 'Vuex'
+									'component': 'Vuex',
+									'value'    : false,
 								},
 								{
 									'path'     : 'test404',
 									'name'     : '测试404',
 									'icon'     : 'window-restore',
-									'component': 'Test404'
+									'component': 'Test404',
+									'value'    : false,
 								}
 							]
 						}
@@ -151,6 +139,7 @@ export default {
 					'component_path': 'Demo',
 					'component'     : 'Home',
 					'redirect'      : '/demo/article',
+					'value'         : false,
 					'children'      : [
 						{
 							'path'          : 'article',
@@ -159,18 +148,21 @@ export default {
 							'component_path': 'Article',
 							'component'     : 'Content',
 							'redirect'      : '/demo/article/list',
+							'value'         : false,
 							'children'      : [
 								{
 									'path'     : 'list',
 									'name'     : '文章列表',
 									'icon'     : 'inbox',
-									'component': 'List'
+									'component': 'List',
+									'value'    : false,
 								},
 								{
 									'path'     : 'edit',
 									'name'     : '编辑文章',
 									'icon'     : 'edit',
-									'component': 'Form'
+									'component': 'Form',
+									'value'    : false,
 								}
 							]
 						},
@@ -181,23 +173,28 @@ export default {
 							'component_path': 'Order',
 							'component'     : 'Content',
 							'redirect'      : '/demo/order/list',
+							'value'         : false,
 							'children'      : [
 								{
 									'path'     : 'list',
 									'name'     : '订单列表',
 									'icon'     : 'inbox',
-									'component': 'List'
+									'component': 'List',
+									'value'    : false,
 								},
 								{
 									'path'     : 'edit',
 									'name'     : '添加订单',
 									'icon'     : 'edit',
-									'component': 'Form'
+									'component': 'Form',
+									'value'    : false,
 								}
 							]
 						}
 					]
 				},
+
+
 				{
 					'path'          : '/adv',
 					'name'          : '高级实战',
@@ -205,6 +202,7 @@ export default {
 					'component_path': 'Adv',
 					'component'     : 'Home',
 					'redirect'      : '/adv/article',
+					'value'         : false,
 					'children'      : [
 						{
 							'path'          : 'article',
@@ -213,18 +211,21 @@ export default {
 							'component_path': 'Article',
 							'component'     : 'Content',
 							'redirect'      : '/adv/article/list',
+							'value'         : false,
 							'children'      : [
 								{
 									'path'     : 'list',
 									'name'     : 'artcile-list',
 									'icon'     : 'inbox',
-									'component': 'List'
+									'component': 'List',
+									'value'    : false,
 								},
 								{
 									'path'     : 'edit',
 									'name'     : 'article-edit',
 									'icon'     : 'edit',
-									'component': 'Form'
+									'component': 'Form',
+									'value'    : false,
 								}
 							]
 						}
@@ -235,28 +236,107 @@ export default {
 
 
 		/**
-		 * 改变根路由事件
-		 * 当折叠面板展开，即代表当前下面的所有的选中，或者当前下面的任何一个选中，这个也得选中
+		 * 全选全不选根级和二级路由状态时，同时改变子级路由的状态
+		 * @param arr    索引数组[one_route_index] or [one_route_index,two_index]
+		 * @param type
 		 */
-		onChangeRootPath () {
-			console.log(this.dialog.activeNames);
+		setChildStatus (arr, type) {
+			if (Array.isArray(arr)) {
+				var root_index = arr[0],
+					two_index  = arr[1];
+
+				if (root_index >= 0) {
+					var routes = this.routes[root_index].children;
+
+					if (two_index >= 0) {
+						routes = routes[two_index].children;
+					}
+				} else {
+					var routes = this.routes;
+				}
+
+				routes.forEach(item => {
+					item.value = type;
+					if (item.children && Array.isArray(item.children) && item.children.length) {
+						item.children.forEach(iitem => {
+							iitem.value = type;
+							if (iitem.children && Array.isArray(iitem.children) && iitem.children.length) {
+								iitem.children.forEach(iiitem => {
+									iiitem.value = type;
+								});
+							}
+						});
+					}
+				});
+				// console.log(routes);
+				this.setParentStatus();
+			} else {
+				console.error('参数arr必须是一个数组');
+			}
+		},
+		/**
+		 * 当  当前级的路由全部选中时，要把父级全部选中，然后以此类推，一直到最上层。
+		 */
+		setParentStatus () {
+			var all = true;
+			this.routes.forEach(root_route => {
+				if (!root_route.value) {
+					all = false;
+				}
+				var one = true;
+				root_route.children.forEach(two_route => {
+					if (!two_route.value) {
+						one = false;
+						all = false;
+					}
+					var two = true;
+					two_route.children.forEach(three_route => {
+						if (!three_route.value) {
+							two = false;
+							one = false;
+							all = false;
+						}
+					});
+					console.log('two:' + two);
+					two_route.value = two;
+					if (two) {
+						one = true;
+					}
+				});
+				console.log('one:' + one);
+				root_route.value = one;
+				if (one) {
+					all = true;
+				}
+			});
+			console.log('all:' + all);
+			this.routes_all = all;
+		},
+		/**
+		 * 改变全部事件
+		 */
+		onChangeAllRoute () {
+			this.setChildStatus([], this.routes_all);
+		},
+		/**
+		 * 改变根路由事件
+		 */
+		onChangeRootRoute (root_index) {
+			this.setChildStatus([root_index], this.routes[root_index].value);
 		},
 		/**
 		 * 改变二级路由事件
 		 * @param event
 		 */
-		onChangeTwoPath (event) {
-			this.checkedCities   = event.target.checked ? ['sh', 'bj', 'gz', 'sz'] : [];
-			this.isIndeterminate = false;
+		onChangeTwoRoute (two_index, root_index) {
+			this.setChildStatus([root_index, two_index], this.routes[root_index].children[two_index].value);
 		},
 		/**
 		 * 改变三级路由事件
 		 * @param value
 		 */
-		onChangeThreePath (value) {
-			let checkedCount     = value.length;
-			this.checkAll        = checkedCount === this.cities.length;
-			this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+		onChangeThreeRoute () {
+			this.setParentStatus();
 		},
 
 
