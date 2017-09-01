@@ -31,7 +31,7 @@ export default {
                     //属性
                     attrs:{
 						uploadImgServer:'/slsAdminApi/Article/editUpload',
-						uploadFileName:'article',
+						uploadFileName:'user',
 						uploadImgHeaders:{
 						    token:this.$store.state.user.userinfo.token
                         }

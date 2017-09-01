@@ -5,24 +5,24 @@
 import {Content} from 'layout/';
 
 export default {
-	path: 'article',
-	name: 'article-manager',
+	path: 'user',
+	name: 'user-manager',
 	icon: 'inbox',
 	component: Content,
-	redirect: '/adv/article/list',
+	redirect: '/adv/user/list',
 	children: [{
 		path: 'list',
-		name: 'article-list',
+		name: 'user-list',
 		icon: 'reorder',
 		component: resolve=>{
-			require(['views/adv/article/list/'], resolve);
+			require(['views/adv/user/list/'], resolve);
 		}
 	}, {
 		path: 'edit',
-		name: 'article-edit',
+		name: 'user-edit',
 		icon: 'edit',
 		component: resolve=>{
-			require(['views/adv/article/edit/'], resolve);
+			require(['views/adv/user/edit/'], resolve);
 		}
 	}]
 };

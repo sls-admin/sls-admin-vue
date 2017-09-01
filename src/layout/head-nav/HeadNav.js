@@ -62,7 +62,7 @@ export default {
 		}
 	},
 	mounted () {
-		this.setDialogInfo('set');
+		// this.setDialogInfo('set');
 		this.onInitRoutes();
 
 		// this.onGetSetting();
@@ -81,6 +81,7 @@ export default {
 					'component'     : 'Home',
 					'redirect'      : '/function/open',
 					'value'         : false,
+					'is_all'        : false,
 					'children'      : [
 						{
 							'path'          : 'open',
@@ -90,6 +91,7 @@ export default {
 							'component'     : 'Content',
 							'redirect'      : '/function/open/echarts',
 							'value'         : false,
+							'is_all'        : false,
 							'children'      : [
 								{
 									'path'     : 'echarts',
@@ -138,17 +140,19 @@ export default {
 					'icon'          : 'inbox',
 					'component_path': 'Demo',
 					'component'     : 'Home',
-					'redirect'      : '/demo/article',
+					'redirect'      : '/demo/user',
 					'value'         : false,
+					'is_all'        : false,
 					'children'      : [
 						{
-							'path'          : 'article',
+							'path'          : 'user',
 							'name'          : '文章管理',
 							'icon'          : 'inbox',
 							'component_path': 'Article',
 							'component'     : 'Content',
-							'redirect'      : '/demo/article/list',
+							'redirect'      : '/demo/user/list',
 							'value'         : false,
+							'is_all'        : false,
 							'children'      : [
 								{
 									'path'     : 'list',
@@ -174,6 +178,7 @@ export default {
 							'component'     : 'Content',
 							'redirect'      : '/demo/order/list',
 							'value'         : false,
+							'is_all'        : false,
 							'children'      : [
 								{
 									'path'     : 'list',
@@ -201,17 +206,19 @@ export default {
 					'icon'          : 'inbox',
 					'component_path': 'Adv',
 					'component'     : 'Home',
-					'redirect'      : '/adv/article',
+					'redirect'      : '/adv/user',
 					'value'         : false,
+					'is_all'        : false,
 					'children'      : [
 						{
-							'path'          : 'article',
-							'name'          : 'article-manager',
+							'path'          : 'user',
+							'name'          : 'user-manager',
 							'icon'          : 'inbox',
 							'component_path': 'Article',
 							'component'     : 'Content',
-							'redirect'      : '/adv/article/list',
+							'redirect'      : '/adv/user/list',
 							'value'         : false,
+							'is_all'        : false,
 							'children'      : [
 								{
 									'path'     : 'list',
@@ -222,7 +229,7 @@ export default {
 								},
 								{
 									'path'     : 'edit',
-									'name'     : 'article-edit',
+									'name'     : 'user-edit',
 									'icon'     : 'edit',
 									'component': 'Form',
 									'value'    : false,
@@ -234,109 +241,56 @@ export default {
 			];
 		},
 
-
-		/**
-		 * 全选全不选根级和二级路由状态时，同时改变子级路由的状态
-		 * @param arr    索引数组[one_route_index] or [one_route_index,two_index]
-		 * @param type
-		 */
-		setChildStatus (arr, type) {
-			if (Array.isArray(arr)) {
-				var root_index = arr[0],
-					two_index  = arr[1];
-
-				if (root_index >= 0) {
-					var routes = this.routes[root_index].children;
-
-					if (two_index >= 0) {
-						routes = routes[two_index].children;
-					}
+		onChangeRoute ({root_index, two_index, three_index}) {
+			if (three_index === undefined) {
+				let routes = [];
+				let status = false;
+				if (two_index === undefined) {
+					routes = this.routes[root_index].children;
+					status = this.routes[root_index].value;
 				} else {
-					var routes = this.routes;
+					routes = this.routes[root_index].children[two_index].children;
+					status = this.routes[root_index].children[two_index].value;
 				}
-
-				routes.forEach(item => {
-					item.value = type;
-					if (item.children && Array.isArray(item.children) && item.children.length) {
-						item.children.forEach(iitem => {
-							iitem.value = type;
-							if (iitem.children && Array.isArray(iitem.children) && iitem.children.length) {
-								iitem.children.forEach(iiitem => {
-									iiitem.value = type;
-								});
-							}
+				routes.forEach(route => {
+					route.value = status;
+					if (two_index == undefined) {
+						route.children.forEach(page => {
+							page.value = status;
 						});
 					}
 				});
-				// console.log(routes);
-				this.setParentStatus();
-			} else {
-				console.error('参数arr必须是一个数组');
 			}
-		},
-		/**
-		 * 当  当前级的路由全部选中时，要把父级全部选中，然后以此类推，一直到最上层。
-		 */
-		setParentStatus () {
-			var all = true;
-			this.routes.forEach(root_route => {
-				if (!root_route.value) {
-					all = false;
-				}
-				var one = true;
-				root_route.children.forEach(two_route => {
-					if (!two_route.value) {
-						one = false;
-						all = false;
-					}
-					var two = true;
-					two_route.children.forEach(three_route => {
-						if (!three_route.value) {
-							two = false;
-							one = false;
-							all = false;
+			this.routes.forEach((root_route, root_index) => {
+				if (root_route.children && Array.isArray(root_route.children)) {
+					root_route.is_all = true;
+					root_route.value  = true;
+					root_route.children.forEach((two_route, two_index) => {
+						if (two_route.children && Array.isArray(two_route.children)) {
+							two_route.is_all = true;
+							two_route.value  = true;
+							two_route.children.forEach((three_route, three_index) => {
+								if (!three_route.value) {
+									two_route.is_all  = false;
+									two_route.value   = false;
+									root_route.is_all = false;
+									root_route.value  = false;
+								}
+							});
+							if (!two_route.value) {
+								root_route.is_all = false;
+								root_route.value  = false;
+							}
 						}
 					});
-					console.log('two:' + two);
-					two_route.value = two;
-					if (two) {
-						one = true;
-					}
-				});
-				console.log('one:' + one);
-				root_route.value = one;
-				if (one) {
-					all = true;
 				}
 			});
-			console.log('all:' + all);
-			this.routes_all = all;
 		},
 		/**
 		 * 改变全部事件
 		 */
 		onChangeAllRoute () {
-			this.setChildStatus([], this.routes_all);
-		},
-		/**
-		 * 改变根路由事件
-		 */
-		onChangeRootRoute (root_index) {
-			this.setChildStatus([root_index], this.routes[root_index].value);
-		},
-		/**
-		 * 改变二级路由事件
-		 * @param event
-		 */
-		onChangeTwoRoute (two_index, root_index) {
-			this.setChildStatus([root_index, two_index], this.routes[root_index].children[two_index].value);
-		},
-		/**
-		 * 改变三级路由事件
-		 * @param value
-		 */
-		onChangeThreeRoute () {
-			this.setParentStatus();
+
 		},
 
 

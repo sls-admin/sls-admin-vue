@@ -1,5 +1,5 @@
 export default {
-    name: 'article-list',
+    name: 'user-list',
     components: {
 
     },

@@ -11,6 +11,6 @@ export default {
 	name: '高级实战',
 	icon: 'inbox',
 	component: Home,
-	redirect: '/adv/article',
+	redirect: '/adv/user',
 	children:[article]
 };

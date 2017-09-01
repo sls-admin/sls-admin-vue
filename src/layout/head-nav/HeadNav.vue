@@ -115,7 +115,7 @@
                         :key="root_index"
                         v-for="(root_route,root_index) in routes">
                     <el-checkbox
-                            @change="onChangeRootRoute(root_index)"
+                            @change="onChangeRoute({root_index})"
                             v-model="root_route.value">{{root_route.name}}
                     </el-checkbox>
                     <div
@@ -123,7 +123,7 @@
                             v-for="(two_route,two_index) in root_route.children"
                             :key="two_index">
                         <el-checkbox
-                                @change="onChangeTwoRoute(two_index,root_index)"
+                                @change="onChangeRoute({root_index,two_index})"
                                 v-model="two_route.value">{{two_route.name}}
                         </el-checkbox>
                         <div class="three-route">
@@ -132,7 +132,7 @@
                                     :key="three_index"
                                     class="checkbox-route">
                                 <el-checkbox
-                                        @change="onChangeThreeRoute"
+                                        @change="onChangeRoute({root_index,two_index,three_index})"
                                         v-model="three_route.value">{{three_route.name}}</el-checkbox>
                             </span>
                         </div>

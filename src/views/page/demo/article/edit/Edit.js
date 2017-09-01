@@ -8,7 +8,7 @@ import {
 import E from 'wangeditor';
 
 export default {
-	name   : 'edit-article',
+	name   : 'edit-user',
 	data() {
 		return {
 			article_data: {
@@ -93,7 +93,7 @@ export default {
 					this.$$api_article_saveArticle({
 						data:this.article_data,
 						fn:data=>{
-							this.$router.push('/demo/article/list');
+							this.$router.push('/demo/user/list');
 						}
 					});
 				}
@@ -110,9 +110,9 @@ export default {
          */
         initWangeditor(){
             var self   = this;
-            this.wangEditor.obj = new E('#article');
+            this.wangEditor.obj = new E('#user');
 
-            this.wangEditor.obj.customConfig.uploadFileName = 'article';
+            this.wangEditor.obj.customConfig.uploadFileName = 'user';
             this.wangEditor.obj.customConfig.uploadImgServer = gbs.host + '/Article/editUpload';
             this.wangEditor.obj.customConfig.uploadImgParams = {
                 username: this.$store.state.user.userinfo.username

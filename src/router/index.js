@@ -13,6 +13,7 @@ import Adv from './adv/';
 import Function from './function/';
 import Demo from './demo/';
 import Components from './components/';
+import Permis from './permis/';
 
 import {store} from 'utils/';
 
@@ -43,7 +44,7 @@ var default_routes = [
 		hidden   : true,
 		component: Login,
 	},
-	Function, Demo, Components, Adv
+	Function, Demo, Components, Adv, Permis
 ];
 
 

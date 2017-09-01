@@ -1,5 +1,5 @@
 export default {
-	name   : 'article-list',
+	name   : 'user-list',
 	data() {
 		return {
 			article_list: [],
@@ -257,7 +257,7 @@ export default {
 		 */
 		onEditArticle(article) {
 			if (article && article.id) {
-				this.$router.push('/demo/article/edit?id=' + article.id);
+				this.$router.push('/demo/user/edit?id=' + article.id);
 			} else {
 				this.$message({
 					showClose: true,

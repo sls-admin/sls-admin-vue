@@ -14,6 +14,6 @@ export default {
 	name: '完整交互',
 	icon: 'inbox',
 	component: Home,
-	redirect: '/demo/article',
+	redirect: '/demo/user',
 	children:[article,order,orderstatis]
 };

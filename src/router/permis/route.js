@@ -4,23 +4,23 @@
 
 import Container from '../../views/container/';
 
-import Demo from '../../views/page/demo/';
+import Permis from '../../views/page/permis/';
 
 export default {
-	path     : 'user',
-	name     : '文章管理',
+	path     : 'route',
+	name     : '路由管理',
 	icon     : 'inbox',
 	component: Container.Content,
-	redirect : '/demo/user/list',
+	redirect : '/permis/route/list',
 	children : [{
 		path     : 'list',
-		name     : '文章列表',
+		name     : '路由列表',
 		icon     : 'reorder',
-		component: Demo.Article.List
+		component: Permis.Route.List
 	}, {
 		path     : 'edit',
-		name     : '编辑文章',
+		name     : '编辑用户',
 		icon     : 'edit',
-		component: Demo.Article.Edit
+		component: Permis.Route.Edit
 	}]
 };

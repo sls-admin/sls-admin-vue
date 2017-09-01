@@ -1,18 +1,24 @@
 export default {
 	name      : 'adv-user-list',
 	components: {},
-	data() {
+	data () {
 		return {
+			params: {
+				pid: ''
+			},
 			list  : [],
 			fields: [{
 				key  : 'id',
 				label: '文章ID'
-			},{
+			}, {
 				key  : 'create_time',
 				label: '创建时间'
 			}, {
-				key  : 'title',
-				label: '标题'
+				key  : 'username',
+				label: '用户名'
+			}, {
+				key  : 'email',
+				label: '邮箱'
 			}, {
 				width          : '160',
 				key            : 'status',
@@ -46,39 +52,63 @@ export default {
 			//搜索配置
 			search_data: {
 				fields       : [{
-					key  : 'title',
-					label: '标题'
+					key : 'username',
+					desc: '用户名'
+				}, {
+					key : 'email',
+					desc: '邮箱'
 				}],
 				default_value: {
-					title: ''
+					username: '',
+					email   : ''
 				}
 			},
 
 			//按钮配置
 			btn_info: {
-				// batch:false,
-				// batch_delete:false,
-				width            : 300,
-				add_text         : '添加文章',
-				select_text      : '查看',
-				update_text      : '修改',
-				delete_text      : '删除文章',
-				batch_delete_text: '批量删除文章'
+				batch       : false,
+				batch_delete: false,
+				update      : false,
+				width       : 400,
+				add_text    : '添加用户',
+				select_text : '查看子用户',
+				update_text : '修改',
+				delete_text : '删除用户',
+
+				list: [{
+					text: '添加子用户',
+					fn  : ({data}) => {
+						console.log(data);
+						this.$router.push({
+							path : '/permis/user/edit',
+							query: {
+								id: data.id
+							}
+						});
+					}
+				}]
 			}
 
 		}
 	},
 	methods   : {
 		/**
-		 * 获取文章列表
+		 * 获取用户列表
 		 */
-		onGetList(){
-			this.$$api_article_selectArticle({
-				data: {
-					page     : this.paginations.current_page,
-					page_size: this.paginations.page_size,
-					title    : this.search_data.default_value.title
-				},
+		onGetList () {
+			let data = {
+				page     : this.paginations.current_page,
+				page_size: this.paginations.page_size,
+				username : this.search_data.default_value.username,
+				email    : this.search_data.default_value.email,
+			};
+
+			if (this.params.pid) {
+				data.pid = this.params.pid;
+			}
+
+			this.$$api_user_selectUser({
+				data: data,
 				fn  : data => {
 					console.log(data);
 					this.paginations.total = data.list.total;
@@ -91,14 +121,14 @@ export default {
 		/**
 		 * 点击删除按钮
 		 */
-		onClickBtnDelete(opts){
+		onClickBtnDelete ({data}) {
 			this.$confirm('删除后不可恢复', '确认删除？').then(() => {
-				this.$$api_article_deleteArticle({
+				this.$$api_user_deleteUser({
 					data: {
-						id: opts.data.id
+						id: data.id
 					},
-					fn  : data => {
-						this.onGetList();
+					fn  : () => {
+						this.$router.go(0);
 					}
 				});
 			});
@@ -106,28 +136,23 @@ export default {
 
 
 		/**
-		 * 添加文章
+		 * 添加用户
 		 */
-		onClickBtnAdd(){
-			this.$router.push('/adv/user/edit');
-		},
-
-
-		onClickBtnSelect(opts){
-			console.log(opts);
-			this.$message('查看自己处理吧');
+		onClickBtnAdd () {
+			this.$router.push('/permis/user/edit');
 		},
 
 
 		/**
-		 * 修改按钮
-		 * @param opts
+		 * 查看子用户
+		 * @param data
 		 */
-		onClickBtnUpdate(opts){
+		onClickBtnSelect ({data}) {
+			console.log(data);
 			this.$router.push({
-				path : '/adv/user/edit',
+				path : '/permis/user/list',
 				query: {
-					id: opts.data.id
+					pid: data.id
 				}
 			});
 		},
@@ -137,7 +162,7 @@ export default {
 		 * 改变页码事件
 		 * @param current_page    当前页码
 		 */
-		onChangeCurPage(current_page){
+		onChangeCurPage (current_page) {
 			var path           = this.$route.path,
 				query          = Object.assign({}, this.$route.query);
 			query.current_page = current_page;
@@ -152,7 +177,7 @@ export default {
 		 * 改变每页显示数量事件
 		 * @param page_size    每页显示的数量
 		 */
-		onChangePageSize(page_size){
+		onChangePageSize (page_size) {
 			var path        = this.$route.path,
 				query       = Object.assign({}, this.$route.query);
 			query.page_size = page_size;
@@ -166,7 +191,7 @@ export default {
 		/**
 		 * 更新参数
 		 */
-		onUpdateParams(){
+		onUpdateParams () {
 			if (this.$route.query.current_page) {
 				this.paginations.current_page = parseInt(this.$route.query.current_page);
 			}
@@ -174,7 +199,9 @@ export default {
 				this.paginations.page_size = parseInt(this.$route.query.page_size);
 			}
 
-			this.search_data.default_value.title = this.$route.query.title;
+			this.search_data.default_value.username = this.$route.query.username;
+			this.search_data.default_value.email    = this.$route.query.email;
+			this.params.pid                         = this.$route.query.pid;
 		},
 
 
@@ -183,7 +210,7 @@ export default {
 		 * @param data    表单数据
 		 * @param info    其他有用的数据
 		 */
-		onSearch({data, info}){
+		onSearch ({data, info}) {
 			console.log(data);
 			console.log(info);
 
@@ -197,40 +224,16 @@ export default {
 		},
 
 
-		//批量选择改变CheckBox事件
-		onSelectionChange({ids,datas}){
-			// console.log(ids);
-			// console.log(datas);
-		},
-
-		/**
-		 * 批量删除
-		 * @param ids 选中的ids
-		 * @param datas	选中的数据集合
-		 */
-		onClickBtnBatchDelete({ids,datas}){
-			this.$confirm('删除的数据：'+ids.join(','), '确认删除？').then(() => {
-				this.$$api_article_deleteArticle({
-					data: {
-						id: ids.join(',')
-					},
-					fn  : data => {
-						this.onGetList();
-					}
-				});
-			});
-		},
-
 
 		/**
 		 * 初始化
 		 */
-		init() {
+		init () {
 			this.onUpdateParams();
 			this.onGetList();
 		}
 	},
-	mounted() {
+	mounted () {
 		this.init();
 	},
 	watch     : {
