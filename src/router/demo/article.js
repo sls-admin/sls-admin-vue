@@ -7,11 +7,11 @@ import Container from '../../views/container/';
 import Demo from '../../views/page/demo/';
 
 export default {
-	path     : 'user',
+	path     : 'article',
 	name     : '文章管理',
 	icon     : 'inbox',
 	component: Container.Content,
-	redirect : '/demo/user/list',
+	redirect : '/demo/article/list',
 	children : [{
 		path     : 'list',
 		name     : '文章列表',

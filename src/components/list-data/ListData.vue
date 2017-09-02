@@ -74,7 +74,9 @@
                     :label="btn_info.label || '操作'"
                     :width="btn_info.width || 160"
                     :context="_self">
+
                 <template scope='scope'>
+
                     <el-button
                             v-if='btn_info.list && btn_info.list_position==="before"'
                             v-for='(btn,index) in btn_info.list'

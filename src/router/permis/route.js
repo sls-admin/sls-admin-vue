@@ -19,7 +19,7 @@ export default {
 		component: Permis.Route.List
 	}, {
 		path     : 'edit',
-		name     : '编辑用户',
+		name     : '编辑路由',
 		icon     : 'edit',
 		component: Permis.Route.Edit
 	}]

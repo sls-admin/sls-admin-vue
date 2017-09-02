@@ -110,9 +110,9 @@ export default {
          */
         initWangeditor(){
             var self   = this;
-            this.wangEditor.obj = new E('#user');
+            this.wangEditor.obj = new E('#article');
 
-            this.wangEditor.obj.customConfig.uploadFileName = 'user';
+            this.wangEditor.obj.customConfig.uploadFileName = 'article';
             this.wangEditor.obj.customConfig.uploadImgServer = gbs.host + '/Article/editUpload';
             this.wangEditor.obj.customConfig.uploadImgParams = {
                 username: this.$store.state.user.userinfo.username
