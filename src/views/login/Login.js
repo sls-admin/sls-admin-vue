@@ -206,7 +206,7 @@ export default {
 			routes.push(this.$router.options.routes[0]);
 			routes.push(this.$router.options.routes[1]);
 			this.$router.options.routes = routes;
-			// this.$router.addRoutes(this.$router.options.routes);
+			this.$router.addRoutes(this.$router.options.routes);
 
 			console.log(this.$router);
 		}
