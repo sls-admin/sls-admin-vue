@@ -1,15 +1,9 @@
-/**
- * Created by sailengsi on 2017/8/20.
- */
 import Adv from './adv/';
-import Function from './function/';
 import Demo from './demo/';
 import Components from './components/';
+import Functions from './function/';
 
+export default [
+	Functions, Demo, Components, Adv
+];
 
-export {
-	Function,
-	Demo,
-	Components,
-	Adv
-};

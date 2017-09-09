@@ -2,27 +2,23 @@
  * Created by sailengsi on 2017/5/11.
  */
 
-import {Content} from 'layout/';
 
 export default {
-	path: 'user',
-	name: 'user-manager',
-	icon: 'inbox',
-	component: Content,
-	redirect: '/adv/user/list',
-	children: [{
-		path: 'list',
-		name: 'user-list',
-		icon: 'reorder',
-		component: resolve=>{
-			require(['views/adv/user/list/'], resolve);
-		}
+	path          : 'article',
+	name          : 'article-manager',
+	icon          : 'inbox',
+	component_name: 'Content',
+	component_path: 'Article',
+	redirect      : '/adv/article/list',
+	children      : [{
+		path          : 'list',
+		name          : 'article-list',
+		icon          : 'reorder',
+		component_name: 'List',
 	}, {
-		path: 'edit',
-		name: 'user-edit',
-		icon: 'edit',
-		component: resolve=>{
-			require(['views/adv/user/edit/'], resolve);
-		}
+		path          : 'edit',
+		name          : 'article-edit',
+		icon          : 'edit',
+		component_name: 'Edit',
 	}]
 };

@@ -2,18 +2,8 @@
  * Created by sailengsi on 2017/5/11.
  */
 
-// import {Function, Demo, Components, Adv} from '../../async-router/';
-// console.log(Function,Demo,Components,Adv);
-
-// import Home from 'layout/routeview/Home.vue';
-// import Content from 'layout/routeview/Content.vue';
-// import Functions from 'views/function/';
-// console.log(Home,Content);
-// console.log(Functions);
-
-import Views from 'views/';
-
-// console.log(Views);
+import AsyncRoutes from '../../async-router/';
+import {asyncRouter} from 'utils/';
 
 export default {
 	name   : 'login',
@@ -130,66 +120,25 @@ export default {
 								this.$store.dispatch('remove_remumber');
 							}
 
-							// this.$set(data.userinfo, 'access', ['/adv', '/demo/user', '/demo/user/list']);
-							try {
-								data.userinfo.web_routers = JSON.parse(data.userinfo.web_routers) ? JSON.parse(data.userinfo.web_routers) : {};
-							} catch (e) {
-								data.userinfo.web_routers = {};
-							}
-							try {
-								data.userinfo.api_routers = JSON.parse(data.userinfo.api_routers) ? JSON.parse(data.userinfo.api_routers) : {};
-							} catch (e) {
-								data.userinfo.api_routers = {};
-							}
+
 							this.$store.dispatch('update_userinfo', {
 								userinfo: data.userinfo
 							}).then(() => {
 								this.login_actions.disabled = false;
 
-								/*this.$store.dispatch('update_user_routes', {
-									routes: data.routes
-								});*/
 
-								// console.log(data.routes);
-								/*data.routes.forEach((one, one_key) => {
-									var one_path = one.component_path;
-									var cp       = one.component;
-									console.log(cp);
-									console.log(Views[cp]);
-									one.component = Views[cp];
-									one.children.forEach((two, two_key) => {
-										var two_path = two.component_path;
-										var cp2      = two.component;
-										console.log(cp2);
-										console.log(Views[cp2]);
-										two.component = Views[cp2];
-										two.children.forEach((route, route_key) => {
-											var page        = route.component;
-											route.component = Views.Page[one_path][two_path][page];
-										});
-									});
-								});*/
-								// console.log(data.routes);
-
-								// console.log(AsyncRouter);
-								/*this.$router.options.routes.push(data.routes[0]);
-								this.$router.addRoutes(this.$router.options.routes);
-								this.$router.push('/function/open/echarts');*/
+								this.$store.dispatch('update_user_routes',{
+									routes:this.$$lib__.assign(AsyncRoutes)
+								}).then(()=>{
 
 
-								// this.$router.options.routes.push(Function);
-								// this.$router.options.routes.push(Demo);
-								// this.$router.options.routes.push(Components);
-								// this.$router.options.routes.push(Adv);
-								// this.$router.addRoutes(this.$router.options.routes);
-								// this.$router.push('/function/open/echarts');
+									this.onTestAsyncRouter(this.$$lib__.assign(AsyncRoutes));
+
+									//实际上可以在后台给每个用户设置默认跳转的页面，从而实现完全动态化
+									this.$router.push('/function/open/list');
+								});
 
 
-								if (data.userinfo.default_web_routers) {
-									this.$router.push(data.userinfo.default_web_routers);
-								} else {
-									this.$router.push('/function/open/echarts');
-								}
 							});
 						},
 						errFn    : (err) => {
@@ -233,9 +182,41 @@ export default {
 			} else {
 				this.$delete(this.data, 'repassword');
 			}
+		},
+
+
+		/**
+		 * 模拟动态路由的实现
+		 */
+		onTestAsyncRouter (routes) {
+			var res=asyncRouter(routes);
+			var len = this.$router.options.routes.length;
+			while (len - 1 >= 0) {
+				res.unshift(this.$router.options.routes[len - 1])
+				console.log('--');
+				len--;
+			}
+			this.$router.options.routes = res;
+			this.$router.addRoutes(this.$router.options.routes);
+		},
+
+
+		onDestroyAsyncRouter(){
+			let routes=[];
+			routes.push(this.$router.options.routes[0]);
+			routes.push(this.$router.options.routes[1]);
+			this.$router.options.routes = routes;
+			// this.$router.addRoutes(this.$router.options.routes);
+
+			console.log(this.$router);
 		}
 	},
 	created () {
+		this.onDestroyAsyncRouter();
+
+		// this.onTestAsyncRouter(AsyncRoutes);
+
+
 		this.setSize();
 		this.$$lib_$(window).resize(() => {
 			this.setSize();

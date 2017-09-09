@@ -10,20 +10,24 @@ import Demo from '../../views/page/demo/';
 // console.log(Demo);
 
 export default {
-	path     : 'orderstatis',
-	name     : '订单统计',
-	icon     : 'inbox',
-	component: Container.Content,
-	redirect : '/demo/orderstatis/bar',
-	children : [{
-		path     : 'bar',
-		name     : '柱状图',
-		icon     : 'reorder',
-		component: Demo.OrderStatis.Bar
+	path          : 'orderstatis',
+	name          : '订单统计',
+	icon          : 'inbox',
+	component     : Container.Content,
+	component_name: 'Content',
+	component_path: 'OrderStatis',
+	redirect      : '/demo/orderstatis/bar',
+	children      : [{
+		path          : 'bar',
+		name          : '柱状图',
+		icon          : 'reorder',
+		component_name: 'Bar',
+		component     : Demo.OrderStatis.Bar
 	}, {
-		path     : 'pie',
-		name     : '饼状图',
-		icon     : 'edit',
-		component: Demo.OrderStatis.Pie
+		path          : 'pie',
+		name          : '饼状图',
+		icon          : 'edit',
+		component_name: 'Pie',
+		component     : Demo.OrderStatis.Pie
 	}]
 };

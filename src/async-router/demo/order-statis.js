@@ -3,28 +3,25 @@
  */
 
 
-import {Content} from 'layout/';
 
+// console.log(Demo);
 
 export default {
-	path: 'orderstatis',
-	name: '订单统计',
-	icon: 'inbox',
-	component: Content,
-	redirect: '/demo/orderstatis/bar',
-	children: [{
-		path: 'bar',
-		name: '柱状图',
-		icon: 'reorder',
-		component: resolve=>{
-			require(['views/demo/order-statis/bar/'], resolve);
-		}
+	path          : 'orderstatis',
+	name          : '订单统计',
+	icon          : 'inbox',
+	component_name: 'Content',
+	component_path: 'OrderStatis',
+	redirect      : '/demo/orderstatis/bar',
+	children      : [{
+		path          : 'bar',
+		name          : '柱状图',
+		icon          : 'reorder',
+		component_name: 'Bar',
 	}, {
-		path: 'pie',
-		name: '饼状图',
-		icon: 'edit',
-		component: resolve=>{
-			require(['views/demo/order-statis/pie/'], resolve);
-		}
+		path          : 'pie',
+		name          : '饼状图',
+		icon          : 'edit',
+		component_name: 'Pie',
 	}]
 };

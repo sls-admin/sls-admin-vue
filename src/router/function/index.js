@@ -7,10 +7,12 @@ import Container from '../../views/container/';
 import open from './open';
 
 export default {
-	path     : '/function',
-	name     : '静态演示',
-	icon     : 'inbox',
-	component: Container.Home,
-	redirect : '/function/open',
-	children : [open]
+	path          : '/function',
+	name          : '静态演示',
+	icon          : 'inbox',
+	component     : Container.Home,
+	component_name: 'Home',
+	component_path: 'Function',
+	redirect      : '/function/open',
+	children      : [open]
 };

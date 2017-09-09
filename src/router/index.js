@@ -7,51 +7,32 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 import Login from '../views/login/';
-// console.log(Functions.Open);
 
 import Adv from './adv/';
 import Function from './function/';
 import Demo from './demo/';
 import Components from './components/';
-import Permis from './permis/';
 
-import {store} from 'utils/';
+import {store, asyncRouter} from 'utils/';
 
 var user_routes = store.get('user_routes') || [];
-/*user_routes.forEach((one, one_key) => {
-	one.component = Home;
-	one.children.forEach((two, two_key) => {
-		two.component = Content;
-		two.children.forEach((route, route_key) => {
-			var page = route.component;
-			route.component = Functions.Open[page];
-		});
-	});
-});
-console.log(user_routes);
-console.log('init router.js');*/
 
+var res = asyncRouter(user_routes);
+console.log(res);
 
-var default_routes = [
-	{
-		path  : '/',
-		hidden: true,
-		redirect (to) {
-			return 'login';
-		}
-	}, {
-		path     : '/login',
-		hidden   : true,
-		component: Login,
-	},
-	Function, Demo, Components, Adv, Permis
-];
-
-
-/*user_routes.forEach(item=>{
-	default_routes.push(item);
-});*/
 
 export default new Router({
-	routes: default_routes
-})
+	routes: [
+		{
+			path    : '/',
+			hidden  : true,
+			redirect: 'login',
+		}, {
+			path          : '/login',
+			hidden        : true,
+			component     : Login,
+			component_name: 'Login',
+		},
+		// Function, Demo, Components, Adv
+	].concat(res)
+});
