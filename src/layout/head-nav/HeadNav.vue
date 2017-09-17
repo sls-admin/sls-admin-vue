@@ -96,54 +96,6 @@
                 <el-button type="primary" @click="updUserPass('user_info')">确 定</el-button>
             </span>
         </el-dialog>
-
-
-        <el-dialog size="small" :title="dialog.title"
-                   v-model="dialog.show_set">
-            <el-form style="margin:20px;width:80%;"
-                     label-width="100px"
-                     v-model='dialog.set_info'
-                     ref='set_info'>
-                <div class="all-route">
-                    <el-checkbox
-                            @change="onChangeAllRoute"
-                            v-model="routes_all">全选
-                    </el-checkbox>
-                </div>
-                <div
-                        class="root-route"
-                        :key="root_index"
-                        v-for="(root_route,root_index) in routes">
-                    <el-checkbox
-                            @change="onChangeRoute({root_index})"
-                            v-model="root_route.value">{{root_route.name}}
-                    </el-checkbox>
-                    <div
-                            class="two-route"
-                            v-for="(two_route,two_index) in root_route.children"
-                            :key="two_index">
-                        <el-checkbox
-                                @change="onChangeRoute({root_index,two_index})"
-                                v-model="two_route.value">{{two_route.name}}
-                        </el-checkbox>
-                        <div class="three-route">
-                            <span
-                                    v-for="(three_route,three_index) in two_route.children"
-                                    :key="three_index"
-                                    class="checkbox-route">
-                                <el-checkbox
-                                        @change="onChangeRoute({root_index,two_index,three_index})"
-                                        v-model="three_route.value">{{three_route.name}}</el-checkbox>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialog.show_set = false">取 消</el-button>
-                <el-button type="primary" @click="onUpdateSetting">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 

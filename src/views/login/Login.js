@@ -9,6 +9,8 @@ export default {
 	name   : 'login',
 	data () {
 		return {
+			is_refresh: true,
+
 			winSize: {
 				width : '',
 				height: ''
@@ -127,9 +129,9 @@ export default {
 								this.login_actions.disabled = false;
 
 
-								this.$store.dispatch('update_user_routes',{
-									routes:this.$$lib__.assign(AsyncRoutes)
-								}).then(()=>{
+								this.$store.dispatch('update_user_routes', {
+									routes: this.$$lib__.assign(AsyncRoutes)
+								}).then(() => {
 
 
 									this.onTestAsyncRouter(this.$$lib__.assign(AsyncRoutes));
@@ -189,7 +191,7 @@ export default {
 		 * 模拟动态路由的实现
 		 */
 		onTestAsyncRouter (routes) {
-			var res=asyncRouter(routes);
+			var res = asyncRouter(routes);
 			var len = this.$router.options.routes.length;
 			while (len - 1 >= 0) {
 				res.unshift(this.$router.options.routes[len - 1])
@@ -201,8 +203,8 @@ export default {
 		},
 
 
-		onDestroyAsyncRouter(){
-			let routes=[];
+		onDestroyAsyncRouter () {
+			let routes = [];
 			routes.push(this.$router.options.routes[0]);
 			routes.push(this.$router.options.routes[1]);
 			this.$router.options.routes = routes;
@@ -213,16 +215,23 @@ export default {
 	},
 	created () {
 		this.onDestroyAsyncRouter();
-
-		// this.onTestAsyncRouter(AsyncRoutes);
-
-
 		this.setSize();
 		this.$$lib_$(window).resize(() => {
 			this.setSize();
 		});
+
+
+		if (this.$store.state.global.is_login_refresh) {
+			setTimeout(()=>{
+				this.$router.go(0);
+			},500);
+			this.$store.dispatch('update_login_refresh', {
+				type: false
+			});
+		}
 	},
 	mounted () {
+
 		this.$store.dispatch('remove_user_routes');
 		// this.toggleStatus(true);
 		// console.log(this.remumber);
@@ -232,6 +241,12 @@ export default {
 			this.data.username = this.remumber.remumber_login_info.username;
 			this.data.password = this.remumber.remumber_login_info.token.substring(0, 16);
 			this.$set(this.data, 'token', this.remumber.remumber_login_info.token);
+		}
+	},
+
+	watch: {
+		$route (to, from) {
+			console.log(this.is_refresh);
 		}
 	}
 }
