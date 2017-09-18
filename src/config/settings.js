@@ -1,7 +1,4 @@
-var env = process.env;
-
 var gbs={
-	// host: '//slsadmin.api.' + (env.NODE_ENV === 'development' ? 'sls' : 'sailengsi') + '.com',
 	host: '/slsAdminApi', //接口根地址。本地代理到slsadmin.api.sls.com,线上使用的是Nginx代理
 	db_prefix: 'sls_admin_', //本地存储的key
 
@@ -10,6 +7,7 @@ var gbs={
 	//状态码value
 	api_status_value_field:200,
 
+	//存放数据的字段
 	api_data_field:'data',
 
 	api_custom:{

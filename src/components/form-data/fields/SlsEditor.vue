@@ -122,6 +122,11 @@
 			},
 
 
+            onSetEditorContent(){
+
+            },
+
+
 			/**
 			 * 初始化实例编辑器
 			 */
@@ -141,6 +146,9 @@
 					});
 				};
 				this.editor.create();
+
+				console.log(this.editor.txt.html);
+				console.log(this.editor.txt.text);
 			}
 		},
 		created(){
