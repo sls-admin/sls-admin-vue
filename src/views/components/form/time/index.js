@@ -1,2 +1,3 @@
-import Time from './Time.vue';
-export default Time;
+import Time from './Time.vue'
+
+export default Time

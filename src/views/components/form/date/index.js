@@ -1,2 +1,3 @@
-import Date from './Date.vue';
-export default Date;
+import Date from './Date.vue'
+
+export default Date

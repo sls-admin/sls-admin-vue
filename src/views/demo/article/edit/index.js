@@ -1,2 +1,3 @@
-import Edit from './Edit.vue';
-export default Edit;
+import Edit from './Edit.vue'
+
+export default Edit

@@ -1,13 +1,12 @@
-import Shop from './shop/';
-export default {
-    name: 'vuex',
-    components: Shop,
-    data() {
-        return {
+import Shop from './shop/'
 
-        }
-    },
-    methods: {},
-    created() {},
-    mounted() {}
+export default {
+  name: 'vuex',
+  components: Shop,
+  data () {
+    return {}
+  },
+  methods: {},
+  created () {},
+  mounted () {}
 }

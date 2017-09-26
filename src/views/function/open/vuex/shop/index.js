@@ -1,8 +1,9 @@
-import Info from './info/';
-import List from './list/';
-import Cart from './cart/';
+import Info from './info/'
+import List from './list/'
+import Cart from './cart/'
+
 export default {
-    Info,
-    List,
-    Cart
-};
+  Info,
+  List,
+  Cart
+}

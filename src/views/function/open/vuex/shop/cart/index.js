@@ -1,2 +1,3 @@
-import Cart from './Cart.vue';
-export default Cart;
+import Cart from './Cart.vue'
+
+export default Cart

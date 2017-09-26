@@ -1,7 +1,7 @@
-import Edit from './edit/';
-import List from './list/';
+import Edit from './edit/'
+import List from './list/'
 
 export default {
-	Edit,
-	List
-};
+  Edit,
+  List
+}

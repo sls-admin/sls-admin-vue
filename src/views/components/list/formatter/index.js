@@ -1,2 +1,3 @@
-import Formatter from './Formatter.vue';
-export default Formatter;
+import Formatter from './Formatter.vue'
+
+export default Formatter

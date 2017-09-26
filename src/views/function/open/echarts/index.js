@@ -1,2 +1,3 @@
-import Echarts from './Echarts.vue';
-export default Echarts;
+import Echarts from './Echarts.vue'
+
+export default Echarts
