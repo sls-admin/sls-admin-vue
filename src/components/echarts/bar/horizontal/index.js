@@ -1,2 +1,3 @@
-import Horizontal from './Horizontal.vue';
-export default Horizontal;
+import Horizontal from './Horizontal.vue'
+
+export default Horizontal

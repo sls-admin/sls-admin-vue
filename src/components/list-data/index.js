@@ -1,2 +1,3 @@
-import ListData from './ListData.vue';
-export default ListData;
+import ListData from './ListData.vue'
+
+export default ListData

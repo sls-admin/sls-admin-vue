@@ -1,2 +1,3 @@
-import FormData from './FormData.vue';
-export default FormData;
+import FormData from './FormData.vue'
+
+export default FormData

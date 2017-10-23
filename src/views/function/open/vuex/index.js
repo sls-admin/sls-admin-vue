@@ -1,2 +1,3 @@
-import Vuex from './Vuex.vue';
-export default Vuex;
+import Vuex from './Vuex.vue'
+
+export default Vuex

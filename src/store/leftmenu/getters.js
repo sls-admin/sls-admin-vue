@@ -1,5 +1,5 @@
 export default {
-    // getCartList(state) {
-    //     return state.cartList;
-    // }
-};
+  // getCartList(state) {
+  //     return state.cartList;
+  // }
+}

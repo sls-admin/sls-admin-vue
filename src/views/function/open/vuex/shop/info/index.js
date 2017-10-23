@@ -1,2 +1,3 @@
-import Info from './Info.vue';
-export default Info;
+import Info from './Info.vue'
+
+export default Info

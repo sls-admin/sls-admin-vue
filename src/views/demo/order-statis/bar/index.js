@@ -1,2 +1,3 @@
-import Bar from './Bar.vue';
-export default Bar;
+import Bar from './Bar.vue'
+
+export default Bar

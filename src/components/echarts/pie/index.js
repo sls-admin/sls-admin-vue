@@ -1,5 +1,5 @@
-import Default from './default/';
+import Default from './default/'
 
 export default {
-	Default
-};
+  Default
+}

@@ -1,2 +1,3 @@
-import Expand from './Expand.vue';
-export default Expand;
+import Expand from './Expand.vue'
+
+export default Expand

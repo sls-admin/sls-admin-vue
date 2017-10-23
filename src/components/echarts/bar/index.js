@@ -1,7 +1,7 @@
-import Default from './default/';
-import Horizontal from './horizontal/';
+import Default from './default/'
+import Horizontal from './horizontal/'
 
 export default {
-    Default,
-    Horizontal
-};
+  Default,
+  Horizontal
+}

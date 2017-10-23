@@ -1,2 +1,3 @@
-import CustomBtn from './CustomBtn.vue';
-export default CustomBtn;
+import CustomBtn from './CustomBtn.vue'
+
+export default CustomBtn

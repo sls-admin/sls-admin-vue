@@ -1,2 +1,3 @@
-import DialogInfo from './DialogInfo.vue';
-export default DialogInfo;
+import DialogInfo from './DialogInfo.vue'
+
+export default DialogInfo

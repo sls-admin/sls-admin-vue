@@ -1,2 +1,3 @@
-import Access from './Access.vue';
-export default Access;
+import Access from './Access.vue'
+
+export default Access

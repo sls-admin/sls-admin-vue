@@ -2,9 +2,8 @@
  * Created by sailengsi on 2017/5/11.
  */
 
-
-import humpToLowercase from './humpToLowercase';
+import humpToLowercase from './humpToLowercase'
 
 export default {
-	humpToLowercase
-};
+  humpToLowercase
+}

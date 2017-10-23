@@ -1,2 +1,3 @@
-import Test404 from './Test404.vue';
-export default Test404;
+import Test404 from './Test404.vue'
+
+export default Test404
