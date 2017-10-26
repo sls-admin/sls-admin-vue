@@ -50,7 +50,7 @@
         label="操作"
         width="160"
         :context="_self">
-        <template scope='scope'>
+        <template slot-scope='scope'>
           <el-button
             type="info"
             icon='view'

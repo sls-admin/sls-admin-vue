@@ -17,7 +17,7 @@
 
       <el-table-column type="expand"
                        v-if='expand && expand.show && expand.show===true && (!expand.position || expand.position==="left")'>
-        <template scope="scope">
+        <template slot-scope="scope">
           <slot name="expand"
                 :data="scope.row"
                 :index="scope.$index"></slot>
@@ -50,7 +50,7 @@
           :label="field.label"
           :align="field.align || 'center'"
           :width='field.width'>
-          <template scope='scope'>
+          <template slot-scope='scope'>
             <img :src="(field.host || '')+scope.row[field.key]" alt="">
           </template>
         </el-table-column>
@@ -60,7 +60,7 @@
           :label="field.label"
           :align="field.align || 'center'"
           :width='field.width'>
-          <template scope='scope'>
+          <template slot-scope='scope'>
             <a
               :target="field.link_target || '_self'"
               :href="scope.row[field.key]">{{field.link_text || scope.row[field.key]}}</a>
@@ -74,7 +74,7 @@
         :label="btn_info.label || '操作'"
         :width="btn_info.width || 160"
         :context="_self">
-        <template scope='scope'>
+        <template slot-scope='scope'>
           <el-button
             v-if='btn_info.list && btn_info.list_position==="before"'
             v-for='(btn,index) in btn_info.list'
@@ -126,7 +126,7 @@
       <el-table-column type="expand"
                        :context="_self"
                        v-if='expand && expand.show && expand.show===true && expand.position && expand.position==="right"'>
-        <template scope="scope">
+        <template slot-scope="scope">
           <slot name="expand"
                 :data="scope.row"
                 :index="scope.$index"></slot>
