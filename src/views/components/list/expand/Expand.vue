@@ -6,7 +6,7 @@
       :Expand="expand"
       :FieldList='fields'>
       <template
-        scope="scope"
+        slot-scope="scope"
         slot="expand">
         <div>索引：{{scope.index}}</div>
         <div>地址：{{scope.data.address}}</div>
