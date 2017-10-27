@@ -106,6 +106,7 @@ export default {
     initWangeditor () {
       this.wangEditor.obj = new E('#article')
 
+      this.wangEditor.obj.customConfig.zIndex = 100
       this.wangEditor.obj.customConfig.uploadFileName = 'article'
       this.wangEditor.obj.customConfig.uploadImgServer = gbs.host + '/Article/editUpload'
       this.wangEditor.obj.customConfig.uploadImgParams = {
@@ -175,6 +176,17 @@ export default {
           this.article_data.tabs = data.article_info.tabs.split(',')
           this.wangEditor.obj.txt.html(this.article_data.content)
         }
+      })
+    }
+  },
+  beforeRouteUpdate (to, from, next) {
+    if (from.query.id && !to.query.id && (to.path === from.path)) {
+      this.$confirm('正在修改内容，确认离开？', '离开此页').then(() => {
+        this.$message('确认离开，在这里处理自己的逻辑，比如清空输入值')
+        next()
+      }).catch(() => {
+        this.$message('取消离开，啥也不干，随你搞')
+        next(false)
       })
     }
   }
