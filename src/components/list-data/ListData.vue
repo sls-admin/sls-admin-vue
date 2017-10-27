@@ -76,49 +76,55 @@
         :context="_self">
         <template slot-scope='scope'>
           <el-button
-            v-if='btn_info.list && btn_info.list_position==="before"'
+            v-if='btn_info.list && btn_info.list_position && btn_info.list_position==="before" && ((!btn.condition || typeof btn.condition!=="function") || (typeof btn.condition==="function" && btn.condition({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btn:btn})===true))'
             v-for='(btn,index) in btn_info.list'
             :key='btn.text'
             :type="btn.type || 'info'"
             size="mini"
             @click='onCustomBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn})'>
-            {{btn.text}}
+            {{typeof btn.text === 'string' ? btn.text : (typeof btn.text === 'function' ? btn.text({list: list,data : scope.row,dataIndex: scope.$index,btnIndex : index,btn      : btn}) : '')}}
           </el-button>
 
 
           <span v-if="btn_info.default!==false">
-                        <el-button
-                          v-if='btn_info.select!==false'
-                          type="info"
-                          icon='view'
-                          size="mini"
-                          @click='onBtnEvent({type:"Select",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.select_text || ''}}</el-button>
-                        <el-button
-                          v-if='btn_info.update!==false'
-                          type="info"
-                          icon='edit'
-                          size="mini"
-                          @click='onBtnEvent({type:"Update",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.update_text || ''}}</el-button>
-                        <el-button
-                          v-if='btn_info.delete!==false'
-                          type="danger"
-                          icon='delete'
-                          size="mini"
-                          @click='onBtnEvent({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.delete_text || ''}}</el-button>
-                    </span>
+              <el-button
+                v-if='btn_info.select!==false && ( (typeof btn_info.select!=="function") || (typeof btn_info.select==="function" && btn_info.select({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})===true) )'
+                type="info"
+                icon='view'
+                size="mini"
+                @click='onBtnEvent({type:"Select",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.select_text || ''}}</el-button>
+              <el-button
+                v-if='btn_info.update!==false && ( (typeof btn_info.update!=="function") || (typeof btn_info.update==="function" && btn_info.update({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})===true) )'
+                type="info"
+                icon='edit'
+                size="mini"
+                @click='onBtnEvent({type:"Update",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.update_text || ''}}</el-button>
+              <el-button
+                v-if='btn_info.delete!==false && ( (typeof btn_info.delete!=="function") || (typeof btn_info.delete==="function" && btn_info.delete({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})===true) )'
+                type="danger"
+                icon='delete'
+                size="mini"
+                @click='onBtnEvent({type:"Delete",data:scope.row,dataIndex:scope.$index,list:list})'>{{btn_info.delete_text || ''}}</el-button>
+          </span>
 
           <!--
             my-key-listlmy-key-listlist,data:scope.row,dataIndex:scope.$index,btnIndex:index,btnInfo:btn}
           -->
           <el-button
-            v-if='btn_info.list && (btn_info.list_position==="after" || !btn_info.list_position)'
-            v-for='(btn,index) in btn_info.list'
-            :key='btn.text'
-            :type="btn.type || 'info'"
-            size="mini"
-            @click='onCustomBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btn:btn})'>
-            {{btn.text}}
-          </el-button>
+                v-if='btn_info.list && (!btn_info.list_position || btn_info.list_position==="after") && ((!btn.condition || typeof btn.condition!=="function") || (typeof btn.condition==="function" && btn.condition({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btn:btn})===true))'
+                v-for='(btn,index) in btn_info.list'
+                :key='index'
+                :type="btn.type || 'info'"
+                size="mini"
+                @click='onCustomBtnEvent({list:list,data:scope.row,dataIndex:scope.$index,btnIndex:index,btn:btn})'>
+            {{typeof btn.text === 'string' ? btn.text : (typeof btn.text === 'function' ? btn.text({
+						list     : list,
+						data     : scope.row,
+						dataIndex: scope.$index,
+						btnIndex : index,
+						btn      : btn
+					}) : '')}}
+                    </el-button>
         </template>
       </el-table-column>
 

@@ -13,9 +13,8 @@ export default {
       }],
 
       btn_info: {
-        update_default: {
+        custom: {
           width: 300,
-
           // all:false,//false:不显示按钮操作列
 
           // default:false,//false:不显示默认所有按钮(查看，修改，删除)

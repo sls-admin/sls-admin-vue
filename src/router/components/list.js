@@ -52,5 +52,10 @@ export default {
     name: '按钮功能',
     icon: 'edit',
     component: Components.List.CustomBtn
+  }, {
+    path: 'btn-condition',
+    name: '按钮表达式',
+    icon: 'edit',
+    component: Components.List.BtnCondition
   }]
 }

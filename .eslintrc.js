@@ -13,11 +13,11 @@ module.exports = {
   extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'vuefix'
+    'vuefix', "vue"
   ],
   // add your custom rules here
   'rules': {
-    'vuefix/vuefix': [2, {'auto': true}],
+    'vuefix/vuefix': [2, { 'auto': true }],
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await
