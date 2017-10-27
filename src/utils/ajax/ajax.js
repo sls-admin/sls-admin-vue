@@ -23,6 +23,7 @@ Vue.axios.defaults.baseURL = gbs.host
  */
 export default function ({
                            type,
+                           pathParams,
                            path,
                            data,
                            fn,
@@ -31,9 +32,13 @@ export default function ({
                            headers,
                            opts
                          } = {}) {
+  var p = path
+  if (typeof path === 'function') {
+    p = path(pathParams || {})
+  }
   var options = {
     method: type,
-    url: path,
+    url: p,
     headers: headers && typeof headers === 'object' ? headers : {}
   }
 

@@ -14,8 +14,18 @@
       return {}
     },
     methods: {
+      onTestRestFulApi(){
+        this.$$api_test_getArticle({
+          pathParams:{
+            id:1
+          },
+          fn:()=>{
+            
+          }
+        });
+      },
       init () {
-
+        this.onTestRestFulApi();
       }
     },
     mounted () {

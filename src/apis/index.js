@@ -13,6 +13,7 @@ import user from './user/'
 import article from './article/'
 import order from './order/'
 import system from './system/'
+import test from './test/'
 
 export default [{
   module: 'user',
@@ -30,4 +31,8 @@ export default [{
   module: 'system',
   name: '系统设置',
   list: system
+}, {
+  module: 'test',
+  name: '测试模块',
+  list: test
 }]
