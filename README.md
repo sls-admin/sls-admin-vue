@@ -4,12 +4,16 @@
 #### master
 [![Build Status](https://travis-ci.org/sailengsi/sls-admin.svg?branch=master)](https://travis-ci.org/sailengsi/sls-admin)
 
+# 先看文档
+### 文档地址:  [https://doc.vue.slsadmin.org](https://doc.vue.slsadmin.org)
+### 文档地址:  [https://doc.vue.slsadmin.org](https://doc.vue.slsadmin.org)
+### 文档地址:  [https://doc.vue.slsadmin.org](https://doc.vue.slsadmin.org)
+
 ### **在线演示地址说明**
 |分支        |      地址    | 
 | --- | --- | 
 | master        |     [https://vue.slsadmin.org](https://vue.slsadmin.org)   | 
 
-### 文档地址:  [https://doc.vue.slsadmin.org](https://doc.vue.slsadmin.org)
 ### 此项目接口PHP版本已开源: [sls-admin-api-php](https://github.com/sailengsi/sls-admin-api-php)
 
 

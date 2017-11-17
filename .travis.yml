@@ -3,7 +3,7 @@ node_js:
   - "7"
 branches:
   only:
-  - webpack2
+  - master
 cache:
   directories:
     - "node_modules"
