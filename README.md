@@ -2,7 +2,7 @@
 
 ## build
 #### master
-[![Build Status](https://travis-ci.org/sailengsi/sls-admin.svg?branch=master)](https://travis-ci.org/sailengsi/sls-admin)
+[![Build Status](https://travis-ci.org/sailengsi/sls-admin-vue.svg?branch=master)](https://travis-ci.org/sailengsi/sls-admin-vue)
 
 # 先看文档
 ### 文档地址:  [https://doc.vue.slsadmin.org](https://doc.vue.slsadmin.org)
