@@ -42,7 +42,7 @@
             <el-checkbox style="margin:0px 0px 35px 0px;"
                          v-if="register===false"
                          :checked='remumber.remumber_flag'
-                         v-model='remumber.remumber_flag'>记住密码
+                         v-model='remumber.remumber_flag'>记住密码+permissions
             </el-checkbox>
             <el-form-item style="width:100%;">
               <el-button type="primary"
