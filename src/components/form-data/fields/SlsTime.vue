@@ -13,16 +13,16 @@
 
   var Js = Common('sls-time')
   Js.mixins = [{
-    computed: {
-      time_attrs () {
-        return this.Data.time_attrs || {}
+      computed: {
+          time_attrs () {
+              return this.Data.time_attrs || {}
+          }
+      },
+      methods: {
+          onChange (v) {
+              this.events.change && this.events.change(v)
+          }
       }
-    },
-    methods: {
-      onChange (v) {
-        this.events.change && this.events.change(v)
-      }
-    }
   }]
   export default Js
 </script>

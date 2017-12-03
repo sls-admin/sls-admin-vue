@@ -20,21 +20,21 @@
 
   var Js = Common('sls-radio')
   Js.mixins = [{
-    computed: {
-      radio_group_attrs () {
-        return this.Data.radio_group_attrs || {}
+      computed: {
+          radio_group_attrs () {
+              return this.Data.radio_group_attrs || {}
+          },
+          radio_attrs () {
+              return this.Data.radio_attrs || {}
+          }
       },
-      radio_attrs () {
-        return this.Data.radio_attrs || {}
+      methods: {
+          onChange (v) {
+              this.submit_info[this.data.key] = ''
+              this.submit_info[this.data.key] = this.temp_field_obj[this.data.key][v]
+              this.events.change && this.events.change({value: v, info: this.submit_info[this.data.key]})
+          }
       }
-    },
-    methods: {
-      onChange (v) {
-        this.submit_info[this.data.key] = ''
-        this.submit_info[this.data.key] = this.temp_field_obj[this.data.key][v]
-        this.events.change && this.events.change({value: v, info: this.submit_info[this.data.key]})
-      }
-    }
   }]
   export default Js
 </script>

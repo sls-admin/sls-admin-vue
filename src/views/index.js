@@ -3,15 +3,17 @@
  */
 
 import Login from './login/'
-import Function from './function/'
-import Adv from './adv/'
-import Demo from './demo/'
-import Components from './components/'
+// import Function from './function/'
+// import Adv from './adv/'
+// import Demo from './demo/'
+// import Components from './components/'
+import Permissions from './permissions/'
 
 export {
   Login,
-  Function,
-  Adv,
-  Demo,
-  Components
+  // Function,
+  // Adv,
+  // Demo,
+  // Components,
+  Permissions
 }

@@ -7,17 +7,17 @@
 </template>
 <script>
   export default {
-    name: 'content',
-    data () {
-      return {}
-    },
-    methods: {},
-    created () {
+      name: 'content',
+      data () {
+          return {}
+      },
+      methods: {},
+      created () {
 
-    },
-    mounted () {
+      },
+      mounted () {
 
-    }
+      }
   }
 </script>
 

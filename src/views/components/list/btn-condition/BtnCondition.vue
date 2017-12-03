@@ -8,9 +8,9 @@
 </template>
 
 <script>
-  import BtnCondition from "./BtnCondition";
-  
-  export default BtnCondition;
+  import BtnCondition from './BtnCondition'
+
+  export default BtnCondition
 </script>
 
 <style scoped lang='less'>

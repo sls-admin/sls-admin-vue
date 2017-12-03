@@ -24,47 +24,47 @@
 
   var Js = Common('sls-select')
   Js.mixins = [{
-    data () {
-      return {}
-    },
-    computed: {
-      select_attrs () {
-        return this.Data.select_attrs || {}
+      data () {
+          return {}
       },
-      option_attrs () {
-        return this.Data.option_attrs || {}
-      }
-    },
-    methods: {
-      onChange (v) {
-// console.log(v);
-        if (v) {
-          if (Array.isArray(v)) {
-            this.submit_info[this.data.key] = []
-            v.forEach((item) => {
-              this.submit_info[this.data.key].push(this.temp_field_obj[this.data.key][item])
-            })
-          } else {
-            this.submit_info[this.data.key] = ''
-            this.submit_info[this.data.key] = this.temp_field_obj[this.data.key][v]
+      computed: {
+          select_attrs () {
+              return this.Data.select_attrs || {}
+          },
+          option_attrs () {
+              return this.Data.option_attrs || {}
           }
-        }
+      },
+      methods: {
+          onChange (v) {
+// console.log(v);
+              if (v) {
+                  if (Array.isArray(v)) {
+                      this.submit_info[this.data.key] = []
+                      v.forEach((item) => {
+                          this.submit_info[this.data.key].push(this.temp_field_obj[this.data.key][item])
+                      })
+                  } else {
+                      this.submit_info[this.data.key] = ''
+                      this.submit_info[this.data.key] = this.temp_field_obj[this.data.key][v]
+                  }
+              }
 
-        this.events.change && this.events.change({value: v, info: this.submit_info[this.data.key]})
+              this.events.change && this.events.change({value: v, info: this.submit_info[this.data.key]})
+          },
+          onVisibleChange () {
+              this.events['visible-change'] && this.events['visible-change']()
+          },
+          onRemoveTag () {
+              this.events['remove-tag'] && this.events['remove-tag']()
+          },
+          onClear () {
+              this.events.clear && this.events.clear()
+          }
       },
-      onVisibleChange () {
-        this.events['visible-change'] && this.events['visible-change']()
-      },
-      onRemoveTag () {
-        this.events['remove-tag'] && this.events['remove-tag']()
-      },
-      onClear () {
-        this.events.clear && this.events.clear()
+      created () {
+
       }
-    },
-    created () {
-
-    }
   }]
   export default Js
 </script>

@@ -20,25 +20,25 @@
 
   var Js = Common('sls-checkbox')
   Js.mixins = [{
-    computed: {
-      checkbox_group_attrs () {
-        return this.Data.checkbox_group_attrs || {}
+      computed: {
+          checkbox_group_attrs () {
+              return this.Data.checkbox_group_attrs || {}
+          },
+          checkbox_attrs () {
+              return this.Data.checkbox_attrs || {}
+          }
       },
-      checkbox_attrs () {
-        return this.Data.checkbox_attrs || {}
+      methods: {
+          onChange (v) {
+              if (Array.isArray(v)) {
+                  this.submit_info[this.data.key] = []
+                  v.forEach((item) => {
+                      this.submit_info[this.data.key].push(this.temp_field_obj[this.data.key][item])
+                  })
+              }
+              this.events.change && this.events.change({value: v, info: this.submit_info[this.data.key]})
+          }
       }
-    },
-    methods: {
-      onChange (v) {
-        if (Array.isArray(v)) {
-          this.submit_info[this.data.key] = []
-          v.forEach((item) => {
-            this.submit_info[this.data.key].push(this.temp_field_obj[this.data.key][item])
-          })
-        }
-        this.events.change && this.events.change({value: v, info: this.submit_info[this.data.key]})
-      }
-    }
   }]
   export default Js
 </script>

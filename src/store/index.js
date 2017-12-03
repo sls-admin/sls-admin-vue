@@ -10,11 +10,11 @@ import leftmenu from './leftmenu/'
 import router from './router/'
 
 export default new Vuex.Store({
-  modules: {
-    cart,
-    user,
-    global,
-    router,
-    leftmenu
-  }
+    modules: {
+        cart,
+        user,
+        global,
+        router,
+        leftmenu
+    }
 })

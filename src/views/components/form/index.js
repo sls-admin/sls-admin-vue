@@ -13,17 +13,17 @@ import Editor from './editor/'
 import Validate from './validate/'
 
 export default {
-  Form,
-  Checkbox,
-  Cascader,
-  Textarea,
-  Select,
-  Switch,
-  Radio,
-  Input,
-  Date,
-  Time,
-  DateTime,
-  Editor,
-  Validate
+    Form,
+    Checkbox,
+    Cascader,
+    Textarea,
+    Select,
+    Switch,
+    Radio,
+    Input,
+    Date,
+    Time,
+    DateTime,
+    Editor,
+    Validate
 }

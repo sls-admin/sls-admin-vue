@@ -5,9 +5,9 @@ import Vuex from './vuex/'
 import Test404 from './test404/'
 
 export default {
-  Echarts,
-  Form,
-  List,
-  Vuex,
-  Test404
+    Echarts,
+    Form,
+    List,
+    Vuex,
+    Test404
 }

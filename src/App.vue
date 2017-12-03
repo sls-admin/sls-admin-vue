@@ -8,32 +8,32 @@
 
 <script>
   export default {
-    name: 'app',
-    components: {},
-    data () {
-      return {}
-    },
-    methods: {
-      onTestRestFulApi(){
-        this.$$api_test_getArticle({
-          pathParams:{
-            id:1
-          },
-          fn:()=>{}
-        });
+      name: 'app',
+      components: {},
+      data () {
+          return {}
       },
-      init () {
-        this.onTestRestFulApi();
-      }
-    },
-    mounted () {
-      this.init()
-    },
-    watch: {
-      $route (to, from) {
+      methods: {
+          onTestRestFulApi () {
+              this.$$api_test_getArticle({
+                  pathParams: {
+                      id: 1
+                  },
+                  fn: () => {}
+              })
+          },
+          init () {
+              this.onTestRestFulApi()
+          }
+      },
+      mounted () {
+          this.init()
+      },
+      watch: {
+          $route (to, from) {
 
+          }
       }
-    }
   }
 </script>
 

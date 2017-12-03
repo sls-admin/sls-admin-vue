@@ -37,63 +37,63 @@
 
 <script>
   export default {
-    data () {
-      return {
-        disabled: true
-      }
-    },
-    computed: {
-      batch () {
-        return this.Batch
+      data () {
+          return {
+              disabled: true
+          }
       },
-      btn_info () {
-        return this.BtnInfo
+      computed: {
+          batch () {
+              return this.Batch
+          },
+          btn_info () {
+              return this.BtnInfo
+          },
+          fields () {
+              return this.Search.fields || []
+          },
+          default_value () {
+              return this.Search.default_value || {}
+          },
+          setting () {
+              return this.Search.setting || {inline: true}
+          }
       },
-      fields () {
-        return this.Search.fields || []
+      props: {
+          Batch: {
+              type: Object,
+              default () {
+                  return {}
+              }
+          },
+          BtnInfo: {
+              type: Object,
+              default () {
+                  return {}
+              }
+          },
+          Search: {
+              type: Object,
+              default () {
+                  return {}
+              }
+          }
       },
-      default_value () {
-        return this.Search.default_value || {}
+      methods: {
+          onBtnEvent (opts) {
+              this.$emit('onBtnEvent', opts)
+          },
+          onSearch (opts) {
+              this.$emit('onSearch', opts)
+          }
       },
-      setting () {
-        return this.Search.setting || {inline: true}
-      }
-    },
-    props: {
-      Batch: {
-        type: Object,
-        default () {
-          return {}
-        }
-      },
-      BtnInfo: {
-        type: Object,
-        default () {
-          return {}
-        }
-      },
-      Search: {
-        type: Object,
-        default () {
-          return {}
-        }
-      }
-    },
-    methods: {
-      onBtnEvent (opts) {
-        this.$emit('onBtnEvent', opts)
-      },
-      onSearch (opts) {
-        this.$emit('onSearch', opts)
-      }
-    },
-    created () {
+      created () {
 
-    },
-    mounted () {
+      },
+      mounted () {
 
-    },
-    watch: {}
+      },
+      watch: {}
   }
 </script>
 <style scoped lang='less'>

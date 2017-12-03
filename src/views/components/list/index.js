@@ -9,13 +9,13 @@ import DataType from './data-type/'
 import Formatter from './formatter/'
 
 export default {
-  List,
-  Pagination,
-  Search,
-  CustomBtn,
-  BtnCondition,
-  Expand,
-  Filter,
-  DataType,
-  Formatter
+    List,
+    Pagination,
+    Search,
+    CustomBtn,
+    BtnCondition,
+    Expand,
+    Filter,
+    DataType,
+    Formatter
 }

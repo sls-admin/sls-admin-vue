@@ -14,19 +14,19 @@
 
   var Js = Common('sls-date')
   Js.mixins = [{
-    computed: {
-      date_attrs () {
-        return this.Data.date_attrs || {}
-      }
-    },
-    methods: {
-      onChange (v) {
-        this.events.change && this.events.change(v)
-      }
-    },
-    created () {
+      computed: {
+          date_attrs () {
+              return this.Data.date_attrs || {}
+          }
+      },
+      methods: {
+          onChange (v) {
+              this.events.change && this.events.change(v)
+          }
+      },
+      created () {
 
-    }
+      }
   }]
   export default Js
 </script>

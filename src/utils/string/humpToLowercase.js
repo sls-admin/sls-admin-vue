@@ -9,16 +9,16 @@
  * @constructor
  */
 export default function (string, type) {
-  var arr = string.split('')
-  var tempArr = string.split('')
-  type = type || '-'
-  var name = ''
+    var arr = string.split('')
+    var tempArr = string.split('')
+    type = type || '-'
+    var name = ''
 
-  for (var i = 0; i < tempArr.length; i++) {
-    if (/[A-Z]/.test(tempArr[i]) && i > 0) {
-      arr.splice(i, 0, type)
+    for (var i = 0; i < tempArr.length; i++) {
+        if (/[A-Z]/.test(tempArr[i]) && i > 0) {
+            arr.splice(i, 0, type)
+        }
     }
-  }
-  name = arr.join('')
-  return name.toLowerCase()
+    name = arr.join('')
+    return name.toLowerCase()
 }

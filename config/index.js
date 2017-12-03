@@ -29,17 +29,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/slsAdminApi': {
-        target: 'http://php.api.slsadmin.com',
+        target: 'http://permissions.api.slsadmin.com',
         changeOrigin: true,
         pathRewrite: {
           '^/slsAdminApi': ''
-        }
-      },
-      '/slsAdminQiniu': {
-        target: '//up-z2.qiniu.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/slsAdminQiniu': ''
         }
       }
     },

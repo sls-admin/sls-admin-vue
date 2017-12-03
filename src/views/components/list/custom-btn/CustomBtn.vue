@@ -14,9 +14,9 @@
 </template>
 
 <script>
-  import CustomBtnJs from "./CustomBtn.js";
-  
-  export default CustomBtnJs;
+  import CustomBtnJs from './CustomBtn.js'
+
+  export default CustomBtnJs
 </script>
 
 <style scoped lang='less'>

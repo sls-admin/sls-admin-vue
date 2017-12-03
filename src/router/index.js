@@ -9,29 +9,31 @@ Vue.use(Router)
 // import { Home } from 'layout/'
 import { Login } from 'views/'
 
-import Adv from './adv/'
-import Function from './function/'
-import Demo from './demo/'
-import components from './components/'
+// import Adv from './adv/'
+// import Function from './function/'
+// import Demo from './demo/'
+// import components from './components/'
+import Permissions from './permissions/'
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      hidden: true,
-      redirect (to) {
-        return 'login'
-      }
-    }, {
-      path: '/login',
-      name: '登录',
-      hidden: true,
-      component: Login
-    },
-    Function,
-    Demo,
-    components,
-    Adv
-  ]
+    routes: [
+        {
+            path: '/',
+            name: 'Hello',
+            hidden: true,
+            redirect (to) {
+                return 'login'
+            }
+        }, {
+            path: '/login',
+            name: '登录',
+            hidden: true,
+            component: Login
+        },
+        // Function,
+        // Demo,
+        // components,
+        // Adv,
+        Permissions
+    ]
 })

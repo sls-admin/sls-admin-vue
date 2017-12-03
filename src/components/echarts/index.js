@@ -3,7 +3,7 @@ import Pie from './pie/'
 import Line from './line/'
 
 export default {
-  Bar,
-  Pie,
-  Line
+    Bar,
+    Pie,
+    Line
 }

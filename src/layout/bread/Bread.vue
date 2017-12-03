@@ -15,31 +15,31 @@
 
 <script>
   export default {
-    name: 'bread',
-    data () {
-      return {
-        strong: ''
-      }
-    },
-    methods: {
-      getPageText (name) {
-        return name.replace('编辑', this.$route.query.id ? '修改' : '添加')
-      }
-    },
-    mounted () {
+      name: 'bread',
+      data () {
+          return {
+              strong: ''
+          }
+      },
+      methods: {
+          getPageText (name) {
+              return name.replace('编辑', this.$route.query.id ? '修改' : '添加')
+          }
+      },
+      mounted () {
 
-    },
-    created () {
-      if (this.$route.matched.length) {
-        var name = this.$route.matched[this.$route.matched.length - 1].name
-        this.strong = this.getPageText(name)
+      },
+      created () {
+          if (this.$route.matched.length) {
+              var name = this.$route.matched[this.$route.matched.length - 1].name
+              this.strong = this.getPageText(name)
+          }
+      },
+      watch: {
+          $route (to, from) {
+              this.strong = this.getPageText(to.name)
+          }
       }
-    },
-    watch: {
-      $route (to, from) {
-        this.strong = this.getPageText(to.name)
-      }
-    }
   }
 </script>
 

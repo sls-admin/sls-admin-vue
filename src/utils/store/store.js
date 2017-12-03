@@ -3,43 +3,43 @@ import {
 } from 'config/'
 
 class Store {
-  constructor () {
-    this.store = window.localStorage
-    this.prefix = gbs.db_prefix
-  }
-
-  set (key, value, fn) {
-    try {
-      value = JSON.stringify(value)
-    } catch (e) {
+    constructor () {
+        this.store = window.localStorage
+        this.prefix = gbs.db_prefix
     }
 
-    this.store.setItem(this.prefix + key, value)
+    set (key, value, fn) {
+        try {
+            value = JSON.stringify(value)
+        } catch (e) {
+        }
 
-    fn && fn()
-  }
+        this.store.setItem(this.prefix + key, value)
 
-  get (key, fn) {
-    if (!key) {
-      throw new Error('没有找到key。')
-    }
-    if (typeof key === 'object') {
-      throw new Error('key不能是一个对象。')
-    }
-    var value = this.store.getItem(this.prefix + key)
-    if (value !== null) {
-      try {
-        value = JSON.parse(value)
-      } catch (e) {
-      }
+        fn && fn()
     }
 
-    return value
-  }
+    get (key, fn) {
+        if (!key) {
+            throw new Error('没有找到key。')
+        }
+        if (typeof key === 'object') {
+            throw new Error('key不能是一个对象。')
+        }
+        var value = this.store.getItem(this.prefix + key)
+        if (value !== null) {
+            try {
+                value = JSON.parse(value)
+            } catch (e) {
+            }
+        }
 
-  remove (key) {
-    this.store.removeItem(this.prefix + key)
-  }
+        return value
+    }
+
+    remove (key) {
+        this.store.removeItem(this.prefix + key)
+    }
 }
 
 export default new Store()

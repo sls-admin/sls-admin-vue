@@ -18,10 +18,10 @@
   import Bread from '../bread/Bread.vue'
 
   export default {
-    name: 'home',
-    components: {
-      HeadNav, LeftMenu, Bread
-    }
+      name: 'home',
+      components: {
+          HeadNav, LeftMenu, Bread
+      }
   }
 </script>
 <style scoped lang='less'>
