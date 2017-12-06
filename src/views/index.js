@@ -10,10 +10,10 @@ import Login from './login/'
 import Permissions from './permissions/'
 
 export {
-  Login,
-  // Function,
-  // Adv,
-  // Demo,
-  // Components,
-  Permissions
+    Login,
+    // Function,
+    // Adv,
+    // Demo,
+    // Components,
+    Permissions
 }
