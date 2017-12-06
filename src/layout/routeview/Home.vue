@@ -5,6 +5,7 @@
       <left-menu></left-menu>
       <div class="right-content">
         <div class="content" :style="{marginLeft:$store.state.leftmenu.width}">
+          <tabs></tabs>
           <bread></bread>
           <router-view></router-view>
         </div>
@@ -16,17 +17,18 @@
   import HeadNav from '../head-nav/HeadNav.vue'
   import LeftMenu from '../left-menu/LeftMenu.vue'
   import Bread from '../bread/Bread.vue'
+  import Tabs from '../tabs/Tabs.vue';
 
   export default {
     name: 'home',
     components: {
-      HeadNav, LeftMenu, Bread
+      HeadNav, LeftMenu, Bread, Tabs
     }
   }
 </script>
 <style scoped lang='less'>
   .content {
-    margin-top: 60px;
+    margin-top: 44px;
     /*background: #f1f2f7;*/
     background: #FFF;
     padding: 16px;

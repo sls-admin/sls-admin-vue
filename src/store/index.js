@@ -8,6 +8,7 @@ import user from './user/'
 import global from './global/'
 import leftmenu from './leftmenu/'
 import router from './router/'
+import tabs from './tabs/'
 
 export default new Vuex.Store({
   modules: {
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     user,
     global,
     router,
-    leftmenu
+    leftmenu,
+    tabs
   }
 })

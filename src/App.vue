@@ -22,8 +22,14 @@
           fn:()=>{}
         });
       },
+      onUpdateTabs() {
+        this.$store.dispatch('update_tabs', {
+          route: this.$route
+        });
+      },
       init () {
-        this.onTestRestFulApi();
+//        this.onTestRestFulApi();
+        this.onUpdateTabs();
       }
     },
     mounted () {
@@ -31,7 +37,7 @@
     },
     watch: {
       $route (to, from) {
-
+        this.init();
       }
     }
   }
