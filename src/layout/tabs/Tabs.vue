@@ -23,7 +23,7 @@
       return {}
     },
     methods: {
-      onTabClick(tab) {
+      onTabClick(Tabs) {
         console.log(Tabs.name);
         var index=this.$store.state.tabs.pathList.indexOf(Tabs.name);
         if(index!==-1){
