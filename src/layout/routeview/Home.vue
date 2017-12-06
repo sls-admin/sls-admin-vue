@@ -7,7 +7,9 @@
         <div class="content" :style="{marginLeft:$store.state.leftmenu.width}">
           <tabs></tabs>
           <bread></bread>
-          <router-view></router-view>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </div>
       </div>
     </div>
