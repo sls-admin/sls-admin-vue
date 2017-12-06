@@ -24,8 +24,8 @@
     },
     methods: {
       onTabClick(tab) {
-        console.log(tab.name);
-        var index=this.$store.state.tabs.pathList.indexOf(tab.name);
+        console.log(Tabs.name);
+        var index=this.$store.state.tabs.pathList.indexOf(Tabs.name);
         if(index!==-1){
           this.$router.push(this.$store.state.tabs.list[index]);
         }
