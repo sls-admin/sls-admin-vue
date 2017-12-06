@@ -17,7 +17,7 @@
   import HeadNav from '../head-nav/HeadNav.vue'
   import LeftMenu from '../left-menu/LeftMenu.vue'
   import Bread from '../bread/Bread.vue'
-  import Tabs from '../tabs/Tabs.vue';
+  import Tabs from '../tabs/tab.vue';
 
   export default {
     name: 'home',
