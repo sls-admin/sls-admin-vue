@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "7"
+branches:
+  only:
+  - webpack2
+cache:
+  directories:
+    - "node_modules"
+install:
+  - npm install
+script:
+  - npm run build
