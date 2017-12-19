@@ -27,7 +27,7 @@ export default {
             data: {
                 username: '',
                 email: '',
-                email_code: '',
+                mobile: '',
                 password: '',
                 repassword: ''
             },

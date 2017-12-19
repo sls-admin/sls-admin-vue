@@ -32,8 +32,8 @@
 
                         <el-form-item
                             prop='text'>
-                            <el-input type="email_code" auto-complete="off" placeholder="邮箱验证码"
-                                      v-model='data.email_code'></el-input>
+                            <el-input type="text" auto-complete="off" placeholder="手机号"
+                                      v-model='data.mobile'></el-input>
                         </el-form-item>
 
                         <el-form-item
